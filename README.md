@@ -1,4 +1,4 @@
 mobile
 ======
 
-mibile js framework
+a mobile js framework
