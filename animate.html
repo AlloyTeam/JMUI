@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+<head>
+<title>Mobile Cookbook</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<style>
+#move{
+	background: red;
+	width: 100px;
+	height: 100px;
+	opacity: .2;
+}
+</style>
+</head>
+<body>
+	<h4>css3动画</h4>
+	<div id="move"></div>
+
+	<script type="text/javascript" src="js/cnMobile.js"></script>
+	<script type="text/javascript">
+		var $A = cnMobile.Animation,
+			$D = cnMobile.dom;
+	
+		$A.transit(new $A({
+			elem:$D.id("move"),
+			time:2000,
+			scale:0.5,
+			rotate:45,
+			translateX:150,
+			translateY:80,
+			style:{
+				opacity:1
+			},
+			onFinished:function(){
+				$A.transit(new $A({
+					elem:$D.id("move"),
+					time:3000,
+					rotate:90
+				}),true);
+			}
+		}));
+
+	</script>
+</body>
+
+</html>

@@ -457,9 +457,16 @@ cm.$package(function(cm){
 			
 
 		},
+		once:function(obj,evtType,handler){
+			var f = function(){
+				handler();
+				$E.off(obj ,evtType ,f);
+			}
+			$E.on(obj ,evtType ,f);
+		},
 		off:function(obj,evtType,handler){
 			//evtType is a string split by space
-			if($T.isString(evtType)&&evtType.indexof(" ")>0){
+			if($T.isString(evtType)&&evtType.indexOf(" ")>0){
 				evtType = evtType.split(" ");
 				for(var i=evtType.length;i--;){
 					$E.off(obj, evtType[i], handler);
@@ -784,11 +791,11 @@ cm.$package(function(cm){
 						if(now - preUpTime < DOUBLE_TAP_TIME && TouchPoint.getPosDist(preUpPos,currentPos) < DOUBLE_TAP_DISTANCE){
 							//触发doubletap事件
 							$E.fire(obj,"doubletap",evtObj);	
-							preUpTime = now;
-							preUpPos = currentPos ;
-							preTouchPos = currentPos = null;
-							return;	
-						} 	
+								preUpTime = now;
+								preUpPos = currentPos ;
+								preTouchPos = currentPos = null;
+								return;	
+							} 	
 					}
 					//触发tap事件
 					$E.fire(obj,"tap",evtObj);
@@ -864,12 +871,14 @@ cm.$package(function(cm){
 
 //animation time, runType ,scale, rotate, rotateX, rotateY, translateX, translateY, skewX, skewY
 cm.$package(function(cm){
-	var $D = cm.dom;
+	var $D = cm.dom,
+		$E = cm.event;
 	var vendors = ["-webkit-","-moz-","-o-","-ms-",""];
+
 	var Animation = function(options){
 
 		this.elem = options.elem;
-		this.time = options.time || 1;
+		this.time = options.time || 1000;
 		this.runType = options.runType || "ease-in-out";
 		this.scale = options.scale;
 		this.rotate = options.rotate;
@@ -880,58 +889,17 @@ cm.$package(function(cm){
 		this.skewX = options.skewX;
 		this.skewY = options.skewY;
 		this.style = options.style;
-	}
-	Animation.transitTo = function(ani){
-		var $T = cm.type;
-		//动画时间以及类型
-		var aStr = '-webkit-transition: all ' 
-								+ ani.time + 's ' 
-								+ ani.runType + ';';
-
-		var hasScale = !$T.isUndefined(ani.scale);
-		var hasRotate = !$T.isUndefined(ani.rotate);
-		var hasTranslateX = !$T.isUndefined(ani.translateX);
-		var hasTranslateY = !$T.isUndefined(ani.translateY);
-		var hasSkewX = !$T.isUndefined(ani.skewX);
-		var hasSkewY = !$T.isUndefined(ani.skewY);
-	
-		//变形属性
-		cm.each(vendors,function(v){
-			aStr += v + 'transform:'; 
-			if(hasScale) aStr +=  'scale(' + ani.scale + ') ';
-			if(hasRotate) aStr += 'rotate(' + ani.rotate + 'deg) ';
-			if(hasTranslateX || hasTranslateY){
-				if(hasTranslateX) aStr += "translate(" + ani.translateX + "px,";
-				else aStr += "translate(0,";
-				if(hasTranslateY) aStr += ani.translateY + "px)";
-				else aStr += "0)";
-			}
-			if(hasSkewX || hasSkewX){
-				if(hasSkewX) aStr += "skew(" + ani.skewX + "deg,";
-				else aStr += "skew(0,";
-				if(hasSkewY) aStr += ani.skewY + "deg)";
-				else aStr += "0)";
-			}
-			aStr += ";";
-
-		});
-
-		
-		//样式变化
-		var st = ani.style;
-		if(st){
-			cm.each(st,function(sv,sn){
-				aStr += $D.toCssStyle(sn) + ":" + sv + ";";
-			});
+		var onFinished = options.onFinished;
+		if(onFinished){
+			$E.once(this.elem,"webkitTransitionEnd",onFinished);
 		}
-	
-		ani.elem.style.cssText = aStr;
-	};
-	Animation.transit = function(ani){
+
+	}
+	Animation.transit = function(ani,isAdd){
 		var $T = cm.type;
 		var ts = "";
 		var aStr = '-webkit-transition: all ' 
-					+ ani.time + 's ' 
+					+ ani.time/1000 + 's ' 
 					+ ani.runType + ';';
 
 
@@ -958,9 +926,19 @@ cm.$package(function(cm){
 		}
 		
 		cm.each(vendors,function(v){
-			ani.elem.style[v + "transform"] += ts;
+			if(isAdd)
+				ani.elem.style[v + "transform"] += ts;//transform叠加
+			else
+				ani.elem.style[v + "transform"] = ts;//transform覆盖
 		});
 
+		//样式变化
+		var st = ani.style;
+		if(st){
+			cm.each(st,function(sv,sn){
+				aStr += $D.toCssStyle(sn) + ":" + sv + ";";
+			});
+		}
 		ani.elem.style.cssText += aStr;
 
 	};

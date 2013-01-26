@@ -12,11 +12,10 @@
 	font-size: 38px;
 	font-weight: bold;
 	color: orange;
-	text-align: center;
-	line-height: 400px;
 }
 </style>
 <body>
+	<h4>tap doubletap swipe drag transform hold等手势</h4>
 	<div id="w" class="ww"></div>
 	<div id="currentPos"></div>
 	<div id="preTouchPos"></div>
@@ -68,6 +67,7 @@
 							   +"scale:" + e.scale 
 							   +"<br/>"
 							   +"rotation:" + e.rotation;
+			    wobj.style["-webkit-transform"] = "rotate("+e.rotation+"deg) scale("+e.scale+")";
 			},
 			transformend:function(e){
 				// alert(e.rotation);
