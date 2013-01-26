@@ -40,6 +40,13 @@
 			return destination;
 
 		},
+	    bind:function(func, context, var_args) {
+	        var slice = [].slice;
+	        var a = slice.call(arguments, 2);
+	        return function(){
+	            return func.apply(context, a.concat(slice.call(arguments)));
+	        };
+		},
 		indexOf:function(arr,elem){
 			//数组或类数组对象
 			if(arr.length){
