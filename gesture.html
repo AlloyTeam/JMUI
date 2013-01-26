@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset=utf-8>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<style>
+#w{
+	-webkit-user-select: none;
+	width: 500px; 
+	height: 400px;
+	background: black;
+	font-size: 38px;
+	font-weight: bold;
+	color: orange;
+	text-align: center;
+	line-height: 400px;
+}
+</style>
+<body>
+	<div id="w" class="ww"></div>
+	<div id="currentPos"></div>
+	<div id="preTouchPos"></div>
+	<script type="text/javascript">
+
+	</script>
+	<script type="text/javascript" src="js/cnMobile.js"></script>
+	<script type="text/javascript">
+	
+		var wobj = cnMobile.dom.id("w");
+		cnMobile.event.on(wobj,"touchmove touchstart touchend",function(e){
+			e.stopPropagation();
+			e.preventDefault();
+		});
+		cnMobile.event.on(wobj,"doubletap",function(e){
+			// alert(e.position.x);
+			wobj.innerHTML="doubletap";
+		});
+		cnMobile.event.on(wobj,"hold",function(e){
+			// alert(e.position.x+" "+ e.position.y);
+			wobj.innerHTML="hold";
+		});
+		cnMobile.event.on(wobj,"tap",function(e){
+			// alert(e.position.x);
+			wobj.innerHTML="tap";
+		});
+		cnMobile.event.on(wobj,{
+			dragstart:function() {
+				wobj.innerHTML="dragstart";
+			},
+			drag:function(e){
+
+				//console.log(e.angle);
+				wobj.innerHTML="drag";
+			},
+			dragend:function(e){
+				// alert(e.distance + " " + e.angle);
+				wobj.innerHTML="dragend";
+			},
+			swipe:function(e){
+				wobj.innerHTML="swipe" + e.direction ;
+			},
+			transformstart:function(e){
+				// cm.dom.id("preTouchPos").innerHTML = (e.position.x);
+				wobj.innerHTML="transformstart";
+			},
+			transform:function(e){
+				wobj.innerHTML="transform: "
+							   +"scale:" + e.scale 
+							   +"<br/>"
+							   +"rotation:" + e.rotation;
+			},
+			transformend:function(e){
+				// alert(e.rotation);
+				wobj.innerHTML="transformend";
+			}
+		});
+	</script>
+
+</body>
+</html>

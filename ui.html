@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="Author" content="Tencent.AlloyTeam" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,target-densitydpi=medium-dpi" />
+
+	<link rel="stylesheet" type="text/css" href="css/ui.css">
+	<style type="text/css">
+		body{
+			padding: 10px;
+		}
+
+	</style>
+</head>
+<body>
+	<div id="testMsg"></div>
+    <div id="slider" class="slider">
+    	<a id="handler" href="javascript:" style="left:50%;">
+    	</a>
+    </div>
+
+    <div id="toggleSwitch" class="toggleSwitch">
+    	<div class="wrap">
+		<div>
+	    	<span>on</span>
+	    	<span>off</span>
+	    	
+		</div>
+		<a id="toggleHandler" href="#"></a>
+		</div>
+	</div>
+
+    <form class="inputList">
+
+	    <div id="menuSelector" class="menuSelector">
+	    	<span class="selectText"></span>
+	    	<select>
+	    		<option>cson</option>
+	    		<option>小c</option>
+	    	</select>
+	    </div>
+
+
+	    <fieldset id="radioButtonList" class="radioButtonList">
+		    <ul>
+		    	<li>
+		    		<input id="radio1" type="radio" name="radio" value="1"/>
+		    		<label for="radio1"></label>
+		    		<span>Cson1</span>
+		    	</li>
+
+		    	<li>
+		    		<input id="radio2" type="radio" name="radio" value="2" checked="true"/>
+		    		<label for="radio2"></label>
+		    		<span>Cson2</span>
+		    	</li>
+		    	<li>
+		    		<input id="radio3" type="radio" name="radio" value="3"/>
+		    		<label for="radio3"></label>
+		    		<span>Cson3</span>
+		    	</li>
+		    </ul>
+	    </fieldset>
+    </form>
+
+
+<script type="text/javascript" src="js/cnMobile.js"></script> 
+<script type="text/javascript" src="js/slider.js"></script>
+<script type="text/javascript" src="js/toggleswitch.js"></script>
+<script type="text/javascript" src="js/menuselect.js"></script>
+<script type="text/javascript" src="js/radiobuttonlist.js"></script>
+<script type="text/javascript">
+var $D = cnMobile.dom;
+var $E = cnMobile.event;
+var $A = cnMobile.Animation;
+
+var muiSlider = new MUI.Slider({
+	id:"slider",
+	handlerId:"handler",
+	maxValue:10,
+	minValue:0
+});
+
+var muiToggleSwitch = new MUI.ToggleSwitch({
+	id:"toggleSwitch",
+	handlerId:"toggleHandler"
+});
+
+
+var muiMenuSelect = new MUI.MenuSelect({
+	id:"menuSelector"
+});
+
+
+var muiRadioBtnList = new MUI.RadioButtonList({
+	id:"radioButtonList"
+});
+
+
+
+</script>
+</body>
+</html>

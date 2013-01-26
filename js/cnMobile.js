@@ -1,9 +1,6 @@
 //base
 (function(){
 	var cm={
-		init:function(){
-
-		},
  		$namespace: function(name) {
 	        if ( !name ) {
 	            return window;
@@ -969,9 +966,6 @@ cm.$package(function(cm){
 	};
 	cm.Animation = Animation;
 });
-
-//computedstyle
-//is undefined
 
 
 
