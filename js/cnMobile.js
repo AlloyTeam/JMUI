@@ -92,7 +92,7 @@
 			else if($T.isObject(arr)){
 				for(var i in arr){
 					if(arr.hasOwnProperty(i))
-						callback.call(arr[i],arr[i],i,arr);
+						if(callback.call(arr[i],arr[i],i,arr) === false) return;
 				}
 			}
 		},
@@ -264,7 +264,7 @@ cm.$package(function(cm){
 		addClass:function(){
 			if(hasClassListProperty){
 	            return function (elem, className) {
-	                if (!elem || !className || $D.hasClass(el, className)){
+	                if (!elem || !className || $D.hasClass(elem, className)){
 	                    return;
 	                }
 	                elem.classList.add(className);
@@ -272,7 +272,7 @@ cm.$package(function(cm){
 			}
 			else{
 				return function(elem, className){
-	                if (!elem || !className || $D.hasClass(el, className)) {
+	                if (!elem || !className || $D.hasClass(elem, className)) {
 	                    return;
 	                }
 	                elem.className += " "+ className;
@@ -299,14 +299,14 @@ cm.$package(function(cm){
 	    removeClass:function(){
 	        if (hasClassListProperty) {
 	            return function (elem, className) {
-	                if (!elem || !className || !hasClass(elem, className)) {
+	                if (!elem || !className || !$D.hasClass(elem, className)) {
 	                    return;
 	                }
 	                elem.classList.remove(className);
 	            };
 	        } else {
 	            return function (elem, className) {
-	                if (!elem || !className || !hasClass(elem, className)) {
+	                if (!elem || !className || !$D.hasClass(elem, className)) {
 	                    return;
 	                }
 	                elem.className = elem.className.replace(new RegExp('(?:^|\\s)' + className + '(?:\\s|$)'), ' ');
@@ -416,7 +416,11 @@ cm.$package(function(cm){
 			if("drag_distance" in options) DRAG_DISTANCE = options["drag_distance"];
 		},
 		on:function(obj, evtType, handler){
-
+			if($T.isArray(obj)){
+				for(var i=obj.length;i--;){
+					$E.on(obj[i], evtType, handler);
+				}			
+			}
 			//evtType is a string split by space
 			if($T.isString(evtType)&&evtType.indexOf(" ")>0){
 				evtType = evtType.split(" ");
@@ -950,6 +954,68 @@ cm.$package(function(cm){
 
 	};
 	cm.Animation = Animation;
+});
+
+
+//http
+cm.$package(function(cm){
+	var http = {
+		serializeParam : function ( param ) {
+			if ( !param ) return '';
+			var qstr = [];
+			for ( var key in  param ) {
+				qstr.push( key + '=' + param[key] );
+			};
+			return  qstr.join('&');
+		},
+		getUrlParam :  function ( name ,href ,noDecode ) {
+			var re = new RegExp( '(?:\\?|#|&)' + name + '=([^&]*)(?:$|&|#)',  'i' ), m = re.exec( href );
+			var ret = m ? m[1] : '' ;
+			return !noDecode ? decodeURIComponent( ret ) : ret;
+		},
+		ajax : function ( option ) {
+			var o = option;
+			var m = o.method.toLocaleUpperCase();
+			var isPost = 'POST' == m;
+
+			var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : false;
+			if ( !xhr ) {
+			 	o.error && o.error.call( null, { ret : 999 , msg : 'Create XHR Error!' } );
+			 	return false;
+			}
+
+			var qstr = http.serializeParam( o.param );
+
+			// get 请求 参数处理
+			!isPost && ( o.url += ( o.url.indexOf( '?' ) > -1 ?  '&' : '?' ) + qstr );
+
+			xhr.open( m, o.url, true );
+
+			isPost && xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
+
+			xhr.onreadystatechange = function(){
+				if ( 4 == xhr.readyState ) {
+					var status = xhr.status;
+					if ( status >= 200 && status < 300 ) {
+						var response = xhr.responseText.replace( /(\r|\n|\t)/gi, '' );
+						// var m = /callback\((.+)\)/gi.exec( response );
+						// var result = { ret : 998, msg : '解析数据出错，请稍后再试' };
+						// try{ result = eval( '(' + m[1] + ')' ) } catch ( e ) {};
+						// result = eval( '(' + m[1] + ')' )
+						o.success && o.success.call( xhr, JSON.parse(response) );
+					}else{
+						o.error && o.error.call( xhr, { ret : 997, msg : '连接错误，请稍后再试', status : status } );
+					};
+				}
+			};
+			
+
+			xhr.send( isPost ? qstr : void(0) );
+
+			return xhr;
+		}	
+	}
+	cm.http = http;
 });
 
 
