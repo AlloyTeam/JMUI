@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="Author" content="Tencent.AlloyTeam" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,target-densitydpi=medium-dpi" />
+
+	<link rel="stylesheet" type="text/css" href="css/mui-base.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-select.css" />
+	<style type="text/css">
+		.container{
+			padding: 10px;
+		}
+		h4{
+			margin: 10px 0;
+		}
+	</style>
+</head>
+
+<div class="container">
+	<h4>menu select</h4>
+	
+    <div id="w_menuSelector" class="select select_white">
+    	<span class="select_text"></span>
+    	<select>
+    		<option>cson</option>
+    		<option>小c</option>
+    	</select>
+    </div>
+    <div id="g_menuSelector" class="select select_green">
+    	<span class="select_text"></span>
+    	<select>
+    		<option>cson</option>
+    		<option>小c</option>
+    	</select>
+    </div>
+
+    <div id="b_menuSelector" class="select select_blue">
+    	<span class="select_text"></span>
+    	<select>
+    		<option>cson</option>
+    		<option>小c</option>
+    	</select>
+    </div>
+
+    <div id="bl_menuSelector" class="select select_black">
+    	<span class="select_text"></span>
+    	<select>
+    		<option>cson</option>
+    		<option>小c</option>
+    	</select>
+    </div>
+	
+</div>
+<script type="text/javascript" src="js/cnMobile.js"></script>
+<script type="text/javascript" src="js/select.js"></script>
+<script type="text/javascript">
+	var w_sel = new MUI.Select({
+		id:"w_menuSelector"
+	});
+	var g_sel = new MUI.Select({
+		id:"g_menuSelector"
+	});
+	var b_sel = new MUI.Select({
+		id:"b_menuSelector"
+	});
+	var bl_sel = new MUI.Select({
+		id:"bl_menuSelector"
+	});
+</script>
+</body>
+</html>

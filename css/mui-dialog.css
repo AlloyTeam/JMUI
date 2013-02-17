@@ -1,0 +1,38 @@
+.mask{
+	visibility: hidden;
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: black;
+	opacity: 0;
+
+}
+.dialog{
+	visibility: hidden;
+	position: relative;
+	width: 80%;
+	max-width: 500px; 
+	margin: 10% auto 0;
+	background: #fff;
+	opacity: 0;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	overflow: hidden;
+}
+.dialog > .header{
+	background: #fadb4e;
+	background: -webkit-gradient(linear, left top, left bottom, from( #fceda7), to( #fbef7e));
+	background: -webkit-linear-gradient( #fceda7, #fbef7e);
+	background: -moz-linear-gradient( #fceda7, #fbef7e);
+	background: -ms-linear-gradient( #fceda7, #fbef7e);
+	background: -o-linear-gradient( #fceda7 , #fbef7e);
+	background: linear-gradient( #fceda7, #fbef7e);	
+}
+.header > h4{
+	text-align: center;
+	padding: 0.6em 20px;
+	color: #333;
+}

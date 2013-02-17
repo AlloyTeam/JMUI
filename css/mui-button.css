@@ -1,0 +1,221 @@
+/*	按钮	*/
+.btn{
+	position: relative;
+	width: 60%;
+	display: block;
+	border: none;
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+	-moz-text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+	text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	cursor: pointer;
+	
+	-moz-box-shadow: 0px 1px 4px rgba(0,0,0,.3);
+	-webkit-box-shadow: 0px 1px 4px rgba(0, 0, 0, .3);
+	box-shadow: 0px 1px 4px  rgba(0, 0, 0, .3) ;
+	
+}
+.btn_text{
+	display: block;
+	padding: 0.7em 20px;
+	color:#fff;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+/*	不同样式按钮	*/
+.btn_white{
+	border: 1px solid #ccc;
+	background: #eee;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f1f1f1));
+	background: -webkit-linear-gradient(top, #fff, #f1f1f1);
+	background: -moz-linear-gradient(top, #fff, #f1f1f1);
+	background: -ms-linear-gradient(top, #fff, #f1f1f1);
+	background: -o-linear-gradient(top, #fff, #f1f1f1);
+	background: linear-gradient(top, #fff, #f1f1f1);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff', endColorstr='#f1f1f1', GradientType=0);
+	-webkit-text-shadow: 0 1px 1px #fff;
+	-moz-text-shadow: 0 1px 1px #fff;
+	text-shadow: 0 1px 1px #fff;
+
+}
+.btn_white.active{
+	background: #fff;
+	background: -webkit-gradient(linear, left top, left bottom, from(#fafafa), to(#f6f6f6));
+	background: -webkit-linear-gradient(top, #fafafa, #f6f6f6);
+	background: -moz-linear-gradient(top, #fafafa, #f6f6f6);
+	background: -ms-linear-gradient(top, #fafafa, #f6f6f6);
+	background: -o-linear-gradient(top, #fafafa #f6f6f6);
+	background: linear-gradient(top, #fafafa, #f6f6f6);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa', endColorstr='#f6f6f6', GradientType=0);
+}
+.btn_white > .btn_text{
+	color: #333;
+}
+.btn_green{
+	border: 1px solid #50a428;
+	background: #6ebf47;
+	background: -webkit-gradient(linear, left top, left bottom, from(#6ebf47), to(#5cb232));
+	background: -webkit-linear-gradient(top, #6ebf47, #5cb232);
+	background: -moz-linear-gradient(top, #6ebf47, #5cb232);
+	background: -ms-linear-gradient(top, #6ebf47, #5cb232);
+	background: -o-linear-gradient(top, #6ebf47, #5cb232);
+	background: linear-gradient(top, #6ebf47, #5cb232);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6ebf47', endColorstr='#5cb232', GradientType=0);
+	-webkit-text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+	-moz-text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+	text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+}
+.btn_green.active{
+	background: #50a428;
+	background: -webkit-gradient(linear, left top, left bottom, from(#50a428), to(#7fd556));
+	background: -webkit-linear-gradient(top, #50a428, #7fd556);
+	background: -moz-linear-gradient(top, #50a428, #7fd556);
+	background: -ms-linear-gradient(top, #50a428, #7fd556);
+	background: -o-linear-gradient(top, #50a428 #7fd556);
+	background: linear-gradient(top, #50a428, #7fd556);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#50a428', endColorstr='#7fd556', GradientType=0);
+}
+
+.btn_black{
+	border: 1px solid #111;
+	background: #333;
+	background: -webkit-gradient(linear, left top, left bottom, from(#444), to(#2d2d2d));
+	background: -webkit-linear-gradient(top, #444, #2d2d2d);
+	background: -moz-linear-gradient(top, #444, #2d2d2d);
+	background: -ms-linear-gradient(top, #444, #2d2d2d);
+	background: -o-linear-gradient(top, #444, #2d2d2d);
+	background: linear-gradient(top, #444, #2d2d2d);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#444', endColorstr='#2d2d2d', GradientType=0);
+	-webkit-text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+	-moz-text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+	text-shadow: 0 1px 1px rgba(0,0,0,0.4);
+}
+.btn_black.active{
+	background: #333;
+	background: -webkit-gradient(linear, left top, left bottom, from(#2d2d2d), to(#444));
+	background: -webkit-linear-gradient(top, #2d2d2d, #444);
+	background: -moz-linear-gradient(top, #444, #2d2d2d);
+	background: -ms-linear-gradient(top, #444, #2d2d2d);
+	background: -o-linear-gradient(top, #444, #2d2d2d);
+	background: linear-gradient(top, #444, #2d2d2d);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#444', endColorstr='#2d2d2d', GradientType=0);
+}
+.btn_blue{
+	border: 1px solid #044062;
+	background: #396b9e;
+	background: -webkit-gradient(linear, left top, left bottom, from(#5f9cc5), to(#396b9e));
+	background: -webkit-linear-gradient(top, #5f9cc5, #396b9e);
+	background: -moz-linear-gradient(top,#5f9cc5, #396b9e);
+	background: -ms-linear-gradient(top, #5f9cc5, #396b9e);
+	background: -o-linear-gradient(top, #5f9cc5, #396b9e);
+	background: linear-gradient(top, #5f9cc5, #396b9e);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5f9cc5', endColorstr='#396b9e', GradientType=0);
+	-webkit-text-shadow: 0 1px 1px #194b7e;
+	-moz-text-shadow: 0 1px 1px #194b7e;
+	text-shadow: 0 1px 1px #194b7e;
+}
+.btn_blue.active{
+	background: #5393c5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#5393c5), to(#6facd5));
+	background: -webkit-linear-gradient(top, #5393c5, #6facd5);
+	background: -moz-linear-gradient(top, #5393c5, #6facd5);
+	background: -ms-linear-gradient(top, #5393c5, #6facd5);
+	background: -o-linear-gradient(top, #5393c5, #6facd5);
+	background: linear-gradient(top, #5393c5, #6facd5);
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5393c5', endColorstr='#6facd5', GradientType=0);
+}
+/*	带icon的按钮	*/
+.btn_icon{
+	
+}
+.btn_icon > .left_icon,.btn_icon > .right_icon{
+	display: inline-block;
+	width: 16px;
+	height: 16px;
+	position: absolute;
+	top: 50%;
+	margin: -8px 0 0 0;
+}
+.btn_icon > .left_icon{
+	left: 0.5em;
+}
+.btn_icon > .right_icon{
+	right: 0.5em;
+}
+.btn_white > .left_icon , .btn_white > .right_icon{
+	background: white;
+}
+.btn_green > .left_icon , .btn_green > .right_icon{
+	background: green;
+}
+.btn_black > .left_icon , .btn_black > .right_icon{
+	background: black;
+}
+.btn_blue > .left_icon , .btn_blue > .right_icon{
+	background: blue;
+}
+
+/*	按钮组	*/
+.btn_group{
+	width: 60%;
+}
+.btn_group:after {
+	content:".";
+	display:block;
+	height:0;
+	clear:both;
+	visibility:hidden;
+}
+.btn_group > .btn + .btn{
+	margin-left: -1px;
+}
+.btn_group > .btn{
+	width: 33.3%;
+	float: left;
+	display: inline-block;
+	-webkit-border-radius: 0px;
+	-moz-border-radius: 0px;
+	border-radius: 0px;	
+}
+.btn_group > .btn:first-child{
+	-webkit-border-radius: 8px 0 0 8px;
+	-moz-border-radius: 8px 0 0 8px;
+	border-radius: 8px 0 0 8px;
+	
+}
+.btn_group > .btn:last-child{
+	-webkit-border-radius: 0 8px 8px 0;
+	-moz-border-radius: 0 8px 8px 0;
+	border-radius: 0 8px 8px 0;
+}
+
+.btn_group.vertical> .btn + .btn{
+	margin-left: 0;
+	margin-top: -1px;
+}
+.btn_group.vertical > .btn{
+	width: 100%;
+}
+.btn_group.vertical > .btn:first-child{
+	-webkit-border-radius: 8px 8px 0 0;
+	-moz-border-radius: 8px 8px 0 0;
+	border-radius: 8px 8px 0 0;
+	
+}
+.btn_group.vertical > .btn:last-child{
+	-webkit-border-radius: 0 0 8px 8px;
+	-moz-border-radius: 0 0 8px 8px;
+	border-radius: 0 0 8px 8px;
+
+}
+
+	

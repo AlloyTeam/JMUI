@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="Author" content="Tencent.AlloyTeam" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,target-densitydpi=medium-dpi" />
+
+	<link rel="stylesheet" type="text/css" href="css/mui-base.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-progress.css" />
+	<style type="text/css">
+		.container{
+			padding: 10px;
+		}
+		h4{
+			margin: 10px 0;
+		}
+	</style>
+</head>
+
+<div class="container">
+	<h4>progress bar</h4>
+	<div id="progress" class="progress">
+		<span class="bar_text"></span>
+		<div class="bar bar_image"></div>
+	</div>
+	<div id="progress_g" class="progress" style="margin-top:40px;">
+		<span class="bar_text"></span>
+		<div class="bar bar_green"></div>
+	</div>
+	<div id="progress_b" class="progress" style="margin-top:40px;">
+		<span class="bar_text"></span>
+		<div class="bar bar_blue"></div>
+	</div>
+	<div id="progress_y" class="progress" style="margin-top:40px;">
+		<span class="bar_text"></span>
+		<div class="bar bar_yellow"></div>
+	</div>
+
+</div>
+<script type="text/javascript" src="js/cnMobile.js"></script>
+<script type="text/javascript" src="js/progress.js"></script>
+<script type="text/javascript">
+	var p = new MUI.Progress({
+		id:"progress",
+		percent:90
+	});
+	var p_g = new MUI.Progress({
+		id:"progress_g",
+		percent:90
+	});
+	var p_b = new MUI.Progress({
+		id:"progress_b",
+		percent:90
+	});
+	var p_y = new MUI.Progress({
+		id:"progress_y",
+		percent:90
+	});
+	
+</script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="Author" content="Tencent.AlloyTeam" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,target-densitydpi=medium-dpi" />
+
+	<link rel="stylesheet" type="text/css" href="css/mui-base.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-toggleswitch.css" />
+	<style type="text/css">
+		.container{
+			padding: 10px;
+		}
+		h4{
+			margin: 10px 0;
+		}
+	</style>
+</head>
+
+<div class="container">
+	<h4>toggle switch</h4>
+	
+    <div id="toggleSwitch" class="toggle_switch">
+    	<div class="toggle_wrap">
+			<div class="toggle_text">
+		    	<span class="toggle_text_blue">on</span>
+		    	<span class="toggle_text_white">off</span>
+			</div>
+		<a class="toggle_handler toggle_handler_white"></a>
+		</div>
+	</div>
+    <div id="bl_toggleSwitch" class="toggle_switch" style="margin-left:30px;">
+    	<div class="toggle_wrap">
+			<div class="toggle_text">
+		    	<span class="toggle_text_blue">on</span>
+		    	<span class="toggle_text_black">off</span>
+			</div>
+		<a class="toggle_handler toggle_handler_black"></a>
+		</div>
+	</div>
+    <div id="b_toggleSwitch" class="toggle_switch" style="margin-left:30px;">
+    	<div class="toggle_wrap">
+			<div class="toggle_text">
+		    	<span class="toggle_text_blue">on</span>
+		    	<span class="toggle_text_deepblue">off</span>
+			</div>
+		<a class="toggle_handler toggle_handler_blue"></a>
+		</div>
+	</div>
+
+	
+</div>
+<script type="text/javascript" src="js/cnMobile.js"></script>
+<script type="text/javascript" src="js/toggleswitch.js"></script>
+<script type="text/javascript">
+	var ts = new MUI.ToggleSwitch({
+		id:"toggleSwitch"
+	});
+	var bl_ts = new MUI.ToggleSwitch({
+		id:"bl_toggleSwitch"
+	});
+	var b_ts = new MUI.ToggleSwitch({
+		id:"b_toggleSwitch"
+	});
+</script>
+</body>
+</html>

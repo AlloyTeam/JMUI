@@ -1,0 +1,106 @@
+.list{
+	
+}
+.num_list{
+	counter-reset: listnumbering;
+}
+.num_list .list_text:before{
+	counter-increment: listnumbering;
+	content: counter(listnumbering) ". ";
+}
+
+.read_only_list > .list_item{
+	cursor: default;
+}
+.list_item{
+	position: relative;
+	margin-top: -1px;
+	cursor: pointer;
+}
+.list_white{
+
+}
+.list_white > li{
+	border: 1px solid #ccc;
+	border-width: 1px 0 1px 0;
+	background: #f1f1f1;
+	background: -webkit-gradient(linear, left top, left bottom, from( #fff ), to( #f1f1f1));
+	background: -webkit-linear-gradient( #fff , #f1f1f1);
+	background: -moz-linear-gradient( #fff , #f1f1f1);
+	background: -ms-linear-gradient( #fff , #f1f1f1);
+	background: -o-linear-gradient( #fff , #f1f1f1);
+	background: linear-gradient( #fff , #f1f1f1);	
+}
+.list_white > li.selected{
+	border: 1px solid #2373a5;
+	border-width: 1px 0 1px 0;
+	background: #5393c5;
+	background: -webkit-gradient(linear, left top, left bottom, from( #5393c5), to( #6facd5));
+	background: -webkit-linear-gradient( #5393c5 , #6facd5);
+	background: -moz-linear-gradient( #5393c5 , #6facd5);
+	background: -ms-linear-gradient( #5393c5 , #6facd5);
+	background: -o-linear-gradient( #5393c5 , #6facd5);
+	background: linear-gradient( #5393c5 , #6facd5);	
+
+}
+.list_white.read_only_list > li{
+	background: #eee;
+}
+.list_text{
+	display: block;
+	padding: 0.7em 15px;
+	font-weight: bold;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.list_white > li >.list_text{
+	color: #333;
+}
+.list_white > li.selected > .list_text{
+	color: #fff;
+}
+
+.list_icon{
+	display: block;
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	right: 20px;
+	top: 50%;
+	margin-top: -9px;
+	background: gray;
+}
+.list_icon_left{
+	left: 20px;
+}
+.list_icon_left + .list_text{
+	padding-left:45px;
+}
+.list_icon_right{
+	right: 20px;
+}
+.group_list{
+
+}
+.list_group_title{
+	cursor: pointer;
+}
+.list_group_title > h4{
+	display: block;
+	padding: .5em 15px;
+	font-size: 14px;
+}
+
+.list_group_blue_title{
+	border: 1px solid #456f9a;
+	background: #5e87b0;
+	background: -webkit-gradient(linear, left top, left bottom, from( #6facd5), to( #497bae));
+	background: -webkit-linear-gradient( #6facd5 , #497bae);
+	background: -moz-linear-gradient( #6facd5, #497bae);
+	background: -ms-linear-gradient( #6facd5 , #497bae);
+	background: -o-linear-gradient( #6facd5, #497bae);
+	background: linear-gradient( #6facd5, #497bae);	
+}
+.list_group_blue_title > h4{
+	color: #fff;
+}

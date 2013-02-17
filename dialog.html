@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="Author" content="Tencent.AlloyTeam" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,target-densitydpi=medium-dpi" />
+
+	<link rel="stylesheet" type="text/css" href="css/mui-base.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-dialog.css" />
+	<style type="text/css">
+		input{
+			padding: 8px 12px;
+			margin-right: 18px;
+			font-size: 16px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<div class="container">
+	<h4 style="margin-bottom:20px">Dialog Demo</h4>
+
+	<input id="none" type="button" value="none effect">
+	<input id="fade" type="button" value="fade effect">
+	<input id="pop" type="button" value="pop effect">
+	<input id="slideup" type="button" value="slide up effect">
+	<input id="slidedown" type="button" value="slide down effect">
+
+	<div class="mask"></div>
+	<div id="dialog" class="dialog">
+		<div class="header">
+			<h4>Dialog Header</h4>
+		</div>
+		<div class="content">
+			<p style = "line-height:80px;text-align:center;font-size:36px;color:#333;cursor:pointer">
+				click me to hide
+			</p>
+		</div>
+	</div>
+
+</div>
+<script type="text/javascript" src="js/cnMobile.js"></script>
+<script type="text/javascript" src="js/dialog.js"></script>
+<script type="text/javascript">
+	var currentEffect; 
+	var $D = cm.dom,
+		$E = cm.event;
+
+	var dialog = new MUI.Dialog({
+		id:"dialog"
+	});
+	dialog.elem.onclick = function(){
+		dialog.hide(currentEffect);
+	}	
+
+	$E.on($D.id("none"),"click",function(){
+		currentEffect = "none";
+		dialog.show("none");
+	});
+	$E.on($D.id("fade"),"click",function(){
+		currentEffect = "fade";
+		dialog.show("fade");
+	});
+	$E.on($D.id("pop"),"click",function(){
+		currentEffect = "pop";
+		dialog.show("pop");
+	});
+	$E.on($D.id("slideup"),"click",function(){
+		currentEffect = "slideup";
+		dialog.show("slideup");
+	});
+	$E.on($D.id("slidedown"),"click",function(){
+		currentEffect = "slidedown";
+		dialog.show("slidedown");
+	});
+	
+</script>
+</body>
+</html>

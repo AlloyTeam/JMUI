@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="Author" content="Tencent.AlloyTeam" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,target-densitydpi=medium-dpi" />
+
+	<link rel="stylesheet" type="text/css" href="css/mui-base.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-list.css" />
+	<style type="text/css">
+		.container{
+			padding: 10px;
+		}
+	
+	</style>
+</head>
+
+<div class="container">
+
+	<h4 style="margin-bottom:30px;">list</h4>
+	<ul id="list1" class="list list_white conner_round_vertical_group">
+		<li class="list_item">
+			<a  class="list_text">ListItemA</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemB</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+	</ul>
+	<h4 style="margin-bottom:30px;margin-top:30px;">list readonly</h4>
+	<ul class="list list_white read_only_list conner_round_vertical_group" style="margin-top:30px; margin-bottom:30px;">
+		<li class="list_item">
+			<a  class="list_text">ListItemA</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemB</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+	</ul>
+	<h4 style="margin-top:30px;margin-bottom:30px;">list with number</h4>
+	<ol id="n_list" class="list list_white num_list conner_round_vertical_group">
+		<li class="list_item">
+			<a class="list_text">ListItemA</a>
+		</li>
+		<li class="list_item">
+			<a class="list_text">ListItemB</a>
+		</li>
+		<li class="list_item">
+			<a class="list_text">ListItemC</a>
+		</li>
+	</ol>
+
+	<h4 style="margin-top:30px;margin-bottom:30px;">list with icon</h4>
+	<ul id="l_icon_list" class="list list_white conner_round_vertical_group">
+		<li class="list_item">
+			<span class="list_icon list_icon_left"></span>
+			<a  class="list_text">ListItemA</a>
+		</li>
+		<li class="list_item">
+			<span class="list_icon list_icon_left"></span>
+			<a  class="list_text">ListItemB</a>
+		</li>
+		<li class="list_item">
+			<span class="list_icon list_icon_left"></span>
+			<a  class="list_text">ListItemC</a>
+		</li>
+	</ul>
+
+	<ul id="r_icon_list" class="list list_white conner_round_vertical_group" style="margin-top:20px;">
+		<li class="list_item">
+			<span class="list_icon list_icon_right"></span>
+			<a  class="list_text">ListItemA</a>
+		</li>
+		<li class="list_item">
+			<span class="list_icon list_icon_right"></span>
+			<a  class="list_text">ListItemB</a>
+		</li>
+		<li class="list_item">
+			<span class="list_icon list_icon_right"></span>
+			<a  class="list_text">ListItemC</a>
+		</li>
+	</ul>
+
+	<h4 style="margin-top:30px;margin-bottom:30px;">lists in group</h4>
+	<ul id="groupList" class="group_list">
+		<li class="list_group">
+			<div class="list_group_title list_group_blue_title">
+				<h4>Group1</h4>
+			</div>
+			<div class="list_group_body">
+				<ul class="list list_white">
+					<li class="list_item">
+						<a  class="list_text">ListItemA</a>
+					</li>
+					<li class="list_item">
+						<a  class="list_text">ListItemB</a>
+					</li>
+					<li class="list_item">
+						<a  class="list_text">ListItemC</a>
+					</li>
+				</ul>
+			</div>
+		</li>	
+		<li class="list_group">
+			<div class="list_group_title list_group_blue_title">
+				<h4>Group2</h4>
+			</div>
+			<div class="list_group_body">
+				<ul class="list list_white">
+					<li class="list_item">
+						<a  class="list_text">ListItemA</a>
+					</li>
+					<li class="list_item">
+						<a  class="list_text">ListItemB</a>
+					</li>
+					<li class="list_item">
+						<a  class="list_text">ListItemC</a>
+					</li>
+				</ul>
+			</div>
+		</li>	
+	</div>
+
+
+
+	
+</div>
+<script type="text/javascript" src="js/cnMobile.js"></script>
+<script type="text/javascript" src="js/list.js"></script>
+<script type="text/javascript" src="js/grouplist.js"></script>
+<script type="text/javascript">
+	var list1 = new MUI.List({
+		id:"list1"
+	});
+	var n_list = new MUI.List({
+		id:"n_list"
+	});
+	var l_icon_list = new MUI.List({
+		id:"l_icon_list"
+	});
+	var r_icon_list = new MUI.List({
+		id:"r_icon_list"
+	});
+	var groupList = new MUI.GroupList({
+		id:"groupList"
+	});
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+.progress{
+	position: relative;
+	height: 24px;
+	border: 1px solid #AAA;
+	-moz-border-radius: 1em;
+	-webkit-border-radius: 1em;
+	border-radius: 1em;
+	overflow: hidden;
+	
+}
+.progress > .bar{
+	height: 100%;
+}
+.bar_image{
+	background: url('../images/pbar.gif');
+}
+.bar_yellow{
+	background: #f2c43d;
+}
+.bar_blue{
+	background: #5393c5;
+}
+.bar_green{
+	background: #74b042;
+}
+.progress > .bar_text
+{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	line-height: 24px;
+
+	text-shadow: 1px 1px 0 #fff;
+	font-weight: bold;
+	color: #222222;
+}

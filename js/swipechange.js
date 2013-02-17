@@ -12,12 +12,14 @@ cnMobile.$package("MUI",function(cm){
 			this.elem = $D.id(options.id);
 			this.contentWrap = $D.tagName("div",this.elem)[0];
 			this.contents = $D.tagName("div",this.contentWrap);
+			this.count = this.contents.length;
 			this.currentIndex = options.currentIndex || 0;
 			this.moveDist = 0;
 			this.runType = options.runType || "ease-out";
 			this.slideTime = options.slideTime || 200;
-		
+			
 			this._sizeAdjust();
+			this._moveTo(this.currentIndex * -this.contentWidth);
 			this.bindHandlers();
 			$E.setGestureEventConfig({
 				"drag_distance":0
@@ -62,7 +64,7 @@ cnMobile.$package("MUI",function(cm){
 				}
 				// self._moveTo(currentIndex * -self.contentWidth);
 				self.slideTo(currentIndex);
-				self.currentIndex = currentIndex;
+				
 			});
 			$E.on(this.contentWrap,"webkitTransitionEnd",function(){
 				$E.fire(self ,"change" ,{
@@ -75,7 +77,7 @@ cnMobile.$package("MUI",function(cm){
 		},
 		_sizeAdjust:function(){
 			var ele = this.elem;
-			var count = this.contents.length;
+			var count = this.count;
 			var hasClientRect = "getBoundingClientRect" in ele;
 			//幻灯片宽度
 			var contentWidth = hasClientRect ? ele.getBoundingClientRect().width : ele.offsetWidth;
@@ -96,6 +98,17 @@ cnMobile.$package("MUI",function(cm){
 		slideTo:function(index){
 			this.contentWrap.style["-webkit-transition"] = "all " + this.slideTime/1000 +"s " + this.runType;
 			this._moveTo(index * -this.contentWidth);
+			this.currentIndex  = index ;
+		},
+		next:function(){
+			var index = this.currentIndex + 1;
+			if(index >= this.count) return;
+			this.slideTo(index);
+		},
+		pre:function(){
+			var index = this.currentIndex - 1;
+			if(index < 0) return;
+			this.slideTo(index);
 		}
 
 	};

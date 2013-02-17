@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="Author" content="Tencent.AlloyTeam" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,target-densitydpi=medium-dpi" />
+
+	<link rel="stylesheet" type="text/css" href="css/mui-base.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-radio.css" />
+	<style type="text/css">
+		.container{
+			padding: 10px;
+		}
+		h4{
+			margin: 10px 0;
+		}
+	</style>
+</head>
+
+<div class="container">
+	<h4>radio</h4>
+	<label id="radio" for="radio0" class="radio radio_white">
+		<input id="radio0" type="radio" name="radio" value="0"/>
+		<span class="radio_text">0</span>
+	</label>
+	<label id="bl_radio" for="radio21" class="radio radio_black" style="margin-top:10px;">
+		<input id="radio21" type="radio" name="radio" value="0"/>
+		<span class="radio_text">0</span>
+	</label>
+	<h4>radios in groups</h4>
+	<fieldset id="radioList" class="radio_group">
+		<label for="radio1" class="radio radio_white">
+			<input id="radio1" type="radio" name="radio" value="1"/>
+			<span class="radio_text">1</span>
+		</label>
+
+		<label for="radio2" class="radio radio_white">
+			<input id="radio2" type="radio" name="radio" value="2"/>
+			<span class="radio_text">2</span>
+		</label>
+
+		<label for="radio3" class="radio radio_white">
+			<input id="radio3" type="radio" name="radio" value="3"/>
+			<span class="radio_text">3</span>
+		</label>
+	</fieldset>
+
+	<fieldset id="bl_radioList" class="radio_group" style="margin-top:30px;">
+		<label for="radio11" class="radio radio_black">
+			<input id="radio11" type="radio" name="radio" value="1"/>
+			<span class="radio_text">1</span>
+		</label>
+
+		<label for="radio12" class="radio radio_black">
+			<input id="radio12" type="radio" name="radio" value="2"/>
+			<span class="radio_text">2</span>
+		</label>
+
+		<label for="radio13" class="radio radio_black">
+			<input id="radio13" type="radio" name="radio" value="3"/>
+			<span class="radio_text">3</span>
+		</label>
+	</fieldset>
+
+
+	<fieldset id="v_radioList" class="radio_group vertical" style="margin-top:40px;">
+		<label for="radio4" class="radio radio_white">
+			<input id="radio4" type="radio" name="radio" value="4"/>
+			<span class="radio_icon"></span>
+			<span class="radio_text">4</span>
+		</label>
+
+		<label for="radio5" class="radio radio_white">
+			<input id="radio5" type="radio" name="radio" value="5"/>
+			<span class="radio_icon"></span>
+			<span class="radio_text">5</span>
+		</label>
+
+		<label for="radio6" class="radio radio_white">
+			<input id="radio6" type="radio" name="radio" value="6"/>
+			<span class="radio_icon"></span>
+			<span class="radio_text">6</span>
+		</label>
+	</fieldset>
+
+	<fieldset id="v_bl_radioList" class="radio_group vertical" style="margin-top:40px;">
+		<label for="radio24" class="radio radio_black">
+			<input id="radio24" type="radio" name="radio" value="4"/>
+			<span class="radio_icon"></span>
+			<span class="radio_text">4</span>
+		</label>
+
+		<label for="radio25" class="radio radio_black">
+			<input id="radio25" type="radio" name="radio" value="5"/>
+			<span class="radio_icon"></span>
+			<span class="radio_text">5</span>
+		</label>
+
+		<label for="radio26" class="radio radio_black">
+			<input id="radio26" type="radio" name="radio" value="6"/>
+			<span class="radio_icon"></span>
+			<span class="radio_text">6</span>
+		</label>
+	</fieldset>
+
+</div>
+<script type="text/javascript" src="js/cnMobile.js"></script>
+<script type="text/javascript" src="js/radio.js"></script>
+<script type="text/javascript" src="js/radiolist.js"></script>
+<script type="text/javascript">
+	var radio = new MUI.Radio({
+		id:"radio"
+	});
+	var bl_radio = new MUI.Radio({
+		id:"bl_radio"
+	});
+	var radiolist = new MUI.RadioList({
+		id:"radioList"
+	});
+	var bl_radiolist = new MUI.RadioList({
+		id:"bl_radioList"
+	});
+	var v_radiolist = new MUI.RadioList({
+		id:"v_radioList"
+	});
+	var v_bl_radiolist = new MUI.RadioList({
+		id:"v_bl_radioList"
+	});
+
+
+</script>
+</body>
+</html>
+

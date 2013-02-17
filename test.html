@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="Author" content="Tencent.AlloyTeam" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,target-densitydpi=medium-dpi" />
+
+	<link rel="stylesheet" type="text/css" href="css/mui-base.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-dialog.css" />
+	<style type="text/css">
+		input{
+			padding: 8px 12px;
+			margin-right: 18px;
+			font-size: 16px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+
+<div id="e" style = "width:50px;height:50px;background:red;"></div> 
+<div style="height:8000px"></div>
+<script type="text/javascript" src = "js/cnMobile.js"></script>
+<script type="text/javascript">
+
+
+	var $D = cm.dom;
+	var $E = cm.event;
+	$D.id("e").onclick = function(){
+		// $D.id("e").style.webkitTransform = "scale(0.5)";
+		$D.id("e").style.webkitTransition = "all 1s ease-out";	
+		$D.id("e").style.webkitTransform = "translate(0,0)";
+		$D.id("e").style.background = "yellow";
+	}
+	$E.on(window,"scrollstart",function(e){
+		
+		console.log("start");
+	})
+	$E.on(window,"scroll",function(){
+		console.log(window.pageYOffset);
+	})
+	$E.on(window,"scrollend",function(e){
+		
+		console.log("end");
+	})
+</script>
+</body>
+</html>

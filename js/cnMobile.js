@@ -47,7 +47,51 @@
 	            return func.apply(context, a.concat(slice.call(arguments)));
 	        };
 		},
+		Class:function(){
+	        var length = arguments.length;
+	        var option = arguments[length-1];
+        	option.init = option.init || function(){};
+   
+	        if(length === 2){
+	            var superClass = arguments[0].extend;
+	
+	            var tempClass = function() {};
+	            tempClass.prototype = superClass.prototype;
+
+	            var subClass = function() {
+	                this.init.apply(this, arguments);
+	            }
+	          
+	            subClass.superClass = superClass.prototype;
+	            subClass.callSuper = function(context,func){
+	                var slice = Array.prototype.slice;
+	                var a = slice.call(arguments, 2);
+	                var func = subClass.superClass[func];
+	           
+	                if(func){
+	                    func.apply(context, a.concat(slice.call(arguments)));
+	                }
+	            };
+	            subClass.prototype = new tempClass();
+	            subClass.prototype.constructor = subClass;
+	            
+	            cm.extend(subClass.prototype, option);
+	            
+
+	            subClass.prototype.init = function(){
+	                option.init.apply(this, arguments);
+	            };
+	            return subClass;
+	        }else if(length === 1){
+	            var newClass = function() {
+	                return this.init.apply(this, arguments);
+	            }
+	            newClass.prototype = option;
+	            return newClass;
+	        }   
+	    },
 		indexOf:function(arr,elem){
+			var $T = cm.type;
 			//数组或类数组对象
 			if(arr.length){
 				return [].indexOf.call(arr,elem);
@@ -184,6 +228,8 @@ cm.$package(function(cm){
 	selectorEngine;
 
 	var hasClassListProperty = 'classList' in document.documentElement;
+	var vendors = ['o', 'ms' ,'moz' ,'webkit'];
+	var div = document.createElement('div');
 
 	var $D={
 
@@ -229,11 +275,20 @@ cm.$package(function(cm){
 			selectorEngine=func;
 		},
 		matchesSelector:function(ele,selector){
+			if(!ele || !selector) return;
 			var matchesSelector = ele.webkitMatchesSelector || ele.mozMatchesSelector || ele.oMatchesSelector || ele.matchesSelector;
 			if(matchesSelector) return matchesSelector.call(ele,selector);
 			var list = this.$(selector);
-			if(cm.indexOf(list,ele)) return true;
+			if(cm.indexOf(list,ele) > 0) return true;
 			return false;
+		},
+		closest:function(elem,selector){
+			while(elem){
+				if($D.matchesSelector(elem,selector)){
+					return elem;
+				}
+				elem = elem.parentNode;
+			}
 		},
 		toDomStyle:function(cssStyle){
 			if(!$T.isString(cssStyle)) return;
@@ -244,6 +299,13 @@ cm.$package(function(cm){
   				return domStyle.replace(/[A-Z]/g, function(m) { return '-'+m.toLowerCase(); });
 		},
 		setStyle:function(elem ,styleName,styleValue){
+			var self = this;
+			if($T.isArray(elem)){
+				cm.each(elem ,function(e){
+					self.setStyle(e,styleName,styleValue);
+				});
+				return;
+			}
 			if($T.isObject(styleName)){
 				for(var n in styleName){
 					if(styleName.hasOwnProperty(n)){
@@ -256,6 +318,30 @@ cm.$package(function(cm){
 				elem.style[styleName] = styleValue;
 			}
 		},
+		//获取带有出产商的属性名
+		getVendorPropertyName : function(prop) {
+			var style = div.style;
+			var _prop;
+		    if (prop in style) return prop;
+		    // _prop = prop;
+		    _prop = prop.charAt(0).toUpperCase() + prop.substr(1);
+		    for(var i = vendors.length; i--;){
+		    	var v = vendors[i];
+		    	var vendorProp = v + _prop;
+		    	if (vendorProp in style) {
+		    		return vendorProp;
+		    	}
+		    }	  	
+		},
+	 	//检测是否支持3D属性
+	 	isSupprot3d : function(){
+	 		// var transformStr = $D.getVendorPropertyName("transform");
+	 		// $D.setStyle(div ,transformStr ,"rotatex(90deg)");
+	 		// if(div.style[transformStr] == "") return false;
+	 		// return true;
+	 		var p_prop = $D.getVendorPropertyName("perspective");
+	 		return p_prop && p_prop in div.style;
+	 	},
 		filterSelector:function(arr,selector){
 			return cm.filter(arr,function(elem){
 				return $D.matchesSelector(elem,selector);
@@ -312,7 +398,15 @@ cm.$package(function(cm){
 	                elem.className = elem.className.replace(new RegExp('(?:^|\\s)' + className + '(?:\\s|$)'), ' ');
 	            };
 	        }	    	
-	    }()
+	    }(),
+	    toggleClass:function(ele,className){
+	    	if($D.hasClass(ele,className)){
+	    		$D.removeClass(ele,className);
+	    	}
+	    	else{
+	    		$D.addClass(ele,className);
+	    	}
+	    }
 	};
 
 	cm.dom=$D;
@@ -322,6 +416,8 @@ cm.$package(function(cm){
 cm.$package(function(cm){
 
 	var $T=cm.type,
+		scrollTimeId,
+		isScrolling,
 		gestureEvent={
 			"tap":1,
 			"doubletap":1,
@@ -565,6 +661,20 @@ cm.$package(function(cm){
 		}
 
 	};
+	//scrollstart scrollend事件
+	$E.on(window ,"scroll" ,function(){
+		if(!isScrolling){
+			isScrolling = true;
+			$E.fire(window,"scrollstart");
+		}
+		clearTimeout(scrollTimeId);
+		scrollTimeId = setTimeout(function(){
+			isScrolling = false;
+			$E.fire(window ,"scrollend");
+		},250);
+	});
+
+
 	var startEvt,moveEvt,endEvt;
 	var	HOLD_TIME = 2000,//hold事件在2秒后触发
 		TAP_DISTANCE = 20,//按下松开之间的移动距离小于20，认为发生了tap
@@ -879,80 +989,214 @@ cm.$package(function(cm){
 
 	cm.event=$E;
 });
+//Util
+cm.$package(function(cm){
+	var $D = cm.dom,
+		$E = cm.event,
+		$T = cm.type;
+	var preventScroll = function(e){
+        if (e.target.type === 'range') { return; }
+            e.preventDefault();
+	}
+		
+
+	var Util = {
+		//隐藏URL栏
+		hideUrlBar:function(){
+			$E.on(window ,"load" ,function(){
+				setTimeout(function(){
+					if(!location.hash)
+						window.scrollTo(0,1);
+				},0);
+			});
+		},
+		//禁止滚动
+		preventScrolling : function() {
+	 	    $E.on(document ,'touchmove' ,preventScroll);
+    	},
+    	//启用滚动
+    	activeScrolling:function(){
+    		$E.off(document ,'touchmove' ,preventScroll);
+    	},
+		//滚动到顶部动画(css3动画)
+		scrollToTop:function(duration,runType){
+			var $A = cm.Animation;
+			var body = document.body;
+			var scrollTop = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
+			
+			$D.setStyle(body, $D.getVendorPropertyName("transform"), "translate(0,"+ (- scrollTop) + "px)");
+
+			document.body.scrollTop ? document.body.scrollTop = 0:document.documentElement.scrollTop = 0;	
+			new $A({
+				selector:body,
+				duration:duration,
+				runType:runType,
+				use3d:true
+			}).translateY(0).transit();
+		}
+	};
+	cm.Util = Util;
+});
 
 //animation time, runType ,scale, rotate, rotateX, rotateY, translateX, translateY, skewX, skewY
 cm.$package(function(cm){
 	var $D = cm.dom,
-		$E = cm.event;
-	var vendors = ["-webkit-","-moz-","-o-","-ms-",""];
+		$E = cm.event,
+		$T = cm.type;
+	
+ 	//3d支持
+ 	var support3d = $D.isSupprot3d();
+ 	var finishedCount = 0;
 
-	var Animation = function(options){
-
-		this.elem = options.elem;
-		this.time = options.time || 1000;
-		this.runType = options.runType || "ease-in-out";
-		this.scale = options.scale;
-		this.rotate = options.rotate;
-		this.rotateX = options.rotateX;
-		this.rotateY = options.rotateY;
-		this.translateX = options.translateX;
-		this.translateY = options.translateY;
-		this.skewX = options.skewX;
-		this.skewY = options.skewY;
-		this.style = options.style;
-		var onFinished = options.onFinished;
-		if(onFinished){
-			$E.once(this.elem,"webkitTransitionEnd",onFinished);
-		}
-
-	}
-	Animation.transit = function(ani,isAdd){
-		var $T = cm.type;
-		var ts = "";
-		var aStr = '-webkit-transition: all ' 
-					+ ani.time/1000 + 's ' 
-					+ ani.runType + ';';
-
-
-		var hasScale = !$T.isUndefined(ani.scale);
-		var hasRotate = !$T.isUndefined(ani.rotate);
-		var hasTranslateX = !$T.isUndefined(ani.translateX);
-		var hasTranslateY = !$T.isUndefined(ani.translateY);
-		var hasSkewX = !$T.isUndefined(ani.skewX);
-		var hasSkewY = !$T.isUndefined(ani.skewY);
+	var Animation = cm.Class({
+		init:function(options){
 		
-		if(hasScale) ts +=  'scale(' + ani.scale + ') ';
-		if(hasRotate) ts += 'rotate(' + ani.rotate + 'deg) ';
-		if(hasTranslateX || hasTranslateY){
-			if(hasTranslateX) ts += "translate(" + ani.translateX + "px,";
-			else ts += "translate(0,";
-			if(hasTranslateY) ts += ani.translateY + "px)";
-			else ts += "0)";
-		}
-		if(hasSkewX || hasSkewX){
-			if(hasSkewX) ts += "skew(" + ani.skewX + "deg,";
-			else ts += "skew(0,";
-			if(hasSkewY) ts += ani.skewY + "deg)";
-			else ts += "0)";
-		}
-		
-		cm.each(vendors,function(v){
-			if(isAdd)
-				ani.elem.style[v + "transform"] += ts;//transform叠加
+			this.setElems(options.selector);
+			this.setDuration(options.duration || 1000);
+			this.setRunType(options.runType || "ease-in-out");
+			this.setDelay(options.delay || 0);
+			this.setUsed3d(options.use3d);
+			this.transformArr = [];
+		},
+		setDuration:function(duration){
+			this.duration = duration;
+			return this;
+		},
+		setDelay:function(delay){
+			this.delay = delay;
+			return this;
+		},
+		setElems:function(selector){
+			if($T.isString(selector)){
+				this.elems = $D.$(selector);
+			}
+			else if($T.isArray(selector)){
+				this.elems = selector;
+			}
+			else if(selector.tagName){
+				this.elems = [selector];
+			}
+			return this;
+		},
+		setRunType:function(runType){
+			this.runType = runType;
+			return this;
+		},
+		setUsed3d:function(use3d){
+			this.use3d = use3d;
+			return this;
+		},
+		scale:function(scale){
+			this.transformArr.push("scale(" + scale + ")");
+			return this;
+		},
+		scaleX:function(scaleX){
+			this.transformArr.push("scalex(" + scaleX + ")");
+			return this;
+		},
+		scaleY:function(scaleY){
+			this.transformArr.push("scaley(" + scaleY + ")");
+			return this;
+		},
+		rotate:function(rotate){
+			this.transformArr.push("rotate(" + rotate + "deg)");
+			return this;
+		},
+		rotateX:function(rotateX){
+			this.transformArr.push("rotatex(" + rotateX + "deg)");
+			return this;
+		},
+		rotateY:function(rotateX){
+			this.transformArr.push("rotatey(" + rotateY + "deg)");
+			return this;
+		},
+		rotateZ:function(rotateZ){
+			this.transformArr.push("rotatez(" + rotateZ + "deg)");
+			return this;
+		},
+		translate:function(translateX,translateY,translateZ){
+			if(support3d && translateZ)
+				this.transformArr.push("translate3d" + '(' + translateX + ',' + translateY + ','+ translateZ +')');
 			else
-				ani.elem.style[v + "transform"] = ts;//transform覆盖
-		});
-
-		//样式变化
-		var st = ani.style;
-		if(st){
-			cm.each(st,function(sv,sn){
-				aStr += $D.toCssStyle(sn) + ":" + sv + ";";
+				this.transformArr.push("translate" + '(' + translateX + ',' + translateY + ')');
+			return this;
+		},
+		translateX:function(translateX){
+			this.translate(translateX,0);
+			return this;
+		},
+		translateY:function(translateY){
+			this.translate(0,translateY);
+			return this;
+		},	
+		skew:function(x,y){
+			this.transformArr.push("skew(" + x + "deg," + y + "deg)");
+			return this;
+		},
+		skewX:function(x){
+			this.transformArr.push("skewx(" + x + "deg)");
+			return this;
+		},	
+		skewY:function(y){
+			this.transformArr.push("skewy(" + y + "deg)");
+			return this;
+		},	
+		setStyle:function(styleName,styleValue){
+			var s = "";
+			if($T.isUndefined(this.styleStr)) this.styleStr = "";
+			//样式变化
+			if($T.isObject(styleName)){
+				cm.each(styleName ,function(sv,sn){
+					s += $D.toCssStyle($D.getVendorPropertyName(sn)) + ":" + sv + ";";
+				});
+			}
+			else if($T.isString(styleName)){
+				s += $D.toCssStyle($D.getVendorPropertyName(styleName)) + ":" + styleValue + ";";
+			}
+			this.styleStr += s;
+			return this;
+			
+		},
+		toOrigin:function(){
+			this.transformArr = [];
+			return this;
+		},
+		transit:function(onFinished){
+			var self = this;
+			var elems = this.elems;
+			cm.each(elems ,function(e){
+				self._transit(e);
 			});
-		}
-		ani.elem.style.cssText += aStr;
+			window.setTimeout(function(){
+				$E.fire(self,"end");
+				cm.each(elems,function(elem){
+					$D.setStyle(elem ,$D.getVendorPropertyName("transition") ,"");
+				});
+				onFinished && onFinished.call(self);
+			},this.duration);
+			return this;
+		},
+		_transit:function(elem){
+		
+			var self = this;
+			var transformStr = this.transformArr.join(" ");
+			if(support3d && this.use3d){
+				transformStr += " translatez(0)";
+			}
 
-	};
+			var aStr =  "all"
+						+ ' ' + this.duration/1000 + 's ' 
+						+ this.runType
+						+ ' ' + this.delay/1000 + 's';
+				
+			$D.setStyle(elem ,$D.getVendorPropertyName("transition") ,aStr);
+			
+			elem.style[$D.getVendorPropertyName("transform")] = transformStr;
+			elem.style.cssText += this.styleStr;
+
+			$E.fire(this ,"start");
+		}
+	});
 	cm.Animation = Animation;
 });
 
