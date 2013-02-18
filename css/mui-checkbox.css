@@ -78,6 +78,7 @@
 .checkbox_group{
 	width: 60%;
 }
+
 .checkbox_group > .checkbox + .checkbox{
 	margin-left: -1px;
 }

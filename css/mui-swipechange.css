@@ -1,0 +1,10 @@
+.swipeChange{
+	width: 300px;
+	overflow: hidden;
+}
+.swipe_wrap div{
+	float: left;
+	height: 150px;
+	outline: 1px solid white;
+	border-radius: 5px;
+}
