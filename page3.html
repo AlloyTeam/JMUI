@@ -1,0 +1,150 @@
+<!doctype html>
+<html>
+<head>
+<title>Mobile Cookbook</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,target-densitydpi=medium-dpi" />
+
+<link rel="stylesheet" type="text/css" href="css/mui-base.css" />
+<link rel="stylesheet" type="text/css" href="css/mui-swipechange.css" />
+<link rel="stylesheet" type="text/css" href="css/mui-button.css" />
+
+</head>
+<body>
+<h4 style="position:absolute;z-index:1;">拖动切换</h4>
+<div id='slider' class='swipeChange'>
+  	<div class="swipe_wrap">
+		<div>
+			<div>
+				<h4>button</h4>
+				<p style="margin-top:20px;">
+					<button id="w_button" class="btn btn_white">
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+				<p style="margin-top:20px;">
+					<button id="g_button" class="btn btn_green" >
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+				<p style="margin-top:20px;">
+					<button id="bl_button" class="btn btn_black">
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+				<p style="margin-top:20px;">
+					<button id="b_button" class="btn btn_blue">
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+
+				<h4>button with icon</h4>
+				<p>
+					<button id="w_icon_l_button" class="btn btn_white btn_icon">
+						<span class="left_icon"></span>
+						<span class="btn_text">button</span>
+					</button>
+					<button id="w_icon_r_button" class="btn btn_white btn_icon" style="margin-top:10px;">
+						<span class="right_icon"></span>
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+				<p>
+					<button id="g_icon_l_button" class="btn btn_green btn_icon" style="margin-top:10px;">
+						<span class="left_icon"></span>
+						<span class="btn_text">button</span>
+					</button>
+					<button id="g_icon_r_button" class="btn btn_green btn_icon" style="margin-top:10px;">
+						<span class="right_icon"></span>
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+				<p style="margin-top:20px;">
+					<button id="bl_icon_l_button" class="btn btn_black btn_icon">
+						<span class="left_icon"></span>
+						<span class="btn_text">button</span>
+					</button>
+					<button id="bl_icon_r_button" class="btn btn_black btn_icon" style="margin-top:10px;">
+						<span class="right_icon"></span>
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+				<p style="margin-top:20px;">
+					<button id="b_icon_l_button" class="btn btn_blue btn_icon">
+						<span class="left_icon"></span>
+						<span class="btn_text">button</span>
+					</button>
+					<button id="b_icon_r_button" class="btn btn_blue btn_icon" style="margin-top:10px;">
+						<span class="right_icon"></span>
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+
+				<h4>buttons in group</h4>
+				<div id="w_btn_list" class="btn_group" style="margin-bottom:10px;">
+					<button class="btn btn_white"><span class="btn_text">1</span></button>
+					<button class="btn btn_white"><span class="btn_text">2</span></button>
+					<button class="btn btn_white"><span class="btn_text">3</span></button>
+				</div>	
+				<div id="w_v_btn_list" class="btn_group vertical" style="margin-bottom:10px;">
+					<button class="btn btn_white"><span class="btn_text">1</span></button>
+					<button class="btn btn_white"><span class="btn_text">2</span></button>
+					<button class="btn btn_white"><span class="btn_text">3</span></button>
+				</div>	
+				<div id="g_btn_list" class="btn_group" style="margin-bottom:10px;">
+					<button class="btn btn_green"><span class="btn_text">1</span></button>
+					<button class="btn btn_green"><span class="btn_text">2</span></button>
+					<button class="btn btn_green"><span class="btn_text">3</span></button>
+				</div>	
+				<div id="g_v_btn_list" class="btn_group vertical" style="margin-bottom:10px;">
+					<button class="btn btn_green"><span class="btn_text">1</span></button>
+					<button class="btn btn_green"><span class="btn_text">2</span></button>
+					<button class="btn btn_green"><span class="btn_text">3</span></button>
+				</div>	
+
+
+				<div id="bl_btn_list" class="btn_group" style="margin-bottom:10px;">
+					<button class="btn btn_black"><span class="btn_text">1</span></button>
+					<button class="btn btn_black"><span class="btn_text">2</span></button>
+					<button class="btn btn_black"><span class="btn_text">3</span></button>
+				</div>	
+				<div id="bl_v_btn_list" class="btn_group vertical" style="margin-bottom:10px;">
+					<button class="btn btn_black"><span class="btn_text">1</span></button>
+					<button class="btn btn_black"><span class="btn_text">2</span></button>
+					<button class="btn btn_black"><span class="btn_text">3</span></button>
+				</div>	
+
+				<div id="b_btn_list" class="btn_group" style="margin-bottom:10px;">
+					<button class="btn btn_blue"><span class="btn_text">1</span></button>
+					<button class="btn btn_blue"><span class="btn_text">2</span></button>
+					<button class="btn btn_blue"><span class="btn_text">3</span></button>
+				</div>	
+				<div id="b_v_btn_list" class="btn_group vertical">
+					<button class="btn btn_blue"><span class="btn_text">1</span></button>
+					<button class="btn btn_blue"><span class="btn_text">2</span></button>
+					<button class="btn btn_blue"><span class="btn_text">3</span></button>
+				</div>	
+			</div>
+		</div>
+		<div><div>2</div></div>
+		<div><div>3</div></div>
+		<div><div>4</div></div>
+		<div><div>5</div></div>
+	</div>
+</div>
+	<script type="text/javascript" src="js/cnMobile.js"></script>
+	<script type="text/javascript" src="js/swipechange.js"></script>
+	<script type="text/javascript">
+	var sc = new MUI.SwipeChange({
+		id:"slider",
+		currentIndex:0
+		
+	});
+	// window.onclick = function(){
+	// 	sc.next();
+	// }
+
+	</script>
+</body>
+
+</html>
