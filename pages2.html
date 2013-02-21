@@ -10,9 +10,39 @@
 	<link rel="stylesheet" type="text/css" href="css/mui-checkbox.css" />
 	<link rel="stylesheet" type="text/css" href="css/mui-button.css" />
 	<link rel="stylesheet" type="text/css" href="css/mui-dialog.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-toolbar.css" />
+
 
 
 	<style type="text/css">
+	body{
+		overflow-x:hidden !important;
+	}
+		.header{
+			position: fixed;
+			width: 100%;
+			top: 0;
+			left: 0;
+			z-index: 1;
+		}
+		.header .pre{
+			position: absolute;
+			top: 15px;
+			left: 10px;
+
+		}
+		.header .next{
+			position: absolute;
+			top: 15px;
+			right: 10px;
+		}
+		.footer{
+			position: fixed;
+			width: 100%;
+			bottom: 0;
+			left: 0;
+			z-index: 1;
+		}
 
 		.container{
 			-webkit-box-sizing: border-box ;
@@ -21,6 +51,7 @@
 			width: 100%;
 			height: 100%;
 			-webkit-backface-visibility:hidden;
+
 
 		}
 		.swipeChange{
@@ -38,36 +69,65 @@
 	
 	</style>
 </head>
+<div class="header header_blue">
+	<h1>header</h1>
+	<a id="pre" class="pre" href="javascript:">pre</a>
+	<a id="next" class="next" href="javascript:">next</a>
+</div>
 <div id='slider' class='swipeChange'>
   	<div class="swipe_wrap">
   		<div>
   			<div class="container">
-				<h4 style="margin:10px 0;">button</h4>
-				<p>
-					<button id="w_button" class="btn btn_blue">
+				<h4>button</h4>
+				<p style="margin-top:20px;">
+					<button id="w_button" class="btn btn_white">
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+				<p style="margin-top:20px;">
+					<button id="g_button" class="btn btn_green" >
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+				<p style="margin-top:20px;">
+					<button id="bl_button" class="btn btn_black">
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+				<p style="margin-top:20px;">
+					<button id="b_button" class="btn btn_blue">
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+							<p style="margin-top:20px;">
+					<button id="b_button" class="btn btn_blue">
 						<span class="btn_text">button</span>
 					</button>
 				</p>
 
-				<h4 style="margin:10px 0;">button with icon</h4>
-				<p>
-					<button id="w_icon_l_button" class="btn btn_blue btn_icon">
-						<span class="left_icon"></span>
+			<p style="margin-top:20px;">
+					<button id="b_button" class="btn btn_blue">
 						<span class="btn_text">button</span>
 					</button>
 				</p>
-				<h4 style="margin:10px 0;">buttons in group</h4>
-				<div id="w_btn_list" class="btn_group" style="margin-bottom:10px;">
-					<button class="btn btn_blue"><span class="btn_text">1</span></button>
-					<button class="btn btn_blue"><span class="btn_text">2</span></button>
-					<button class="btn btn_blue"><span class="btn_text">3</span></button>
-				</div>	
-				<div id="w_v_btn_list" class="btn_group vertical" style="margin-bottom:10px;">
-					<button class="btn btn_blue"><span class="btn_text">1</span></button>
-					<button class="btn btn_blue"><span class="btn_text">2</span></button>
-					<button class="btn btn_blue"><span class="btn_text">3</span></button>
-				</div>	
+			<p style="margin-top:20px;">
+					<button id="b_button" class="btn btn_blue">
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+					<p style="margin-top:20px;">
+					<button id="b_button" class="btn btn_blue">
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+					<p style="margin-top:20px;">
+					<button id="b_button" class="btn btn_blue">
+						<span class="btn_text">button</span>
+					</button>
+				</p>
 
+
+				
   			</div>
   		</div>
 		<div>
@@ -152,7 +212,9 @@
 	
 	</div>
 </div>
-
+<div class="footer footer_blue">
+	<h4>footer</h4>
+</div>
 
 <script type="text/javascript" src="js/cnMobile.js"></script>
 <script type="text/javascript" src="js/swipechange.js"></script>
@@ -163,68 +225,80 @@
 <script type="text/javascript" src="js/dialog.js"></script>
 
 <script type="text/javascript">
+	var $D = cnMobile.dom,
+		$E = cnMobile.event;
+
+
 	//swipe change
 	var sc = new MUI.SwipeChange({
 		id:"slider",
 		currentIndex:0
 	});
+
+	$E.on($D.id("pre"),"click",function(){
+		sc.pre();
+	});
+
+	$E.on($D.id("next"),"click",function(){
+		sc.next();
+	});
 	//check box
-	var cb = new MUI.Checkbox({
-		id:"checkbox"
-	});
-	var cl = new MUI.CheckboxList({
-		id:"checkboxlist"
-	});
-	var v_cl = new MUI.CheckboxList({
-		id:"v_checkboxlist"
-	});
-	//button
-	var w_btn = new MUI.Button({
-		id:"w_button"
-	});
+	// var cb = new MUI.Checkbox({
+	// 	id:"checkbox"
+	// });
+	// var cl = new MUI.CheckboxList({
+	// 	id:"checkboxlist"
+	// });
+	// var v_cl = new MUI.CheckboxList({
+	// 	id:"v_checkboxlist"
+	// });
+	// //button
+	// var w_btn = new MUI.Button({
+	// 	id:"w_button"
+	// });
 
-	var w_i_l_btn = new MUI.Button({
-		id:"w_icon_l_button"
-	});
+	// var w_i_l_btn = new MUI.Button({
+	// 	id:"w_icon_l_button"
+	// });
 
-	var w_btn_list = new MUI.ButtonList({
-		id:"w_btn_list"
-	});
-	var w_btn_list = new MUI.ButtonList({
-		id:"w_v_btn_list"
-	});
-	//dialog
-	var currentEffect; 
-	var $D = cm.dom,
-		$E = cm.event;
+	// var w_btn_list = new MUI.ButtonList({
+	// 	id:"w_btn_list"
+	// });
+	// var w_btn_list = new MUI.ButtonList({
+	// 	id:"w_v_btn_list"
+	// });
+	// //dialog
+	// var currentEffect; 
+	// var $D = cm.dom,
+	// 	$E = cm.event;
 
-	var dialog = new MUI.Dialog({
-		id:"dialog"
-	});
-	dialog.elem.onclick = function(){
-		dialog.hide(currentEffect);
-	}	
+	// var dialog = new MUI.Dialog({
+	// 	id:"dialog"
+	// });
+	// dialog.elem.onclick = function(){
+	// 	dialog.hide(currentEffect);
+	// }	
 
-	$E.on($D.id("none"),"click",function(){
-		currentEffect = "none";
-		dialog.show("none");
-	});
-	$E.on($D.id("fade"),"click",function(){
-		currentEffect = "fade";
-		dialog.show("fade");
-	});
-	$E.on($D.id("pop"),"click",function(){
-		currentEffect = "pop";
-		dialog.show("pop");
-	});
-	$E.on($D.id("slideup"),"click",function(){
-		currentEffect = "slideup";
-		dialog.show("slideup");
-	});
-	$E.on($D.id("slidedown"),"click",function(){
-		currentEffect = "slidedown";
-		dialog.show("slidedown");
-	});
+	// $E.on($D.id("none"),"click",function(){
+	// 	currentEffect = "none";
+	// 	dialog.show("none");
+	// });
+	// $E.on($D.id("fade"),"click",function(){
+	// 	currentEffect = "fade";
+	// 	dialog.show("fade");
+	// });
+	// $E.on($D.id("pop"),"click",function(){
+	// 	currentEffect = "pop";
+	// 	dialog.show("pop");
+	// });
+	// $E.on($D.id("slideup"),"click",function(){
+	// 	currentEffect = "slideup";
+	// 	dialog.show("slideup");
+	// });
+	// $E.on($D.id("slidedown"),"click",function(){
+	// 	currentEffect = "slidedown";
+	// 	dialog.show("slidedown");
+	// });
 
 </script>
 </body>

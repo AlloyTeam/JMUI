@@ -23,25 +23,27 @@ cnMobile.$package("MUI",function(cm){
 			this.moveDist = 0;
 			this.runType = options.runType || "ease-out";
 			this.slideTime = options.slideTime || 200;
-			
-		
+			this.canSwipe = options.canSwipe || false;
+			this._sizeAdjust();
 			this._moveTo(this.currentIndex * -this.contentWidth);
+		
 			this.bindHandlers();
 			$E.setGestureEventConfig({
 				"drag_distance":0
 			});
 			var self = this;
-			this._sizeAdjust();
 
 
 		},
 		bindHandlers:function(){
+			if(!this.canSwipe) return;
 			var self = this;
 			var startX = 0;
 
 			$E.on(this.elem,"touchmove",function(e){
 				e.preventDefault();
 			});
+
 			$E.on(this.elem,startEvt,function(e){
 				var target = e.target||e.srcElement;
 
@@ -54,15 +56,18 @@ cnMobile.$package("MUI",function(cm){
 				
 			});
 			$E.on(this.elem,moveEvt,function(e){
+
 				if(!dragingElem) return;
 				var tou = e.touches? e.touches[0] : e;
 				var x = tou.pageX;
+
 				if(x < self.elemLeft || x > self.elemRight) return;
 				x = x - self.elemLeft;
 
 				self.moveDist = x - startX;
 
 				self._removeAnimation(self.contentWrap);
+
 				self._moveTo(self.currentIndex * -self.contentWidth + self.moveDist);
 				// e.preventDefault();
 				
