@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="Author" content="Tencent.AlloyTeam" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,target-densitydpi=medium-dpi" />
+
+	<link rel="stylesheet" type="text/css" href="css/mui-base.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-swipechange.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-checkbox.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-button.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-dialog.css" />
+
+
+	<style type="text/css">
+
+		.container{
+			-webkit-box-sizing: border-box ;
+			padding: 0 10px 10px 10px;
+			/*position: absolute;*/
+			width: 100%;
+			height: 100%;
+			-webkit-backface-visibility:hidden;
+
+		}
+		.swipeChange{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			-webkit-backface-visibility:hidden;
+
+		}
+		.swipeChange > div{
+			width: 100%;
+			height: 100%;
+			-webkit-backface-visibility:hidden;
+		}
+	
+	</style>
+</head>
+<div id='slider' class='swipeChange'>
+  	<div class="swipe_wrap">
+  		<div>
+  			<div class="container">
+				<h4 style="margin:10px 0;">button</h4>
+				<p>
+					<button id="w_button" class="btn btn_blue">
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+
+				<h4 style="margin:10px 0;">button with icon</h4>
+				<p>
+					<button id="w_icon_l_button" class="btn btn_blue btn_icon">
+						<span class="left_icon"></span>
+						<span class="btn_text">button</span>
+					</button>
+				</p>
+				<h4 style="margin:10px 0;">buttons in group</h4>
+				<div id="w_btn_list" class="btn_group" style="margin-bottom:10px;">
+					<button class="btn btn_blue"><span class="btn_text">1</span></button>
+					<button class="btn btn_blue"><span class="btn_text">2</span></button>
+					<button class="btn btn_blue"><span class="btn_text">3</span></button>
+				</div>	
+				<div id="w_v_btn_list" class="btn_group vertical" style="margin-bottom:10px;">
+					<button class="btn btn_blue"><span class="btn_text">1</span></button>
+					<button class="btn btn_blue"><span class="btn_text">2</span></button>
+					<button class="btn btn_blue"><span class="btn_text">3</span></button>
+				</div>	
+
+  			</div>
+  		</div>
+		<div>
+			<div class="container">
+				<h4 style="margin:10px 0;">checkbox</h4>
+				<p>
+					<label id="checkbox" class="checkbox checkbox_white" for="cb0">
+						<input id="cb0" name="cb0" type="checkbox" />
+						<span class="checkbox_text">0</span>
+					</label>
+				</p>
+				<h4 style="margin:10px 0;">checkboxs in group</h4>
+				<p>
+					<fieldset id="checkboxlist" class="checkbox_group">
+						<label class="checkbox checkbox_white" for="cb1">
+							<input id="cb1" name="cb1" type="checkbox" />
+							<span class="checkbox_text">1</span>
+						</label>
+					
+						<label class="checkbox checkbox_white" for="cb2">
+							<input id="cb2" name="cb2" type="checkbox" />
+							<span class="checkbox_text">2</span>
+						</label>
+					
+						<label class="checkbox checkbox_white" for="cb3">
+							<input id="cb3" name="cb3" type="checkbox" />
+							<span class="checkbox_text">3</span>
+						</label>
+					</fieldset>
+
+				
+					<fieldset id="v_checkboxlist" class="checkbox_group vertical" style="margin-top:20px">
+						<label class="checkbox checkbox_white" for="cb4">
+							<input id="cb4" name="cb4" type="checkbox" />
+							<span class="checkbox_icon"></span>
+							<span class="checkbox_text">1</span>
+						</label>
+					
+						<label class="checkbox checkbox_white" for="cb5">
+							<input id="cb5" name="cb5" type="checkbox" />
+							<span class="checkbox_icon"></span>
+							<span class="checkbox_text">2</span>
+						</label>
+					
+						<label class="checkbox checkbox_white" for="cb6">
+							<input id="cb6" name="cb6" type="checkbox" />
+							<span class="checkbox_icon"></span>
+							<span class="checkbox_text">3</span>
+						</label>
+					</fieldset>
+
+				</p>	
+				
+			</div>	
+		</div>
+		<div>
+			<div class="container">
+				<h4 style="margin-bottom:20px">Dialog Demo</h4>
+
+				<input id="none" type="button" value="none effect">
+				<input id="fade" type="button" value="fade effect">
+				<input id="pop" type="button" value="pop effect">
+				<input id="slideup" type="button" value="slide up effect">
+				<input id="slidedown" type="button" value="slide down effect">
+
+				<div class="mask"></div>
+				<div id="dialog" class="dialog">
+					<div class="header">
+						<h4>Dialog Header</h4>
+					</div>
+					<div class="content">
+						<p style = "line-height:80px;text-align:center;font-size:36px;color:#333;cursor:pointer">
+							click me to hide
+						</p>
+					</div>
+				</div>
+
+			</div>
+
+		</div>		
+		
+	
+	</div>
+</div>
+
+
+<script type="text/javascript" src="js/cnMobile.js"></script>
+<script type="text/javascript" src="js/swipechange.js"></script>
+<script type="text/javascript" src="js/checkbox.js"></script>
+<script type="text/javascript" src="js/checkboxlist.js"></script>
+<script type="text/javascript" src="js/button.js"></script>
+<script type="text/javascript" src="js/buttonlist.js"></script>
+<script type="text/javascript" src="js/dialog.js"></script>
+
+<script type="text/javascript">
+	//swipe change
+	var sc = new MUI.SwipeChange({
+		id:"slider",
+		currentIndex:0
+	});
+	//check box
+	var cb = new MUI.Checkbox({
+		id:"checkbox"
+	});
+	var cl = new MUI.CheckboxList({
+		id:"checkboxlist"
+	});
+	var v_cl = new MUI.CheckboxList({
+		id:"v_checkboxlist"
+	});
+	//button
+	var w_btn = new MUI.Button({
+		id:"w_button"
+	});
+
+	var w_i_l_btn = new MUI.Button({
+		id:"w_icon_l_button"
+	});
+
+	var w_btn_list = new MUI.ButtonList({
+		id:"w_btn_list"
+	});
+	var w_btn_list = new MUI.ButtonList({
+		id:"w_v_btn_list"
+	});
+	//dialog
+	var currentEffect; 
+	var $D = cm.dom,
+		$E = cm.event;
+
+	var dialog = new MUI.Dialog({
+		id:"dialog"
+	});
+	dialog.elem.onclick = function(){
+		dialog.hide(currentEffect);
+	}	
+
+	$E.on($D.id("none"),"click",function(){
+		currentEffect = "none";
+		dialog.show("none");
+	});
+	$E.on($D.id("fade"),"click",function(){
+		currentEffect = "fade";
+		dialog.show("fade");
+	});
+	$E.on($D.id("pop"),"click",function(){
+		currentEffect = "pop";
+		dialog.show("pop");
+	});
+	$E.on($D.id("slideup"),"click",function(){
+		currentEffect = "slideup";
+		dialog.show("slideup");
+	});
+	$E.on($D.id("slidedown"),"click",function(){
+		currentEffect = "slidedown";
+		dialog.show("slidedown");
+	});
+
+</script>
+</body>
+</html>

@@ -11,7 +11,7 @@ a{
 	text-decoration: none;
 }
 
-a,input,button,textarea{
+a,input,button,textarea,fieldset{
 	-webkit-tap-highlight-color: rgba(255,255,255,0);
 }
 input[type='text'] ,textarea ,fieldset{
