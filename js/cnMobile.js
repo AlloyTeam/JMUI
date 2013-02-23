@@ -1007,7 +1007,7 @@ cm.$package(function(cm){
 				setTimeout(function(){
 					if(!location.hash)
 						window.scrollTo(0,1);
-				},0);
+				},200);
 			});
 		},
 		//禁止滚动

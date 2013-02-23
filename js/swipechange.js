@@ -16,8 +16,8 @@ cnMobile.$package("MUI",function(cm){
 	SwipeChange.prototype = {
 		init:function(options){
 			this.elem = $D.id(options.id);
-			this.contentWrap = $D.className("swipe_wrap",this.elem)[0];
-			this.contents = $D.$(".swipe_wrap > div");
+			this.contentWrap = $D.$("#" + options.id + " .wrap",this.elem)[0];
+			this.contents = $D.$("#" + options.id + " .wrap > div");
 			this.count = this.contents.length;
 			this.currentIndex = options.currentIndex || 0;
 			this.moveDist = 0;
@@ -36,10 +36,16 @@ cnMobile.$package("MUI",function(cm){
 
 		},
 		bindHandlers:function(){
-			if(!this.canSwipe) return;
-			var self = this;
 			var startX = 0;
+			var self = this;
+			$E.on(this.contentWrap,"webkitTransitionEnd",function(){
+				$E.fire(self ,"change" ,{
+					currentIndex:self.currentIndex
+				});
+			});
 
+			if(!this.canSwipe) return;
+			
 			$E.on(this.elem,"touchmove",function(e){
 				e.preventDefault();
 			});
@@ -47,7 +53,7 @@ cnMobile.$package("MUI",function(cm){
 			$E.on(this.elem,startEvt,function(e){
 				var target = e.target||e.srcElement;
 
-				if(!$D.closest(target,".swipe_wrap")) return;
+				if(!$D.closest(target,".wrap")) return;
 				dragingElem = target;
 				var tou = e.touches? e.touches[0] : e;
 
@@ -73,7 +79,8 @@ cnMobile.$package("MUI",function(cm){
 				
 			});
 			$E.on(this.elem,endEvt,function(e){
-				
+				if(!dragingElem) return;
+
 				var d = self.moveDist;
 				var currentIndex = self.currentIndex;
 				
@@ -88,11 +95,8 @@ cnMobile.$package("MUI",function(cm){
 				self.slideTo(currentIndex);
 				dragingElem = null;
 			});
-			$E.on(this.contentWrap,"webkitTransitionEnd",function(){
-				$E.fire(self ,"change" ,{
-					currentIndex:self.currentIndex
-				});
-			});
+			
+
 		},
 		_removeAnimation:function(ele){
 			ele.style["-webkit-transition"] = "";//删除动画效果
@@ -122,6 +126,7 @@ cnMobile.$package("MUI",function(cm){
 			this.contentWrap.style["-webkit-transition"] = "all " + this.slideTime/1000 +"s " + this.runType;
 			this._moveTo(index * -this.contentWidth);
 			this.currentIndex  = index ;
+
 		},
 		next:function(){
 			var index = this.currentIndex + 1;

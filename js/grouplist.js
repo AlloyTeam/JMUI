@@ -35,11 +35,10 @@ cnMobile.$package("MUI",function(cm){
 			var target = e.target || e.srcElement;
 			var pn = target.parentNode;
 
-			if(isGroupTitle(pn)){
+			if($D.closest(pn,".list_group_title")){
 				var g_title = pn;
 				var g_index = g_title.getAttribute("_index");
 				var g_body = this.groupBodies[g_index];
-
 				if(g_body){
 					var computedStyle = document.defaultView.getComputedStyle(g_body,null);//getComputedStyle supported by ie9
 					if( computedStyle.display == "none" ){
@@ -55,6 +54,7 @@ cnMobile.$package("MUI",function(cm){
 					selectedList : g_body,
 					selectedIndex : g_index
 				});
+				$D.setStyle(document.body,"display","block");
 			}
 		}
 	});

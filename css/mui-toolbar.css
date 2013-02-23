@@ -1,4 +1,4 @@
-.header , .footer{
+.toolbar_header , .toolbar_footer{
 }
 .header_black , .footer_black{
 	border: 1px solid #333;
@@ -39,7 +39,7 @@
 	background: -o-linear-gradient( #ddd ,  #bbb);
 	background: linear-gradient( #ddd ,  #bbb);		
 }
-.header > h1 , .footer > h4{
+.toolbar_header > h1 , .toolbar_footer > h4{
 	font-size: 18px;
 	text-align: center;
 	padding: 0.6em 0.8em;

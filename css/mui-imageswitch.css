@@ -2,13 +2,13 @@
 	width: 300px;
 	overflow: hidden;
 }
-.imgsWrap > div{
+.imagechange > .wrap > div{
 	height: 150px;
 	float: left;
 	outline: 1px solid white;
 	border-radius: 5px;
 }
-.imgsWrap img{
+.imagechange .wrap img{
 	-webkit-border-radius: 10px;
 	-moz-border-radius: 10px;
 	-ms-border-radius: 10px;

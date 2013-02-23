@@ -28,33 +28,45 @@
 <div class="container">
 	<h4>Animation</h4>
 	<div id="MUI" class="MUI">MUI</div>
+	<input id="run" type="button" />
 
 </div>
 <script type="text/javascript" src="js/cnMobile.js"></script>
 <script type="text/javascript" src="js/animation.js"></script>
 <script type="text/javascript">
+	var $D = cnMobile.dom;
+	var runBtn = $D.id("run");
+	var muiElem = $D.id("MUI");
+	runBtn.onclick = function(){
+		$D.setStyle(runBtn,"display","none");
+		muiElem.style.cssText = "";
 
-	new cm.Animation({
-		selector:"#MUI",
-		duration:1000,
-		use3d:true
-	}).setStyle({
-		"left":"40%",
-		"color":"blue"
-	}).transit(function(){
-		this.scale(.5).setStyle({
-			color:"red"
-		}).transit(function(){
-			this.rotate(180).setStyle({
-				opacity:0
+		setTimeout(function(){
+			new cm.Animation({
+				selector:"#MUI",
+				duration:1000,
+				use3d:true
+			}).setStyle({
+				"left":"40%",
+				"color":"blue"
 			}).transit(function(){
-				this.toOrigin().setStyle({
-					"opacity":1,
-					"color":"green"
-				}).transit();
+				this.scale(.5).setStyle({
+					color:"red"
+				}).transit(function(){
+					this.rotate(180).setStyle({
+						opacity:0
+					}).transit(function(){
+						this.toOrigin().setStyle({
+							"opacity":1,
+							"color":"green"
+						}).transit(function(){
+							$D.setStyle(runBtn,"display","block");
+						});
+					});
+				});
 			});
-		});
-	});
+		},0);
+	}
 
 
 

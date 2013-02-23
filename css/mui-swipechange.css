@@ -4,22 +4,16 @@
 	height: 100%;
 	overflow-x:hidden;
 }
-.swipe_wrap{
+.swipeChange > .wrap{
 	height: 100%;
 }
-.swipe_wrap > div{
+.swipeChange > .wrap > div{
 	float: left;
 	height: 100%;
 	outline: 1px solid white;
 	border-radius: 5px;
 	overflow-x:hidden;
 }
-.swipe_wrap > div > div{
+.wrap > div > div{
 	height: 100%;
-	line-height: 100px;
-	/*text-align: center;
-	color: white;
-	font-size: 25px;
-	font-weight: bold;
-	background: rgb(130, 197, 197);
-*/}
+}

@@ -44,12 +44,12 @@ cnMobile.$package("MUI",function(cm){
 
 				var touch = isTouchDevice? e.touches[0] : e;
 				var pos = { x: touch.pageX , y: touch.pageY };
+
 				var r = self.handler;
 				var l = self.elem_length;
 				var dist; 
 				
-				self.vertical? dist = Math.min(Math.max(0 ,ep.bottom - pos.y) ,l) : dist = Math.min(Math.max(0 ,pos.x - ep.left), l);
-			
+				self.vertical? dist = Math.min(Math.max(0 ,ep.bottom - pos.y) ,l) : dist = Math.min(Math.max(0 ,pos.x - elem.clientLeft), l);
 				//实时改变slider的值
 				self._setStyle(dist);
 				self.value = self.s_elem.value = self._distToValue(dist);
@@ -70,12 +70,13 @@ cnMobile.$package("MUI",function(cm){
 			if(this.vertical){
 				half = h.clientHeight/2;
 				if(r) $D.setStyle(r ,"height" ,(dist + half) / l * 100 +"%");
-				$D.setStyle(this.handler ,"bottom" ,dist - half + "px");
+				$D.setStyle(h ,"bottom" ,dist - half + "px");
 			}
 			else {
 				half = h.clientWidth/2;
 				if(r) $D.setStyle(r ,"width" ,(dist + half) / l * 100 +"%");
-				$D.setStyle(this.handler ,"left" ,dist - half + "px");
+				$D.setStyle(h ,"left" ,dist - half + "px");
+				console.log(dist);
 			}
 		},
 		_distToValue:function(dist){

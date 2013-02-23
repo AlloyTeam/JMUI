@@ -6,7 +6,7 @@ cnMobile.$package("MUI",function(cm){
 	//show 效果
 	var showEffect = {
 		none:function(elem,mask,onShow){
-
+	
 			$D.setStyle(elem,{
 				"opacity":1,
 				"visibility":"visible"

@@ -7,11 +7,12 @@ cnMobile.$package("MUI",function(cm){
 	}
 
 	var ImageChange = cm.Class({extend:MUI.SwipeChange},{
-		init:function(options){
+		init:function(options){	
 			ImageChange.callSuper(this,"init",options);
 			this.btnsContainer = $D.className("btnsWrap",this.elem)[0];
 			this.preIndex = this.currentIndex;
 			this.count = this.contents.length;
+
 			this.isAutoChange = options.isAutoChange;
 			this.autoChangeTime = options.autoChangeTime || 3000;
 			this._initBtns();
