@@ -7,6 +7,7 @@ cnMobile.$package("MUI",function(cm){
 	var startEvt = isTouchDevice ? "touchstart" : "mousedown";
 	var moveEvt = isTouchDevice ? "touchmove" : "mousemove";
 	var endEvt = isTouchDevice ? "touchend" : "mouseup";
+	var hasClientRect = "getBoundingClientRect" in document.body;
 
 
 	var SwipeChange = function(options){
@@ -16,8 +17,8 @@ cnMobile.$package("MUI",function(cm){
 	SwipeChange.prototype = {
 		init:function(options){
 			this.elem = $D.id(options.id);
-			this.contentWrap = $D.$("#" + options.id + " .wrap",this.elem)[0];
-			this.contents = $D.$("#" + options.id + " .wrap > div");
+			this.contentWrap = $D.$("#" + options.id + ">.wrap",this.elem)[0];
+			this.contents = $D.$("#" + options.id + ">.wrap > div");
 			this.count = this.contents.length;
 			this.currentIndex = options.currentIndex || 0;
 			this.moveDist = 0;
@@ -38,6 +39,7 @@ cnMobile.$package("MUI",function(cm){
 		bindHandlers:function(){
 			var startX = 0;
 			var self = this;
+			var elem = this.elem;
 			$E.on(this.contentWrap,"webkitTransitionEnd",function(){
 				$E.fire(self ,"change" ,{
 					currentIndex:self.currentIndex
@@ -45,30 +47,34 @@ cnMobile.$package("MUI",function(cm){
 			});
 
 			if(!this.canSwipe) return;
-			
-			$E.on(this.elem,"touchmove",function(e){
+		
+			$E.on(elem,moveEvt,function(e){
 				e.preventDefault();
 			});
 
-			$E.on(this.elem,startEvt,function(e){
+			$E.on(elem,startEvt,function(e){
 				var target = e.target||e.srcElement;
 
 				if(!$D.closest(target,".wrap")) return;
 				dragingElem = target;
 				var tou = e.touches? e.touches[0] : e;
+				var elemLeft = hasClientRect ? elem.getBoundingClientRect().left : elem.offsetLeft;
 
-				var x = tou.pageX - self.elemLeft;
+				var x = tou.pageX - elemLeft;
 				startX = x;//相对于container
 				
+				
 			});
-			$E.on(this.elem,moveEvt,function(e){
+			$E.on(elem,moveEvt,function(e){
 
 				if(!dragingElem) return;
 				var tou = e.touches? e.touches[0] : e;
 				var x = tou.pageX;
+				var elemLeft = hasClientRect ? elem.getBoundingClientRect().left : elem.offsetLeft;
+				var elemRight = elemLeft + self.contentWidth;
 
-				if(x < self.elemLeft || x > self.elemRight) return;
-				x = x - self.elemLeft;
+				if(x < elemLeft || x > elemRight) return;
+				x = x - elemLeft;
 
 				self.moveDist = x - startX;
 
@@ -83,11 +89,13 @@ cnMobile.$package("MUI",function(cm){
 
 				var d = self.moveDist;
 				var currentIndex = self.currentIndex;
+				var elemLeft = hasClientRect ? elem.getBoundingClientRect().left : elem.offsetLeft;
+				var elemHalf = elemLeft + self.contentWidth/2;
 				
-				if(d > self.elemHalf) {
+				if(d > elemHalf) {
 					currentIndex = Math.max(0 ,currentIndex - 1);
 				}
-				else if(d < - self.elemHalf) {
+				else if(d < - elemHalf) {
 					currentIndex = Math.min(self.contents.length - 1 ,currentIndex + 1);
 
 				}
@@ -104,7 +112,7 @@ cnMobile.$package("MUI",function(cm){
 		_sizeAdjust:function(){
 			var ele = this.elem;
 			var count = this.count;
-			var hasClientRect = "getBoundingClientRect" in ele;
+			
 			//幻灯片宽度
 			var contentWidth = hasClientRect ? ele.getBoundingClientRect().width : ele.offsetWidth;
 			$D.setStyle(this.contentWrap , "width" ,contentWidth * count + "px");
@@ -113,9 +121,8 @@ cnMobile.$package("MUI",function(cm){
 			});
 
 			this.contentWidth = contentWidth;
-			this.elemLeft = hasClientRect ? ele.getBoundingClientRect().left : ele.offsetLeft;
-			this.elemRight = this.elemLeft + this.contentWidth;
-			this.elemHalf = this.elemLeft + this.contentWidth/2;
+			
+	
 
 		},
 		_moveTo:function(x){

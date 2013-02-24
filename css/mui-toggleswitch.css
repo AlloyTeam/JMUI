@@ -1,14 +1,13 @@
 .toggle_switch{
 	display: inline-block;
 	position: relative;
-	width: 5em;
-	height: 2em;
+	width: 6em;
 	-webkit-user-select:none;
 }
 .toggle_wrap{
-	-moz-border-radius: 1em;
-	-webkit-border-radius: 1em;
-	border-radius: 1em;
+	-moz-border-radius: 3em;
+	-webkit-border-radius: 3em;
+	border-radius: 3em;
 	overflow: hidden;
 }
 .toggle_text{
@@ -21,10 +20,10 @@
 	float: left;
 	text-align: center;
 	font-weight: bold;
-	-moz-border-radius: 1em;
-	-webkit-border-radius: 1em;
-	border-radius: 1em;
-	line-height: 2em;
+	-moz-border-radius: 3em;
+	-webkit-border-radius: 3em;
+	border-radius: 3em;
+	line-height: 2.5em;
 
 }
 .toggle_text > span:first-child{
@@ -34,7 +33,7 @@
 }
 .toggle_text > span:last-child{
 	text-indent: 1.5em;
-	margin-left: -2em;
+	margin-left: -2.5em;
 	opacity: 0;
 }
 .toggle_text_blue{
@@ -83,15 +82,15 @@
 }
 
 .toggle_handler{
-	-moz-border-radius: 1em;
-	-webkit-border-radius: 1em;
-	border-radius: 1em;
+	-moz-border-radius: 3em;
+	-webkit-border-radius: 3em;
+	border-radius: 3em;
 	display: block;
 	position: absolute;
 	right: 0.1em;
 	top: 0.1em;
-	width: 1.8em;
-	height: 1.8em;
+	width: 2.3em;
+	height: 2.3em;
 	z-index: 10;
 	cursor: pointer;
 }

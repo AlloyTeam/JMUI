@@ -11,7 +11,7 @@ cnMobile.$package("MUI",function(cm){
 	var Slider = cm.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
-			this.elemPos = this.elem.getBoundingClientRect();
+			
 			this.s_elem = $D.$("input[type=range]" ,this.elem)[0];
 			this.r_elem = $D.className("slider_range",this.elem)[0];
 			this.handler = $D.className("slider_handler" ,this.elem)[0];
@@ -28,7 +28,6 @@ cnMobile.$package("MUI",function(cm){
 		bindHandlers:function(){
 			var self = this;
 			var h = this.handler;
-			var ep = this.elemPos;
 			var elem = this.elem;
 			
 			$E.on(h, startEvt ,function(e){
@@ -44,12 +43,15 @@ cnMobile.$package("MUI",function(cm){
 
 				var touch = isTouchDevice? e.touches[0] : e;
 				var pos = { x: touch.pageX , y: touch.pageY };
+				var ep = elem.getBoundingClientRect();//实时获取，因为元素位置随时会变化
 
 				var r = self.handler;
 				var l = self.elem_length;
 				var dist; 
 				
-				self.vertical? dist = Math.min(Math.max(0 ,ep.bottom - pos.y) ,l) : dist = Math.min(Math.max(0 ,pos.x - elem.clientLeft), l);
+				self.vertical? dist = Math.min(Math.max(0 ,ep.bottom - pos.y) ,l) : dist = Math.min(Math.max(0 ,pos.x - ep.left), l);
+				
+
 				//实时改变slider的值
 				self._setStyle(dist);
 				self.value = self.s_elem.value = self._distToValue(dist);

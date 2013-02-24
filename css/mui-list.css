@@ -22,7 +22,7 @@
 }
 .list_white > li{
 	border: 1px solid #ccc;
-	border-width: 1px 0 1px 0;
+	border-width: 1px;
 	background: #f1f1f1;
 	background: -webkit-gradient(linear, left top, left bottom, from( #fff ), to( #f1f1f1));
 	background: -webkit-linear-gradient( #fff , #f1f1f1);
@@ -33,7 +33,7 @@
 }
 .list_white > li.selected{
 	border: 1px solid #2373a5;
-	border-width: 1px 0 1px 0;
+	border-width: 1px;
 	background: #5393c5;
 	background: -webkit-gradient(linear, left top, left bottom, from( #5393c5), to( #6facd5));
 	background: -webkit-linear-gradient( #5393c5 , #6facd5);

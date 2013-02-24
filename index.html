@@ -15,35 +15,47 @@
 <link rel="stylesheet" type="text/css" href="css/mui-list.css" />
 <link rel="stylesheet" type="text/css" href="css/mui-dialog.css" />
 <link rel="stylesheet" type="text/css" href="css/mui-slider.css" />
+<link rel="stylesheet" type="text/css" href="css/mui-toggleswitch.css" />
+<link rel="stylesheet" type="text/css" href="css/mui-progress.css" />
+<link rel="stylesheet" type="text/css" href="css/mui-select.css" />
+<link rel="stylesheet" type="text/css" href="css/mui-imageswitch.css" />
+<link rel="stylesheet" type="text/css" href="css/mui-toolbar.css" />
 
 <style type="text/css">
 
-.toolbar_header{
+body > .toolbar_header{
 	position: fixed;
 	width: 100%;
 	top: 0;
 	left: 0;
 	z-index: 1;
 }
-.toolbar_header .home{
+body > .toolbar_header .home{
 	position: absolute;
-	top: 15px;
+	top: 5px;
 	left: 10px;
+	width: 60px;
+	
+	
 
 }
-.toolbar_header .next{
+body > .toolbar_header .home .btn_text{
+	padding:3px 2px 3px 2px; 
+	
+}
+body > .toolbar_header .next{
 	position: absolute;
 	top: 15px;
 	right: 10px;
 }
-.toolbar_footer{
+body > .toolbar_footer{
 	position: fixed;
 	width: 100%;
 	bottom: 0;
 	left: 0;
 	z-index: 1;
 }
-.wrap > div > div{
+#swipe > .wrap > div > div{
 	height: 100%;
 	line-height: 16px;
 	text-align: left;
@@ -51,6 +63,29 @@
 	font-size: 16px;
 	font-weight: normal;
 	background: none;
+	padding: 10px;
+	background: rgb(245,245,245);
+
+}
+#swipe > .wrap > div:first-child > div{
+	padding: 0;
+}
+#swipe > .wrap > div:first-child .list>li{
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	-ms-border-radius: 0;
+}
+.btn{
+	margin: 0 auto;
+	width: 80%;
+}
+.btn_group{
+	width: 80%;
+	margin: 0 auto;
+}
+.toolbar_header ~ p{
+	background: rgb(245,245,245);
+	line-height: 28px;
 
 }
 </style>
@@ -59,8 +94,10 @@
 </head>
 <body>
 <div class="toolbar_header header_blue">
-	<h1>header</h1>
-	<a id="home" class="home" href="javascript:">home</a>
+	<h1>JX MUI</h1>
+	<bntton id="home" class="home btn btn_blue" href="javascript:">
+		<span class="btn_text">home</span>
+	</button>
 	<!-- <a id="pre" class="pre" href="javascript:">pre</a>
 	<a id="next" class="next" href="javascript:">next</a> -->
 </div>
@@ -69,7 +106,6 @@
   	<div class="wrap">
   		<div>
 			<div>
-				<h4 style="margin-bottom:30px;">MUI</h4>
 				<ul id="mainlist" class="list list_white conner_round_vertical_group">
 					<li id="button_page" class="list_item">
 						<a class="list_text">Button</a>
@@ -115,32 +151,29 @@
 	  		</div>	
 	  	</div>
 		<div>
-			<div>
-				<h4>button</h4>
-				<p style="margin-top:20px;">
+			<div style="text-align:center;">
+				<p style="margin-top:10px;">
 					<button id="w_button" class="btn btn_white">
 						<span class="btn_text">button</span>
 					</button>
 				</p>
-				<p style="margin-top:20px;">
+				<p style="margin-top:10px;">
 					<button id="g_button" class="btn btn_green" >
 						<span class="btn_text">button</span>
 					</button>
 				</p>
-				<p style="margin-top:20px;">
+				<p style="margin-top:10px;">
 					<button id="bl_button" class="btn btn_black">
 						<span class="btn_text">button</span>
 					</button>
 				</p>
-				<p style="margin-top:20px;">
+				<p style="margin-top:10px;">
 					<button id="b_button" class="btn btn_blue">
 						<span class="btn_text">button</span>
 					</button>
 				</p>
-
-				<h4>button with icon</h4>
 				<p>
-					<button id="w_icon_l_button" class="btn btn_white btn_icon">
+					<button id="w_icon_l_button" class="btn btn_white btn_icon" style="margin-bottom:10px;margin-top:20px;">
 						<span class="left_icon"></span>
 						<span class="btn_text">button</span>
 					</button>
@@ -159,7 +192,7 @@
 						<span class="btn_text">button</span>
 					</button>
 				</p>
-				<p style="margin-top:20px;">
+				<p style="margin-top:10px;">
 					<button id="bl_icon_l_button" class="btn btn_black btn_icon">
 						<span class="left_icon"></span>
 						<span class="btn_text">button</span>
@@ -169,7 +202,7 @@
 						<span class="btn_text">button</span>
 					</button>
 				</p>
-				<p style="margin-top:20px;">
+				<p style="margin-top:10px;">
 					<button id="b_icon_l_button" class="btn btn_blue btn_icon">
 						<span class="left_icon"></span>
 						<span class="btn_text">button</span>
@@ -179,9 +212,7 @@
 						<span class="btn_text">button</span>
 					</button>
 				</p>
-
-				<h4>buttons in group</h4>
-				<div id="w_btn_list" class="btn_group" style="margin-bottom:10px;">
+				<div id="w_btn_list" class="btn_group" style="margin-bottom:10px;margin-top:20px;">
 					<button class="btn btn_white"><span class="btn_text">1</span></button>
 					<button class="btn btn_white"><span class="btn_text">2</span></button>
 					<button class="btn btn_white"><span class="btn_text">3</span></button>
@@ -228,125 +259,116 @@
 		</div>
 		<div>
 			<div>
-				<h4>checkbox</h4>
-				<p>
-					<label id="checkbox" class="checkbox checkbox_white" for="cb0">
-						<input id="cb0" name="cb0" type="checkbox" />
-						<span class="checkbox_text">0</span>
+				<label id="checkbox" class="checkbox checkbox_white" for="cb0" style="margin-top:20px;">
+					<input id="cb0" name="cb0" type="checkbox" />
+					<span class="checkbox_text">0</span>
+				</label>
+				<label id="bl_checkbox" class="checkbox checkbox_black" for="cb10" style="margin-top:10px;"> 
+					<input id="cb10" name="cb10" type="checkbox" />
+					<span class="checkbox_text">0</span>
+				</label>
+		
+				<fieldset id="checkboxlist" class="checkbox_group" style="margin-top:10px">
+					<label class="checkbox checkbox_white" for="cb1">
+						<input id="cb1" name="cb1" type="checkbox" />
+						<span class="checkbox_text">1</span>
 					</label>
-					<label id="bl_checkbox" class="checkbox checkbox_black" for="cb10" style="margin-top:10px;"> 
-						<input id="cb10" name="cb10" type="checkbox" />
-						<span class="checkbox_text">0</span>
-					</label>
-				</p>
-				<h4>checkboxs in group</h4>
-				<p>
-					<fieldset id="checkboxlist" class="checkbox_group">
-						<label class="checkbox checkbox_white" for="cb1">
-							<input id="cb1" name="cb1" type="checkbox" />
-							<span class="checkbox_text">1</span>
-						</label>
-					
-						<label class="checkbox checkbox_white" for="cb2">
-							<input id="cb2" name="cb2" type="checkbox" />
-							<span class="checkbox_text">2</span>
-						</label>
-					
-						<label class="checkbox checkbox_white" for="cb3">
-							<input id="cb3" name="cb3" type="checkbox" />
-							<span class="checkbox_text">3</span>
-						</label>
-					</fieldset>
-					<fieldset id="bl_checkboxlist" class="checkbox_group" style="margin-top:20px">
-						<label class="checkbox checkbox_black" for="cb11">
-							<input id="cb11" name="cb11" type="checkbox" />
-							<span class="checkbox_text">1</span>
-						</label>
-					
-						<label class="checkbox checkbox_black" for="cb12">
-							<input id="cb12" name="cb12" type="checkbox" />
-							<span class="checkbox_text">2</span>
-						</label>
-					
-						<label class="checkbox checkbox_black" for="cb13">
-							<input id="cb13" name="cb13" type="checkbox" />
-							<span class="checkbox_text">3</span>
-						</label>
-					</fieldset>
-
 				
-					<fieldset id="v_checkboxlist" class="checkbox_group vertical" style="margin-top:20px">
-						<label class="checkbox checkbox_white" for="cb4">
-							<input id="cb4" name="cb4" type="checkbox" />
-							<span class="checkbox_icon"></span>
-							<span class="checkbox_text">1</span>
-						</label>
-					
-						<label class="checkbox checkbox_white" for="cb5">
-							<input id="cb5" name="cb5" type="checkbox" />
-							<span class="checkbox_icon"></span>
-							<span class="checkbox_text">2</span>
-						</label>
-					
-						<label class="checkbox checkbox_white" for="cb6">
-							<input id="cb6" name="cb6" type="checkbox" />
-							<span class="checkbox_icon"></span>
-							<span class="checkbox_text">3</span>
-						</label>
-					</fieldset>
+					<label class="checkbox checkbox_white" for="cb2">
+						<input id="cb2" name="cb2" type="checkbox" />
+						<span class="checkbox_text">2</span>
+					</label>
+				
+					<label class="checkbox checkbox_white" for="cb3">
+						<input id="cb3" name="cb3" type="checkbox" />
+						<span class="checkbox_text">3</span>
+					</label>
+				</fieldset>
+				<fieldset id="bl_checkboxlist" class="checkbox_group" style="margin-top:10px">
+					<label class="checkbox checkbox_black" for="cb11">
+						<input id="cb11" name="cb11" type="checkbox" />
+						<span class="checkbox_text">1</span>
+					</label>
+				
+					<label class="checkbox checkbox_black" for="cb12">
+						<input id="cb12" name="cb12" type="checkbox" />
+						<span class="checkbox_text">2</span>
+					</label>
+				
+					<label class="checkbox checkbox_black" for="cb13">
+						<input id="cb13" name="cb13" type="checkbox" />
+						<span class="checkbox_text">3</span>
+					</label>
+				</fieldset>
+
+			
+				<fieldset id="v_checkboxlist" class="checkbox_group vertical" style="margin-top:10px">
+					<label class="checkbox checkbox_white" for="cb4">
+						<input id="cb4" name="cb4" type="checkbox" />
+						<span class="checkbox_icon"></span>
+						<span class="checkbox_text">1</span>
+					</label>
+				
+					<label class="checkbox checkbox_white" for="cb5">
+						<input id="cb5" name="cb5" type="checkbox" />
+						<span class="checkbox_icon"></span>
+						<span class="checkbox_text">2</span>
+					</label>
+				
+					<label class="checkbox checkbox_white" for="cb6">
+						<input id="cb6" name="cb6" type="checkbox" />
+						<span class="checkbox_icon"></span>
+						<span class="checkbox_text">3</span>
+					</label>
+				</fieldset>
 
 
-					<fieldset id="bl_v_checkboxlist" class="checkbox_group vertical" style="margin-top:20px">
-						<label class="checkbox checkbox_black" for="cb14">
-							<input id="cb14" name="cb14" type="checkbox" />
-							<span class="checkbox_icon"></span>
-							<span class="checkbox_text">1</span>
-						</label>
+				<fieldset id="bl_v_checkboxlist" class="checkbox_group vertical" style="margin-top:10px">
+					<label class="checkbox checkbox_black" for="cb14">
+						<input id="cb14" name="cb14" type="checkbox" />
+						<span class="checkbox_icon"></span>
+						<span class="checkbox_text">1</span>
+					</label>
+				
+					<label class="checkbox checkbox_black" for="cb15">
+						<input id="cb15" name="cb15" type="checkbox" />
+						<span class="checkbox_icon"></span>
+						<span class="checkbox_text">2</span>
+					</label>
+				
+					<label class="checkbox checkbox_black" for="cb16">
+						<input id="cb16" name="cb16" type="checkbox" />
+						<span class="checkbox_icon"></span>
+						<span class="checkbox_text">3</span>
+					</label>
+				</fieldset>
 					
-						<label class="checkbox checkbox_black" for="cb15">
-							<input id="cb15" name="cb15" type="checkbox" />
-							<span class="checkbox_icon"></span>
-							<span class="checkbox_text">2</span>
-						</label>
-					
-						<label class="checkbox checkbox_black" for="cb16">
-							<input id="cb16" name="cb16" type="checkbox" />
-							<span class="checkbox_icon"></span>
-							<span class="checkbox_text">3</span>
-						</label>
-					</fieldset>
-				</p>	
 			</div>
 		</div>
 		<div>
 			<div>
-				<h4>text input</h4>
 				<p>
-					<input type="text" class="input input_white" placeholder="text input"></input>
+					<input type="text" class="input input_white" placeholder="text input" style="margin-top:20px;"></input>
 					<textarea id="textarea" class="input input_white" placeholder="textarea" style="margin-top:20px;"></textarea>
 				</p>
-				<h4>auto grow textarea</h4>
 				<p>
-					<textarea id="autoGrowTextArea" class="input input_white" placeholder="textarea" style="margin-top:10px;"></textarea>
+					<textarea id="autoGrowTextArea" class="input input_white" placeholder="auto grow textarea" style="margin-top:20px;"></textarea>
 				</p>
-				<h4>text inputs in group</h4>
 				<p>
-					<div class="input_group">
+					<div class="input_group" style="margin-top:20px;">
 						<input type="text" class="input input_white" placeholder="text input"></input>
 						<input type="text" class="input input_white" placeholder="text input"></input>
 						<input type="text" class="input input_white" placeholder="text input"></input>
 					</div>
 				<p>
-				<h4>incon input</h4>
 				<p>
-					<div class="icon_input icon_input_white">
+					<div class="icon_input icon_input_white" style="margin-top:20px;">
 						<span class="input_icon"></span>
 						<input type="text" placeholder="icon input"/>
 					</div>
 				<p>
-				<h4>icon inputs in groups</h4>
 				<p>
-					<div class="icon_input_group">
+					<div class="icon_input_group" style="margin-top:20px;">
 						<div class="icon_input icon_input_white">
 							<span class="input_icon"></span>
 							<input type="text" placeholder="icon input" />
@@ -366,18 +388,67 @@
 		</div>
 		<div>
 			<div>
-				<iframe src="toggleswitch.html" width="100%" height="100%"></iframe>
+			    <div id="toggleSwitch" class="toggle_switch" style="display:block;margin-top:20px;">
+			    	<div class="toggle_wrap">
+						<div class="toggle_text">
+					    	<span class="toggle_text_blue">on</span>
+					    	<span class="toggle_text_white">off</span>
+						</div>
+					<a class="toggle_handler toggle_handler_white"></a>
+					</div>
+				</div>
+			    <div id="bl_toggleSwitch" class="toggle_switch" style="display:block;margin-top:20px;">
+			    	<div class="toggle_wrap">
+						<div class="toggle_text">
+					    	<span class="toggle_text_blue">on</span>
+					    	<span class="toggle_text_black">off</span>
+						</div>
+					<a class="toggle_handler toggle_handler_black"></a>
+					</div>
+				</div>
+			    <div id="b_toggleSwitch" class="toggle_switch" style="display:block;margin-top:20px;">
+			    	<div class="toggle_wrap">
+						<div class="toggle_text">
+					    	<span class="toggle_text_blue">on</span>
+					    	<span class="toggle_text_deepblue">off</span>
+						</div>
+					<a class="toggle_handler toggle_handler_blue"></a>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div>
 			<div>
-				<iframe src="progress.html" width="100%" height="100%"></iframe>
+			
+				<div id="progress" class="progress" style="margin-top:20px;">
+					<div class="progress_wrap">
+						<span class="bar_text"></span>
+						<div class="bar bar_image"></div>
+					</div>
+				</div>
+				<div id="progress_g" class="progress" style="margin-top:40px;">
+					<div class="progress_wrap">
+						<span class="bar_text"></span>
+						<div class="bar bar_green"></div>
+					</div>
+				</div>
+				<div id="progress_b" class="progress" style="margin-top:40px;">
+					<div class="progress_wrap">
+						<span class="bar_text"></span>
+						<div class="bar bar_blue"></div>
+					</div>
+				</div>
+				<div id="progress_y" class="progress" style="margin-top:40px;">
+					<div class="progress_wrap">
+						<span class="bar_text"></span>
+						<div class="bar bar_yellow"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div>
 			<div>
-				<h4>radio</h4>
-				<label id="radio" for="radio0" class="radio radio_white">
+				<label id="radio" for="radio0" class="radio radio_white" style="margin-top:10px;">
 					<input id="radio0" type="radio" name="radio" value="0"/>
 					<span class="radio_text">0</span>
 				</label>
@@ -385,8 +456,8 @@
 					<input id="radio21" type="radio" name="radio" value="0"/>
 					<span class="radio_text">0</span>
 				</label>
-				<h4>radios in groups</h4>
-				<fieldset id="radioList" class="radio_group">
+				
+				<fieldset id="radioList" class="radio_group" style="margin-top:20px;">
 					<label for="radio1" class="radio radio_white">
 						<input id="radio1" type="radio" name="radio" value="1"/>
 						<span class="radio_text">1</span>
@@ -403,7 +474,7 @@
 					</label>
 				</fieldset>
 
-				<fieldset id="bl_radioList" class="radio_group" style="margin-top:20px;">
+				<fieldset id="bl_radioList" class="radio_group" style="margin-top:10px;">
 					<label for="radio11" class="radio radio_black">
 						<input id="radio11" type="radio" name="radio" value="1"/>
 						<span class="radio_text">1</span>
@@ -421,7 +492,7 @@
 				</fieldset>
 
 
-				<fieldset id="v_radioList" class="radio_group vertical" style="margin-top:20px;">
+				<fieldset id="v_radioList" class="radio_group vertical" style="margin-top:10px;">
 					<label for="radio4" class="radio radio_white">
 						<input id="radio4" type="radio" name="radio" value="4"/>
 						<span class="radio_icon"></span>
@@ -441,7 +512,7 @@
 					</label>
 				</fieldset>
 
-				<fieldset id="v_bl_radioList" class="radio_group vertical" style="margin-top:20px;">
+				<fieldset id="v_bl_radioList" class="radio_group vertical" style="margin-top:10px;">
 					<label for="radio24" class="radio radio_black">
 						<input id="radio24" type="radio" name="radio" value="4"/>
 						<span class="radio_icon"></span>
@@ -464,18 +535,67 @@
 		</div>
 		<div>
 			<div>
-				<iframe src="imagechange.html" width="100%" height="100%"></iframe>
+				
+				<div id='image_slider' class='imagechange' style="margin-top:20px;">
+				  	<div class="wrap">
+						<div>
+							<img src="http://www.cnblogs.com/images/cnblogs_com/Cson/290336/t_3a.jpg">
+						</div>
+						<div>
+							<img src="http://www.cnblogs.com/images/cnblogs_com/Cson/290336/t_436d106e37b424ba42169473.jpg">
+						</div>
+						<div>
+							<img src="http://www.cnblogs.com/images/cnblogs_com/Cson/290336/t_6a.jpg">
+						</div>
+						<div>
+							<img src="http://www.cnblogs.com/images/cnblogs_com/Cson/290336/t_10a.jpg">
+						</div>
+						<div>
+							<img src="http://www.cnblogs.com/images/cnblogs_com/Cson/290336/t_1a.jpg">
+						</div>
+					 </div>
+					 <ul class="btnsWrap">
+					 </ul>
+				</div>
 			</div>
 		</div>
 		<div>
-			<div>
-				<iframe src="select.html" width="100%" height="100%"></iframe>
-			</div>
-		</div>
-		<div>
-			<div>
-				<h4 style="margin-bottom:20px">Dialog Demo</h4>
+			<div>				
+			    <div id="w_menuSelector" class="select select_white" style="margin-top:20px;">
+			    	<span class="select_text"></span>
+			    	<select>
+			    		<option>cson</option>
+			    		<option>小c</option>
+			    	</select>
+			    </div>
+			    <div id="g_menuSelector" class="select select_green" style="margin-top:20px;">
+			    	<span class="select_text"></span>
+			    	<select>
+			    		<option>cson</option>
+			    		<option>小c</option>
+			    	</select>
+			    </div>
 
+			    <div id="b_menuSelector" class="select select_blue" style="margin-top:20px;">
+			    	<span class="select_text"></span>
+			    	<select>
+			    		<option>cson</option>
+			    		<option>小c</option>
+			    	</select>
+			    </div>
+
+			    <div id="bl_menuSelector" class="select select_black" style="margin-top:20px;">
+			    	<span class="select_text"></span>
+			    	<select>
+			    		<option>cson</option>
+			    		<option>小c</option>
+			    	</select>
+			    </div>
+	
+			</div>
+		</div>
+		<div>
+			<div>
 				<input id="none" type="button" value="none effect">
 				<input id="fade" type="button" value="fade effect">
 				<input id="pop" type="button" value="pop effect">
@@ -498,28 +618,61 @@
 		</div>
 		<div>
 			<div>
-				<iframe src="toolbar.html" width="100%" height="100%"></iframe>
+				<div>
+					<div class="toolbar_header header_black">
+						<h1>header</h1>
+					</div>
+					<p>content</p>
+					<p>content</p>
+					<p>content</p>
+					<div class="toolbar_footer footer_black">
+						<h4>footer</h4>
+					</div>
+				</div>
+
+				<div style="margin-top:30px;">
+					<div class="toolbar_header header_blue">
+						<h1>header</h1>
+					</div>
+					<p>content</p>
+					<p>content</p>
+					<p>content</p>
+					<div class="toolbar_footer footer_blue">
+						<h4>footer</h4>
+					</div>
+				</div>
+				
+				<div style="margin-top:30px;">
+					<div class="toolbar_header header_white">
+						<h1>header</h1>
+					</div>
+					<p>content</p>
+					<p>content</p>
+					<p>content</p>
+					<div class="toolbar_footer footer_white">
+						<h4>footer</h4>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div>
 			<div>
-			<h4>slider</h4>
 				<div>
-				    <div id="slider" class="slider slider_white" style="margin-top:40px;">
+				    <div id="slider" class="slider slider_white" style="margin-top:20px;">
 				    	<input type="range" />
 				    	<a class="slider_handler"></a>
 				    </div>		
-				    <div id="w_slider" class="slider slider_white" style="margin-top:40px;">
+				    <div id="w_slider" class="slider slider_white" style="margin-top:20px;">
 				    	<input type="range" />
 				    	<div class="slider_range white"></div>
 				    	<a class="slider_handler"></a>
 				    </div>	
-				    <div id="b_slider" class="slider slider_white" style="margin-top:40px;">
+				    <div id="b_slider" class="slider slider_white" style="margin-top:20px;">
 				    	<input type="range" />
 				    	<div class="slider_range blue"></div>
 				    	<a class="slider_handler"></a>
 				    </div>	
-				    <div id="g_slider" class="slider slider_white" style="margin-top:40px;">
+				    <div id="g_slider" class="slider slider_white" style="margin-top:20px;">
 				    	<input type="range" />
 				    	<div class="slider_range green"></div>
 				    	<a class="slider_handler"></a>
@@ -549,8 +702,8 @@
 		</div>
 		<div>
 			<div>
-				<h4 style="margin-bottom:30px;">list</h4>
-				<ul id="list1" class="list list_white conner_round_vertical_group">
+		
+				<ul id="list1" class="list list_white conner_round_vertical_group" style="margin-top:20px;">
 					<li class="list_item">
 						<a  class="list_text">ListItemA</a>
 					</li>
@@ -561,8 +714,8 @@
 						<a  class="list_text">ListItemC</a>
 					</li>
 				</ul>
-				<h4 style="margin-bottom:30px;margin-top:30px;">list readonly</h4>
-				<ul class="list list_white read_only_list conner_round_vertical_group" style="margin-top:30px; margin-bottom:30px;">
+				
+				<ul class="list list_white read_only_list conner_round_vertical_group" style="margin-top:20px;">
 					<li class="list_item">
 						<a  class="list_text">ListItemA</a>
 					</li>
@@ -573,8 +726,8 @@
 						<a  class="list_text">ListItemC</a>
 					</li>
 				</ul>
-				<h4 style="margin-top:30px;margin-bottom:30px;">list with number</h4>
-				<ol id="n_list" class="list list_white num_list conner_round_vertical_group">
+				
+				<ol id="n_list" class="list list_white num_list conner_round_vertical_group" style="margin-top:20px;">
 					<li class="list_item">
 						<a class="list_text">ListItemA</a>
 					</li>
@@ -586,8 +739,7 @@
 					</li>
 				</ol>
 
-				<h4 style="margin-top:30px;margin-bottom:30px;">list with icon</h4>
-				<ul id="l_icon_list" class="list list_white conner_round_vertical_group">
+				<ul id="l_icon_list" class="list list_white conner_round_vertical_group" style="margin-top:20px;">
 					<li class="list_item">
 						<span class="list_icon list_icon_left"></span>
 						<a  class="list_text">ListItemA</a>
@@ -620,8 +772,7 @@
 		</div>
 		<div>
 			<div>
-				<h4 style="margin-top:30px;margin-bottom:30px;">lists in group</h4>
-				<ul id="groupList" class="group_list">
+				<ul id="groupList" class="group_list" style="margin-top:20px;">
 					<li class="list_group">
 						<div class="list_group_title list_group_blue_title">
 							<h4>Group1</h4>
@@ -681,6 +832,10 @@
 	<script type="text/javascript" src="js/grouplist.js"></script>
 	<script type="text/javascript" src="js/dialog.js"></script>
 	<script type="text/javascript" src="js/slider.js"></script>
+	<script type="text/javascript" src="js/toggleswitch.js"></script>
+	<script type="text/javascript" src="js/progress.js"></script>
+	<script type="text/javascript" src="js/select.js"></script>
+	<script type="text/javascript" src="js/imagechange.js"></script>
 
 
 	<script type="text/javascript">
@@ -913,7 +1068,55 @@
 		vertical:true
 	});
 	v_g_sl.setValue(20);
-	
+
+	//toggleSwitch
+	var ts = new MUI.ToggleSwitch({
+		id:"toggleSwitch"
+	});
+	var bl_ts = new MUI.ToggleSwitch({
+		id:"bl_toggleSwitch"
+	});
+	var b_ts = new MUI.ToggleSwitch({
+		id:"b_toggleSwitch"
+	});
+
+	//progress
+	var p = new MUI.Progress({
+		id:"progress",
+		percent:30
+	});
+	var p_g = new MUI.Progress({
+		id:"progress_g",
+		percent:60
+	});
+	var p_b = new MUI.Progress({
+		id:"progress_b",
+		percent:90
+	});
+	var p_y = new MUI.Progress({
+		id:"progress_y",
+		percent:100
+	});
+	//select	
+	var w_sel = new MUI.Select({
+		id:"w_menuSelector"
+	});
+	var g_sel = new MUI.Select({
+		id:"g_menuSelector"
+	});
+	var b_sel = new MUI.Select({
+		id:"b_menuSelector"
+	});
+	var bl_sel = new MUI.Select({
+		id:"bl_menuSelector"
+	});
+	//imagechange
+	var ic = new MUI.ImageChange({
+		id:"image_slider",
+		isAutoChange:true,
+		autoChangeTime:3000,
+		canSwipe:true
+	});
 
 	cm.Util.hideUrlBar();
 

@@ -1,14 +1,17 @@
 .progress{
 	position: relative;
 	height: 24px;
-	border: 1px solid #AAA;
+}
+/*	wrap fixed overflow:hidden bug with border-radius */
+.progress > .progress_wrap{
+	overflow:hidden;
+	height:100%;
 	-moz-border-radius: 1em;
 	-webkit-border-radius: 1em;
-	border-radius: 1em;
-	overflow: hidden;
-	
+	border-radius: 1em;	
+	border: 1px solid #AAA;
 }
-.progress > .bar{
+.progress .bar{
 	height: 100%;
 }
 .bar_image{
@@ -23,7 +26,7 @@
 .bar_green{
 	background: #74b042;
 }
-.progress > .bar_text
+.progress .bar_text
 {
 	position: absolute;
 	width: 100%;

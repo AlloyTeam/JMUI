@@ -1,6 +1,6 @@
 .input , .icon_input{
 	background: none;
-	padding: 0.4em;
+	padding: 0.8em;
 	width: 100%;
 	-moz-border-radius: .6em;
 	-webkit-border-radius: .6em;
@@ -44,7 +44,7 @@
 .icon_input > input{
 	background: none;
 	width: 100%;
-	padding: 0.4em 0;
+	padding: 0.8em 0;
 	box-sizing: border-box;
 }
 .icon_input > .input_icon{
