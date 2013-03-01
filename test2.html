@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta charset="UTF-8">
+	<title>消息定向分享</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- <link href="css/main.css" rel="stylesheet" type="text/css" /> -->
+	<style type="text/css">
+
+	</style>
+</head>
+	<body>
+		<div class="main">
+		<div id="w">123123</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/cnMobile2.js"></script>
+	<script type="text/javascript">
+	var $E = cnMobile.event;
+	var $D = cnMobile.dom;
+	var t = $D.id("w");
+	$E.on(t,"hold",function(){
+		alert("f");
+	});
+	$E.on(t,"doubletap",function(){
+		alert("f1");
+	});
+
+
+	</script>
+	
+</html>

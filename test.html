@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta charset="UTF-8">
+	<title>消息定向分享</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- <link href="css/main.css" rel="stylesheet" type="text/css" /> -->
+	<style type="text/css">
+		
+	body { 
+	    font:1em/1.5em 'Verdana', 'Arial', sans-serif; 
+	}
+	img { 
+	   width:400px; 
+	}
+	#w{
+		background: url('Koala.jpg');
+		display: none;
+	}
+	@media screen and (max-width:800px) { 
+	    body { 
+	    	background: red;
+	        font-size:0.8em; 
+	    }
+	    img { 
+	        width:300px; 
+	    }
+	}
+	@media screen and (max-width:400px) { 
+	    body {
+	    	background: red;
+	        font-size:0.7em; 
+	    }
+	    img { 
+	        width:200px; 
+	    }
+	}
+	body, img { 
+	    transition:all 2s linear; 
+	    -o-transition:all 2s linear; 
+	    -moz-transition:all 2s linear; 
+	    -webkit-transition:all 2s linear;
+	}
+
+	</style>
+</head>
+	<body>
+		<div class="main">
+		<div id="w">123123</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/cnMobile.js"></script>
+	<script type="text/javascript">
+		// document.getElementById("w").onclick=function(){
+		// 	var self = this;
+		// 	self.className = "";
+		// 	// setTimeout(function(){
+
+		// 		self.className = "w";
+		// 	// },0);
+		// }
+
+		//采用innerHTML方式创建
+		var t1 = Date.now();
+		
+		// var str= "";
+		// for(var i = 0; i < 1000; i++){
+		// 	str += "<a>"+i+"</a>";
+		// }
+		// document.querySelector("#xyz").innerHTML = str;
+		
+		//执行时间为22秒
+		//采用DOM节点对象操作的方式创建
+		// var c = document.querySelector("#xyz"), anchor;
+		// 	for(var i = 0; i < 1000; i++){
+		// 	anchor = document.createElement("a");
+		// 	anchor.textContent = i;
+		// 	c.appendChild(anchor);
+		// }
+		// console.log(Date.now()-t1);
+//执行时间为14秒
+	</script>
+	
+</html>

@@ -171,6 +171,12 @@
 	}
 	window.cnMobile=window.cm=cm;
 })();
+//connection
+cm.$package(function(cm){
+	var c = navigator.connection || {type:0};
+	var ct = ["unknow","ethernet","wifi","cell_2g","cell_3g"];
+	cm.connectType = ct[c.type]; 
+});
 //type
 cm.$package(function(cm){
 
@@ -998,17 +1004,23 @@ cm.$package(function(cm){
         if (e.target.type === 'range') { return; }
             e.preventDefault();
 	}
+	var hideScroll = function(){
+		setTimeout(function(){
+			if(!location.hash){
+				var ph = window.innerHeight + 60;
+				if(document.documentElement.clientHeight < ph){
+					$D.setStyle(document.body,"height",ph + "px");
+				}
+				window.scrollTo(0,1);
+			}
+		},200);
+	}
 		
 
 	var Util = {
 		//隐藏URL栏
 		hideUrlBar:function(){
-			$E.on(window ,"load" ,function(){
-				setTimeout(function(){
-					if(!location.hash)
-						window.scrollTo(0,1);
-				},200);
-			});
+			$E.on(window ,"load resize" ,hideScroll);
 		},
 		//禁止滚动
 		preventScrolling : function() {
