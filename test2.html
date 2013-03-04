@@ -9,26 +9,120 @@
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<!-- <link href="css/main.css" rel="stylesheet" type="text/css" /> -->
 	<style type="text/css">
+	body{
+
+	}
+
+	#w{
+		width:200px;
+		height: 3000px;
+		border: 10px solid red;
+		background: url('sdsd/1.png');
+	}
+	@media all and (min-width: 320px){
+		#w{
+			border: 10px solid yellow;
+			background: url('sdsd/2.png');
+		}
+	}
+
+	#toTop{
+		width: 40px;
+		height: 40px;
+		background: green;
+	}
 
 	</style>
 </head>
 	<body>
+		<div id="tt"></div>
 		<div class="main">
-		<div id="w">123123</div>
+		<div id="w">
+			<p>123</p>
+			<p>123wdasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123</p>
+			<p>123wdasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+					<p>123</p>
+			<p>123wdasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+					<p>123</p>
+			<p>123wdasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+					<p>123</p>
+			<p>123wdasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+			<p>123sdadasd</p>
+
 		</div>
+		</div>
+		<div id="toTop" class="toTop"></div>
 	</body>
 	<script type="text/javascript" src="js/cnMobile2.js"></script>
 	<script type="text/javascript">
 	var $E = cnMobile.event;
 	var $D = cnMobile.dom;
 	var t = $D.id("w");
+	var tt = $D.id("tt");
+	var toTop = $D.id("toTop");
 	$E.on(t,"hold",function(){
 		alert("f");
 	});
-	$E.on(t,"doubletap",function(){
-		alert("f1");
+	// $E.on(t,"doubletap",function(){
+	// 	t.innerHTML = "doubletap";
+	// });
+	$E.on(document.body,"tap",function(e){
+		t.innerHTML = e.type;
 	});
+	$E.on(t,"tap",function(e){
+		debugger;
+		// e.stopPropagation();
+	});
+	// $E.on(t,"swipe",function(e){
+	// 	t.innerHTML = e.direction;
+	// });
+	// $E.on(t,"transform",function(e){
+	// 	t.innerHTML = e.scale + "\n" + e.rotate;
+	// });
 
+	// $E.on(window,"scrollstart",function(e){
+	// 	console.log("start");
+	// });
+
+	// $E.on(window,"scrollend",function(e){
+	// 	console.log("end");
+	// });
+	// $E.on(toTop,"click",function(){
+	// 	cm.Util.scrollToTop();
+	// });
+
+	cm.Util.hideUrlBar();
+
+	$E.on(window,"orientationchange",function(){
+		setTimeout(function(){
+			t.innerHTML = window.innerWidth / window.innerHeight;
+		},300);
+	});
 
 	</script>
 	
