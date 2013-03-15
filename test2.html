@@ -85,22 +85,25 @@
 	var t = $D.id("w");
 	var tt = $D.id("tt");
 	var toTop = $D.id("toTop");
-	$E.on(t,"hold",function(){
-		alert("f");
+	$E.on(t,"hold",function(e){
+		// e.stopPropagation();
 	});
-	// $E.on(t,"doubletap",function(){
-	// 	t.innerHTML = "doubletap";
-	// });
+	$E.on(document.body,"hold",function(e){
+		alert("d");
+	});
+	$E.on(t,"doubletap",function(){
+		t.innerHTML = "doubletap";
+	});
 	$E.on(document.body,"tap",function(e){
 		t.innerHTML = e.type;
 	});
 	$E.on(t,"tap",function(e){
-		debugger;
+		
 		// e.stopPropagation();
 	});
-	// $E.on(t,"swipe",function(e){
-	// 	t.innerHTML = e.direction;
-	// });
+	$E.on(t,"swipe",function(e){debugger;
+		t.innerHTML = e.direction;
+	});
 	// $E.on(t,"transform",function(e){
 	// 	t.innerHTML = e.scale + "\n" + e.rotate;
 	// });
@@ -123,6 +126,15 @@
 			t.innerHTML = window.innerWidth / window.innerHeight;
 		},300);
 	});
+
+
+	// arr = data.match(n); 
+ // 	for(var i = 0 ;i<arr.length;i++){
+	// 	var r = arr[i];
+	// 	data = data.replace(r,"<a href='"+ r +"'>"+ r +"</a>");
+	// }
+
+      // document.body.innerHTML = data;
 
 	</script>
 	

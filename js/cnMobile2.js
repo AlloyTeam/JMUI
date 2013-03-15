@@ -680,13 +680,17 @@ cm.$package(function(cm){
 					// });
 					//使用自定义dom事件，可以支持冒泡等dom事件特性
 					var evt = document.createEvent('MouseEvents');
-					evt.initMouseEvent('tap',true, true, window, 0, event.screenX, event.screenY, event.clientX, event.clientY);
+					evt.initMouseEvent('tap',true, true, window, 0, e.screenX, e.screenY, e.clientX, e.clientY);
 					ele.dispatchEvent(evt);
 				}
 				pt_up_pos = ct_pos;
 				pt_up_time = now;
 			}
-			if(!"ontap" in ele) ele.ontap = null;
+		
+			if(!("ontap" in ele)) {
+
+				ele.ontap = null;
+			}
 			$E.on(ele,"tap",handler);
 			$E.on(ele,startEvt,startEvtHandler);
 			$E.on(ele,moveEvt,moveEvtHandler);
@@ -714,29 +718,38 @@ cm.$package(function(cm){
 			var pt_pos;
 			var ct_pos;
 			var startEvtHandler = function(e){
+				e.stopPropagation();
 				var touches = e.touches;
 				if(!touches || touches.length == 1){//鼠标点击或者单指点击
 					pt_pos = ct_pos = getTouchPos(e);
 					pt_time = Date.now();
 
 					holdTimeId = setTimeout(function(){
-						if(touches.length != 1) return;
+						if(touches && touches.length != 1) return;
 						if(getDist(pt_pos,ct_pos) < HOLD_DISTANCE){
-							handler.call(ele,{
-								oriEvt:e,
-								type:"hold"
-							});
+							// handler.call(ele,{
+							// 	oriEvt:e,
+							// 	type:"hold"
+							// });
+							var evt = document.createEvent('MouseEvents');
+							evt.initMouseEvent('hold',true, true, window, 0, e.screenX, e.screenY, e.clientX, e.clientY);
+							ele.dispatchEvent(evt);
 						}
 					},HOLD_TIME);
 				}
 			}
 			var moveEvtHandler = function(e){
+				e.stopPropagation();
 				e.preventDefault();
 				ct_pos = getTouchPos(e);
 			}
 			var endEvtHandler = function(e){
+				e.stopPropagation();
 				clearTimeout(holdTimeId);
-			}	
+			}
+				
+			if(!("onhold" in ele)) ele.onhold = null;
+			$E.on(ele,"hold",handler);
 			$E.on(ele,startEvt,startEvtHandler);
 			$E.on(ele,moveEvt,moveEvtHandler);
 			$E.on(ele,endEvt,endEvtHandler);	
@@ -776,6 +789,7 @@ cm.$package(function(cm){
 
 			}
 			var startEvtHandler = function(e){
+				e.stopPropagation();
 				var touches = e.touches;
 				if(!touches || touches.length == 1){//鼠标点击或者单指点击
 					pt_pos = ct_pos = getTouchPos(e);
@@ -784,23 +798,31 @@ cm.$package(function(cm){
 				}
 			}
 			var moveEvtHandler = function(e){
+				e.stopPropagation();
 				e.preventDefault();
 				ct_pos = getTouchPos(e);
 			}
 			var endEvtHandler = function(e){
+				e.stopPropagation();
 				var dir;
 				pt_up_pos = ct_pos;
 				pt_up_time = Date.now();
 
 				if(getDist(pt_pos,pt_up_pos) > SWIPE_DISTANCE && pt_up_time - pt_time < SWIPE_TIME){
 					dir = getSwipeDirection(pt_up_pos,pt_pos);
-					handler.call(ele,{
-						oriEvt:e,
-						type:"swipe",
-						direction:dir
-					});
+					// handler.call(ele,{
+					// 	oriEvt:e,
+					// 	type:"swipe",
+					// 	direction:dir
+					// });
+					var evt = document.createEvent('MouseEvents');
+					evt.initMouseEvent('swipe' + dir,true, true, window, 0, e.screenX, e.screenY, e.clientX, e.clientY);
+					evt.direction = dir;
+					ele.dispatchEvent(evt);
 				}
 			}	
+			if(!("onswipe" in ele)) ele.onswipe = null;
+			$E.on(ele,"swipe",handler);
 			$E.on(ele,startEvt,startEvtHandler);
 			$E.on(ele,moveEvt,moveEvtHandler);
 			$E.on(ele,endEvt,endEvtHandler);	
