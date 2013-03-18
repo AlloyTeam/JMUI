@@ -650,19 +650,19 @@ cm.$package(function(cm){
 			var pt_up_time;
 			var evtType;
 			var startEvtHandler = function(e){
-				e.stopPropagation();
+				// e.stopPropagation();
 				var touches = e.touches;
 				if(!touches || touches.length == 1){//鼠标点击或者单指点击
 					ct_pos = pt_pos = getTouchPos(e);
 				}
 			}
 			var moveEvtHandler = function(e){
-				e.stopPropagation();
+				// e.stopPropagation();
 				e.preventDefault();
 				ct_pos = getTouchPos(e);
 			}
 			var endEvtHandler = function(e){
-				e.stopPropagation();
+				// e.stopPropagation();
 				var now = Date.now(); 
 				var dist = getDist(ct_pos , pt_pos);
 				var up_dist = getDist(ct_pos , pt_up_pos);
@@ -789,7 +789,7 @@ cm.$package(function(cm){
 
 			}
 			var startEvtHandler = function(e){
-				e.stopPropagation();
+				// e.stopPropagation();
 				var touches = e.touches;
 				if(!touches || touches.length == 1){//鼠标点击或者单指点击
 					pt_pos = ct_pos = getTouchPos(e);
@@ -798,12 +798,12 @@ cm.$package(function(cm){
 				}
 			}
 			var moveEvtHandler = function(e){
-				e.stopPropagation();
+				// e.stopPropagation();
 				e.preventDefault();
 				ct_pos = getTouchPos(e);
 			}
 			var endEvtHandler = function(e){
-				e.stopPropagation();
+				// e.stopPropagation();
 				var dir;
 				pt_up_pos = ct_pos;
 				pt_up_time = Date.now();
@@ -816,7 +816,7 @@ cm.$package(function(cm){
 					// 	direction:dir
 					// });
 					var evt = document.createEvent('MouseEvents');
-					evt.initMouseEvent('swipe' + dir,true, true, window, 0, e.screenX, e.screenY, e.clientX, e.clientY);
+					evt.initMouseEvent('swipe',true, true, window, 0, e.screenX, e.screenY, e.clientX, e.clientY);
 					evt.direction = dir;
 					ele.dispatchEvent(evt);
 				}
@@ -868,15 +868,21 @@ cm.$package(function(cm){
 					var scale = ct_len / pt_len; 
 					var rotate = ct_angle - pt_angle;
 
-					handler.call(ele,{
-						oriEvt:e,
-						type:"transform",
-						scale:scale,
-						rotate:rotate
-					});
+					// handler.call(ele,{
+					// 	oriEvt:e,
+					// 	type:"transform",
+					// 	scale:scale,
+					// 	rotate:rotate
+					// });
+					var evt = document.createEvent('MouseEvents');
+					evt.initMouseEvent('transform',true, true, window, 0, e.screenX, e.screenY, e.clientX, e.clientY);
+					evt.scale = scale;
+					evt.rotate = rotate;
+					ele.dispatchEvent(evt);
 				}
 			}
-
+			if(!("ontransform" in ele)) ele.onswipe = null;
+			$E.on(ele,"transform",handler);
 			$E.on(ele,startEvt,startEvtHandler);
 			$E.on(ele,moveEvt,moveEvtHandler);
 			var evtOpt = {
@@ -933,6 +939,27 @@ cm.$package(function(cm){
 			var evtOpt = {
 				ele:ele,
 				evtType:"scrollend",
+				handler:handler
+			};	
+			evtOpt.actions = {};
+			evtOpt.actions["scroll"] = scrollHandler;
+			customEventHandlers.push(evtOpt);
+		},
+		scrolltobottom:function(ele,handler){
+			var body = document.body;
+			var scrollHandler = function(e){
+				if(body.scrollHeight <= body.scrollTop + window.innerHeight){
+					handler.call(ele,{
+						oriEvt:e,
+						type:"scrolltobottom"
+					});
+				}
+			}
+			$E.on(ele,"scroll",scrollHandler);	
+
+			var evtOpt = {
+				ele:ele,
+				evtType:"scrolltobottom",
 				handler:handler
 			};	
 			evtOpt.actions = {};
