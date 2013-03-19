@@ -585,9 +585,9 @@ cm.$package(function(cm){
 	var getTouchPos = function(e){
 		var t = e.touches;
 		if(t && t[0]) {
-			return { x : t[0].pageX , y : t[0].pageY };
+			return { x : t[0].clientX , y : t[0].clientY };
 		}
-		return { x : e.pageX , y: e.pageY };
+		return { x : e.clientX , y: e.clientY };
 	}
 	//计算两点之间距离
 	var getDist = function(p1 , p2){
@@ -868,20 +868,14 @@ cm.$package(function(cm){
 					var scale = ct_len / pt_len; 
 					var rotate = ct_angle - pt_angle;
 
-					// handler.call(ele,{
-					// 	oriEvt:e,
-					// 	type:"transform",
-					// 	scale:scale,
-					// 	rotate:rotate
-					// });
-					var evt = document.createEvent('MouseEvents');
-					evt.initMouseEvent('transform',true, true, window, 0, e.screenX, e.screenY, e.clientX, e.clientY);
+					var evt = document.createEvent('UIEvents');
+					evt.initUIEvent('transform',true, true);
 					evt.scale = scale;
 					evt.rotate = rotate;
 					ele.dispatchEvent(evt);
 				}
 			}
-			if(!("ontransform" in ele)) ele.onswipe = null;
+			if(!("ontransform" in ele)) ele.ontransform = null;
 			$E.on(ele,"transform",handler);
 			$E.on(ele,startEvt,startEvtHandler);
 			$E.on(ele,moveEvt,moveEvtHandler);
@@ -902,16 +896,21 @@ cm.$package(function(cm){
 			var scrollHandler = function(e){
 				if(!isScrolling){
 					isScrolling = true;
-					handler.call(ele,{
-						oriEvt:e,
-						type:"scrollstart"
-					});
+					// handler.call(ele,{
+					// 	oriEvt:e,
+					// 	type:"scrollstart"
+					// });
+					var evt = document.createEvent('UIEvents');
+					evt.initUIEvent('scrollstart',true, true);
+					ele.dispatchEvent(evt);
 				}
 				clearTimeout(scrollTimeId);
 				scrollTimeId = setTimeout(function(){
 					isScrolling = false;
 				},250);
 			}	
+			if(!("onscrollstart" in ele)) ele.onscrollstart = null;
+			$E.on(ele,"scrollstart",handler);
 			$E.on(ele,"scroll",scrollHandler);	
 
 			var evtOpt = {
@@ -928,12 +927,17 @@ cm.$package(function(cm){
 			var scrollHandler = function(e){
 				clearTimeout(scrollTimeId);
 				scrollTimeId = setTimeout(function(){
-					handler.call(ele,{
-						oriEvt:e,
-						type:"scrollend"
-					});
+					// handler.call(ele,{
+					// 	oriEvt:e,
+					// 	type:"scrollend"
+					// });
+					var evt = document.createEvent('UIEvents');
+					evt.initUIEvent('scrollend',true, true);
+					ele.dispatchEvent(evt);				
 				},250);
 			}	
+			if(!("onscrollend" in ele)) ele.onscrollend = null;
+			$E.on(ele,"scrollend",handler);
 			$E.on(ele,"scroll",scrollHandler);		
 
 			var evtOpt = {
@@ -949,12 +953,17 @@ cm.$package(function(cm){
 			var body = document.body;
 			var scrollHandler = function(e){
 				if(body.scrollHeight <= body.scrollTop + window.innerHeight){
-					handler.call(ele,{
-						oriEvt:e,
-						type:"scrolltobottom"
-					});
+					// handler.call(ele,{
+					// 	oriEvt:e,
+					// 	type:"scrolltobottom"
+					// });
+					var evt = document.createEvent('UIEvents');
+					evt.initUIEvent('scrolltobottom',true, true);
+					ele.dispatchEvent(evt);	
 				}
 			}
+			if(!("onscrolltobottom" in ele)) ele.onscrolltobottom = null;
+			$E.on(ele,"scrolltobottom",handler);
 			$E.on(ele,"scroll",scrollHandler);	
 
 			var evtOpt = {
