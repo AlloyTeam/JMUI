@@ -30,17 +30,15 @@
 			e.stopPropagation();
 			e.preventDefault();
 		});
-		cnMobile.event.on(wobj,"doubletap",function(e){
-			// alert(e.position.x);
-			wobj.innerHTML="doubletap";
-		});
+
 		cnMobile.event.on(wobj,"hold",function(e){
 			// alert(e.position.x+" "+ e.position.y);
 			wobj.innerHTML="hold";
 		});
 		cnMobile.event.on(wobj,"tap",function(e){
+			if(e.isDoubleTap) wobj.innerHTML="doubletap";
 			// alert(e.position.x);
-			wobj.innerHTML="tap";
+			else wobj.innerHTML="tap";
 		});
 		cnMobile.event.on(wobj,{
 			dragstart:function() {

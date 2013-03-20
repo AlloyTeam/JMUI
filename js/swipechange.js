@@ -29,9 +29,7 @@ cnMobile.$package("MUI",function(cm){
 			this._moveTo(this.currentIndex * -this.contentWidth);
 		
 			this.bindHandlers();
-			$E.setGestureEventConfig({
-				"drag_distance":0
-			});
+
 			var self = this;
 
 
@@ -60,7 +58,7 @@ cnMobile.$package("MUI",function(cm){
 				var tou = e.touches? e.touches[0] : e;
 				var elemLeft = hasClientRect ? elem.getBoundingClientRect().left : elem.offsetLeft;
 
-				var x = tou.pageX - elemLeft;
+				var x = tou.clientX - elemLeft;
 				startX = x;//相对于container
 				
 				
@@ -69,7 +67,7 @@ cnMobile.$package("MUI",function(cm){
 
 				if(!dragingElem) return;
 				var tou = e.touches? e.touches[0] : e;
-				var x = tou.pageX;
+				var x = tou.clientX;
 				var elemLeft = hasClientRect ? elem.getBoundingClientRect().left : elem.offsetLeft;
 				var elemRight = elemLeft + self.contentWidth;
 

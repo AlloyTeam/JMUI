@@ -3,6 +3,7 @@
 	position: relative;
 	width: 6em;
 	-webkit-user-select:none;
+	-webkit-tap-highlight-color:rgba(0,0,0,0);
 }
 .toggle_wrap{
 	-moz-border-radius: 3em;

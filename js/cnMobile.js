@@ -91,7 +91,7 @@
 	        }   
 	    },
 		indexOf:function(arr,elem){
-			var $T = cm.type;
+			var $T= cm.type;
 			//数组或类数组对象
 			if(arr.length){
 				return [].indexOf.call(arr,elem);
@@ -225,6 +225,7 @@ cm.$package(function(cm){
 	platform.iPhone = ua.indexOf("iPhone") > -1 ,
 	platform.iPad = ua.indexOf("iPad") > -1 ,
 	platform.iPod = ua.indexOf("iPod") > -1 ,
+	platform.winPhone = ua.indexOf("IE") > -1 ,
 	platform.IOS = platform.iPad || platform.iPhone;
 	platform.touchDevice = "ontouchstart" in window;
 
@@ -427,102 +428,14 @@ cm.$package(function(cm){
 //event
 cm.$package(function(cm){
 
-	var $T=cm.type,
-		scrollTimeId,
-		isScrolling,
-		gestureEvent={
-			"tap":1,
-			"doubletap":1,
-			"hold":1,
-			"swipe":1,
-			"dragstart":1,
-			"drag":1,
-			"dragend":1,
-			"transform":1,
-			"transformstart":1,
-			"transformend":1
-		};
+	var $T=cm.type;
 
-	var supportDomEvent=function(obj,evtType){
+	var isDomEvent=function(obj,evtType){
 		//addEventListener supported by ie9+
-		return obj.addEventListener;
-	}
-	var isUseCustomGesture=function(obj,evtType){
-		// return obj.addEventListener &&!(("on" + evtType) in obj) && gestureEvent[evtType]; 是否有必要？
-		return obj.addEventListener && gestureEvent[evtType];
-	}
-	//自定义手势事件信息
-	var GestureEventMessage=function(options){
-		this.obj=options.obj;
-		this.evtType=options.evtType;
-		this.handler=options.handler;//function or array
-	}
-
-	//添加静态方法
-	cm.extend(GestureEventMessage,{
-		msgInfo :{},
-		add:function(em){
-			var evtType = em.evtType;
-			var obj = em.obj;
-			var handler = em.handler;
-			var msgInfo = this.msgInfo;
-
-			if(!msgInfo[evtType]) msgInfo[evtType] = [];
-			for(var i = msgInfo[evtType].length;i--;){
-				if(msgInfo[evtType][i].obj === obj){
-					msgInfo[evtType][i].handler.push(handler);
-					return;
-				}
-			}
-			em.handler=[em.handler];
-			msgInfo[evtType].push(em);
-		},
-		remove:function(em){
-			var evtType = em.evtType;
-			var handler = em.handler;
-			var obj = em.obj;
-			var msgInfo = this.msgInfo;
-			var msgArr;
-			if(msgArr = msgInfo[EvtType]){
-				if(msgArr[i].obj === obj){
-					if(handler){
-						var handler = msgArr[i].handler;
-						for(var j = handler.length;j--;){
-							if(handler[i] === handler){
-								handler.splice(i,1);
-								return;
-							}
-						}
-					}
-					else {
-						msgArr.splice(i,1);
-					}
-				}
-			}
-		},
-		get:function(obj,evtType){
-
-			var msgInfo = this.msgInfo;
-			var msgArr;
-			
-			if(msgArr = msgInfo[evtType]){
-				for(var i=msgArr.length;i--;){
-					if(msgArr[i].obj === obj){
-						return msgArr[i];
-					}
-				}
-			}
-
-		}
-	})
-	var canSimulateGesture = function(){
-		return !(evtType in window) && gestureEvent[evtType];
+		return obj.addEventListener && (("on" + evtType).toLowerCase() in obj || "webkitTransitionEnd"  == evtType);
 	}
 
 	var $E={
-		setGestureEventConfig:function(options){
-			if("drag_distance" in options) DRAG_DISTANCE = options["drag_distance"];
-		},
 		on:function(obj, evtType, handler){
 			if($T.isArray(obj)){
 				for(var i=obj.length;i--;){
@@ -551,24 +464,23 @@ cm.$package(function(cm){
 				}
 				return;
 			}
-			//is use custom gesture
-			if(isUseCustomGesture(obj,evtType)){
-				bindCustomGestureHandler(obj);//模拟自定义手势事件
-				GestureEventMessage.add(new GestureEventMessage({
-					obj:obj,
-					evtType:evtType,
-					handler:handler
-				}));
-				return;
-			}
-
-			//obj is dom element
-			if(supportDomEvent(obj,evtType)){
+			//is dom event may need fixed
+			// if(domFixedEvent[evtType]){
+			// 	if(domFixedEvent[evtType](ele,handler)){
+			// 		return;
+			// 	}
+			// }
+			//is dom event support
+			if(isDomEvent(obj,evtType)){
 				obj.addEventListener(evtType ,handler ,false);
 				return;
 			}
-			
-		
+			//is specific custom event
+			if(customEvent[evtType]){
+				customEvent[evtType](obj,handler);
+				return;
+			}
+			//other custom event
 			if(!obj.events) obj.events={};
 			if(!obj.events[evtType]) obj.events[evtType]=[];
 
@@ -607,20 +519,15 @@ cm.$package(function(cm){
 				return;
 			}
 
-			//is use custom gesture
-			if(isUseCustomGesture(obj,evtType)){
-				GestureEventMessage.remove(new GestureEventMessage({
-					obj:obj,
-					evtType:evtType,
-					handler:handler
-				}));
-				return;
-			}
-
-			if(supportDomEvent(obj,evtType)){
+			if(isDomEvent(obj,evtType)){
 				obj.removeEventListener( evtType , handler ,false );
 				return;
-			}		
+			}	
+			//is specific custom event
+			if(customEvent[evtType]){
+				customEvent._off(obj,evtType,handler);
+				return;
+			}	
 			
 			if(!evtType) {
 				obj.events={}; 
@@ -645,20 +552,8 @@ cm.$package(function(cm){
 		},
 		fire:function(obj,evtType){
 			var arg = [].slice.call(arguments,2);
-			if(isUseCustomGesture(obj,evtType)){
-				var gestureEvtMsg = GestureEventMessage.get(obj,evtType);
-				if(!gestureEvtMsg) return;
-
-				var handler = gestureEvtMsg.handler;
-
-				for(var i=0,l=handler.length;i<l;i++){
-					handler[i].apply(window,arg);
-				}
-
-				return;
-			}
 			//obj is dom element
-			if(supportDomEvent(obj,evtType)){
+			if(isDomEvent(obj,evtType)){
 		        var evt = document.createEvent('HTMLEvents');
         		evt.initEvent(evtType, true, true);
         		obj.dispatchEvent(evt);
@@ -673,333 +568,442 @@ cm.$package(function(cm){
 		}
 
 	};
-	//scrollstart scrollend事件
-	$E.on(window ,"scroll" ,function(){
-		if(!isScrolling){
-			isScrolling = true;
-			$E.fire(window,"scrollstart");
-		}
-		clearTimeout(scrollTimeId);
-		scrollTimeId = setTimeout(function(){
-			isScrolling = false;
-			$E.fire(window ,"scrollend");
-		},250);
-	});
-
 
 	var startEvt,moveEvt,endEvt;
-	var	HOLD_TIME = 2000,//hold事件在2秒后触发
-		TAP_DISTANCE = 20,//按下松开之间的移动距离小于20，认为发生了tap
-		DOUBLE_TAP_TIME = 300,//双击之间最大耗时
-		DOUBLE_TAP_DISTANCE = 50,//双击之间最大距离
-		DRAG_DISTANCE = 20,//按下之后移动20px之后就认为拖动开始
-		SWIPE_DISTANCE = 30,//按下之后移动30px之后就认为swipe开始
-		SWIPE_TIME = 500;//swipe最大经历时间
-
-	var holdTimeId;//hold定时器id
-	var preTouchPos;//之前点击的位置
-	var preTouchTime;//之前一次点击时间
-	var preUpTime;//之前一次点击松开时间
-	var currentGesture;//当前手势
-	var currentPos;//当前位置
-	var isPressed;//是否已经按下
-	var preFingerDist;//之前两只手指间距离
-	var preAngle;//之前两手指所成角度
-	var currentFingerDist;//当前两只手指间距离
-	var preUpPos;//上次手指离开位置
-	var tp1;//transform其中一只手指
-	var tp2;//transform另一只手指
-	var currentScale;//当前transform缩放比例
-	var currentRotation;//当前transform旋转角度
-
-	//自定义手势事件对象
-	var GestureEventObject = function(options){
-		this.originalEventObject = options.originalEventObject;
-		this.touches = options.touches;
-		this.position = options.position;
-		this.angle = options.angle;
-		this.scale = options.scale;
-		this.rotation = options.rotation;
-		this.direction = options.direction;
-		this.distance = options.distance;
+	//选择不同事件
+	if(cm.platform.touchDevice){
+		startEvt="touchstart";
+		moveEvt="touchmove";
+		endEvt="touchend";
 	}
-	//点击位置点
-	var TouchPoint = function(x,y){
-		this.x=x;
-		this.y=y;
+	else{
+		startEvt="mousedown";
+		moveEvt="mousemove";
+		endEvt="mouseup";			
+	}
+
+	var getTouchPos = function(e){
+		var t = e.touches;
+		if(t && t[0]) {
+			return { x : t[0].clientX , y : t[0].clientY };
+		}
+		return { x : e.clientX , y: e.clientY };
 	}
 	//计算两点之间距离
-	TouchPoint.getPosDist = function(p1,p2){
-		var x1=p1.x,y1=p1.y,x2=p2.x,y2=p2.y;
-		return Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
-	};
+	var getDist = function(p1 , p2){
+		if(!p1 || !p2) return 0;
+		return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+
+	}
 	//计算两点之间所成角度
-	TouchPoint.getAngle = function(p1,p2){
-		var r = Math.atan2(p1.y - p2.y, p2.x - p1.x);
-		return r * 180 / Math.PI;
+	var getAngle = function(p1 , p2){
+		var r = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+		var a = r * 180 / Math.PI;
+		return a;
 	};
-	
-	//获取swipe的方向
-	var getSwipeDirection=function(currentPos,preTouchPos){
-		var dx = currentPos.x - preTouchPos.x;
-		var dy = -currentPos.y + preTouchPos.y;	
-		var angle = Math.atan2(dy,dx)*180/Math.PI;
 
-		if(angle<45 && angle>-45) return "right";
-		if(angle>=45 && angle<135) return "top";
-		if(angle>=135 || angle< -135) return "left";
-		if(angle>=-135 && angle<=-45) return "bottom";
 
+	var customEventHandlers = [];
+	var isCustomEvtMatch = function(ch,ele,evtType,handler){
+		return ch.ele == ele && evtType == ch.evtType && handler == ch.handler
 	}
-	//获取touch手指数目
-	var getTouchesCount=function(e){
-		return e.touches.length;
-	}
-
-
-	//模拟自定义手势事件
-	var bindCustomGestureHandler = function(obj){
-
-		if(obj.getAttribute("hasBindCustomGesture")){
-			return;
-		}
-		obj.setAttribute("hasBindCustomGesture",true);
-		//选择不同事件
-		if(cm.platform.touchDevice){
-			startEvt="touchstart";
-			moveEvt="touchmove";
-			endEvt="touchend";
-		}
-		else{
-			startEvt="mousedown";
-			moveEvt="mousemove";
-			endEvt="mouseup";			
-		}
-
-		$E.on(obj,startEvt,function(e){
-			
-			// e.preventDefault();
-		
-			var touches = e.touches;
-
-			if(!touches || touches.length == 1){
-				preTouchTime = Date.now();//单指点击时间
-				var tou;
-				if(touches) tou = touches[0];
-				else tou = e;
-	
-				preTouchPos = currentPos = new TouchPoint(tou.pageX , tou.pageY);
-				// currentGesture = "hold";
-				//事件信息对象实例
-				var evtObj = new GestureEventObject({
-					originalEventObject:e,
-					touches:touches,
-					position:currentPos
-				});
-
-				holdTimeId = setTimeout(function(){
-					//触发hold事件
-					if(TouchPoint.getPosDist(preTouchPos,currentPos)< TAP_DISTANCE){
-						$E.fire(obj,"hold",evtObj);
+	//自定义事件
+	var customEvent = {
+		_fire:function(ele,evtType,handler){
+			cm.each(customEventHandlers,function(ch){
+				if(isCustomEvtMatch(ch,ele,evtType,handler)){
+					handler.call(ele,{
+						type:evtType
+					});
+				}
+			});			
+		},
+		_off:function(ele,evtType,handler){
+			cm.each(customEventHandlers,function(ch,i){
+				var at = ch.actions;
+				if(isCustomEvtMatch(ch,ele,evtType,handler)){
+					//删除辅助处理程序
+					for(var n in at){
+						var h = at[n];
+						if($T.isObject(h)){
+							//非绑定在该元素的handler
+							$E.off(h.ele ,n ,h.handler);
+						}
+						else{
+							$E.off(ele ,n ,h);
+						}
 					}
-				},HOLD_TIME);
-
-				isPressed=true;
-			}
-
-		
-		});
-		$E.on(obj ,moveEvt ,function(e){
-			
-			// e.preventDefault();
-
-			if(!isPressed) return;
-
-			var touches = e.touches;
-			//单点击
-			if(!touches || touches.length == 1){
-				
-				var tou;
-				if(e.touches) tou = e.touches[0];
-				else tou = e;
-
-				currentPos = new TouchPoint(tou.pageX , tou.pageY);
-
-				if(!preTouchPos) return;
-
-				//事件信息对象实例
-				var evtObj = new GestureEventObject({
-					originalEventObject:e,
-					touches:touches,
-					position:currentPos
-				});
-
-				var dist = TouchPoint.getPosDist(currentPos,preTouchPos);//拖动距离
-
-				if(currentGesture!="drag" && dist > DRAG_DISTANCE){
-					//触发dragstart事件
-					$E.fire(obj,"dragstart",evtObj);
-					currentGesture = "drag";
-					return;	
-				}
-				//拖动相对于起点距离
-				evtObj.distance = dist;
-				//拖动相对于起点所成角度
-				evtObj.angle = TouchPoint.getAngle(preTouchPos,currentPos);
-
-				if(currentGesture=="drag") {
-					$E.fire(obj,"drag",evtObj);
-				}
-				
-			}
-			//双点击
-			else if(touches.length == 2){
-				
-				var tou1 = touches[0], tou2 = touches[1];
-				tp1 = new TouchPoint(tou1.pageX , tou1.pageY),
-				tp2 = new TouchPoint(tou2.pageX , tou2.pageY);
-
-				var currentFingerDist = TouchPoint.getPosDist(tp1,tp2);
-				var currentAngle = Math.atan2(tp2.y - tp1.y, tp2.x-tp1.x);
-
-				//事件信息对象实例
-				var evtObj = new GestureEventObject({
-					originalEventObject:e,
-					touches:touches,
-					position:new TouchPoint((tp1.x + tp2.x)/2 , (tp1.y + tp2.y)/2) //transform 位置
-
-				});
-
-				if(currentGesture != "transform"){
-					//transform start clear hold time id
-					clearTimeout(holdTimeId);
-
-					preFingerDist = currentFingerDist;
-					preAngle = currentAngle;
-					//触发transformstart事件
-					$E.fire(obj,"transformstart",evtObj);	
-					currentGesture = "transform";
+					//删除本处理程序数据
+					customEventHandlers.splice(i,1);
 					return;
 				}
-				//手势缩放比
-				currentScale = currentFingerDist/preFingerDist;
-				//手势旋转角度
-				currentRotation = (currentAngle - preAngle) * 180/Math.PI;
-
-				evtObj.scale = currentScale;
-				evtObj.rotation = currentRotation;
-
-				//触发transform"事件
-				$E.fire(obj,"transform",evtObj);
+			});
+		},
+		tap:function(ele,handler){
+			//按下松开之间的移动距离小于20，认为发生了tap
+			var TAP_DISTANCE = 20;
+			//双击之间最大耗时
+			var DOUBLE_TAP_TIME = 300;
+			var pt_pos;
+			var ct_pos;
+			var pt_up_pos;
+			var pt_up_time;
+			var evtType;
+			var startEvtHandler = function(e){
+				// e.stopPropagation();
+				var touches = e.touches;
+				if(!touches || touches.length == 1){//鼠标点击或者单指点击
+					ct_pos = pt_pos = getTouchPos(e);
+				}
 			}
-			
-		});
-		$E.on(obj ,endEvt ,function(e){
-			// e.preventDefault();
-
-			clearTimeout(holdTimeId);
-			
-			var touches = e.touches;
-
-
-			if(!touches || touches.length == 0){
-				
-				currentPos = currentPos || preTouchPos;
-				
-				var now = Date.now();
-
-				//事件信息对象实例
-				var evtObj = new GestureEventObject({
-					originalEventObject:e,
-					touches:touches,
-					position:currentPos
-				});
-
-
-				//和按下点的距离
-				var dist = TouchPoint.getPosDist(currentPos,preTouchPos);
+			var moveEvtHandler = function(e){
+				// e.stopPropagation();
+				e.preventDefault();
+				ct_pos = getTouchPos(e);
+			}
+			var endEvtHandler = function(e){
+				// e.stopPropagation();
+				var now = Date.now(); 
+				var dist = getDist(ct_pos , pt_pos);
+				var up_dist = getDist(ct_pos , pt_up_pos);
 
 				if(dist < TAP_DISTANCE){
-					if(preUpTime) {
-						if(now - preUpTime < DOUBLE_TAP_TIME && TouchPoint.getPosDist(preUpPos,currentPos) < DOUBLE_TAP_DISTANCE){
-							//触发doubletap事件
-							$E.fire(obj,"doubletap",evtObj);	
-								preUpTime = now;
-								preUpPos = currentPos ;
-								preTouchPos = currentPos = null;
-								return;	
-							} 	
+					if(pt_up_time && now - pt_up_time < DOUBLE_TAP_TIME && up_dist < TAP_DISTANCE){
+						evtType = "doubletap";
 					}
-					//触发tap事件
-					$E.fire(obj,"tap",evtObj);
+					else{
+						evtType = "tap";
+					}
+					// handler.call(ele,{
+					// 	oriEvt:e,
+					// 	type:evtType
+					// });
+					//使用自定义dom事件，可以支持冒泡等dom事件特性
+					var evt = document.createEvent('MouseEvents');
+					if(evtType == "doubletap") evt.isDoubleTap = true;
+					evt.initMouseEvent("tap",true, true, window, 0, e.screenX, e.screenY, e.clientX, e.clientY);
+					ele.dispatchEvent(evt);
 				}
-				if(currentGesture=="drag") {
-
-					//事件信息对象实例
-					var evtObj = new GestureEventObject({
-						originalEventObject:e,
-						touches:touches,
-						position:currentPos,
-						//离拖动起点的距离以及角度
-						distance:dist,
-						angle:TouchPoint.getAngle(preTouchPos,currentPos)
-					});
-					
-					$E.fire(obj,"dragend",evtObj);
-					currentGesture="";
-				}
-				
-				if(dist > SWIPE_DISTANCE && now - preTouchTime < SWIPE_TIME){
-
-					var direction = getSwipeDirection(currentPos,preTouchPos);
-					//事件信息对象实例
-					var evtObj = new GestureEventObject({
-						originalEventObject:e,
-						touches:touches,
-						position:currentPos,
-						//离拖动起点的距离以及角度
-						distance:dist,
-						direction:direction
-					});
-
-	
-					//触发 swipe 事件
-					$E.fire(obj, "swipe",evtObj);
-				}
-				isPressed = false;
-				preUpTime = now;
+				pt_up_pos = ct_pos;
+				pt_up_time = now;
 			}
-			else if(touches.length == 1){//transform
-				
-				//触发transformend事件
-				if(currentGesture == "transform") {
-
-					//事件信息对象实例
-					var evtObj = new GestureEventObject({
-						originalEventObject:e,
-						touches:touches,
-						position:new TouchPoint((tp1.x + tp2.x)/2 , (tp1.y + tp2.y)/2),
-						scale:currentScale,
-						rotation:currentRotation
-					});
-
-					$E.fire(obj,"transformend",evtObj);
-					tp1 = tp2 = null;
-					currentGesture = "";
-					currentPos = new TouchPoint(touches[0].pageX , touches[0].pageY);//剩下的手指的当前点击位置
-					preTouchPos = currentPos;//重新设置点击位置，使drag能顺利继续执行
-					return;
-				}
-				
+		
+			if(!("ontap" in ele)) {
+				ele.ontap = null;
 			}
-			preUpPos = currentPos ;
-			preTouchPos = currentPos = null;
+			$E.on(ele,"tap",handler);
+			$E.on(ele,startEvt,startEvtHandler);
+			$E.on(ele,moveEvt,moveEvtHandler);
+			$E.on(ele,endEvt,endEvtHandler);
+
+			var evtOpt = {
+				ele:ele,
+				evtType:evtType,
+				handler:handler
+			}
+			evtOpt.actions = {};
+			evtOpt.actions[startEvt] = startEvtHandler;
+			evtOpt.actions[moveEvt] = moveEvtHandler;
+			evtOpt.actions[endEvt] = endEvtHandler;
+
+			customEventHandlers.push(evtOpt);
 			
- 
-		});
-	}
+		},
+		hold:function(ele,handler){
+			//按下松开之间的移动距离小于20，认为点击生效
+			var HOLD_DISTANCE = 20;
+			//按下两秒后hold触发
+			var HOLD_TIME = 2000;
+			var holdTimeId;
+			var pt_pos;
+			var ct_pos;
+			var startEvtHandler = function(e){
+				e.stopPropagation();
+				var touches = e.touches;
+				if(!touches || touches.length == 1){//鼠标点击或者单指点击
+					pt_pos = ct_pos = getTouchPos(e);
+					pt_time = Date.now();
 
-	cm.event=$E;
+					holdTimeId = setTimeout(function(){
+						if(touches && touches.length != 1) return;
+						if(getDist(pt_pos,ct_pos) < HOLD_DISTANCE){
+							// handler.call(ele,{
+							// 	oriEvt:e,
+							// 	type:"hold"
+							// });
+							var evt = document.createEvent('MouseEvents');
+							evt.initMouseEvent('hold',true, true, window, 0, e.screenX, e.screenY, e.clientX, e.clientY);
+							ele.dispatchEvent(evt);
+						}
+					},HOLD_TIME);
+				}
+			}
+			var moveEvtHandler = function(e){
+				e.stopPropagation();
+				e.preventDefault();
+				ct_pos = getTouchPos(e);
+			}
+			var endEvtHandler = function(e){
+				e.stopPropagation();
+				clearTimeout(holdTimeId);
+			}
+				
+			if(!("onhold" in ele)) ele.onhold = null;
+			$E.on(ele,"hold",handler);
+			$E.on(ele,startEvt,startEvtHandler);
+			$E.on(ele,moveEvt,moveEvtHandler);
+			$E.on(ele,endEvt,endEvtHandler);	
+
+			var evtOpt = {
+				ele:ele,
+				evtType:"hold",
+				handler:handler
+			}
+			evtOpt.actions = {};
+			evtOpt.actions[startEvt] = startEvtHandler;
+			evtOpt.actions[moveEvt] = moveEvtHandler;
+			evtOpt.actions[endEvt] = endEvtHandler;
+
+			customEventHandlers.push(evtOpt);	
+		},
+		swipe:function(ele,handler){
+			//按下之后移动30px之后就认为swipe开始
+			var SWIPE_DISTANCE = 30;
+			//swipe最大经历时间
+			var SWIPE_TIME = 500;
+			var pt_pos;
+			var ct_pos;
+			var pt_time;
+			var pt_up_time;
+			var pt_up_pos;
+			//获取swipe的方向
+			var getSwipeDirection = function(p2,p1){
+				var dx = p2.x - p1.x;
+				var dy = -p2.y + p1.y;	
+				var angle = Math.atan2(dy , dx) * 180 / Math.PI;
+
+				if(angle < 45 && angle > -45) return "right";
+				if(angle >= 45 && angle < 135) return "top";
+				if(angle >= 135 || angle < -135) return "left";
+				if(angle >= -135 && angle <= -45) return "bottom";
+
+			}
+			var startEvtHandler = function(e){
+				// e.stopPropagation();
+				var touches = e.touches;
+				if(!touches || touches.length == 1){//鼠标点击或者单指点击
+					pt_pos = ct_pos = getTouchPos(e);
+					pt_time = Date.now();
+
+				}
+			}
+			var moveEvtHandler = function(e){
+				// e.stopPropagation();
+				e.preventDefault();
+				ct_pos = getTouchPos(e);
+			}
+			var endEvtHandler = function(e){
+				// e.stopPropagation();
+				var dir;
+				pt_up_pos = ct_pos;
+				pt_up_time = Date.now();
+
+				if(getDist(pt_pos,pt_up_pos) > SWIPE_DISTANCE && pt_up_time - pt_time < SWIPE_TIME){
+					dir = getSwipeDirection(pt_up_pos,pt_pos);
+					// handler.call(ele,{
+					// 	oriEvt:e,
+					// 	type:"swipe",
+					// 	direction:dir
+					// });
+					var evt = document.createEvent('MouseEvents');
+					evt.initMouseEvent('swipe',true, true, window, 0, e.screenX, e.screenY, e.clientX, e.clientY);
+					evt.direction = dir;
+					ele.dispatchEvent(evt);
+				}
+			}	
+			if(!("onswipe" in ele)) ele.onswipe = null;
+			$E.on(ele,"swipe",handler);
+			$E.on(ele,startEvt,startEvtHandler);
+			$E.on(ele,moveEvt,moveEvtHandler);
+			$E.on(ele,endEvt,endEvtHandler);	
+
+			var evtOpt = {
+				ele:ele,
+				evtType:"swipe",
+				handler:handler
+			}
+			evtOpt.actions = {};
+			evtOpt.actions[startEvt] = startEvtHandler;
+			evtOpt.actions[moveEvt] = moveEvtHandler;
+			evtOpt.actions[endEvt] = endEvtHandler;
+
+			customEventHandlers.push(evtOpt);				
+		},
+		transform:function(ele,handler){
+			var pt_pos1;
+			var pt_pos2;
+			var pt_len;//初始两指距离
+			var pt_angle;//初始两指所成角度
+			var startEvtHandler = function(e){
+				var touches = e.touches;
+				if(!touches) return;
+
+				if(touches.length == 2){//双指点击
+					pt_pos1 = getTouchPos( e.touches[0]);
+					pt_pos2 = getTouchPos( e.touches[1]);
+					pt_len = getDist(pt_pos1,pt_pos2);
+					pt_angle = getAngle(pt_pos1,pt_pos2);
+				}
+			}
+			var moveEvtHandler = function(e){
+				e.preventDefault();
+				var touches = e.touches;
+				if(!touches) return;
+				if(touches.length == 2){//双指点击
+
+					var ct_pos1 = getTouchPos( e.touches[0]);
+					var ct_pos2 = getTouchPos( e.touches[1]);
+					var ct_len = getDist(ct_pos1 , ct_pos2);
+					var ct_angle = getAngle(ct_pos1,ct_pos2);
+					var scale = ct_len / pt_len; 
+					var rotation = ct_angle - pt_angle;
+
+					var evt = document.createEvent('UIEvents');
+					evt.initUIEvent('transform',true, true);
+					evt.scale = scale;
+					evt.rotation = rotation;
+					ele.dispatchEvent(evt);
+
+				}
+			}
+			if(!("ontransform" in ele)) ele.ontransform = null;
+			$E.on(ele,"transform",handler);
+			$E.on(ele,startEvt,startEvtHandler);
+			$E.on(ele,moveEvt,moveEvtHandler);
+			var evtOpt = {
+				ele:ele,
+				evtType:"transform",
+				handler:handler
+			}
+			evtOpt.actions = {};
+			evtOpt.actions[startEvt] = startEvtHandler;
+			evtOpt.actions[moveEvt] = moveEvtHandler;
+
+			customEventHandlers.push(evtOpt);		
+		},
+		scrollstart:function(ele,handler){
+			var isScrolling;
+			var scrollTimeId;
+			var scrollHandler = function(e){
+				if(!isScrolling){
+					isScrolling = true;
+					// handler.call(ele,{
+					// 	oriEvt:e,
+					// 	type:"scrollstart"
+					// });
+					var evt = document.createEvent('UIEvents');
+					evt.initUIEvent('scrollstart',true, true);
+					ele.dispatchEvent(evt);
+				}
+				clearTimeout(scrollTimeId);
+				scrollTimeId = setTimeout(function(){
+					isScrolling = false;
+				},250);
+			}	
+			if(!("onscrollstart" in ele)) ele.onscrollstart = null;
+			$E.on(ele,"scrollstart",handler);
+			$E.on(ele,"scroll",scrollHandler);	
+
+			var evtOpt = {
+				ele:ele,
+				evtType:"scrollstart",
+				handler:handler
+			};	
+			evtOpt.actions = {};
+			evtOpt.actions["scroll"] = scrollHandler;
+			customEventHandlers.push(evtOpt);
+		},
+		scrollend:function(ele,handler){
+			var scrollTimeId;
+			var scrollHandler = function(e){
+				clearTimeout(scrollTimeId);
+				scrollTimeId = setTimeout(function(){
+					// handler.call(ele,{
+					// 	oriEvt:e,
+					// 	type:"scrollend"
+					// });
+					var evt = document.createEvent('UIEvents');
+					evt.initUIEvent('scrollend',true, true);
+					ele.dispatchEvent(evt);				
+				},250);
+			}	
+			if(!("onscrollend" in ele)) ele.onscrollend = null;
+			$E.on(ele,"scrollend",handler);
+			$E.on(ele,"scroll",scrollHandler);		
+
+			var evtOpt = {
+				ele:ele,
+				evtType:"scrollend",
+				handler:handler
+			};	
+			evtOpt.actions = {};
+			evtOpt.actions["scroll"] = scrollHandler;
+			customEventHandlers.push(evtOpt);
+		},
+		scrolltobottom:function(ele,handler){
+			var body = document.body;
+			var scrollHandler = function(e){
+				if(body.scrollHeight <= body.scrollTop + window.innerHeight){
+					// handler.call(ele,{
+					// 	oriEvt:e,
+					// 	type:"scrolltobottom"
+					// });
+					var evt = document.createEvent('UIEvents');
+					evt.initUIEvent('scrolltobottom',true, true);
+					ele.dispatchEvent(evt);	
+				}
+			}
+			if(!("onscrolltobottom" in ele)) ele.onscrolltobottom = null;
+			$E.on(ele,"scrolltobottom",handler);
+			$E.on(ele,"scroll",scrollHandler);	
+
+			var evtOpt = {
+				ele:ele,
+				evtType:"scrolltobottom",
+				handler:handler
+			};	
+			evtOpt.actions = {};
+			evtOpt.actions["scroll"] = scrollHandler;
+			customEventHandlers.push(evtOpt);
+		}
+
+	}
+	// var fixedEventHandlers = [];
+
+	// var resizeHandler = function(e){
+	// 	var p = window.innerWidth / window.innerHeight;
+	// 	p > 1 ? window.orientation = 90 : window.orientation = 0;
+	// 	handler.call(window);
+	// }
+	// //dom事件修复
+	// var domFixedEvent = {
+	// 	_off:function(ele,evtType,handler){
+	// 		if(evtType == "orientationchange"){
+	// 			if(ele != window) return;
+	// 			$E.off(window,"resize",resizeHandler);
+	// 		}
+	// 	},
+	// 	orientationchange:function(ele,handler){
+	// 		//对window的orientationchange进行fix
+	// 		if(ele != window || "onorientationchange" in ele){
+	// 			return false;
+	// 		}
+	// 		$E.on(ele,"resize",resizeHandler);
+	// 		return true;
+	// 	}
+	// }
+
+	cm.event = $E;
 });
 //Util
 cm.$package(function(cm){
@@ -1015,7 +1019,7 @@ cm.$package(function(cm){
 			if(!location.hash){
 				var ph = window.innerHeight + 60;
 				if(document.documentElement.clientHeight < ph){
-					$D.setStyle(document.body,"height",ph + "px");
+					$D.setStyle(document.body,"minHeight",ph + "px");
 				}
 				window.scrollTo(0,1);
 			}
@@ -1026,7 +1030,7 @@ cm.$package(function(cm){
 	var Util = {
 		//隐藏URL栏
 		hideUrlBar:function(){
-			$E.on(window ,"load resize" ,hideScroll);
+			$E.on(window ,"load" ,hideScroll);
 		},
 		//禁止滚动
 		preventScrolling : function() {
@@ -1041,16 +1045,17 @@ cm.$package(function(cm){
 			var $A = cm.Animation;
 			var body = document.body;
 			var scrollTop = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
-			
-			$D.setStyle(body, $D.getVendorPropertyName("transform"), "translate(0,"+ (- scrollTop) + "px)");
 
-			document.body.scrollTop ? document.body.scrollTop = 0:document.documentElement.scrollTop = 0;	
+			$D.setStyle(body, $D.getVendorPropertyName("transform"), "translate3d(0,"+ (- scrollTop) + "px,0)");
+			body.scrollTop ? body.scrollTop = 0:document.documentElement.scrollTop = 0;	
+		
 			new $A({
 				selector:body,
 				duration:duration,
 				runType:runType,
 				use3d:true
 			}).translateY(0).transit();
+		
 		}
 	};
 	cm.Util = Util;
@@ -1218,7 +1223,6 @@ cm.$package(function(cm){
 	cm.Animation = Animation;
 });
 
-
 //http
 cm.$package(function(cm){
 	var http = {
@@ -1226,7 +1230,7 @@ cm.$package(function(cm){
 			if ( !param ) return '';
 			var qstr = [];
 			for ( var key in  param ) {
-				qstr.push( key + '=' + param[key] );
+				qstr.push( encodeURIComponent(key) + '=' + encodeURIComponent(param[key]) );
 			};
 			return  qstr.join('&');
 		},
@@ -1239,6 +1243,8 @@ cm.$package(function(cm){
 			var o = option;
 			var m = o.method.toLocaleUpperCase();
 			var isPost = 'POST' == m;
+			var isComplete = false;
+			var overtime = o.overtime;
 
 			var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : false;
 			if ( !xhr ) {
@@ -1258,21 +1264,32 @@ cm.$package(function(cm){
 			xhr.onreadystatechange = function(){
 				if ( 4 == xhr.readyState ) {
 					var status = xhr.status;
-					if ( status >= 200 && status < 300 ) {
+					if ( (status >= 200 && status < 300) || status == 304) {
 						var response = xhr.responseText.replace( /(\r|\n|\t)/gi, '' );
 						// var m = /callback\((.+)\)/gi.exec( response );
 						// var result = { ret : 998, msg : '解析数据出错，请稍后再试' };
 						// try{ result = eval( '(' + m[1] + ')' ) } catch ( e ) {};
 						// result = eval( '(' + m[1] + ')' )
-						o.success && o.success.call( xhr, JSON.parse(response) );
+						o.success && o.success(JSON.parse(response),xhr);
 					}else{
-						o.error && o.error.call( xhr, { ret : 997, msg : '连接错误，请稍后再试', status : status } );
+						o.error && o.error(xhr);
 					};
+					isComplete = true;
 				}
+				
 			};
 			
 
 			xhr.send( isPost ? qstr : void(0) );
+	
+			if(overtime){
+				setTimeout(function(){
+					if(!isComplete){
+						xhr.abort();//不abort同一url无法重新发送请求？
+						o.timeout && o.timeout(xhr);
+					}
+				},overtime);
+			}
 
 			return xhr;
 		}	

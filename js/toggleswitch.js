@@ -7,7 +7,7 @@ cnMobile.$package("MUI",function(cm){
 
 	
 	var isTouchDevice = cm.platform.touchDevice;
-	var tapEvt = isTouchDevice ? "tap" : "click";
+	var tapEvt = isTouchDevice ? "click" : "click";//需要修改
 	var startEvt = isTouchDevice ? "touchstart" : "mousedown";
 	var moveEvt = isTouchDevice ? "touchmove" : "mousemove";
 	var endEvt = isTouchDevice ? "touchend" : "mouseup";
@@ -99,7 +99,7 @@ cnMobile.$package("MUI",function(cm){
 
 				e.preventDefault();
 				var touch = isTouchDevice? e.touches[0] : e;
-				var pos = {x : touch.pageX , y : touch.pageY};
+				var pos = {x : touch.clientX , y : touch.clientY};
 				var ep = elem.getBoundingClientRect();
 
 
@@ -127,8 +127,6 @@ cnMobile.$package("MUI",function(cm){
 			});
 
 			$E.on(this.elem, tapEvt ,function(e){
-				if(isTouchDevice) e = e.originalEventObject;
-
 				var target = e.target || e.srcElement;
 				if(target == self.toggle_items[1]){//right
 					self._moveToRight();

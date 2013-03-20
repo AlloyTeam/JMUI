@@ -42,7 +42,7 @@ cnMobile.$package("MUI",function(cm){
 				e.preventDefault();
 
 				var touch = isTouchDevice? e.touches[0] : e;
-				var pos = { x: touch.pageX , y: touch.pageY };
+				var pos = { x: touch.clientX , y: touch.clientY };
 				var ep = elem.getBoundingClientRect();//实时获取，因为元素位置随时会变化
 
 				var r = self.handler;
