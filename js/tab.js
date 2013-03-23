@@ -32,9 +32,6 @@ cnMobile.$package("MUI",function(cm){
 			this._initStyle();
 
 			$D.addClass(this.tabs[this.currentIndex] ,this.selectedClass);
-			
-			
-
 		},
 		bindHandlers:function(){
 			$E.on(this.elem,touchEvt ,cm.bind(this._onClick,this));
@@ -57,16 +54,12 @@ cnMobile.$package("MUI",function(cm){
 			if(this.animate){
 				$D.setStyle(this.tabBody,"-webkit-transition" , "all," + this.animateDuration);
 			}
-
-			
 		},
 		_setSelectedClass:function(selectedIndex){
 			var tabs = this.tabs;
 			var tabBody = this.tabBody;
 			var tabContents = this.tabContents;
 			var currentIndex = this.currentIndex;
-
-			
 			if(currentIndex == selectedIndex) return;
 			
 			$D.removeClass(tabs[currentIndex],this.selectedClass);

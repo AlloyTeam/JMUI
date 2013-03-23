@@ -23,6 +23,15 @@
 		<input type="text" class="input input_white" placeholder="text input"></input>
 		<textarea id="textarea" class="input input_white" placeholder="textarea" style="margin-top:20px;"></textarea>
 	</p>
+
+	<h4>text input with delete button</h4>
+	<p>
+		<div id="inputWithDelBtn" class="input_with_del_btn">
+			<input type="text" class="input input_white" placeholder="text input"></input>
+			<span class="input_del_btn"></span>
+		</div>
+	</p>
+
 	<h4>auto grow textarea</h4>
 	<p>
 		<textarea id="autoGrowTextArea" class="input input_white" placeholder="textarea" style="margin-top:10px;"></textarea>
@@ -63,11 +72,15 @@
 
 </div>
 <script type="text/javascript" src="js/cnMobile.js"></script>
+<script type="text/javascript" src="js/delbtn_input.js"></script>
 <script type="text/javascript" src="js/autogrow_textarea.js"></script>
 <script type="text/javascript">
-var autoGrowTextArea = new MUI.AutoGrowTextarea({
-	id:"autoGrowTextArea"
-});
+	var inputWithDelBtn = new MUI.DelBtn_Input({
+		id:"inputWithDelBtn"
+	});
+	var autoGrowTextArea = new MUI.AutoGrowTextarea({
+		id:"autoGrowTextArea"
+	});
 
 </script>
 </body>

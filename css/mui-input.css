@@ -56,4 +56,20 @@
 	top: 50%;
 	margin-top: -8px;
 }
+.input_with_del_btn{
+	position: relative;
+}
+.input_del_btn{
+	display: none;
+	position: absolute;
+	top: 50%;
+	margin-top: -12px;
+	right: 12px;
+	width: 24px;
+	height: 24px;
+	background: gray;
+	-webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    border-radius: 18px;
+}
 
