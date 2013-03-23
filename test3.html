@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta charset="UTF-8">
+	<title>消息定向分享</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<!-- <link href="css/main.css" rel="stylesheet" type="text/css" /> -->
+	<style type="text/css">
+	body{
+		height: 2000px;
+	}
+	#t{
+		width: 300px;
+		height: 300px;
+		background: green;
+	}
+	</style>
+</head>
+<body>
+	<div id="t"></div>	
+	<script type="text/javascript" src = "js/cnMobile.js"></script>
+	<script type="text/javascript">
+		// var url = "tencent222222://tauth.qq.com/"; 
+		// var testIframe = document.createElement("iframe");
+		// document.body.appendChild(testIframe);
+		// testIframe.src = url;
+		// var t1 = Date.now();
+		// setTimeout(function(){alert("o");
+		// 	var duration = Date.now() - t1;
+		// 	if(duration < 200){//跳转失败
+		// 		reportData({
+		// 			app_id:appid,
+		// 			pt_type:"mobile",
+		// 			act_type:15,
+		// 			sub_act_type:5,
+		// 			char_ext1:status_os,
+		// 			char_ext2:sdkv,
+		// 			char_ext3:status_machine,
+		// 			oper_time:Date.now()
+		// 		});
+		// 	}
+		// },100);
+		var $E = cnMobile.event,
+			$D = cnMobile.dom;
+		var ele = $D.id("t");
+		// $E.on(document.body,"scrolltobotom",function(){
+		// 	alert("p");
+		// });
+		// var f = function(){
+		// 	alert("p");
+		// };
+		// $E.on(window,"scrolltobottom",f);
+		// $E.on(document.body,"swipe",function(e){
+		// 	alert(e.direction);
+		// });
+		$E.on(ele,"transform",function(e){
+			ele.innerHTML = "<p>scale: " + e.scale+"</p>\
+							<p>rotate: " + e.rotate+"</p>";
+		});
+		$E.on(document.body,"tap",function(e){
+			alert(e.target);
+		});
+		$E.on(ele,"tap",function(e){
+
+		});
+
+		// $E.on(window,"scrollstart",function(e){
+		// 	console.log("start");
+		// });
+		// $E.on(window,"scrollend",function(e){
+		// 	console.log("end");
+		// });
+	</script>
+	
+</body>
+	
+</html>
