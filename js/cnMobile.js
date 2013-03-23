@@ -280,6 +280,9 @@ cm.$package(function(cm){
 			context=context||doc;
 			return context.getElementsByTagName(tagName);
 		},
+		node:function(name){
+			return doc.createElement(name);
+		},
 		className:function(className,context){
 			context=context||doc;
 			return context.getElementsByClassName(className);
@@ -674,24 +677,17 @@ cm.$package(function(cm){
 					else{
 						evtType = "tap";
 					}
-					// handler.call(ele,{
-					// 	oriEvt:e,
-					// 	type:evtType
-					// });
-					//使用自定义dom事件，可以支持冒泡等dom事件特性
-					var evt = document.createEvent('MouseEvents');
-					if(evtType == "doubletap") evt.isDoubleTap = true;
-					evt.initMouseEvent("tap",true, true, window, 0, e.screenX, e.screenY, e.clientX, e.clientY);
-					ele.dispatchEvent(evt);
+					handler.call(ele,{
+						target:e.target,
+						oriEvt:e,
+						type:evtType,
+						isDoubleTap:true
+					});
 				}
 				pt_up_pos = ct_pos;
 				pt_up_time = now;
 			}
 		
-			if(!("ontap" in ele)) {
-				ele.ontap = null;
-			}
-			$E.on(ele,"tap",handler);
 			$E.on(ele,startEvt,startEvtHandler);
 			$E.on(ele,moveEvt,moveEvtHandler);
 			$E.on(ele,endEvt,endEvtHandler);
@@ -727,13 +723,11 @@ cm.$package(function(cm){
 					holdTimeId = setTimeout(function(){
 						if(touches && touches.length != 1) return;
 						if(getDist(pt_pos,ct_pos) < HOLD_DISTANCE){
-							// handler.call(ele,{
-							// 	oriEvt:e,
-							// 	type:"hold"
-							// });
-							var evt = document.createEvent('MouseEvents');
-							evt.initMouseEvent('hold',true, true, window, 0, e.screenX, e.screenY, e.clientX, e.clientY);
-							ele.dispatchEvent(evt);
+							handler.call(ele,{
+								oriEvt:e,
+								target:e.target,
+								type:"hold"
+							});
 						}
 					},HOLD_TIME);
 				}
@@ -748,8 +742,6 @@ cm.$package(function(cm){
 				clearTimeout(holdTimeId);
 			}
 				
-			if(!("onhold" in ele)) ele.onhold = null;
-			$E.on(ele,"hold",handler);
 			$E.on(ele,startEvt,startEvtHandler);
 			$E.on(ele,moveEvt,moveEvtHandler);
 			$E.on(ele,endEvt,endEvtHandler);	
@@ -810,19 +802,15 @@ cm.$package(function(cm){
 
 				if(getDist(pt_pos,pt_up_pos) > SWIPE_DISTANCE && pt_up_time - pt_time < SWIPE_TIME){
 					dir = getSwipeDirection(pt_up_pos,pt_pos);
-					// handler.call(ele,{
-					// 	oriEvt:e,
-					// 	type:"swipe",
-					// 	direction:dir
-					// });
-					var evt = document.createEvent('MouseEvents');
-					evt.initMouseEvent('swipe',true, true, window, 0, e.screenX, e.screenY, e.clientX, e.clientY);
-					evt.direction = dir;
-					ele.dispatchEvent(evt);
+					handler.call(ele,{
+						oriEvt:e,
+						target:e.target,
+						type:"swipe",
+						direction:dir
+					});
 				}
 			}	
-			if(!("onswipe" in ele)) ele.onswipe = null;
-			$E.on(ele,"swipe",handler);
+
 			$E.on(ele,startEvt,startEvtHandler);
 			$E.on(ele,moveEvt,moveEvtHandler);
 			$E.on(ele,endEvt,endEvtHandler);	
@@ -868,16 +856,16 @@ cm.$package(function(cm){
 					var scale = ct_len / pt_len; 
 					var rotation = ct_angle - pt_angle;
 
-					var evt = document.createEvent('UIEvents');
-					evt.initUIEvent('transform',true, true);
-					evt.scale = scale;
-					evt.rotation = rotation;
-					ele.dispatchEvent(evt);
-
+					handler.call(ele,{
+						oriEvt:e,
+						target:e.target,
+						type:"transform",
+						scale:scale,
+						rotate:rotate
+					});
 				}
 			}
-			if(!("ontransform" in ele)) ele.ontransform = null;
-			$E.on(ele,"transform",handler);
+
 			$E.on(ele,startEvt,startEvtHandler);
 			$E.on(ele,moveEvt,moveEvtHandler);
 			var evtOpt = {
@@ -897,21 +885,18 @@ cm.$package(function(cm){
 			var scrollHandler = function(e){
 				if(!isScrolling){
 					isScrolling = true;
-					// handler.call(ele,{
-					// 	oriEvt:e,
-					// 	type:"scrollstart"
-					// });
-					var evt = document.createEvent('UIEvents');
-					evt.initUIEvent('scrollstart',true, true);
-					ele.dispatchEvent(evt);
+					handler.call(ele,{
+						oriEvt:e,
+						target:e.target,
+						type:"scrollstart"
+					});
 				}
 				clearTimeout(scrollTimeId);
 				scrollTimeId = setTimeout(function(){
 					isScrolling = false;
 				},250);
 			}	
-			if(!("onscrollstart" in ele)) ele.onscrollstart = null;
-			$E.on(ele,"scrollstart",handler);
+
 			$E.on(ele,"scroll",scrollHandler);	
 
 			var evtOpt = {
@@ -928,17 +913,13 @@ cm.$package(function(cm){
 			var scrollHandler = function(e){
 				clearTimeout(scrollTimeId);
 				scrollTimeId = setTimeout(function(){
-					// handler.call(ele,{
-					// 	oriEvt:e,
-					// 	type:"scrollend"
-					// });
-					var evt = document.createEvent('UIEvents');
-					evt.initUIEvent('scrollend',true, true);
-					ele.dispatchEvent(evt);				
+					handler.call(ele,{
+						oriEvt:e,
+						target:e.target,
+						type:"scrollend"
+					});		
 				},250);
 			}	
-			if(!("onscrollend" in ele)) ele.onscrollend = null;
-			$E.on(ele,"scrollend",handler);
 			$E.on(ele,"scroll",scrollHandler);		
 
 			var evtOpt = {
@@ -954,17 +935,14 @@ cm.$package(function(cm){
 			var body = document.body;
 			var scrollHandler = function(e){
 				if(body.scrollHeight <= body.scrollTop + window.innerHeight){
-					// handler.call(ele,{
-					// 	oriEvt:e,
-					// 	type:"scrolltobottom"
-					// });
-					var evt = document.createEvent('UIEvents');
-					evt.initUIEvent('scrolltobottom',true, true);
-					ele.dispatchEvent(evt);	
+					handler.call(ele,{
+						oriEvt:e,
+						target:e.target,
+						type:"scrolltobottom"
+					});
+
 				}
 			}
-			if(!("onscrolltobottom" in ele)) ele.onscrolltobottom = null;
-			$E.on(ele,"scrolltobottom",handler);
 			$E.on(ele,"scroll",scrollHandler);	
 
 			var evtOpt = {
