@@ -953,6 +953,40 @@ cm.$package(function(cm){
 			evtOpt.actions = {};
 			evtOpt.actions["scroll"] = scrollHandler;
 			customEventHandlers.push(evtOpt);
+		},
+		//兼容性更好的orientationchange事件，这里使用resize实现。不覆盖原生orientation change 和 resize事件
+		ortchange:function(ele,handler){
+			var pre_w = window.innerWidth;
+			var resizeHandler = function(e){
+				var current_w = window.innerWidth,
+					current_h = window.innerHeight,
+					orientation;
+
+				if(pre_w == current_w) return;
+				if(current_w > current_h){
+					orientation = "landscape";
+				}
+				else{
+					orientation = "portrait";
+				}
+				handler.call(ele,{
+					oriEvt:e,
+					target:e.target,
+					type:"ortchange",
+					orientation:orientation
+				});
+				pre_w = current_w;
+			}
+			$E.on(window,"resize",resizeHandler);
+
+			var evtOpt = {
+				ele:ele,
+				evtType:"ortchange",
+				handler:handler
+			};	
+			evtOpt.actions = {};
+			evtOpt.actions["resize"] = resizeHandler;
+			customEventHandlers.push(evtOpt);
 		}
 
 	}
@@ -997,7 +1031,7 @@ cm.$package(function(cm){
 			if(!location.hash){
 				var ph = window.innerHeight + 60;
 				if(document.documentElement.clientHeight < ph){
-					$D.setStyle(document.body,"minHeight",ph + "px");
+					$D.setStyle(document.body,"minHeight", ph + "px");
 				}
 				window.scrollTo(0,1);
 			}
