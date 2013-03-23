@@ -104,9 +104,11 @@
 .list_group_blue_title > h4{
 	color: #fff;
 }
-.list_white > .list_loading_tips{
+.list_white > .list_loading_tips , .list_white > .list_load_btn{
 	margin-top: -1px;
 	padding: 10px 0;
 	text-align: center;
+}
+.list_white > .list_loading_tips{
 	background: #eee;
 }
