@@ -8,9 +8,18 @@
 	<meta name="format-detection" content="telephone=no" />
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<!-- <link href="css/main.css" rel="stylesheet" type="text/css" /> -->
+	<style type="text/css">
+	#l{
+		background: green;
+	}
+	#l.selected{
+		background: red;
+	}
+	</style>
 
 </head>
-	<body>
+	<body style="width:5000px;height:8000px;">
+		<div id="l" style="width:300px;height:300px;"></div>
 		<input />
 		<div id="o">
 
@@ -51,11 +60,16 @@
 		  return null;
 		}
 		
-		cnMobile.event.on(window,"scroll",function(e){
-			alert("d");
+		// cnMobile.event.on(window,"scroll",function(e){
+		// 	alert("d");
+		// });
+		// alert(cm.support.fixed);
+		cnMobile.Util.fixElement(cnMobile.dom.id("l"),{
+			top:120,
+			left:120
 		});
-		testFixed()
-		
+
+		cnMobile.Util.hoverEffect(cnMobile.dom.id("l"),"selected");
 			
 		</script>
 	</body>

@@ -990,38 +990,47 @@ cm.$package(function(cm){
 		}
 
 	}
-	// var fixedEventHandlers = [];
-
-	// var resizeHandler = function(e){
-	// 	var p = window.innerWidth / window.innerHeight;
-	// 	p > 1 ? window.orientation = 90 : window.orientation = 0;
-	// 	handler.call(window);
-	// }
-	// //dom事件修复
-	// var domFixedEvent = {
-	// 	_off:function(ele,evtType,handler){
-	// 		if(evtType == "orientationchange"){
-	// 			if(ele != window) return;
-	// 			$E.off(window,"resize",resizeHandler);
-	// 		}
-	// 	},
-	// 	orientationchange:function(ele,handler){
-	// 		//对window的orientationchange进行fix
-	// 		if(ele != window || "onorientationchange" in ele){
-	// 			return false;
-	// 		}
-	// 		$E.on(ele,"resize",resizeHandler);
-	// 		return true;
-	// 	}
-	// }
 
 	cm.event = $E;
 });
+
+//support
+cm.$package(function(cm){
+	var $D = cm.dom,
+		$E = cm.event;
+	var support = {
+		fixed:(function(){
+			var container = document.body;
+			var el = $D.node('div');			    
+			$D.setStyle(el,{
+				position:"fixed",
+				top:"100px"
+			});
+			container.appendChild(el);
+
+			var originalHeight = container.style.height,
+			    originalScrollTop = container.scrollTop;
+
+			$D.setStyle(container,"height","3000px");
+			container.scrollTop = 500;
+
+			var elementTop = el.getBoundingClientRect().top;
+			$D.setStyle(container,"height",originalHeight + "px");
+
+			container.removeChild(el);
+			container.scrollTop = originalScrollTop;
+			return elementTop === 100;
+		})()
+	}
+	cm.support = support;
+});
+
 //Util
 cm.$package(function(cm){
 	var $D = cm.dom,
 		$E = cm.event,
 		$T = cm.type;
+
 	var preventScroll = function(e){
         if (e.target.type === 'range') { return; }
             e.preventDefault();
@@ -1068,8 +1077,117 @@ cm.$package(function(cm){
 				use3d:true
 			}).translateY(0).transit();
 		
+		},
+		//兼容浏览器的fixed定位
+		fixElement:function(ele,options){
+			var iu = $T.isUndefined;
+			var wh = window.innerHeight;
+			var ww = window.innerWidth;
+			var eh = ele.clientHeight;
+			var ew = ele.clientWidth;
+			var top;
+			var left;
+
+			//支持原生fixed
+			if(cm.support.fixed){
+				$D.setStyle(ele,{
+					position:"fixed",
+					top:options.top + "px",
+					left:options.left + "px",
+					bottom:options.bottom + "px",
+					right:options.right + "px"
+				});
+				return;
+			}
+			//fixed模拟
+			$E.on(window,"scrollend",function(){
+
+				top = window.pageYOffset + ( iu(options.top) ? (iu(options.bottom) ? "" : wh - options.bottom - eh) : options.top );　
+				left = window.pageXOffset + ( iu(options.left) ? (iu(options.right) ? "" : ww - options.right - ew) : options.left );　
+			
+				$D.setStyle(ele,{
+					position:"absolute",
+					top:top + "px",
+					left:left + "px"
+				});
+			});
+		},
+		//hover效果
+		hoverEffect:function(ele,className){
+			var startEvt,moveEvt,endEvt;
+			var touchDevice = cm.platform.touchDevice;
+			var upTarget;
+
+			//选择不同事件
+			if(touchDevice){
+				startEvt="touchstart";
+				moveEvt="touchmove";
+				endEvt="touchend";
+				upTarget = ele;
+			}
+			else{
+				startEvt="mousedown";
+				moveEvt="mousemove";
+				endEvt="mouseup";	
+				upTarget = document.body;	
+			}
+			$E.on(ele,startEvt,function(){
+				$D.addClass(ele,className);
+			});
+			$E.on(ele,moveEvt,function(e){
+				e.preventDefault();
+			});
+			$E.on(upTarget,endEvt,function(){
+				$D.removeClass(ele,className);
+			});
+		},
+		//图片懒加载 只实现了垂直的情况
+		lazyLoadImgs:function(options){
+			container = options.container || document.body;
+			souceProperty = options.souceProperty || "_ori_src";
+			isFade = options.isFade;
+
+			var loadFunc = isFade ? function(img,loadSrc){
+					var newImg = new Image();
+					$D.setStyle(newImg,{
+						"-webkit-transition":"all 1s",
+						"opacity":"0"
+					})
+					$E.once(newImg,"load",function(){
+						img.parentNode.replaceChild(newImg,img);
+						setTimeout(function(){
+							$D.setStyle(newImg,"opacity","1");
+						},0);
+						
+					});
+					newImg.src = loadSrc;
+				} : function(img,loadSrc){
+				img.src = loadSrc;
+				img.removeAttribute(souceProperty);
+			}
+	
+			$E.on(window,"load resize scrollend",function(){
+				var viewHeight = document.documentElement.clientHeight;
+				var imgs = $D.$("img["+ souceProperty +"]" ,container);
+
+				if(imgs.length == 0) return;
+
+				cm.each(imgs,function(img){
+					var imgTop = img.getBoundingClientRect().top;
+					var imgH = img.clientHeight;
+					//图片在可视范围内
+					if(imgTop > - imgH/2){
+						if(imgTop < viewHeight) {
+							loadFunc(img ,img.getAttribute(souceProperty));
+						}
+						else {
+							return false;//中断遍历
+						}
+					}
+				});
+			});
 		}
-	};
+	}
 	cm.Util = Util;
 });
 
