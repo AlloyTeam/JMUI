@@ -853,7 +853,9 @@ body > .toolbar_footer{
 	// });
 
 	$E.on($D.id("home"),"click",function(){
-		
+		if(currentDialogFlg){
+			dialog.hide(currentEffect);
+		}	
 		sc.slideTo(0);
 	});
 	$E.on(sc,"change",function(e){
@@ -1002,33 +1004,41 @@ body > .toolbar_footer{
 	});
 
 	//dialog
-	var currentEffect; 
+	var currentEffect,
+		currentDialogFlg;
+	
 	var dialog = new MUI.Dialog({
 		id:"dialog"
 	});
 	dialog.elem.onclick = function(){
 		dialog.hide(currentEffect);
+		currentDialogFlg = false;
 	}	
 
 	$E.on($D.id("none"),"click",function(){
 		currentEffect = "none";
 		dialog.show("none");
+		currentDialogFlg = true;
 	});
 	$E.on($D.id("fade"),"click",function(){
 		currentEffect = "fade";
 		dialog.show("fade");
+		currentDialogFlg = true;
 	});
 	$E.on($D.id("pop"),"click",function(){
 		currentEffect = "pop";
 		dialog.show("pop");
+		currentDialogFlg = true;
 	});
 	$E.on($D.id("slideup"),"click",function(){
 		currentEffect = "slideup";
 		dialog.show("slideup");
+		currentDialogFlg = true;
 	});
 	$E.on($D.id("slidedown"),"click",function(){
 		currentEffect = "slidedown";
 		dialog.show("slidedown");
+		currentDialogFlg = true;
 	});
 	//slide
 	var sl = new MUI.Slider({
