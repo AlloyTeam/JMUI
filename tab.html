@@ -3,7 +3,7 @@
 <head>
 	<title>Tab</title>
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, target-densitydpi=medium-dpi" /> 
 	<link rel="stylesheet" type="text/css" href="css/mui-base.css" />
 	<link rel="stylesheet" type="text/css" href="css/mui-tab.css" />
 	<style type="text/css">
@@ -67,6 +67,30 @@
 		</ul>
 	</div>
 	
+	<h4>Tab With Gesture</h4>
+	<div id="b_tab" class="tab">
+		<ul class="tab_head">
+			<li class="active">head_1</li>
+			<li>head_2</li>
+			<li>head_3</li>
+			<li>head_4</li>
+		</ul>
+		<ul class="tab_body" id="tab_body">
+			<li>
+				<div>tab-body-1</div>
+			</li>
+			<li>
+				<div>tab-body-2</div>
+			</li>
+		
+			<li>
+				<div>tab-body-3</div>
+			</li>
+			<li>
+				<div>tab-body-4</div>
+			</li>
+		</ul>
+	</div>	
 	<script type="text/javascript" src="js/cnMobile.js"></script>
 	<script type="text/javascript" src="js/tab.js"></script>
 
@@ -78,7 +102,11 @@
 		id:"a_tab",
 		animate:"true"
 	});
-
+	var tb3 = new MUI.Tab({
+		id:"b_tab",
+		gesture:"true",
+		touchId:"tab_body"		
+	});
 	</script>
 </body>
 
