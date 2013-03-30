@@ -842,7 +842,7 @@ body > .toolbar_footer{
 	var $D = cnMobile.dom,
 	$E = cnMobile.event;
 	//swipe change
-	var sc = new MUI.SwipeChange({
+	var sc = MUI.SwipeChange({
 		id:"swipe",
 		currentIndex:0,
 		slideTime:500		
@@ -868,7 +868,7 @@ body > .toolbar_footer{
 	});
 
 	//main list
-	var mainlist = new MUI.List({
+	var mainlist = MUI.List({
 		id:"mainlist"
 	});
 	$E.on(mainlist,"selected",function(e){
@@ -882,124 +882,124 @@ body > .toolbar_footer{
 	});
 
 	//button
-	var w_btn = new MUI.Button({
+	var w_btn = MUI.Button({
 		id:"w_button"
 	});
-	var g_btn = new MUI.Button({
+	var g_btn = MUI.Button({
 		id:"g_button"
 	});
-	var bl_btn = new MUI.Button({
+	var bl_btn = MUI.Button({
 		id:"bl_button"
 	});
-	var b_btn = new MUI.Button({
+	var b_btn = MUI.Button({
 		id:"b_button"
 	});
 
-	var w_i_l_btn = new MUI.Button({
+	var w_i_l_btn = MUI.Button({
 		id:"w_icon_l_button"
 	});
-	var w_i_r_btn = new MUI.Button({
+	var w_i_r_btn = MUI.Button({
 		id:"w_icon_r_button"
 	});
-	var g_i_l_btn = new MUI.Button({
+	var g_i_l_btn = MUI.Button({
 		id:"g_icon_l_button"
 	});
-	var g_i_r_btn = new MUI.Button({
+	var g_i_r_btn = MUI.Button({
 		id:"g_icon_r_button"
 	});
-	var bl_i_l_btn = new MUI.Button({
+	var bl_i_l_btn = MUI.Button({
 		id:"bl_icon_l_button"
 	});
-	var bl_i_r_btn = new MUI.Button({
+	var bl_i_r_btn = MUI.Button({
 		id:"bl_icon_r_button"
 	});
-	var b_i_l_btn = new MUI.Button({
+	var b_i_l_btn = MUI.Button({
 		id:"b_icon_l_button"
 	});
-	var b_i_r_btn = new MUI.Button({
+	var b_i_r_btn = MUI.Button({
 		id:"b_icon_r_button"
 	});
 
-	var w_btn_list = new MUI.ButtonList({
+	var w_btn_list = MUI.ButtonList({
 		id:"w_btn_list"
 	});
-	var w_btn_list = new MUI.ButtonList({
+	var w_btn_list = MUI.ButtonList({
 		id:"w_v_btn_list"
 	});
-	var g_btn_list = new MUI.ButtonList({
+	var g_btn_list = MUI.ButtonList({
 		id:"g_btn_list"
 	});
-	var g_btn_list = new MUI.ButtonList({
+	var g_btn_list = MUI.ButtonList({
 		id:"g_v_btn_list"
 	});
-	var bl_btn_list = new MUI.ButtonList({
+	var bl_btn_list = MUI.ButtonList({
 		id:"bl_btn_list"
 	});
-	var bl_btn_list = new MUI.ButtonList({
+	var bl_btn_list = MUI.ButtonList({
 		id:"bl_v_btn_list"
 	});
-	var b_btn_list = new MUI.ButtonList({
+	var b_btn_list = MUI.ButtonList({
 		id:"b_btn_list"
 	});
-	var b_btn_list = new MUI.ButtonList({
+	var b_btn_list = MUI.ButtonList({
 		id:"b_v_btn_list"
 	});
 	//checkbox
-	var cb = new MUI.Checkbox({
+	var cb = MUI.Checkbox({
 		id:"checkbox"
 	});
-	var bl_cb = new MUI.Checkbox({
+	var bl_cb = MUI.Checkbox({
 		id:"bl_checkbox"
 	});
-	var cl = new MUI.CheckboxList({
+	var cl = MUI.CheckboxList({
 		id:"checkboxlist"
 	});
-	var bl_cl = new MUI.CheckboxList({
+	var bl_cl = MUI.CheckboxList({
 		id:"bl_checkboxlist"
 	});
-	var v_cl = new MUI.CheckboxList({
+	var v_cl = MUI.CheckboxList({
 		id:"v_checkboxlist"
 	});
-	var v_cl = new MUI.CheckboxList({
+	var v_cl = MUI.CheckboxList({
 		id:"bl_v_checkboxlist"
 	});
 	//input
-	var autoGrowTextArea = new MUI.AutoGrowTextarea({
+	var autoGrowTextArea = MUI.AutoGrowTextarea({
 		id:"autoGrowTextArea"
 	});
 	//radio
-	var radio = new MUI.Radio({
+	var radio = MUI.Radio({
 		id:"radio"
 	});
-	var bl_radio = new MUI.Radio({
+	var bl_radio = MUI.Radio({
 		id:"bl_radio"
 	});
-	var radiolist = new MUI.RadioList({
+	var radiolist = MUI.RadioList({
 		id:"radioList"
 	});
-	var bl_radiolist = new MUI.RadioList({
+	var bl_radiolist = MUI.RadioList({
 		id:"bl_radioList"
 	});
-	var v_radiolist = new MUI.RadioList({
+	var v_radiolist = MUI.RadioList({
 		id:"v_radioList"
 	});
-	var v_bl_radiolist = new MUI.RadioList({
+	var v_bl_radiolist = MUI.RadioList({
 		id:"v_bl_radioList"
 	});
 	//list
-	var list1 = new MUI.List({
+	var list1 = MUI.List({
 		id:"list1"
 	});
-	var n_list = new MUI.List({
+	var n_list = MUI.List({
 		id:"n_list"
 	});
-	var l_icon_list = new MUI.List({
+	var l_icon_list = MUI.List({
 		id:"l_icon_list"
 	});
-	var r_icon_list = new MUI.List({
+	var r_icon_list = MUI.List({
 		id:"r_icon_list"
 	});
-	var groupList = new MUI.GroupList({
+	var groupList = MUI.GroupList({
 		id:"groupList"
 	});
 
@@ -1007,7 +1007,7 @@ body > .toolbar_footer{
 	var currentEffect,
 		currentDialogFlg;
 	
-	var dialog = new MUI.Dialog({
+	var dialog = MUI.Dialog({
 		id:"dialog"
 	});
 	dialog.elem.onclick = function(){
@@ -1041,87 +1041,87 @@ body > .toolbar_footer{
 		currentDialogFlg = true;
 	});
 	//slide
-	var sl = new MUI.Slider({
+	var sl = MUI.Slider({
 		id:"slider"
 	});
 	sl.setValue(20);
-	var w_sl = new MUI.Slider({
+	var w_sl = MUI.Slider({
 		id:"w_slider"
 	});
 	w_sl.setValue(40);
-	var b_sl = new MUI.Slider({
+	var b_sl = MUI.Slider({
 		id:"b_slider"
 	});
 	b_sl.setValue(60);
-	var g_sl = new MUI.Slider({
+	var g_sl = MUI.Slider({
 		id:"g_slider"
 	});
 	g_sl.setValue(80);
 
-	var v_sl = new MUI.Slider({
+	var v_sl = MUI.Slider({
 		id:"v_slider",
 		vertical:true
 	});
 	v_sl.setValue(80);
-	var v_w_sl = new MUI.Slider({
+	var v_w_sl = MUI.Slider({
 		id:"v_w_slider",
 		vertical:true
 	});
 	v_w_sl.setValue(60);
-	var v_b_sl = new MUI.Slider({
+	var v_b_sl = MUI.Slider({
 		id:"v_b_slider",
 		vertical:true
 	});
 	v_b_sl.setValue(40);
-	var v_g_sl = new MUI.Slider({
+	var v_g_sl = MUI.Slider({
 		id:"v_g_slider",
 		vertical:true
 	});
 	v_g_sl.setValue(20);
 
 	//toggleSwitch
-	var ts = new MUI.ToggleSwitch({
+	var ts = MUI.ToggleSwitch({
 		id:"toggleSwitch"
 	});
-	var bl_ts = new MUI.ToggleSwitch({
+	var bl_ts = MUI.ToggleSwitch({
 		id:"bl_toggleSwitch"
 	});
-	var b_ts = new MUI.ToggleSwitch({
+	var b_ts = MUI.ToggleSwitch({
 		id:"b_toggleSwitch"
 	});
 
 	//progress
-	var p = new MUI.Progress({
+	var p = MUI.Progress({
 		id:"progress",
 		percent:30
 	});
-	var p_g = new MUI.Progress({
+	var p_g = MUI.Progress({
 		id:"progress_g",
 		percent:60
 	});
-	var p_b = new MUI.Progress({
+	var p_b = MUI.Progress({
 		id:"progress_b",
 		percent:90
 	});
-	var p_y = new MUI.Progress({
+	var p_y = MUI.Progress({
 		id:"progress_y",
 		percent:100
 	});
 	//select	
-	var w_sel = new MUI.Select({
+	var w_sel = MUI.Select({
 		id:"w_menuSelector"
 	});
-	var g_sel = new MUI.Select({
+	var g_sel = MUI.Select({
 		id:"g_menuSelector"
 	});
-	var b_sel = new MUI.Select({
+	var b_sel = MUI.Select({
 		id:"b_menuSelector"
 	});
-	var bl_sel = new MUI.Select({
+	var bl_sel = MUI.Select({
 		id:"bl_menuSelector"
 	});
 	//imagechange
-	var ic = new MUI.ImageChange({
+	var ic = MUI.ImageChange({
 		id:"image_slider",
 		isAutoChange:true,
 		autoChangeTime:3000,

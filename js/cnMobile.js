@@ -59,7 +59,7 @@
 	            tempClass.prototype = superClass.prototype;
 
 	            var subClass = function() {
-	                this.init.apply(this, arguments);
+	                return new subClass.prototype._init(arguments);
 	            }
 	          
 	            subClass.superClass = superClass.prototype;
@@ -76,17 +76,22 @@
 	            subClass.prototype.constructor = subClass;
 	            
 	            cm.extend(subClass.prototype, option);
-	            
 
-	            subClass.prototype.init = function(){
-	                option.init.apply(this, arguments);
+	            subClass.prototype._init = function(args){
+	                this.init.apply(this, args);
 	            };
+	            subClass.prototype._init.prototype = subClass.prototype;
 	            return subClass;
+
 	        }else if(length === 1){
 	            var newClass = function() {
-	                return this.init.apply(this, arguments);
+	                return new newClass.prototype._init(arguments);
 	            }
 	            newClass.prototype = option;
+	            newClass.prototype._init = function(arg){
+	            	this.init.apply(this,arg);
+	            };
+	            newClass.prototype._init.prototype = newClass.prototype;
 	            return newClass;
 	        }   
 	    },
@@ -440,6 +445,7 @@ cm.$package(function(cm){
 
 	var $E={
 		on:function(obj, evtType, handler){
+
 			if($T.isArray(obj)){
 				for(var i=obj.length;i--;){
 					$E.on(obj[i], evtType, handler);
@@ -467,15 +473,14 @@ cm.$package(function(cm){
 				}
 				return;
 			}
-			//is dom event may need fixed
-			// if(domFixedEvent[evtType]){
-			// 	if(domFixedEvent[evtType](ele,handler)){
-			// 		return;
-			// 	}
-			// }
 			//is dom event support
 			if(isDomEvent(obj,evtType)){
 				obj.addEventListener(evtType ,handler ,false);
+				return;
+			}
+			//dom event in origin element
+			if(obj.elem && isDomEvent(obj.elem,evtType)){
+				obj.elem.addEventListener(evtType ,handler ,false);
 				return;
 			}
 			//is specific custom event
@@ -526,6 +531,11 @@ cm.$package(function(cm){
 				obj.removeEventListener( evtType , handler ,false );
 				return;
 			}	
+			//dom event in origin element
+			if(obj.elem && isDomEvent(obj.elem,evtType)){
+				obj.elem.removeEventListener(evtType ,handler ,false);
+				return;
+			}
 			//is specific custom event
 			if(customEvent[evtType]){
 				customEvent._off(obj,evtType,handler);
@@ -560,6 +570,13 @@ cm.$package(function(cm){
 		        var evt = document.createEvent('HTMLEvents');
         		evt.initEvent(evtType, true, true);
         		obj.dispatchEvent(evt);
+        		return;
+			}
+			//dom event in origin element
+			if(obj.elem && isDomEvent(obj.elem,evtType)){
+		        var evt = document.createEvent('HTMLEvents');
+        		evt.initEvent(evtType, true, true);
+        		obj.elem.dispatchEvent(evt);
         		return;
 			}
 			if(obj.events&&obj.events[evtType]){
@@ -1015,7 +1032,10 @@ cm.$package(function(cm){
 			container.scrollTop = 500;
 
 			var elementTop = el.getBoundingClientRect().top;
-			$D.setStyle(container,"height",originalHeight + "px");
+			if(originalHeight)
+				$D.setStyle(container,"height",originalHeight + "px");
+			else
+				$D.setStyle(container,"height","");
 
 			container.removeChild(el);
 			container.scrollTop = originalScrollTop;

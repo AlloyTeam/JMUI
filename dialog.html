@@ -47,12 +47,12 @@
 	var $D = cm.dom,
 		$E = cm.event;
 
-	var dialog = new MUI.Dialog({
+	var dialog = MUI.Dialog({
 		id:"dialog"
 	});
-	dialog.elem.onclick = function(){
+	$E.on(dialog,"click",function(){
 		dialog.hide(currentEffect);
-	}	
+	});	
 
 	$E.on($D.id("none"),"click",function(){
 		currentEffect = "none";

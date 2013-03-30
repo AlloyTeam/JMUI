@@ -9,12 +9,7 @@ cnMobile.$package("MUI",function(cm){
 	var endEvt = isTouchDevice ? "touchend" : "mouseup";
 	var hasClientRect = "getBoundingClientRect" in document.body;
 
-
-	var SwipeChange = function(options){
-		this.init(options);
-
-	};
-	SwipeChange.prototype = {
+	var SwipeChange = cm.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.contentWrap = $D.$("#" + options.id + ">.wrap",this.elem)[0];
@@ -144,6 +139,6 @@ cnMobile.$package("MUI",function(cm){
 			this.slideTo(index);
 		}
 
-	};
+	});
 	this.SwipeChange = SwipeChange;
 });

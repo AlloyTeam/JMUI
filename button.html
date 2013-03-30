@@ -133,67 +133,71 @@
 <script type="text/javascript" src="js/button.js"></script>
 <script type="text/javascript" src="js/buttonlist.js"></script>
 <script type="text/javascript">
-	var w_btn = new MUI.Button({
+	var w_btn = MUI.Button({
 		id:"w_button"
 	});
-	var g_btn = new MUI.Button({
+	var g_btn = MUI.Button({
 		id:"g_button"
 	});
-	var bl_btn = new MUI.Button({
+	var bl_btn = MUI.Button({
 		id:"bl_button"
 	});
-	var b_btn = new MUI.Button({
+	var b_btn = MUI.Button({
 		id:"b_button"
 	});
 
-	var w_i_l_btn = new MUI.Button({
+	var w_i_l_btn = MUI.Button({
 		id:"w_icon_l_button"
 	});
-	var w_i_r_btn = new MUI.Button({
+	var w_i_r_btn = MUI.Button({
 		id:"w_icon_r_button"
 	});
-	var g_i_l_btn = new MUI.Button({
+	var g_i_l_btn = MUI.Button({
 		id:"g_icon_l_button"
 	});
-	var g_i_r_btn = new MUI.Button({
+	var g_i_r_btn = MUI.Button({
 		id:"g_icon_r_button"
 	});
-	var bl_i_l_btn = new MUI.Button({
+	var bl_i_l_btn = MUI.Button({
 		id:"bl_icon_l_button"
 	});
-	var bl_i_r_btn = new MUI.Button({
+	var bl_i_r_btn = MUI.Button({
 		id:"bl_icon_r_button"
 	});
-	var b_i_l_btn = new MUI.Button({
+	var b_i_l_btn = MUI.Button({
 		id:"b_icon_l_button"
 	});
-	var b_i_r_btn = new MUI.Button({
+	var b_i_r_btn = MUI.Button({
 		id:"b_icon_r_button"
 	});
 
-	var w_btn_list = new MUI.ButtonList({
+	var w_btn_list = MUI.ButtonList({
 		id:"w_btn_list"
 	});
-	var w_btn_list = new MUI.ButtonList({
+	var w_btn_list = MUI.ButtonList({
 		id:"w_v_btn_list"
 	});
-	var g_btn_list = new MUI.ButtonList({
+	var g_btn_list = MUI.ButtonList({
 		id:"g_btn_list"
 	});
-	var g_btn_list = new MUI.ButtonList({
+	var g_btn_list = MUI.ButtonList({
 		id:"g_v_btn_list"
 	});
-	var bl_btn_list = new MUI.ButtonList({
+	var bl_btn_list = MUI.ButtonList({
 		id:"bl_btn_list"
 	});
-	var bl_btn_list = new MUI.ButtonList({
+	var bl_btn_list = MUI.ButtonList({
 		id:"bl_v_btn_list"
 	});
-	var b_btn_list = new MUI.ButtonList({
+	var b_btn_list = MUI.ButtonList({
 		id:"b_btn_list"
 	});
-	var b_btn_list = new MUI.ButtonList({
+	var b_btn_list = MUI.ButtonList({
 		id:"b_v_btn_list"
+	});
+	var $E = cnMobile.event;
+	$E.on(b_btn.elem,"click",function(){
+		alert("o");
 	});
 </script>
 </body>
