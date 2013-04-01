@@ -2,14 +2,17 @@ cnMobile.$package("MUI",function(cm){
 	var $D = cm.dom,
 		$E = cm.event,
 		$T = cm.type;
-
+	var isTouchDevice = cm.platform.touchDevice;
+	var touchEvt = isTouchDevice ? "tap":"click";
 	var isListItem = function(ele){
 		return $D.hasClass(ele ,"list_item");
 	}
 	var List = cm.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
-			this.listItems = $D.className("list_item",this.elem);
+			this.listItemClassName = options.listItemClassName || "list_item";
+			this.selectedClassName = options.selectedClassName || "selected";
+			this.listItems = $D.className(this.listItemClassName,this.elem);
 			this.selectedIndex = options.selectedIndex;
 			
 			this._setIndex();
@@ -17,14 +20,14 @@ cnMobile.$package("MUI",function(cm){
 			this.select(this.selectedIndex);
 		},
 		bindHandlers:function(){
-			$E.on(this.elem ,"click" ,cm.bind(this._onClick,this));
+			$E.on(this.elem ,touchEvt ,cm.bind(this._onClick,this));
 		},
 		select:function(selectedIndex){
 			if($T.isNumber(this.selectedIndex))
-				$D.removeClass(this.listItems[this.selectedIndex],"selected");
+				$D.removeClass(this.listItems[this.selectedIndex],this.selectedClassName);
 
 			if($T.isNumber(selectedIndex)){
-				$D.addClass(this.listItems[selectedIndex],"selected");
+				$D.addClass(this.listItems[selectedIndex],this.selectedClassName);
 				this.selectedIndex = selectedIndex;
 			}
 		},

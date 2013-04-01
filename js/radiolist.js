@@ -11,6 +11,7 @@ cnMobile.$package("MUI",function(cm){
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.list = $D.$("input[type=radio]",this.elem);
+			this.checkedClassName = options.checkedClassName || "checked";
 
 			this._initRadios();
 			this.bindHandlers();
@@ -23,23 +24,24 @@ cnMobile.$package("MUI",function(cm){
 		},
 		_initRadios:function(){
 			var self = this;
+			var checkedClassName = this.checkedClassName;
 			cm.each(this.list,function(r,i){
 				if(r.checked) {
-					$D.addClass(r.parentNode ,"checked");
+					$D.addClass(r.parentNode ,checkedClassName);
 					self.selectedIndex = i;
 				}
 				r.setAttribute("_index",i);
 			});
 		},
 		_onClick:function(e,target){
-		
+			var checkedClassName = this.checkedClassName;
 			var selectedIndex = target.getAttribute("_index");
 			//点击相同项不触发chang事件
 			if(selectedIndex == this.selectedIndex) return;
 			//更换样式
-			$D.addClass(target.parentNode ,"checked");
+			$D.addClass(target.parentNode ,checkedClassName);
 			if(!$T.isUndefined(this.selectedIndex))
-				$D.removeClass(this.list[this.selectedIndex].parentNode,"checked");
+				$D.removeClass(this.list[this.selectedIndex].parentNode,checkedClassName);
 			//重置selectedIndex
 			this.selectedIndex = selectedIndex;
 

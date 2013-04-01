@@ -5,8 +5,10 @@ cnMobile.$package("MUI",function(cm){
 	var Progress = cm.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
-			this.bar = $D.className("bar" ,this.elem)[0];
-			this.barText = $D.className("bar_text" ,this.elem)[0];
+			this.barClassName = options.barClassName || "bar";
+			this.barTextClassName = options.barTextClassName || "bar_text";
+			this.bar = $D.className(this.barClassName ,this.elem)[0];
+			this.barText = $D.className(this.barTextClassName ,this.elem)[0];
 			this.setPercent(options.percent || 0);
 		},
 		setPercent:function(p){

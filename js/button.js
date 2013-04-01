@@ -12,15 +12,17 @@ cnMobile.$package("MUI",function(cm){
 	var Button = cm.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
+			this.activeClassName = options.activeClassName || "active";
 			this.bindHandler();
 		},
 		bindHandler:function(){
 			var self = this;
 			var b = this.elem;
+			var activeClassName = this.activeClassName;
 
 			$E.on(b,startEvt,function(e){
-				if(!$D.hasClass(b,"active")){
-					$D.addClass(b,"active");
+				if(!$D.hasClass(b,activeClassName)){
+					$D.addClass(b,activeClassName);
 				}
 			});
 			$E.on(b,moveEvt,function(e){
@@ -28,19 +30,13 @@ cnMobile.$package("MUI",function(cm){
 			});
 
 			$E.on(document.body,endEvt,function(e){
-				if($D.hasClass(b,"active")){
-					$D.removeClass(b,"active");
+				if($D.hasClass(b,activeClassName)){
+					$D.removeClass(b,activeClassName);
 				}
 			});		
-			$E.on(b,"click",function(e){
-				self._onClick(e);
-			});		
-		},
-		_onClick:function(e){
-			$E.fire(this,"click",{
-				originalEventObj:e
-			});
+	
 		}
+
 	});
 	this.Button = Button;
 	

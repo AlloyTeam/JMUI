@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<title>Mobile Cookbook</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/mui-base.css" />
+	<style type="text/css">
+	img{
+		width: 362px;
+		height: 387px;
+	}
+	</style>
+</head>
+<body>
+	<h4>图片懒加载</h4>
+	<div id='imgs_container'>
+		<p><img _ori_src="http://www.alloyteam.com/wp-content/uploads/2012/10/result.png"></p>
+		<p><img _ori_src="http://www.alloyteam.com/wp-content/uploads/2012/10/result.png"></p>
+		<p><img _ori_src="http://www.alloyteam.com/wp-content/uploads/2012/10/result.png"></p>
+		<p><img _ori_src="http://www.alloyteam.com/wp-content/uploads/2012/10/result.png"></p>
+		<p><img _ori_src="http://www.alloyteam.com/wp-content/uploads/2012/10/result.png"></p>
+		<p><img _ori_src="http://www.alloyteam.com/wp-content/uploads/2012/10/result.png"></p>
+		<p><img _ori_src="http://www.alloyteam.com/wp-content/uploads/2012/10/result.png"></p>
+		<p><img _ori_src="http://www.alloyteam.com/wp-content/uploads/2012/10/result.png"></p>
+		<p><img _ori_src="http://www.alloyteam.com/wp-content/uploads/2012/10/result.png"></p>
+		<p><img _ori_src="http://www.alloyteam.com/wp-content/uploads/2012/10/result.png"></p>
+		<p><img _ori_src="http://www.alloyteam.com/wp-content/uploads/2012/10/result.png"></p>
+		<p><img _ori_src="http://www.alloyteam.com/wp-content/uploads/2012/10/result.png"></p>
+	</div>
+
+	<script type="text/javascript" src="js/cnMobile.js"></script>
+	<script type="text/javascript" src="js/lazyloadimgs.js"></script>
+
+	<script type="text/javascript">
+
+
+	MUI.LazyLoadImgs({
+		id:"imgs_container",
+		isFade:true
+	});
+
+	</script>
+</body>
+
+</html>

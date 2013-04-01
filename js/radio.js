@@ -6,6 +6,7 @@ cnMobile.$package("MUI",function(cm){
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.radioElem = $D.$("input[type=radio]",this.elem)[0];
+			this.checkedClassName = options.checkedClassName || "checked";
 			this.checked = this.radioElem.checked;
 			this.value = this.radioElem.value;
 			this.bindHandler();
@@ -26,7 +27,7 @@ cnMobile.$package("MUI",function(cm){
 		unselect:function(){
 			this.radioElem.checked = false;
 			this.checked = false;
-			$D.removeClass(this.elem,"checked");
+			$D.removeClass(this.elem,this.checkedClassName);
 		},
 		_setSelected:function(e){
 			var re = this.radioElem;
@@ -35,7 +36,7 @@ cnMobile.$package("MUI",function(cm){
 			if(!re.checked) re.checked = true;
 			this.checked = true;
 
-			$D.addClass(this.elem,"checked");
+			$D.addClass(this.elem,this.checkedClassName);
 			if(e){
 				evtObj.originalEventObj = e;
 			}

@@ -12,6 +12,7 @@ cnMobile.$package("MUI",function(cm){
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.list = $D.$("input[type=checkbox]",this.elem);
+			this.checkedClass = options.checkedClass || "checked";
 			this._initCheckboxes();
 			this.bindHandlers();
 		},
@@ -32,18 +33,20 @@ cnMobile.$package("MUI",function(cm){
 		},
 		_initCheckboxes:function(){
 			var self = this;
+			var checkedClass = this.checkedClass;
 			cm.each(this.list,function(c,i){
-				if(c.checked) $D.addClass(c.parentNode ,"checked");
+				if(c.checked) $D.addClass(c.parentNode ,checkedClass);
 				c.setAttribute("_index",i);
 			});
 		},
 		_onClick:function(e,target){
 			var cp = target.parentNode;
+			var checkedClass = this.checkedClass;
 			if(target.checked){
-				$D.addClass(cp ,"checked");
+				$D.addClass(cp ,checkedClass);
 			}
 			else{
-				$D.removeClass(cp ,"checked");
+				$D.removeClass(cp ,checkedClass);
 			}
 
 			$E.fire(this,"change",{

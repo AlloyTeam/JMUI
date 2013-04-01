@@ -7,6 +7,7 @@ cnMobile.$package("MUI",function(cm){
 			AutoLoadList.callSuper(this,"init",options);
 			this.isLoading = false;
 			this.loadingWord = options.loadingWord || "加载中...";
+			this.loadingTipsClassName = options.loadingTipsClassName || "list_loading_tips";
 		},
 		bindHandlers:function(){
 			AutoLoadList.callSuper(this,"bindHandlers");
@@ -25,7 +26,7 @@ cnMobile.$package("MUI",function(cm){
 		showLoadingTips:function(){
 			if(!this.loadingTips){
 				var loadingTips = $D.node("li");
-				loadingTips.className = 'list_loading_tips';
+				loadingTips.className = this.loadingTipsClassName;
 				loadingTips.innerHTML = this.loadingWord;
 				this.loadingTips = loadingTips;
 			}

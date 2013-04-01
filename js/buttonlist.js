@@ -16,6 +16,7 @@ cnMobile.$package("MUI",function(cm){
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.list = $D.tagName("button" ,this.elem);
+			this.activeClassName = options.activeClassName || "active";
 			this._initIndex();
 			this.bindHandlers();
 		},
@@ -25,26 +26,20 @@ cnMobile.$package("MUI",function(cm){
 				c.setAttribute("_index",i);
 			});
 		},
-		_onClick:function(e){
-			var target = e.target || e.srcElement;
-			$E.fire(this,"click",{
-				originalEventObj:e,
-				buttonClicked:target,
-				index:target.getAttribute("_index")
-			});
-		},
 		_onStart:function(e){
 			var target = e.target || e.srcElement;
+			var activeClassName = this.activeClassName;
 			var btn = target.parentNode;
-			if(!$D.hasClass(btn,"active")){
-				$D.addClass(btn,"active");
+			if(!$D.hasClass(btn,activeClassName)){
+				$D.addClass(btn,activeClassName);
 			}
 		},
 		_onEnd:function(e){
 			var target = e.target || e.srcElement;
+			var activeClassName = this.activeClassName;
 			var btn = target.parentNode;
-			if($D.hasClass(btn,"active")){
-				$D.removeClass(btn,"active");
+			if($D.hasClass(btn,activeClassName)){
+				$D.removeClass(btn,activeClassName);
 			}
 		},
 		bindHandlers:function(){
@@ -53,11 +48,11 @@ cnMobile.$package("MUI",function(cm){
 			$E.on(ele,startEvt,function(e){
 				self._onStart(e);
 			});
+			$E.on(ele,moveEvt,function(e){
+				e.preventDefault();//修复android touchend不触发的bug
+			});
 			$E.on(ele,endEvt,function(e){
 				self._onEnd(e);
-			});
-			$E.on(ele,"click",function(e){
-				self._onClick(e);
 			});
 		}
 	});

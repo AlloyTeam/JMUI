@@ -8,7 +8,8 @@ cnMobile.$package("MUI",function(cm){
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.selectElem = $D.tagName("select",this.elem)[0];
-			this.selectTextElem = $D.className("select_text",this.elem)[0];
+			this.selectTextClassName = options.selectTextClassName || "select_text";
+			this.selectTextElem = $D.className(this.selectTextClassName,this.elem)[0];
 			
 			this.select(this.selectElem.selectedIndex);
 			this.bindHandlers();

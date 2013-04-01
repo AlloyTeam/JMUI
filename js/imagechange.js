@@ -2,22 +2,30 @@ cnMobile.$package("MUI",function(cm){
 	var $D = cm.dom,
 		$E = cm.event;
 
-	var isListItem = function(ele){
-		return ele.tagName == "LI";
-	}
-
-	var ImageChange = cm.Class({extend:MUI.SwipeChange},{
+	var ImageChange = cm.Class({
 		init:function(options){	
-			ImageChange.callSuper(this,"init",options);
-			this.btnsContainer = $D.className("btnsWrap",this.elem)[0];
+			this.elem = $D.id(options.id);
+			this.imgsWrapClassName = options.imgsWrapClassName || "wrap";
+			this.btnsWrapClassName = options.btnsWrapClassName || "btnsWrap";
+			this.imgsContainer = $D.className(this.imgsWrapClassName,this.elem)[0];
+			this.btnsContainer = $D.className(this.btnsWrapClassName,this.elem)[0];
+			this.currentIndex = options.currentIndex || 0;
+		
+			this.contentsSwipe = MUI.SwipeChange({
+				id:options.id,
+				wrapClassName:this.imgsWrapClassName,
+				fastChange:true
+			});
+
 			this.preIndex = this.currentIndex;
-			this.count = this.contents.length;
+			this.count = this.contentsSwipe.count;
 
 			this.isAutoChange = options.isAutoChange;
 			this.autoChangeTime = options.autoChangeTime || 3000;
 			this._initBtns();
-			this.bindHandler();
+			this.bindHandlers();
 			if(this.isAutoChange) this.autoChange();
+
 		},
 		autoChange:function(){
 			var self = this;
@@ -30,6 +38,9 @@ cnMobile.$package("MUI",function(cm){
 				self.slideTo(currentIndex);
 			},self.autoChangeTime);
 		},
+		slideTo:function(index){
+			this.contentsSwipe.slideTo(index);
+		},
 		_initBtns:function(){
 			var count = this.count;
 			var currentIndex = this.currentIndex;
@@ -41,14 +52,13 @@ cnMobile.$package("MUI",function(cm){
 			this.btnsContainer.innerHTML = content;
 			this.btns = $D.tagName("li",this.btnsContainer);
 		},
-		bindHandler:function(){
+		bindHandlers:function(){
 			var self = this;
-
-			$E.on(this.contentWrap,"webkitTransitionEnd",function(e){
-				var currentIndex = self.currentIndex;
+			$E.on(this.contentsSwipe,"changed",function(e){
+				var currentIndex = e.currentIndex;
 				$D.removeClass(self.btns[self.preIndex],"selected");
 				$D.addClass(self.btns[currentIndex],"selected");
-				self.preIndex = currentIndex;
+				self.currentIndex = self.preIndex = currentIndex;
 				if(self.isAutoChange) self.autoChange();
 			});
 		}

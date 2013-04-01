@@ -2,11 +2,12 @@
 	width: 300px;
 	overflow: hidden;
 }
-.imagechange > .wrap > div{
+.imagechange > .wrap > li{
 	height: 150px;
 	float: left;
 	outline: 1px solid white;
 	border-radius: 5px;
+	list-style-type: none;
 }
 .imagechange>.wrap img{
 	-webkit-border-radius: 10px;

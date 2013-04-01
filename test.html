@@ -17,8 +17,8 @@
 	   width:400px; 
 	}
 	#w{
-		background: url('Koala.jpg');
-		display: none;
+	/*	background: url('Koala.jpg');
+		display: none;*/
 	}
 	@media screen and (max-width:800px) { 
 	    body { 
@@ -50,10 +50,38 @@
 	<body>
 		<div class="main">
 		<div id="w">123123</div>
+		<div id="p">
+			<ul>
+				<li>
+					<ul id="e">
+						<li class="r"></li>
+					</ul>
+				</li>
+				<li>
+					<ul>
+						<li class="r"></li>
+					</ul>
+				</li>
+				<li>
+					<ul>
+						<li class="r"></li>
+					</ul>
+				</li>
+				<li>
+					<ul>
+						<li class="r"></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
 		</div>
 	</body>
 	<script type="text/javascript" src="js/cnMobile.js"></script>
 	<script type="text/javascript">
+		var $D = cnMobile.dom;
+		var t = $D.id("e");
+		console.log($D.$("li",t));
+		
 		// document.getElementById("w").onclick=function(){
 		// 	var self = this;
 		// 	self.className = "";
@@ -82,6 +110,10 @@
 		// }
 		// console.log(Date.now()-t1);
 //执行时间为14秒
+
+	cnMobile.event.on(document.getElementById("w"),"tap",function(){
+		alert("o");
+	});
 	</script>
 	
 </html>

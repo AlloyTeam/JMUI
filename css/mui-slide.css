@@ -1,19 +1,20 @@
-.swipeChange{
+.slide{
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	overflow-x:hidden;
 }
-.swipeChange > .wrap{
+.slide > .wrap{
 	height: 100%;
 }
-.swipeChange > .wrap > li{
+.slide > .wrap > li{
+	list-style-type: none;
 	float: left;
 	height: 100%;
 	outline: 1px solid white;
 	border-radius: 5px;
 	overflow-x:hidden;
 }
-.swipeChange > .wrap > li > div{
+.slide > .wrap > li > div{
 	height: 100%;
 }

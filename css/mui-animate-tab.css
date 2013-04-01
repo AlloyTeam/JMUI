@@ -1,19 +1,19 @@
-.swipeChange{
+.animate_tab{
 	position: absolute;
 	width: 100%;
 	height: 100%;
 	overflow-x:hidden;
 }
-.swipeChange > .wrap{
+.animate_tab > .wrap{
 	height: 100%;
 }
-.swipeChange > .wrap > li{
+.animate_tab > .wrap > div{
 	float: left;
 	height: 100%;
 	outline: 1px solid white;
 	border-radius: 5px;
 	overflow-x:hidden;
 }
-.swipeChange > .wrap > li > div{
+.animate_tab > .wrap > div > div{
 	height: 100%;
 }

@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+	<title>Mobile Cookbook</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/mui-base.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-list.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-toolbar.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-button.css" />
+	<style type="text/css">
+	h4{
+		margin: 20px 0;
+	}
+	.back_btn{
+		position: absolute;
+		top: 6px;
+		left: 20px;
+		width:80px;
+		height: 30px;
+	}
+	.back_btn span{
+		padding: 5px;
+	}
+	.list_slide_wrap >li{
+		float: left;
+		list-style-type: none;
+	}
+	</style>
+</head>
+<body>
+	<div class="toolbar_header header_blue">
+		<h1>列表切换</h1>
+		<button id="back_btn" class="btn btn_blue back_btn">
+			<span class="btn_text">HOME</span>
+		</button>
+	</div>
+	<div id='list_slide' class='list_slide'>
+		<ul class="list_slide_wrap">
+			<li>
+				<ul id="list1" class="list list_white conner_round_vertical_group">
+					<li class="list_item" >
+						<a  class="list_text">page1</a>
+					</li>
+					<li class="list_item">
+						<a  class="list_text">page2</a>
+					</li>
+					<li class="list_item">
+						<a  class="list_text">page3</a>
+					</li>
+				</ul>
+			</li>
+			<li style="font-size:18px;font-weight:bold;">page2</li>
+			<li style="font-size:18px;font-weight:bold;">page3</li>
+		</ul>
+	</div>
+	<script type="text/javascript" src="js/cnMobile.js"></script>
+	<script type="text/javascript" src="js/list.js"></script>
+	<script type="text/javascript" src="js/slide.js"></script>
+	<script type="text/javascript" src="js/button.js"></script>
+	<script type="text/javascript" src="js/slide_list.js"></script>
+	<script type="text/javascript">
+
+
+	var sl = MUI.SlideList({
+		id:"list_slide",
+		list_id:"list1",
+		back_btn_id:"back_btn"
+	});
+
+	// var sc1 = MUI.ImageChange({
+	// 	id:"slider1",
+	// 	isAutoChange:true,
+	// 	autoChangeTime:3000,
+	// 	canSwipe:true
+	// });
+	</script>
+</body>
+
+</html>

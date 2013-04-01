@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<meta name="Author" content="Tencent.AlloyTeam" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,target-densitydpi=medium-dpi" />
+
+	<link rel="stylesheet" type="text/css" href="css/mui-base.css" />
+	<link rel="stylesheet" type="text/css" href="css/mui-list.css" />
+	<style type="text/css">
+		.container{
+			padding: 10px;
+		}
+	
+	</style>
+</head>
+<body>
+<div class="container">
+
+	<h4 style="margin-bottom:30px;">Load List</h4>
+	<ul id="load_list" class="list list_white conner_round_vertical_group">
+		<li class="list_item">
+			<a  class="list_text">ListItemA</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemB</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemA</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemB</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemA</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemB</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemA</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemB</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemA</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemB</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemA</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemB</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+		<li class="list_item">
+			<a  class="list_text">ListItemC</a>
+		</li>
+	</ul>
+
+</div>
+<script type="text/javascript" src="js/cnMobile.js"></script>
+<script type="text/javascript" src="js/list.js"></script>
+<script type="text/javascript" src="js/load_list.js"></script>
+<script type="text/javascript">
+	var $D = cnMobile.dom,
+		$E = cnMobile.event;
+	//模拟数据
+	var loadedDataList =  $D.id("load_list").innerHTML;
+	var load_list = new MUI.LoadList({
+		id:"load_list"
+	});
+	
+	$E.on(load_list,"loadingData",function(){
+		setTimeout(function(){
+			//模拟数据生成
+			load_list.hideLoadingTips();
+			load_list.elem.innerHTML += loadedDataList;
+			load_list.showLoadBtn();
+			load_list.isLoading = false;
+		},2000);
+	});
+</script>
+</body>
+</html>

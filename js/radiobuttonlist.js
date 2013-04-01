@@ -6,18 +6,12 @@ cnMobile.$package("MUI",function(cm){
 		return elem.tagName == "INPUT" && elem.type == "radio";
 	}
 
-	var SelectEvent = function(option){
-		this.originalEventObj = option.originalEventObj;
-		this.radioSelected = option.radioSelected;
-		this.selectedIndex = option.selectedIndex;
+	var addSelectedRadioStyle = function(radioBtn,checkedClassName){
+		$D.addClass(radioBtn.parentNode,checkedClassName);
 	}
 
-	var addSelectedRadioStyle = function(radioBtn){
-		radioBtn.parentNode.className = "checked";
-	}
-
-	var removeSelectedRadioStyle = function(radioBtn){
-		radioBtn.parentNode.className = "";
+	var removeSelectedRadioStyle = function(radioBtn,checkedClassName){
+		$D.removeClass(radioBtn.parentNode,checkedClassName);
 	}
 
 	var RadioButtonList = function(options){
@@ -27,9 +21,10 @@ cnMobile.$package("MUI",function(cm){
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.radioBtns = $D.tagName("input",this.elem);
+			this.checkedClassName = options.checkedClassName || "checked";
 			this.selectedIndex = this.getSelectedIndex();
 
-			addSelectedRadioStyle(this.radioBtns[this.selectedIndex]);
+			addSelectedRadioStyle(this.radioBtns[this.selectedIndex],this.checkedClassName);
 			this.bindHandlers();
 			
 		},
@@ -44,16 +39,16 @@ cnMobile.$package("MUI",function(cm){
 			var currentSelectedIndex = this.getSelectedIndex();
 			
 			if(currentSelectedIndex != this.selectedIndex){
-				addSelectedRadioStyle(target);
-				removeSelectedRadioStyle(this.radioBtns[this.selectedIndex]);
+				addSelectedRadioStyle(target,this.checkedClassName);
+				removeSelectedRadioStyle(this.radioBtns[this.selectedIndex],this.checkedClassName);
 				this.selectedIndex = currentSelectedIndex;
 			}
 
-			$E.fire(this,"change",new SelectEvent({
+			$E.fire(this,"change",{
 				originalEventObj:e,
 				radioSelected:target,
 				selectedIndex:this.selectedIndex
-			}));
+			});
 		},
 		bindHandlers:function(){
 			var self = this;

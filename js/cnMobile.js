@@ -255,7 +255,7 @@ cm.$package(function(cm){
 			var result;
 			var qsa;
 			context = context || doc;
-
+			
 			//优先使用原始的
 			if(idExpr.test(selector)) {
 				result = this.id(selector.replace("#",""));
@@ -263,15 +263,15 @@ cm.$package(function(cm){
 				else return [] ;
 			}
 			else if(tagNameExpr.test(selector)){
-				result = this.tagName(selector);
+				result = this.tagName(selector,context);
 			}
 			else if(classExpr.test(selector)){
-				result = this.className(selector.replace(".",""));
+				result = this.className(selector.replace(".",""),context);
 			}
 			//自定义选择器
 			else if(selectorEngine) result = selectorEngine(selector,context);
 			//querySelectorAll
-			else if(qsa=context.querySelectorAll) result = qsa.call(context,selector);
+			else if(qsa=context.querySelectorAll) {result = qsa.call(context,selector);}
 			else throw Error("querySelectorAll required");
 
 			//nodeList转为array
@@ -1160,53 +1160,8 @@ cm.$package(function(cm){
 			$E.on(upTarget,endEvt,function(){
 				$D.removeClass(ele,className);
 			});
-		},
-		//图片懒加载 只实现了垂直的情况
-		lazyLoadImgs:function(options){
-			container = options.container || document.body;
-			souceProperty = options.souceProperty || "_ori_src";
-			isFade = options.isFade;
-
-			var loadFunc = isFade ? function(img,loadSrc){
-					var newImg = new Image();
-					$D.setStyle(newImg,{
-						"-webkit-transition":"all 1s",
-						"opacity":"0"
-					})
-					$E.once(newImg,"load",function(){
-						img.parentNode.replaceChild(newImg,img);
-						setTimeout(function(){
-							$D.setStyle(newImg,"opacity","1");
-						},0);
-						
-					});
-					newImg.src = loadSrc;
-				} : function(img,loadSrc){
-				img.src = loadSrc;
-				img.removeAttribute(souceProperty);
-			}
-	
-			$E.on(window,"load resize scrollend",function(){
-				var viewHeight = document.documentElement.clientHeight;
-				var imgs = $D.$("img["+ souceProperty +"]" ,container);
-
-				if(imgs.length == 0) return;
-
-				cm.each(imgs,function(img){
-					var imgTop = img.getBoundingClientRect().top;
-					var imgH = img.clientHeight;
-					//图片在可视范围内
-					if(imgTop > - imgH/2){
-						if(imgTop < viewHeight) {
-							loadFunc(img ,img.getAttribute(souceProperty));
-						}
-						else {
-							return false;//中断遍历
-						}
-					}
-				});
-			});
 		}
+		
 	}
 	cm.Util = Util;
 });

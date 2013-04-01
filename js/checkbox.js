@@ -5,9 +5,10 @@ cnMobile.$package("MUI",function(cm){
 	var Checkbox = cm.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
-			this.checkboxElem = $D.$("input[type=checkbox]",this.elem);
+			this.checkboxElem = $D.$("input[type=checkbox]",this.elem)[0];
 			this.checked = this.checkboxElem.checked;
 			this.value = this.checkboxElem.value;
+			this.checkedClass = options.checkedClass || "checked";
 			this.bindHandler();
 		},
 		setValue:function(val){
@@ -22,6 +23,7 @@ cnMobile.$package("MUI",function(cm){
 		_onChange:function(e){
 			var target = e.target || e.srcElement; 
 			var ele = this.elem;
+			var checkedClass = this.checkedClass;
 			this.checked = target.checked;
 		
 			$E.fire(this,"change click",{
@@ -29,10 +31,10 @@ cnMobile.$package("MUI",function(cm){
 				checked:this.checked
 			});
 			if(this.checked){
-				$D.addClass(ele,"checked");
+				$D.addClass(ele,checkedClass);
 			}
 			else{
-				$D.removeClass(ele,"checked");
+				$D.removeClass(ele,checkedClass);
 			}
 				
 		}

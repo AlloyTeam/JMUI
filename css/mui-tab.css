@@ -59,12 +59,22 @@
 	-moz-box-shadow: inset 0 0 1px #cdcdcd, 0 1px 1px #fbfbfb;
 	box-shadow: inset 0 0 1px #cdcdcd, 0 1px 1px #fbfbfb;
 }
-.tab_body{
-	width: 400%;
+
+.tab_body > li{
+	display: none;
 }
-.tab_body>li{
+/*.tab_body>li{
 	width: 25%;
 	list-style-type: none;
 	float: left;
 	/*display: none;*/
+/*}*/
+
+.tab_animate > .tab_body , .tab_swipe > .tab_body{
+	width: 400%;
+}
+.tab_animate > .tab_body >li , .tab_swipe > .tab_body >li{
+	width: 25%;
+	float: left;
+	display: block;
 }

@@ -11,10 +11,11 @@ cnMobile.$package("MUI",function(cm){
 	var Slider = cm.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
-			
+			this.rangeClassName = options.rangeClassName || "slider_range";
+			this.handlerClassName = options.handlerClassName || "slider_handler";
 			this.s_elem = $D.$("input[type=range]" ,this.elem)[0];
-			this.r_elem = $D.className("slider_range",this.elem)[0];
-			this.handler = $D.className("slider_handler" ,this.elem)[0];
+			this.r_elem = $D.className(this.rangeClassName,this.elem)[0];
+			this.handler = $D.className(this.handlerClassName,this.elem)[0];
 			this.vertical = options.vertical;//是否垂直模式
 			(this.vertical) ? this.elem_length = this.elem.clientHeight : this.elem_length = this.elem.clientWidth;
 

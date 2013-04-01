@@ -1,17 +1,18 @@
 cnMobile.$package("MUI",function(cm){
 	var $D = cm.dom,
 		$E = cm.event;
-
-	var isGroupTitle = function(ele){
-		return $D.hasClass(ele ,"list_group_title");
-	}
+	var isTouchDevice = cm.platform.touchDevice;
+	var touchEvt = isTouchDevice ? "tap":"click";
 	var GroupList = cm.Class({
 		init:function(options){
 			this.id = options.id;
 			this.elem = $D.id(this.id);
-			this.groups = $D.className("list_group");
-			this.groupTitles = $D.className("list_group_title");
-			this.groupBodies = $D.className("list_group_body");
+			this.groupClassName = options.groupClassName || "list_group";
+			this.groupTitleClassName = options.groupTitleClassName || "list_group_title";
+			this.groupBodyClassName = options.groupBodyClassName || "list_group_body";
+			this.groups = $D.className(this.groupClassName);
+			this.groupTitles = $D.className(this.groupTitleClassName);
+			this.groupBodies = $D.className(this.groupBodyClassName);
 
 			this.bindHandlers();
 			this._setIndex();
@@ -24,7 +25,7 @@ cnMobile.$package("MUI",function(cm){
 			});
 		},
 		bindHandlers:function(){
-			$E.on(this.elem ,"click" ,cm.bind(this._onClick,this));
+			$E.on(this.elem ,touchEvt ,cm.bind(this._onClick,this));
 		},
 		_setIndex:function(){
 			cm.each(this.groupTitles ,function(e,i){
@@ -35,7 +36,7 @@ cnMobile.$package("MUI",function(cm){
 			var target = e.target || e.srcElement;
 			var pn = target.parentNode;
 
-			if($D.closest(pn,".list_group_title")){
+			if($D.closest(pn ,"." + this.groupTitleClassName)){
 				var g_title = pn;
 				var g_index = g_title.getAttribute("_index");
 				var g_body = this.groupBodies[g_index];

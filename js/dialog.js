@@ -176,7 +176,8 @@ cnMobile.$package("MUI",function(cm){
 		init:function(options){
 			this.id = options.id;
 			this.elem = $D.id(this.id);
-			this.mask = $D.className("mask")[0];
+			this.maskClassName = this.maskClassName || "mask";
+			this.mask = $D.className(this.maskClassName)[0];
 			this.use3d = options.use3d;
 
 		},

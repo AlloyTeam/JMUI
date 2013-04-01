@@ -43,7 +43,7 @@
 		</ul>
 	</div>
 	<h4>Tab With Animation</h4>
-	<div id="a_tab" class="tab">
+	<div id="a_tab" class="tab tab_animate">
 		<ul class="tab_head">
 			<li class="active">head_1</li>
 			<li>head_2</li>
@@ -66,9 +66,32 @@
 			</li>
 		</ul>
 	</div>
-	
+	<h4>Tab With Fast Change Animation</h4>
+	<div id="b_tab" class="tab tab_animate">
+		<ul class="tab_head">
+			<li class="active">head_1</li>
+			<li>head_2</li>
+			<li>head_3</li>
+			<li>head_4</li>
+		</ul>
+		<ul class="tab_body">
+			<li>
+				<div>tab-body-1</div>
+			</li>
+			<li>
+				<div>tab-body-2</div>
+			</li>
+		
+			<li>
+				<div>tab-body-3</div>
+			</li>
+			<li>
+				<div>tab-body-4</div>
+			</li>
+		</ul>
+	</div>	
 	<h4>Tab With Gesture</h4>
-	<div id="b_tab" class="tab">
+	<div id="c_tab" class="tab tab_swipe">
 		<ul class="tab_head">
 			<li class="active">head_1</li>
 			<li>head_2</li>
@@ -93,20 +116,32 @@
 	</div>	
 	<script type="text/javascript" src="js/cnMobile.js"></script>
 	<script type="text/javascript" src="js/tab.js"></script>
+	<script type="text/javascript" src="js/slide.js"></script>
+	<script type="text/javascript" src="js/swipechange.js"></script>
+	<script type="text/javascript" src="js/animate_tab.js"></script>
+	<script type="text/javascript" src="js/swipe_tab.js"></script>
+	
 
 	<script type="text/javascript">
 	var tb1 = MUI.Tab({
 		id:"tab"
 	});
-	var tb2 = MUI.Tab({
-		id:"a_tab",
-		animate:"true"
+	var tb2 = MUI.AnimateTab({
+		id:"a_tab"
 	});
-	var tb3 = MUI.Tab({
+	var tb3 = MUI.AnimateTab({
 		id:"b_tab",
-		gesture:"true",
-		touchId:"tab_body"		
+		fastChange:true
 	});
+	var tb4 = MUI.SwipeTab({
+		id:"c_tab",
+		fastChange:true
+	});
+	// var tb3 = MUI.Tab({
+	// 	id:"b_tab",
+	// 	gesture:"true",
+	// 	touchId:"tab_body"		
+	// });
 	</script>
 </body>
 
