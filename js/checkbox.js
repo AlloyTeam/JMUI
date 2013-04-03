@@ -1,8 +1,8 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event;
 
-	var Checkbox = cm.Class({
+	var Checkbox = J.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.checkboxElem = $D.$("input[type=checkbox]",this.elem)[0];

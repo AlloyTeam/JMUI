@@ -1,8 +1,8 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event;
 
-	var AutoLoadList = cm.Class({extend:MUI.List},{
+	var AutoLoadList = J.Class({extend:MUI.List},{
 		init:function(options){
 			AutoLoadList.callSuper(this,"init",options);
 			this.isLoading = false;

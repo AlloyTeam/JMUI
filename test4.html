@@ -24,11 +24,11 @@
 		<div id="o">
 
 		</div>
-		<script type="text/javascript" src="js/cnMobile.js"></script>
+		<script type="text/javascript" src="js/JM.js"></script>
 		<script type="text/javascript">
-		cnMobile.event.on(window,"ortchange",function(e){
+		JM.event.on(window,"ortchange",function(e){
 			alert("g");
-			cnMobile.dom.id("o").innerHTML = e.orientation;
+			JM.dom.id("o").innerHTML = e.orientation;
 		});
 		function testFixed(){
   			var container = document.body;
@@ -60,16 +60,16 @@
 		  return null;
 		}
 		
-		// cnMobile.event.on(window,"scroll",function(e){
+		// JM.event.on(window,"scroll",function(e){
 		// 	alert("d");
 		// });
-		// alert(cm.support.fixed);
-		cnMobile.Util.fixElement(cnMobile.dom.id("l"),{
+		// alert(J.support.fixed);
+		JM.Util.fixElement(JM.dom.id("l"),{
 			top:120,
 			left:120
 		});
 
-		cnMobile.Util.hoverEffect(cnMobile.dom.id("l"),"selected");
+		JM.Util.hoverEffect(JM.dom.id("l"),"selected");
 			
 		</script>
 	</body>

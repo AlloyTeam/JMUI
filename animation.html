@@ -31,9 +31,9 @@
 	<input id="run" type="button" value="run" />
 
 </div>
-<script type="text/javascript" src="js/cnMobile.js"></script>
+<script type="text/javascript" src="js/JM.js"></script>
 <script type="text/javascript">
-	var $D = cnMobile.dom;
+	var $D = JM.dom;
 	var runBtn = $D.id("run");
 	var muiElem = $D.id("MUI");
 	runBtn.onclick = function(){
@@ -41,7 +41,7 @@
 		muiElem.style.cssText = "";
 
 		setTimeout(function(){
-			cm.Animation({
+			J.Animation({
 				selector:"#MUI",
 				duration:1000,
 				use3d:true

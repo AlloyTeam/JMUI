@@ -1,9 +1,9 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event;
-	var isTouchDevice = cm.platform.touchDevice;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event;
+	var isTouchDevice = J.platform.touchDevice;
 	var touchEvt = isTouchDevice ? "tap":"click";
-	var GroupList = cm.Class({
+	var GroupList = J.Class({
 		init:function(options){
 			this.id = options.id;
 			this.elem = $D.id(this.id);
@@ -25,10 +25,10 @@ cnMobile.$package("MUI",function(cm){
 			});
 		},
 		bindHandlers:function(){
-			$E.on(this.elem ,touchEvt ,cm.bind(this._onClick,this));
+			$E.on(this.elem ,touchEvt ,J.bind(this._onClick,this));
 		},
 		_setIndex:function(){
-			cm.each(this.groupTitles ,function(e,i){
+			J.each(this.groupTitles ,function(e,i){
 				e.setAttribute("_index" ,i);
 			});
 		},

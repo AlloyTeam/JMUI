@@ -1,13 +1,13 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event,
-		$T = cm.type;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event,
+		$T = J.type;
 
 	var isRadio = function(elem){
 		return elem.tagName == "INPUT" && elem.type == "radio";
 	}
 
- 	var RadioList = cm.Class({
+ 	var RadioList = J.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.list = $D.$("input[type=radio]",this.elem);
@@ -25,7 +25,7 @@ cnMobile.$package("MUI",function(cm){
 		_initRadios:function(){
 			var self = this;
 			var checkedClassName = this.checkedClassName;
-			cm.each(this.list,function(r,i){
+			J.each(this.list,function(r,i){
 				if(r.checked) {
 					$D.addClass(r.parentNode ,checkedClassName);
 					self.selectedIndex = i;

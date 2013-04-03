@@ -1,9 +1,9 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event;	
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event;	
 
 	//图片懒加载 只实现了垂直的情况
-	var LazyLoadImgs = cm.Class({
+	var LazyLoadImgs = J.Class({
 		init:function(options){
 			var self = this;
 			this.elem = $D.id(options.id);
@@ -41,7 +41,7 @@ cnMobile.$package("MUI",function(cm){
 				
 				if(imgs.length == 0) return;
 
-				cm.each(imgs,function(img){
+				J.each(imgs,function(img){
 					var imgTop = img.getBoundingClientRect().top;
 					var imgH = img.clientHeight;
 					//图片在可视范围内

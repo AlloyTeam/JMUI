@@ -1,9 +1,9 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-	$E = cm.event;
-	var isTouchDevice = cm.platform.touchDevice;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+	$E = J.event;
+	var isTouchDevice = J.platform.touchDevice;
 	var touchEvt = isTouchDevice ? "tap":"click";
-	var DelBtn_Input = cm.Class({
+	var DelBtn_Input = J.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.inputDelBtnClassName = options.inputDelBtnClassName || "input_del_btn";

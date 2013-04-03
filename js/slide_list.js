@@ -1,8 +1,8 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event;
 
-	var SlideList = cm.Class({
+	var SlideList = J.Class({
 		init:function(options){	
 			this.elem = $D.id(options.id);
 			this.wrapClassName = options.wrapClassName || "list_slide_wrap";

@@ -1,8 +1,8 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event;
 
-	var LoadList = cm.Class({extend:MUI.List},{
+	var LoadList = J.Class({extend:MUI.List},{
 		init:function(options){
 
 			this.loadingWord = options.loadingWord || "加载中...";

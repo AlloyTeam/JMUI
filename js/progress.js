@@ -1,8 +1,8 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event;
 
-	var Progress = cm.Class({
+	var Progress = J.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.barClassName = options.barClassName || "bar";

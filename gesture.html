@@ -22,25 +22,25 @@
 	<script type="text/javascript">
 
 	</script>
-	<script type="text/javascript" src="js/cnMobile.js"></script>
+	<script type="text/javascript" src="js/JM.js"></script>
 	<script type="text/javascript">
 	
-		var wobj = cnMobile.dom.id("w");
-		cnMobile.event.on(wobj,"touchmove touchstart touchend",function(e){
+		var wobj = JM.dom.id("w");
+		JM.event.on(wobj,"touchmove touchstart touchend",function(e){
 			e.stopPropagation();
 			e.preventDefault();
 		});
 
-		cnMobile.event.on(wobj,"hold",function(e){
+		JM.event.on(wobj,"hold",function(e){
 			// alert(e.position.x+" "+ e.position.y);
 			wobj.innerHTML="hold";
 		});
-		cnMobile.event.on(wobj,"tap",function(e){
+		JM.event.on(wobj,"tap",function(e){
 			if(e.isDoubleTap) wobj.innerHTML="doubletap";
 			// alert(e.position.x);
 			else wobj.innerHTML="tap";
 		});
-		cnMobile.event.on(wobj,{
+		JM.event.on(wobj,{
 			dragstart:function() {
 				wobj.innerHTML="dragstart";
 			},
@@ -57,7 +57,7 @@
 				wobj.innerHTML="swipe" + e.direction ;
 			},
 			transformstart:function(e){
-				// cm.dom.id("preTouchPos").innerHTML = (e.position.x);
+				// J.dom.id("preTouchPos").innerHTML = (e.position.x);
 				wobj.innerHTML="transformstart";
 			},
 			transform:function(e){

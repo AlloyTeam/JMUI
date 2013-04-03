@@ -1,10 +1,10 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event;
 		
-	var isTouchDevice = cm.platform.touchDevice;
+	var isTouchDevice = J.platform.touchDevice;
 	var touchEvt = isTouchDevice ? "tap":"click";
-	var AnimateTab = cm.Class({extend:MUI.Tab},{
+	var AnimateTab = J.Class({extend:MUI.Tab},{
 		init:function(options){
 			AnimateTab.callSuper(this,"init",options);
 		

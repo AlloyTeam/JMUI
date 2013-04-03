@@ -1,15 +1,15 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event;
-	var isTouchDevice = cm.platform.touchDevice;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event;
+	var isTouchDevice = J.platform.touchDevice;
 	var dragingElem;
-	var isTouchDevice = cm.platform.touchDevice;
+	var isTouchDevice = J.platform.touchDevice;
 	var startEvt = isTouchDevice ? "touchstart" : "mousedown";
 	var moveEvt = isTouchDevice ? "touchmove" : "mousemove";
 	var endEvt = isTouchDevice ? "touchend" : "mouseup";
 	var hasClientRect = "getBoundingClientRect" in document.body;
 
-	var SwipeChange = cm.Class({extend:MUI.Slide},{
+	var SwipeChange = J.Class({extend:MUI.Slide},{
 		init:function(options){
 			SwipeChange.callSuper(this,"init",options);
 		},

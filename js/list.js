@@ -1,13 +1,13 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event,
-		$T = cm.type;
-	var isTouchDevice = cm.platform.touchDevice;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event,
+		$T = J.type;
+	var isTouchDevice = J.platform.touchDevice;
 	var touchEvt = isTouchDevice ? "tap":"click";
 	var isListItem = function(ele){
 		return $D.hasClass(ele ,"list_item");
 	}
-	var List = cm.Class({
+	var List = J.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.listItemClassName = options.listItemClassName || "list_item";
@@ -20,7 +20,7 @@ cnMobile.$package("MUI",function(cm){
 			this.select(this.selectedIndex);
 		},
 		bindHandlers:function(){
-			$E.on(this.elem ,touchEvt ,cm.bind(this._onClick,this));
+			$E.on(this.elem ,touchEvt ,J.bind(this._onClick,this));
 		},
 		select:function(selectedIndex){
 			if($T.isNumber(this.selectedIndex))
@@ -32,7 +32,7 @@ cnMobile.$package("MUI",function(cm){
 			}
 		},
 		_setIndex:function(){
-			cm.each(this.listItems ,function(l,i){
+			J.each(this.listItems ,function(l,i){
 				l.setAttribute("_index" ,i);
 			});
 		},

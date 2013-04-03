@@ -1,14 +1,14 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event,
-		$T = cm.type;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event,
+		$T = J.type;
 
 	var isCheckbox = function(elem){
 		return elem.tagName == "INPUT" && elem.type == "checkbox";
 	}
 
 
- 	var CheckboxList = cm.Class({
+ 	var CheckboxList = J.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.list = $D.$("input[type=checkbox]",this.elem);
@@ -18,7 +18,7 @@ cnMobile.$package("MUI",function(cm){
 		},
 		getSelectedCheckBoxes:function(){
 			var selectedArr = [];
-			cm.each(this.list ,function(c,i){
+			J.each(this.list ,function(c,i){
 				if(c.checked) selectedArr.push(c);
 			});
 			return selectedArr;
@@ -34,7 +34,7 @@ cnMobile.$package("MUI",function(cm){
 		_initCheckboxes:function(){
 			var self = this;
 			var checkedClass = this.checkedClass;
-			cm.each(this.list,function(c,i){
+			J.each(this.list,function(c,i){
 				if(c.checked) $D.addClass(c.parentNode ,checkedClass);
 				c.setAttribute("_index",i);
 			});

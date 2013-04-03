@@ -1,13 +1,13 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event;
 
 	var isListItem =function(ele){
 		return ele.tagName == "LI";
 	}
-	var isTouchDevice = cm.platform.touchDevice;
+	var isTouchDevice = J.platform.touchDevice;
 	var touchEvt = isTouchDevice ? "tap":"click";
-	var SwipeTab = cm.Class({extend:MUI.Tab},{
+	var SwipeTab = J.Class({extend:MUI.Tab},{
 		init:function(options){
 
 			this.tabBodySlide = MUI.SwipeChange({

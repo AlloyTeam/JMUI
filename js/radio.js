@@ -1,8 +1,8 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event;
 
-	var Radio = cm.Class({
+	var Radio = J.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.radioElem = $D.$("input[type=radio]",this.elem)[0];

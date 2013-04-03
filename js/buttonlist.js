@@ -1,8 +1,8 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event,
-		$T = cm.type;
-	var isTouchDevice = cm.platform.touchDevice,
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event,
+		$T = J.type;
+	var isTouchDevice = J.platform.touchDevice,
 		startEvt,
 		moveEvt,
 		endEvt;
@@ -12,7 +12,7 @@ cnMobile.$package("MUI",function(cm){
 	isTouchDevice ? endEvt = "touchend" : "mouseup";	
 
 
- 	var ButtonList = cm.Class({
+ 	var ButtonList = J.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.list = $D.tagName("button" ,this.elem);
@@ -22,7 +22,7 @@ cnMobile.$package("MUI",function(cm){
 		},
 		_initIndex:function(){
 			var self = this;
-			cm.each(this.list,function(c,i){
+			J.each(this.list,function(c,i){
 				c.setAttribute("_index",i);
 			});
 		},

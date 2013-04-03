@@ -1,14 +1,14 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event,
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event,
 		dragingHandler;
 
-	var isTouchDevice = cm.platform.touchDevice;
+	var isTouchDevice = J.platform.touchDevice;
 	var startEvt = isTouchDevice ? "touchstart" : "mousedown";
 	var moveEvt = isTouchDevice ? "touchmove" : "mousemove";
 	var endEvt = isTouchDevice ? "touchend" : "mouseup";
 
-	var Slider = cm.Class({
+	var Slider = J.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
 			this.rangeClassName = options.rangeClassName || "slider_range";

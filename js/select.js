@@ -1,9 +1,9 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event;
 	
 
-	var Select = cm.Class({
+	var Select = J.Class({
 
 		init:function(options){
 			this.elem = $D.id(options.id);

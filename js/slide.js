@@ -1,15 +1,15 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event;
-	var isTouchDevice = cm.platform.touchDevice;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event;
+	var isTouchDevice = J.platform.touchDevice;
 	var dragingElem;
-	var isTouchDevice = cm.platform.touchDevice;
+	var isTouchDevice = J.platform.touchDevice;
 	var startEvt = isTouchDevice ? "touchstart" : "mousedown";
 	var moveEvt = isTouchDevice ? "touchmove" : "mousemove";
 	var endEvt = isTouchDevice ? "touchend" : "mouseup";
 	var hasClientRect = "getBoundingClientRect" in document.body;
 
-	var Slide = cm.Class({
+	var Slide = J.Class({
 		init:function(options){
 			this.elem = $D.id(options.id)||options.id;
 			this.wrapClassName = options.wrapClassName || "wrap";
@@ -56,7 +56,7 @@ cnMobile.$package("MUI",function(cm){
 			//幻灯片宽度
 			var contentWidth = hasClientRect ? ele.getBoundingClientRect().width : ele.offsetWidth;
 			$D.setStyle(this.contentWrap , "width" ,contentWidth * count + "px");
-			cm.each(this.contents ,function(e){
+			J.each(this.contents ,function(e){
 				$D.setStyle(e,"width",contentWidth + "px");
 			});
 

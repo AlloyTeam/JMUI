@@ -1,6 +1,6 @@
 //base
 (function(){
-	var cm={
+	var J={
  		$namespace: function(name) {
 	        if ( !name ) {
 	            return window;
@@ -75,7 +75,7 @@
 	            subClass.prototype = new tempClass();
 	            subClass.prototype.constructor = subClass;
 	            
-	            cm.extend(subClass.prototype, option);
+	            J.extend(subClass.prototype, option);
 	            
 
 	            subClass.prototype.init = function(){
@@ -91,7 +91,7 @@
 	        }   
 	    },
 		indexOf:function(arr,elem){
-			var $T = cm.type;
+			var $T = J.type;
 			//数组或类数组对象
 			if(arr.length){
 				return [].indexOf.call(arr,elem);
@@ -129,7 +129,7 @@
 			}
 		},
 		each:function(arr,callback){
-			var $T = cm.type;
+			var $T = J.type;
 			if(arr.length){
 				[].forEach.call(arr,callback);
 			}
@@ -141,7 +141,7 @@
 			}
 		},
 		map:function(arr,callback){
-			var $T = cm.type;
+			var $T = J.type;
 			if(arr.length){
 				[].map.call(arr,callback);
 			}
@@ -153,7 +153,7 @@
 			}
 		},
 		filter:function(arr,callback){
-			var $T = cm.type;
+			var $T = J.type;
 			if(arr.length){
 				return [].filter.call(arr,callback);
 			}
@@ -175,16 +175,16 @@
 		}
 
 	}
-	window.cnMobile=window.cm=cm;
+	window.JM=window.J=J;
 })();
 //connection
-cm.$package(function(cm){
+J.$package(function(J){
 	var c = navigator.connection || {type:0};
 	var ct = ["unknow","ethernet","wifi","cell_2g","cell_3g"];
-	cm.connectType = ct[c.type]; 
+	J.connectType = ct[c.type]; 
 });
 //type
-cm.$package(function(cm){
+J.$package(function(J){
 
 	var ots=Object.prototype.toString;
 
@@ -214,10 +214,10 @@ cm.$package(function(cm){
         	return (o === "" || o) && (o.constructor === String);
     	}
 	}
-	cm.type=type;
+	J.type=type;
 });
 //browser
-cm.$package(function(cm){
+J.$package(function(J){
 	var ua = navigator.userAgent;
 	var platform = {};
 
@@ -228,12 +228,12 @@ cm.$package(function(cm){
 	platform.IOS = platform.iPad || platform.iPhone;
 	platform.touchDevice = "ontouchstart" in window;
 
-	cm.platform = platform;
+	J.platform = platform;
 });
 //dom
-cm.$package(function(cm){
+J.$package(function(J){
 	var doc = document,
-	$T = cm.type,
+	$T = J.type,
 	tagNameExpr = /^[\w-]+$/,
 	idExpr = /^#([\w-]*)$/,
 	classExpr = /^\.([\w-]+)$/,
@@ -291,7 +291,7 @@ cm.$package(function(cm){
 			var matchesSelector = ele.webkitMatchesSelector || ele.mozMatchesSelector || ele.oMatchesSelector || ele.matchesSelector;
 			if(matchesSelector) return matchesSelector.call(ele,selector);
 			var list = this.$(selector);
-			if(cm.indexOf(list,ele) > 0) return true;
+			if(J.indexOf(list,ele) > 0) return true;
 			return false;
 		},
 		closest:function(elem,selector){
@@ -313,7 +313,7 @@ cm.$package(function(cm){
 		setStyle:function(elem ,styleName,styleValue){
 			var self = this;
 			if($T.isArray(elem)){
-				cm.each(elem ,function(e){
+				J.each(elem ,function(e){
 					self.setStyle(e,styleName,styleValue);
 				});
 				return;
@@ -355,7 +355,7 @@ cm.$package(function(cm){
 	 		return p_prop && p_prop in div.style;
 	 	},
 		filterSelector:function(arr,selector){
-			return cm.filter(arr,function(elem){
+			return J.filter(arr,function(elem){
 				return $D.matchesSelector(elem,selector);
 			});
 		},
@@ -421,13 +421,13 @@ cm.$package(function(cm){
 	    }
 	};
 
-	cm.dom=$D;
+	J.dom=$D;
 });
 
 //event
-cm.$package(function(cm){
+J.$package(function(J){
 
-	var $T=cm.type,
+	var $T=J.type,
 		scrollTimeId,
 		isScrolling,
 		gestureEvent={
@@ -459,7 +459,7 @@ cm.$package(function(cm){
 	}
 
 	//添加静态方法
-	cm.extend(GestureEventMessage,{
+	J.extend(GestureEventMessage,{
 		msgInfo :{},
 		add:function(em){
 			var evtType = em.evtType;
@@ -765,7 +765,7 @@ cm.$package(function(cm){
 		}
 		obj.setAttribute("hasBindCustomGesture",true);
 		//选择不同事件
-		if(cm.platform.touchDevice){
+		if(J.platform.touchDevice){
 			startEvt="touchstart";
 			moveEvt="touchmove";
 			endEvt="touchend";
@@ -999,13 +999,13 @@ cm.$package(function(cm){
 		});
 	}
 
-	cm.event=$E;
+	J.event=$E;
 });
 //Util
-cm.$package(function(cm){
-	var $D = cm.dom,
-		$E = cm.event,
-		$T = cm.type;
+J.$package(function(J){
+	var $D = J.dom,
+		$E = J.event,
+		$T = J.type;
 	var preventScroll = function(e){
         if (e.target.type === 'range') { return; }
             e.preventDefault();
@@ -1038,7 +1038,7 @@ cm.$package(function(cm){
     	},
 		//滚动到顶部动画(css3动画)
 		scrollToTop:function(duration,runType){
-			var $A = cm.Animation;
+			var $A = J.Animation;
 			var body = document.body;
 			var scrollTop = window.pageYOffset || document.body.scrollTop || document.documentElement.scrollTop;
 			
@@ -1053,20 +1053,20 @@ cm.$package(function(cm){
 			}).translateY(0).transit();
 		}
 	};
-	cm.Util = Util;
+	J.Util = Util;
 });
 
 //animation time, runType ,scale, rotate, rotateX, rotateY, translateX, translateY, skewX, skewY
-cm.$package(function(cm){
-	var $D = cm.dom,
-		$E = cm.event,
-		$T = cm.type;
+J.$package(function(J){
+	var $D = J.dom,
+		$E = J.event,
+		$T = J.type;
 	
  	//3d支持
  	var support3d = $D.isSupprot3d();
  	var finishedCount = 0;
 
-	var Animation = cm.Class({
+	var Animation = J.Class({
 		init:function(options){
 		
 			this.setElems(options.selector);
@@ -1164,7 +1164,7 @@ cm.$package(function(cm){
 			if($T.isUndefined(this.styleStr)) this.styleStr = "";
 			//样式变化
 			if($T.isObject(styleName)){
-				cm.each(styleName ,function(sv,sn){
+				J.each(styleName ,function(sv,sn){
 					s += $D.toCssStyle($D.getVendorPropertyName(sn)) + ":" + sv + ";";
 				});
 			}
@@ -1182,12 +1182,12 @@ cm.$package(function(cm){
 		transit:function(onFinished){
 			var self = this;
 			var elems = this.elems;
-			cm.each(elems ,function(e){
+			J.each(elems ,function(e){
 				self._transit(e);
 			});
 			window.setTimeout(function(){
 				$E.fire(self,"end");
-				cm.each(elems,function(elem){
+				J.each(elems,function(elem){
 					$D.setStyle(elem ,$D.getVendorPropertyName("transition") ,"");
 				});
 				onFinished && onFinished.call(self);
@@ -1215,12 +1215,12 @@ cm.$package(function(cm){
 			$E.fire(this ,"start");
 		}
 	});
-	cm.Animation = Animation;
+	J.Animation = Animation;
 });
 
 
 //http
-cm.$package(function(cm){
+J.$package(function(J){
 	var http = {
 		serializeParam : function ( param ) {
 			if ( !param ) return '';
@@ -1277,7 +1277,7 @@ cm.$package(function(cm){
 			return xhr;
 		}	
 	}
-	cm.http = http;
+	J.http = http;
 });
 
 

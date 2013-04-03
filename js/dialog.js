@@ -1,6 +1,6 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event;
 	var _transform = $D.getVendorPropertyName("transform");
 
 	//show 效果
@@ -21,7 +21,7 @@ cnMobile.$package("MUI",function(cm){
 			var self = this;
 			$D.setStyle(mask,"opacity",0);
 			setTimeout(function(){
-				new cm.Animation({
+				new J.Animation({
 					selector:mask,
 					duration:300,
 					use3d:self.use3d
@@ -43,7 +43,7 @@ cnMobile.$package("MUI",function(cm){
 			$D.setStyle(elem , _transform,"scale(0.5)");
 
 			setTimeout(function(){
-				new cm.Animation({
+				new J.Animation({
 					selector:mask,
 					duration:300,
 					use3d:self.use3d
@@ -63,7 +63,7 @@ cnMobile.$package("MUI",function(cm){
 			$D.setStyle(mask ,"opacity" ,0);
 			$D.setStyle(elem ,_transform ,"translateY(300px)");
 			setTimeout(function(){
-				new cm.Animation({
+				new J.Animation({
 					selector:mask,
 					duration:300,
 					use3d:self.use3d
@@ -84,7 +84,7 @@ cnMobile.$package("MUI",function(cm){
 			$D.setStyle(elem ,_transform ,"translateY(-300px)");
 			setTimeout(function(){
 
-				new cm.Animation({
+				new J.Animation({
 					selector:mask,
 					duration:300,
 					use3d:self.use3d
@@ -108,7 +108,7 @@ cnMobile.$package("MUI",function(cm){
 		},
 		fade:function(elem,mask){
 			var self = this;
-			new cm.Animation({
+			new J.Animation({
 				selector:[elem,mask],
 				duration:300,
 				use3d:self.use3d
@@ -121,7 +121,7 @@ cnMobile.$package("MUI",function(cm){
 		},
 		pop:function(elem,mask){
 			var self = this;
-			new cm.Animation({
+			new J.Animation({
 				selector:[mask],
 				duration:300,
 				use3d:self.use3d
@@ -138,7 +138,7 @@ cnMobile.$package("MUI",function(cm){
 		},
 		slidedown:function(elem,mask){
 			var self = this;
-			new cm.Animation({
+			new J.Animation({
 				selector:mask,
 				duration:300,
 				use3d:self.use3d
@@ -155,7 +155,7 @@ cnMobile.$package("MUI",function(cm){
 		},
 		slideup:function(elem,mask){
 			var self = this;
-			new cm.Animation({
+			new J.Animation({
 				selector:mask,
 				duration:300,
 				use3d:self.use3d
@@ -172,7 +172,7 @@ cnMobile.$package("MUI",function(cm){
 		}
 
 	}
-	var Dialog = cm.Class({
+	var Dialog = J.Class({
 		init:function(options){
 			this.id = options.id;
 			this.elem = $D.id(this.id);

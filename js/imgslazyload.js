@@ -1,6 +1,6 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event,
-		$T = cm.type;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event,
+		$T = J.type;
 
 });

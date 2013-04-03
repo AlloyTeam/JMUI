@@ -112,7 +112,7 @@
 	</ul>
 
 </div>
-<script type="text/javascript" src="js/cnMobile.js"></script>
+<script type="text/javascript" src="js/JM.js"></script>
 <script type="text/javascript" src="js/list.js"></script>
 <script type="text/javascript" src="js/autoload_list.js"></script>
 <script type="text/javascript">
@@ -122,7 +122,7 @@
 	});
 	//模拟数据
 	var loadedDataList =  auto_grow_list.elem.innerHTML;
-	cnMobile.event.on(auto_grow_list,"loadingData",function(){
+	JM.event.on(auto_grow_list,"loadingData",function(){
 		setTimeout(function(){
 			//模拟数据
 			auto_grow_list.hideLoadingTips();

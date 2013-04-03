@@ -31,7 +31,7 @@
 		<li><div>5</div></li>
 	</ul >
 </div>
-	<script type="text/javascript" src="js/cnMobile.js"></script>
+	<script type="text/javascript" src="js/JM.js"></script>
 	<script type="text/javascript" src="js/slide.js"></script>
 	<script type="text/javascript">
 	var sc = MUI.Slide({
@@ -39,7 +39,7 @@
 		currentIndex:4,
 		fastChange:true	
 	});
-	cnMobile.event.on(sc,"click",function(){
+	JM.event.on(sc,"click",function(){
 		if(sc.currentIndex >= sc.count - 1){
 			sc.slideTo(0);
 		}

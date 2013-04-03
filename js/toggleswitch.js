@@ -1,19 +1,19 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event,
-		$T = cm.type,
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event,
+		$T = J.type,
 		dragingHandler,
 		currentLeft;
 
 	
-	var isTouchDevice = cm.platform.touchDevice;
+	var isTouchDevice = J.platform.touchDevice;
 	var tapEvt = isTouchDevice ? "click" : "click";//需要修改
 	var startEvt = isTouchDevice ? "touchstart" : "mousedown";
 	var moveEvt = isTouchDevice ? "touchmove" : "mousemove";
 	var endEvt = isTouchDevice ? "touchend" : "mouseup";
 
 
-	var ToggleSwitch = cm.Class({
+	var ToggleSwitch = J.Class({
 		init:function(options){
 			this.elem = $D.id(options.id);
 			

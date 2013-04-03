@@ -1,6 +1,6 @@
-cnMobile.$package("MUI",function(cm){
-	var $D = cm.dom,
-		$E = cm.event;
+JM.$package("MUI",function(J){
+	var $D = J.dom,
+		$E = J.event;
 
 	var isRadio = function(elem){
 		return elem.tagName == "INPUT" && elem.type == "radio";
