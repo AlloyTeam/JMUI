@@ -9,16 +9,24 @@ JM.$package("MUI",function(J){
 			this.loadingWord = options.loadingWord || "加载中...";
 			this.loadingTipsClassName = options.loadingTipsClassName || "list_loading_tips";
 		},
+		_handleEvent:function(e){
+			var type = e.type;
+			AutoLoadList.callSuper(this,"handleEvent",e);
+			if(type == "scrolltobottom"){
+				this._onScrollToBottom(e);
+				return;
+			}
+		},
 		bindHandlers:function(){
 			AutoLoadList.callSuper(this,"bindHandlers");
-			var self = this;
-
-			$E.on(window,"scrolltobottom",function(e){
-				if(!self.isLoading){
-					self.loadData();
-					self.isLoading = true; 
-				}
-			});
+			var _handleEvent = this._handleEvent = J.bind(this._handleEvent,this);
+			$E.on(window,"scrolltobottom",_handleEvent);
+		},
+		_onScrollToBottom:function(e){
+			if(!this.isLoading){
+				this.loadData();
+				this.isLoading = true; 
+			}
 		},
 		hideLoadingTips:function(){
 			this.elem.removeChild(this.loadingTips);
@@ -39,6 +47,10 @@ JM.$package("MUI",function(J){
 			//...
 		},
 		createLoadedList:function(data){
+		},
+		destory:function(){
+			AutoLoadList.callSuper(this,"destory");
+			$E.off(window,"scrolltobottom",this._handleEvent);
 		}
 	});
 	this.AutoLoadList = AutoLoadList;

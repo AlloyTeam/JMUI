@@ -52,7 +52,7 @@ JM.$package("MUI",function(J){
 			$E.fire(this,"change",{
 				originalEventObj:e,
 				checkboxChanged:target,
-				index:target.getAttribute("_index")
+				index:parseInt(target.getAttribute("_index"))
 			});
 		},
 		bindHandlers:function(){

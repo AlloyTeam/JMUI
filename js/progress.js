@@ -18,6 +18,9 @@ JM.$package("MUI",function(J){
 		},
 		getPercent:function(){
 			return this.percent;
+		},
+		destory:function(){
+			$D.remove(this.elem);
 		}
 	});
 	this.Progress = Progress;

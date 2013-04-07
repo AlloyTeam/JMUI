@@ -11,6 +11,7 @@ JM.$package("MUI",function(J){
 
 	var Slide = J.Class({
 		init:function(options){
+			
 			this.elem = $D.id(options.id)||options.id;
 			this.wrapClassName = options.wrapClassName || "wrap";
 		
@@ -23,7 +24,7 @@ JM.$package("MUI",function(J){
 			this.slideTime = options.slideTime || 200;
 			this.fastChange = options.fastChange;
 			this._sizeAdjust();
-			this._moveTo(this.currentIndex * -this.contentWidth);
+			this._moveTo(this.currentIndex * -this.contentWidth);debugger;
 			this.bindHandlers();
 		},
 		bindHandlers:function(){
@@ -33,6 +34,7 @@ JM.$package("MUI",function(J){
 			$E.on(this.contentWrap,"webkitTransitionEnd",function(e){
 				// self._removeAnimation();
 				$E.fire(self ,"changed" ,{
+					type:"changed",
 					currentIndex:self.currentIndex
 				});
 			});
@@ -55,6 +57,7 @@ JM.$package("MUI",function(J){
 			var count = this.count;
 			//幻灯片宽度
 			var contentWidth = hasClientRect ? ele.getBoundingClientRect().width : ele.offsetWidth;
+			debugger;
 			$D.setStyle(this.contentWrap , "width" ,contentWidth * count + "px");
 			J.each(this.contents ,function(e){
 				$D.setStyle(e,"width",contentWidth + "px");
@@ -88,7 +91,7 @@ JM.$package("MUI",function(J){
 						this._removeAnimation();
 						this._moveTo((this.currentIndex+1) * -this.contentWidth);
 					}
-					debugger
+				
 					for(var i = 1;i <= l; i++){
 						var ct = cts[currentIndex + i * p];
 

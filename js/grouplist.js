@@ -19,17 +19,43 @@ JM.$package("MUI",function(J){
 			this._initList();
 
 		},
+		_handleEvent:function(e){
+			var type = e.type;
+			if(type == touchEvt){
+				this._onClick(e);
+			}
+		},
 		_initList:function(){
 			this.list = new MUI.List({
 				id:this.id
 			});
 		},
 		bindHandlers:function(){
-			$E.on(this.elem ,touchEvt ,J.bind(this._onClick,this));
+			var _handleEvent = this._handleEvent = J.bind(this._handleEvent , this);
+			$E.on(this.elem ,touchEvt ,_handleEvent);
 		},
 		_setIndex:function(){
 			J.each(this.groupTitles ,function(e,i){
 				e.setAttribute("_index" ,i);
+			});
+		},
+		selectTitle:function(index){
+			var g_title = this.groupTitles[index];
+			var g_body = this.groupBodies[index];
+			if(g_body){
+				var computedStyle = document.defaultView.getComputedStyle(g_body,null);//getComputedStyle supported by ie9
+				if( computedStyle.display == "none" ){
+					$D.setStyle(g_body ,"display" ,"block");	
+				}
+				else{
+					$D.setStyle(g_body ,"display" ,"none");
+				}
+			}	
+			//触发selected事件
+			$E.fire(this ,"titleselected" ,{
+				selectedTitle : g_title,
+				selectedList : g_body,
+				selectedIndex : index
 			});
 		},
 		_onClick:function(e){
@@ -37,26 +63,13 @@ JM.$package("MUI",function(J){
 			var pn = target.parentNode;
 
 			if($D.closest(pn ,"." + this.groupTitleClassName)){
-				var g_title = pn;
-				var g_index = g_title.getAttribute("_index");
-				var g_body = this.groupBodies[g_index];
-				if(g_body){
-					var computedStyle = document.defaultView.getComputedStyle(g_body,null);//getComputedStyle supported by ie9
-					if( computedStyle.display == "none" ){
-						$D.setStyle(g_body ,"display" ,"block");	
-					}
-					else{
-						$D.setStyle(g_body ,"display" ,"none");
-					}
-				}	
-				//触发selected事件
-				$E.fire(this ,"selected" ,{
-					selectedTitle : g_title,
-					selectedList : g_body,
-					selectedIndex : g_index
-				});
-				$D.setStyle(document.body,"display","block");
+				var g_index = parseInt(pn.getAttribute("_index"));
+				this.selectTitle(g_index);
 			}
+		},
+		destory:function(){
+			$E.off(this.elem ,touchEvt ,this._handleEvent);
+			$D.remove(this.elem);
 		}
 	});
 	this.GroupList = GroupList;

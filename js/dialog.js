@@ -188,6 +188,10 @@ JM.$package("MUI",function(J){
 		hide:function(type){
 			type = type || "none";
 			hideEffect[type].call(this ,this.elem ,this.mask);
+		},
+		destory:function(){
+			$D.remove(this.mask);
+			$D.remove(this.elem);
 		}
 	});
 	this.Dialog = Dialog;

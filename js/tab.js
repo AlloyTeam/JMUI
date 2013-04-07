@@ -30,9 +30,16 @@ JM.$package("MUI",function(J){
 			$D.setStyle(this.tabContents[this.currentIndex],"display","block");
 
 		},
+		_handleEvent:function(e){
+			var type = e.type;
+			if(type == "click"){
+				this._onClick(e);
+			}
+		},
 		bindHandlers:function(){
 			var self = this;
-			$E.on(this.elem,touchEvt ,J.bind(this._onClick,this));
+			var _handleEvent = this._handleEvent = J.bind(this._handleEvent,this);
+			$E.on(this.elem ,touchEvt ,_handleEvent);
 		},
 		getIndex:function(ele){
 			return parseInt(ele.getAttribute("_index"));
@@ -72,6 +79,10 @@ JM.$package("MUI",function(J){
 				selectedTabContent : this.tabContents[selectedIndex]
 			});
 				
+		},
+		destory:function(){
+			$E.off(this.elem,touchEvt,this._handleEvent);
+			$D.remove(this.elem);
 		}
 
 	});

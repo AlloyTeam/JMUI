@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no,target-densitydpi=medium-dpi" />
 
 <link rel="stylesheet" type="text/css" href="css/mui-base.css" />
+<link rel="stylesheet" type="text/css" href="css/mui-slide.css" />
 <link rel="stylesheet" type="text/css" href="css/mui-swipechange.css" />
 <link rel="stylesheet" type="text/css" href="css/mui-toolbar.css" />
 <link rel="stylesheet" type="text/css" href="css/mui-button.css" />
@@ -103,8 +104,8 @@ body > .toolbar_footer{
 </div>
 
 <div id='swipe' class='swipeChange' style="margin-top:40px;">
-  	<div class="wrap">
-  		<div>
+  	<ul class="wrap">
+  		<li>
 			<div>
 				<ul id="mainlist" class="list list_white conner_round_vertical_group">
 					<li id="button_page" class="list_item">
@@ -149,8 +150,9 @@ body > .toolbar_footer{
 					</li>
 				</ul>
 	  		</div>	
-	  	</div>
-		<div>
+	  	</li>
+
+		<li>
 			<div style="text-align:center;">
 				<p style="margin-top:10px;">
 					<button id="w_button" class="btn btn_white">
@@ -256,9 +258,9 @@ body > .toolbar_footer{
 					<button class="btn btn_blue"><span class="btn_text">3</span></button>
 				</div>	
 			</div>
-		</div>
-		<div>
-			<div>
+		</li>
+		<li>
+				<div>
 				<label id="checkbox" class="checkbox checkbox_white" for="cb0" style="margin-top:20px;">
 					<input id="cb0" name="cb0" type="checkbox" />
 					<span class="checkbox_text">0</span>
@@ -344,8 +346,8 @@ body > .toolbar_footer{
 				</fieldset>
 					
 			</div>
-		</div>
-		<div>
+		</li>
+		<li>
 			<div>
 				<p>
 					<input type="text" class="input input_white" placeholder="text input" style="margin-top:20px;"></input>
@@ -385,8 +387,8 @@ body > .toolbar_footer{
 				</p>
 
 			</div>
-		</div>
-		<div>
+		</li>
+		<li>
 			<div>
 			    <div id="toggleSwitch" class="toggle_switch" style="display:block;margin-top:20px;">
 			    	<div class="toggle_wrap">
@@ -416,8 +418,8 @@ body > .toolbar_footer{
 					</div>
 				</div>
 			</div>
-		</div>
-		<div>
+		</li>
+		<li>
 			<div>
 			
 				<div id="progress" class="progress" style="margin-top:20px;">
@@ -445,8 +447,8 @@ body > .toolbar_footer{
 					</div>
 				</div>
 			</div>
-		</div>
-		<div>
+		</li>
+		<li>
 			<div>
 				<label id="radio" for="radio0" class="radio radio_white" style="margin-top:10px;">
 					<input id="radio0" type="radio" name="radio" value="0"/>
@@ -532,8 +534,8 @@ body > .toolbar_footer{
 					</label>
 				</fieldset>
 			</div>
-		</div>
-		<div>
+		</li>
+		<li>
 			<div>
 				
 				<div id='image_slider' class='imagechange' style="margin-top:20px;">
@@ -558,8 +560,8 @@ body > .toolbar_footer{
 					 </ul>
 				</div>
 			</div>
-		</div>
-		<div>
+		</li>
+		<li>
 			<div>				
 			    <div id="w_menuSelector" class="select select_white" style="margin-top:20px;">
 			    	<span class="select_text"></span>
@@ -593,8 +595,8 @@ body > .toolbar_footer{
 			    </div>
 	
 			</div>
-		</div>
-		<div>
+		</li>
+		<li>
 			<div>
 				<input id="none" type="button" value="none effect">
 				<input id="fade" type="button" value="fade effect">
@@ -615,8 +617,8 @@ body > .toolbar_footer{
 					</div>
 				</div>
 			</div>
-		</div>
-		<div>
+		</li>
+		<li>
 			<div>
 				<div>
 					<div class="toolbar_header header_black">
@@ -654,8 +656,8 @@ body > .toolbar_footer{
 					</div>
 				</div>
 			</div>
-		</div>
-		<div>
+		</li>
+		<li>
 			<div>
 				<div>
 				    <div id="slider" class="slider slider_white" style="margin-top:20px;">
@@ -699,8 +701,8 @@ body > .toolbar_footer{
 				    </div>	
 				</div>
 			</div>
-		</div>
-		<div>
+		</li>
+		<li>
 			<div>
 		
 				<ul id="list1" class="list list_white conner_round_vertical_group" style="margin-top:20px;">
@@ -769,8 +771,8 @@ body > .toolbar_footer{
 					</li>
 				</ul>
 			</div>
-		</div>
-		<div>
+		</li>
+		<li>
 			<div>
 				<ul id="groupList" class="group_list" style="margin-top:20px;">
 					<li class="list_group">
@@ -811,7 +813,7 @@ body > .toolbar_footer{
 					</li>	
 				</div>
 			</div>
-		</div>
+		</li>
 	</div>
 
 </div>
@@ -820,6 +822,7 @@ body > .toolbar_footer{
 	<h4>footer</h4>
 </div> -->
 	<script type="text/javascript" src="js/JM.js"></script>
+	<script type="text/javascript" src="js/slide.js"></script>
 	<script type="text/javascript" src="js/swipechange.js"></script>
 	<script type="text/javascript" src="js/button.js"></script>
 	<script type="text/javascript" src="js/buttonlist.js"></script>
@@ -842,10 +845,12 @@ body > .toolbar_footer{
 	var $D = JM.dom,
 	$E = JM.event;
 	//swipe change
-	var sc = MUI.SwipeChange({
+
+	var sc = MUI.Slide({
 		id:"swipe",
 		currentIndex:0,
-		slideTime:500		
+		slideTime:500,
+		fastChange:true		
 	});
 
 	// $E.on($D.id("pre"),"click",function(){
@@ -858,27 +863,27 @@ body > .toolbar_footer{
 		}	
 		sc.slideTo(0);
 	});
-	$E.on(sc,"change",function(e){
-		var contents = sc.contents;
-		if(e.currentIndex!= 0 ) return;
+	// $E.on(sc,"change",function(e){
+	// 	var contents = sc.contents;
+	// 	if(e.currentIndex!= 0 ) return;
 
-		for(var i = 1,l = contents.length ; i < l ; i++){
-			$D.setStyle(contents[i],"display","block");
-		}
-	});
+	// 	for(var i = 1,l = contents.length ; i < l ; i++){
+	// 		$D.setStyle(contents[i],"display","block");
+	// 	}
+	// });
 
 	//main list
 	var mainlist = MUI.List({
 		id:"mainlist"
 	});
 	$E.on(mainlist,"selected",function(e){
-		var contents = sc.contents;
-		var si = e.selectedIndex;
+		// var contents = sc.contents;
+		// var si = e.selectedIndex;
 
-		for(var i=1;i< si + 1; i++){
-			$D.setStyle(contents[i],"display","none");
-		}
-		sc.slideTo(1);
+		// for(var i=1;i< si + 1; i++){
+		// 	$D.setStyle(contents[i],"display","none");
+		// }
+		sc.slideTo(e.selectedIndex+1);
 	});
 
 	//button

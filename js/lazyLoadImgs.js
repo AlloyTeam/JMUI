@@ -30,31 +30,42 @@ JM.$package("MUI",function(J){
 			}
 			this.bindHandlers();
 		},
-		bindHandlers:function(){
+		_handleEvent:function(e){
+			switch (e.type) {
+				case "load": 
+				case "resize": 
+				case "scrollend": this._onResize(e); 
+			}
+		},
+		_onResize:function(e){
 			var _loadFunc = this._loadFunc;
 			var souceProperty = this.souceProperty;
-
 			var container = this.elem;
-			$E.on(window,"load resize scrollend",function(){
-				var viewHeight = document.documentElement.clientHeight;
-				var imgs = $D.$("img["+ souceProperty +"]" ,container);
-				
-				if(imgs.length == 0) return;
+			var viewHeight = document.documentElement.clientHeight;
+			var imgs = $D.$("img["+ souceProperty +"]" ,container);
+			
+			if(imgs.length == 0) return;
 
-				J.each(imgs,function(img){
-					var imgTop = img.getBoundingClientRect().top;
-					var imgH = img.clientHeight;
-					//图片在可视范围内
-					if(imgTop > - imgH/2){
-						if(imgTop < viewHeight) {
-							_loadFunc(img ,img.getAttribute(souceProperty));
-						}
-						else {
-							return false;//中断遍历
-						}
+			J.each(imgs,function(img){
+				var imgTop = img.getBoundingClientRect().top;
+				var imgH = img.clientHeight;
+				//图片在可视范围内
+				if(imgTop > - imgH/2){
+					if(imgTop < viewHeight) {
+						_loadFunc(img ,img.getAttribute(souceProperty));
 					}
-				});
+					else {
+						return false;//中断遍历
+					}
+				}
 			});
+		},
+		bindHandlers:function(){
+			var _handleEvent = this._handleEvent = J.bind(this._handleEvent , this);
+			$E.on(window,"load resize scrollend",_handleEvent);
+		},
+		destory:function(){
+			$E.off(window,"load resize scrollend",this._handleEvent);
 		}
 	});
 	this.LazyLoadImgs = LazyLoadImgs;

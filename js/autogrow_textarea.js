@@ -10,10 +10,17 @@ JM.$package("MUI",function(J){
 			this.bindHandler();
 			$D.setStyle(this.elem ,"overflow" ,"hidden");
 		},
-		bindHandler:function(){
-			$E.on(this.elem ,"input",J.bind(this._onInput,this));
+		_handleEvent:function(e){
+			var type = e.type;
+			if(type == "input"){
+				this._onInput(e);
+			}
 		},
-		_onInput:function(){
+		bindHandler:function(){
+			var _handleEvent = this._handleEvent = J.bind(this._handleEvent,this);
+			$E.on(this.elem ,"input",_handleEvent);
+		},
+		_onInput:function(e){
 			var ele = this.elem;
 			var clientHeight = ele.clientHeight;
 			var scrollHeight = ele.scrollHeight;
@@ -21,6 +28,10 @@ JM.$package("MUI",function(J){
 			if(scrollHeight > clientHeight){
 				$D.setStyle(ele,"height" ,scrollHeight + this.textLineHeight + "px");
 			}
+		},
+		destory:function(){
+			$E.off(this.elem,"input",this._handleEvent);
+			$D.remove(this.elem);
 		}
 	});
 	this.AutoGrowTextarea = AutoGrowTextarea;

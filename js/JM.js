@@ -268,11 +268,11 @@ J.$package(function(J){
 			else if(classExpr.test(selector)){
 				result = this.className(selector.replace(".",""),context);
 			}
-			//自定义选择器
-			else if(selectorEngine) result = selectorEngine(selector,context);
+			// //自定义选择器
+			// else if(selectorEngine) result = selectorEngine(selector,context);
 			//querySelectorAll
-			else if(qsa=context.querySelectorAll) {result = qsa.call(context,selector);}
-			else throw Error("querySelectorAll required");
+			else result = context.querySelectorAll(selector);
+		
 
 			//nodeList转为array
 			return [].slice.call(result);
@@ -1334,6 +1334,34 @@ J.$package(function(J){
 
 //http
 J.$package(function(J){
+	// var localData;
+	// var saveDataLocal = function(data){
+	// 	if(!localdata) localdata = {};
+	// 	else localdata = JSON.parse(localStorage.getItem("localdata"));
+
+	// 	localdata[Date.now()] = data;
+	// 	localStorage.setItem("localdata",JSON.stringify(localData));
+	// }
+	// var getLocalData = function(){
+	// 	var localdataStr = localStorage.getItem("localdata");
+	// 	if(localdataStr){
+	// 		localdata = JSON.parse(localdataStr);
+	// 	}
+	// 	return localdata;
+	// }
+
+	// $E.on(window,"online",function(){
+	// 	var data = getLocalData();
+	// 	for(var n in data){
+	// 		var opt = data[n];
+	// 		http.ajax(opt);
+	// 	}
+	// });
+	// $E.on(window,"offline",function(){
+		
+	// });
+
+
 	var http = {
 		serializeParam : function ( param ) {
 			if ( !param ) return '';
@@ -1401,7 +1429,15 @@ J.$package(function(J){
 			}
 
 			return xhr;
-		}	
+		},
+		offlineSend:function(options){
+			if(navigator.onLine){
+				http.ajax(options);
+			}
+			else{
+				saveDataLocal(options);		
+			}
+		}
 	}
 	J.http = http;
 });

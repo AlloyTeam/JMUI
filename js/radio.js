@@ -11,48 +11,47 @@ JM.$package("MUI",function(J){
 			this.value = this.radioElem.value;
 			this.bindHandler();
 		},
+		_handleEvent:function(e){
+			var type = e.type;
+			if(type == "click"){
+				this._onClick(e);
+			}
+		},
 		bindHandler:function(){
-			var self = this;
-			$E.on(this.radioElem,"click",function(e){
-				self._onClick(e);
-			});
+			var _handleEvent = this._handleEvent = J.bind(this._handleEvent,this);
+			$E.on(this.radioElem,"click",_handleEvent);
 		},
 		setValue:function(val){
 			this.radioElem.value = this.value = val;
 		},
-		select:function(selected){
-			if(this.checked) return;
-			this._setSelected();
+		uncheck:function(){
+			this._changeState(false);
 		},
-		unselect:function(){
-			this.radioElem.checked = false;
-			this.checked = false;
-			$D.removeClass(this.elem,this.checkedClassName);
+		check:function(){
+			this._changeState(true);
 		},
-		_setSelected:function(e){
+		_changeState:function(checked){
 			var re = this.radioElem;
-			var evtObj = {};
+			var checkedClassName = this.checkedClassName;
 
-			if(!re.checked) re.checked = true;
-			this.checked = true;
-
-			$D.addClass(this.elem,this.checkedClassName);
-			if(e){
-				evtObj.originalEventObj = e;
-			}
+			this.checked = re.checked = checked;
+			if(checked)
+				$D.addClass(this.elem,checkedClassName);
+			else
+				$D.removeClass(this.elem,checkedClassName);
 			//触发selected事件
-			$E.fire(this,"selected",evtObj);
+			$E.fire(this,"chaged",{
+				checked:checked
+			});
 		},
 		_onClick:function(e){
-			var target = e.target || e.srcElement; 
-			var ele = this.elem;
-			//触发click事件
-			$E.fire(this,"click",{
-				originalEventObj:e
-			});
 			//当已经是选中状态，不触发selected事件
 			if(this.checked) return;
-			this._setSelected();
+			this._changeState(this.radioElem.checked);
+		},
+		destory:function(){
+			$E.off(this.radioElem,"click",this._handleEvent);
+			$D.remove(this.elem);
 		}
 	
 	});

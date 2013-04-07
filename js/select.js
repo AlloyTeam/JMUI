@@ -14,19 +14,32 @@ JM.$package("MUI",function(J){
 			this.select(this.selectElem.selectedIndex);
 			this.bindHandlers();
 		},
+		_handleEvent:function(e){
+			var type = e.type;
+			if(type == "change"){
+				this._onChange(e);
+			}
+		},
+		_onChange:function(e){
+			this.select(this.selectElem.selectedIndex);
+		},
 		select:function(index){
+			if(this.selectedIndex == index) return;
 			this.selectedIndex = index;
 			this.selectText = this.selectTextElem.innerHTML = this.selectElem.options[index].innerHTML;
+			//触发change事件
+			$E.fire(this, "change",{
+				selectedIndex:index,
+				selectedText:this.selectText
+			});
 		},
 		bindHandlers:function(){
-			var self = this;
-			var selectElem = this.selectElem;
-			var selectTextElem = this.selectTextElem;
-			$E.on(this.selectElem,"change",function(e){
-				self.select(selectElem.selectedIndex);
-				//触发change事件
-				$E.fire(self, "change", e);
-			});
+			var _handleEvent = this._handleEvent = J.bind(this._handleEvent,this);
+			$E.on(this.selectElem,"change",_handleEvent);
+		},
+		destory:function(){
+			$E.off(this.selectElem,"change",this._handleEvent);
+			$D.remove(this.elem);
 		}
 	});
 	this.Select = Select;

@@ -9,24 +9,31 @@ JM.$package("MUI",function(J){
 	var touchEvt = isTouchDevice ? "tap":"click";
 	var SwipeTab = J.Class({extend:MUI.Tab},{
 		init:function(options){
-
+			this.wrapClassName = this.wrapClassName || "tab_body";
 			this.tabBodySlide = MUI.SwipeChange({
 				id:options.id,
 				slideTime:options.animateDuration || 600,
-				wrapClassName:"tab_body",
+				wrapClassName:this.wrapClassName,
 				fastChange:options.fastChange
 			});
 			SwipeTab.callSuper(this,"init",options);
 		},
+		_handleEvent:function(e){
+			SwipeTab.callSuper(this,"_handleEvent",e);
+			var type = e.type;
+			if(type == "changed"){
+				this._onChanged(e);
+			}
+			
+		},
+		_onChanged:function(e){
+			//触发tab 的 selected事件
+			this.select(e.currentIndex);
+		},
 		bindHandlers:function(){
 			SwipeTab.callSuper(this,"bindHandlers");
-			var self = this;
-
-			$E.on(this.tabBodySlide,"changed",function(e){
-				var selectedIndex = e.currentIndex;
-				//触发tab 的 selected事件
-				self.select(selectedIndex);
-			});
+			var _handleEvent =  this._handleEvent = J.bind(this._handleEvent,this);
+			$E.on(this.tabBodySlide,"changed",_handleEvent);
 		},
 		_setSelectedClass:function(selectedIndex){
 			var tabs = this.tabs;
@@ -37,11 +44,14 @@ JM.$package("MUI",function(J){
 			$D.addClass(tabs[selectedIndex],this.selectedClass);
 		},
 		select:function(selectedIndex){
+			if(selectedIndex == this.currentIndex) return;
 			SwipeTab.callSuper(this,"select",selectedIndex);
-			this.slideTo(selectedIndex);
+			this.tabBodySlide.slideTo(selectedIndex);
 		},
-		slideTo:function(index){
-			this.tabBodySlide.slideTo(index);
+		destory:function(){
+			AnimateTab.callSuper(this,"destory");
+			$E.off(this.tabBodySlide,"changed",this._handleEvent);
+			this.tabBodySlide.destory();
 		}
 
 	});

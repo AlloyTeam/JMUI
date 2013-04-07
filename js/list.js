@@ -19,10 +19,18 @@ JM.$package("MUI",function(J){
 			this.bindHandlers();
 			this.select(this.selectedIndex);
 		},
+		_handleEvent:function(e){
+			var type = e.type;
+			if(type == touchEvt){
+				this._onClick(e);
+			}
+		},
 		bindHandlers:function(){
-			$E.on(this.elem ,touchEvt ,J.bind(this._onClick,this));
+			var _handleEvent = this._handleEvent = J.bind(this._handleEvent , this);
+			$E.on(this.elem ,touchEvt ,_handleEvent);
 		},
 		select:function(selectedIndex){
+			if(selectedIndex == this.selectedIndex) return;
 			if($T.isNumber(this.selectedIndex))
 				$D.removeClass(this.listItems[this.selectedIndex],this.selectedClassName);
 
@@ -30,6 +38,12 @@ JM.$package("MUI",function(J){
 				$D.addClass(this.listItems[selectedIndex],this.selectedClassName);
 				this.selectedIndex = selectedIndex;
 			}
+			//触发selected事件
+			$E.fire(this ,"selected" ,{
+				type:"selected",
+				selectedItem : this.listItems[selectedIndex],
+				selectedIndex : selectedIndex
+			});
 		},
 		_setIndex:function(){
 			J.each(this.listItems ,function(l,i){
@@ -43,14 +57,12 @@ JM.$package("MUI",function(J){
 			if(isListItem(pn)){
 				var li = pn;
 				var l_index = parseInt(li.getAttribute("_index"));
-
 				this.select(l_index);	
-				//触发selected事件
-				$E.fire(this ,"selected" ,{
-					selectedItem : li,
-					selectedIndex : l_index
-				});
 			}
+		},
+		destory:function(){
+			$E.off(this.elem,touchEvt,this._handleEvent);
+			$D.remove(this.elem);
 		}
 	});
 	this.List = List;

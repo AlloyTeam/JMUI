@@ -27,6 +27,20 @@ JM.$package("MUI",function(J){
 			if(this.isAutoChange) this.autoChange();
 
 		},
+		_handleEvent:function(e){
+			var type = e.type;
+			if(type == "changed"){
+				this._onSwipeChanged(e);
+			}
+		},
+		_onSwipeChanged:function(e){
+			var currentIndex = e.currentIndex;
+			$D.removeClass(this.btns[this.preIndex],"selected");
+			$D.addClass(this.btns[currentIndex],"selected");
+			this.currentIndex = this.preIndex = currentIndex;
+			if(this.isAutoChange) this.autoChange();
+
+		},
 		autoChange:function(){
 			var self = this;
 			var count = this.count;
@@ -53,14 +67,14 @@ JM.$package("MUI",function(J){
 			this.btns = $D.tagName("li",this.btnsContainer);
 		},
 		bindHandlers:function(){
-			var self = this;
-			$E.on(this.contentsSwipe,"changed",function(e){
-				var currentIndex = e.currentIndex;
-				$D.removeClass(self.btns[self.preIndex],"selected");
-				$D.addClass(self.btns[currentIndex],"selected");
-				self.currentIndex = self.preIndex = currentIndex;
-				if(self.isAutoChange) self.autoChange();
-			});
+			var _handleEvent = this._handleEvent = J.bind(this._handleEvent , this);
+			$E.on(this.contentsSwipe,"changed",_handleEvent);
+		},
+		destory:function(){
+			$E.off(this.contentsSwipe,"changed",this._handleEvent);
+			this.contentsSwipe.destory();
+			$D.remove(this.elem);
+			
 		}
 	});
 

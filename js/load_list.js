@@ -20,6 +20,18 @@ JM.$package("MUI",function(J){
 			}
 			this.elem.appendChild(this.loadBtn);
 		},
+		_handleEvent:function(e){
+			var type = e.type;
+			if(type == "click"){
+				this._onClick(e);
+			}
+		},
+		_onClick:function(e){
+			if(!this.isLoading){
+				this.loadData();
+				this.isLoading = true; 
+			}
+		},
 		showLoadingTips:function(){
 			if(!this.loadingTips){
 				var loadingTips = $D.node("li");
@@ -30,16 +42,10 @@ JM.$package("MUI",function(J){
 			this.elem.appendChild(this.loadingTips);
 		},
 		bindHandlers:function(){
-			var self = this; 
+			var _handleEvent = this._handleEvent = J.bind(this._handleEvent , this);
 			LoadList.callSuper(this,"bindHandlers");
-
 			this.showLoadBtn();
-			$E.on(this.loadBtn ,"click",function(e){
-				if(!self.isLoading){
-					self.loadData();
-					self.isLoading = true; 
-				}
-			});
+			$E.on(this.loadBtn ,"click",_handleEvent);
 		},
 		hideLoadBtn:function(){
 			this.elem.removeChild(this.loadBtn);

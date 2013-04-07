@@ -26,44 +26,46 @@ JM.$package("MUI",function(J){
 			this.bindHandlers();
 
 		},
-		bindHandlers:function(){
-			var self = this;
+		_handleEvent:function(e){
+			switch (e.type) {
+				case startEvt: this._onStartEvt(e); break;
+				case moveEvt: this._onMoveEvt(e); break;
+				case endEvt: this._onEndEvt(e); break;
+			}
+		},
+		_onStartEvt:function(e){
 			var h = this.handler;
-			var elem = this.elem;
-			
-			$E.on(h, startEvt ,function(e){
-				var target = e.target || e.srcElement;
-				if(target === h){
-					e.preventDefault();
-					dragingHandler = h;
-				}
-			});
-			$E.on(document.body ,moveEvt ,function(e){
-				if(dragingHandler !== self.handler) return;
+			var target = e.target || e.srcElement;
+			if(target === h){
 				e.preventDefault();
+				dragingHandler = h;
+			}
+		},
+		_onMoveEvt:function(e){
+			if(dragingHandler !== this.handler) return;
+			e.preventDefault();
 
-				var touch = isTouchDevice? e.touches[0] : e;
-				var pos = { x: touch.clientX , y: touch.clientY };
-				var ep = elem.getBoundingClientRect();//实时获取，因为元素位置随时会变化
+			var touch = isTouchDevice? e.touches[0] : e;
+			var pos = { x: touch.clientX , y: touch.clientY };
+			var ep = this.elem.getBoundingClientRect();//实时获取，因为元素位置随时会变化
 
-				var r = self.handler;
-				var l = self.elem_length;
-				var dist; 
-				
-				self.vertical? dist = Math.min(Math.max(0 ,ep.bottom - pos.y) ,l) : dist = Math.min(Math.max(0 ,pos.x - ep.left), l);
-				
+			var r = this.handler;
+			var l = this.elem_length;
+			var dist; 
+			
+			this.vertical? dist = Math.min(Math.max(0 ,ep.bottom - pos.y) ,l) : dist = Math.min(Math.max(0 ,pos.x - ep.left), l);
+			//实时改变slider的值
+			this.setValue(this._distToValue(dist));
 
-				//实时改变slider的值
-				self._setStyle(dist);
-				self.value = self.s_elem.value = self._distToValue(dist);
-				//触发change事件
-				$E.fire(self ,"change",{
-					value:self.value
-				});
-			});
-			$E.on(document.body ,endEvt ,function(e){
-				dragingHandler = null;	
-			});
+		},
+		_onEndEvt:function(e){
+			dragingHandler = null;	
+		},
+		bindHandlers:function(){
+			var _handleEvent = this._handleEvent = J.bind(this._handleEvent , this);
+			$E.on(this.handler, startEvt ,_handleEvent);
+			$E.on(document.body ,moveEvt ,_handleEvent);
+			$E.on(document.body ,endEvt ,_handleEvent);
 		},
 		_setStyle:function(dist){
 			var h = this.handler;
@@ -91,9 +93,20 @@ JM.$package("MUI",function(J){
 		setValue:function(val){
 			this.value = this.s_elem.value = val;
 			this._setStyle(this._valueToDist(this.value));		
+			//触发change事件
+			$E.fire(this,"change",{
+				value:this.value
+			});
 		},
 		getValue:function(){
 			return this.currentValue;
+		},
+		destory:function(){
+			var _handleEvent = this._handleEvent;
+			$E.off(this.handler, startEvt ,_handleEvent);
+			$E.off(document.body ,moveEvt ,_handleEvent);
+			$E.off(document.body ,endEvt ,_handleEvent);
+			$D.remove(this.elem);
 		}
 	});
 	this.Slider = Slider;

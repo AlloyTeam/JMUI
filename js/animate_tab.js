@@ -6,7 +6,7 @@ JM.$package("MUI",function(J){
 	var touchEvt = isTouchDevice ? "tap":"click";
 	var AnimateTab = J.Class({extend:MUI.Tab},{
 		init:function(options){
-			AnimateTab.callSuper(this,"init",options);
+			
 		
 			this.tabBodySlide = MUI.Slide({
 				id:options.id,
@@ -14,7 +14,23 @@ JM.$package("MUI",function(J){
 				wrapClassName:"tab_body",
 				fastChange:options.fastChange
 			});
+			AnimateTab.callSuper(this,"init",options);
 		
+		},
+		_handleEvent:function(e){
+			AnimateTab.callSuper(this,"_handleEvent",e);
+			var type = e.type;
+			if(type == "changed"){
+				this._onBodySlideChanged(e);
+			}
+		},
+		bindHandlers:function(){
+			AnimateTab.callSuper(this,"bindHandlers");
+			var _handleEvent = this._handleEvent = J.bind(this._handleEvent,this);
+			$E.on(this.tabBodySlide,"changed",_handleEvent);
+		},
+		_onBodySlideChanged:function(e){
+			$E.fire(this,"changefinished",e);
 		},
 		_setSelectedClass:function(selectedIndex){
 			var tabs = this.tabs;
@@ -25,11 +41,14 @@ JM.$package("MUI",function(J){
 			$D.addClass(tabs[selectedIndex],this.selectedClass);
 		},
 		select:function(selectedIndex){
+			if(selectedIndex == this.currentIndex) return;
 			AnimateTab.callSuper(this,"select",selectedIndex);
-			this.slideTo(selectedIndex);
+			this.tabBodySlide.slideTo(selectedIndex);
 		},
-		slideTo:function(index){
-			this.tabBodySlide.slideTo(index);
+		destory:function(){
+			AnimateTab.callSuper(this,"destory");
+			$E.off(this.tabBodySlide,"changed",this._handleEvent);
+			this.tabBodySlide.destory();
 		}
 
 	});

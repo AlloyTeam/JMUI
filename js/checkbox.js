@@ -14,29 +14,46 @@ JM.$package("MUI",function(J){
 		setValue:function(val){
 			this.checkboxElem.value = this.value = val;
 		},
+		_handleEvent:function(e){
+			var type = e.type;
+			if(type == "click"){
+				this._onChange(e);
+			}
+		},
 		bindHandler:function(){
-			var self = this;
-			$E.on(this.checkboxElem,"click",function(e){
-				self._onChange(e);
-			});
+			var _handleEvent = this._handleEvent = J.bind(this._handleEvent,this);
+			$E.on(this.checkboxElem,"click",_handleEvent);
 		},
 		_onChange:function(e){
 			var target = e.target || e.srcElement; 
+			this._changeState(target.checked);
+		},
+		check:function(){
+			this._changeState(true);
+		},
+		uncheck:function(){
+			this._changeState(false);
+		},
+		_changeState:function(checked){
+			if(this.checked == checked) return;
+
 			var ele = this.elem;
 			var checkedClass = this.checkedClass;
-			this.checked = target.checked;
-		
-			$E.fire(this,"change click",{
-				originalEventObj:e,
-				checked:this.checked
-			});
-			if(this.checked){
+			this.checked = this.checkboxElem.checked = checked;
+
+			if(checked){
 				$D.addClass(ele,checkedClass);
 			}
 			else{
 				$D.removeClass(ele,checkedClass);
-			}
-				
+			}		
+			$E.fire(this,"changed",{
+				checked:checked
+			});
+		},
+		destory:function(){
+			$E.off(this.checkboxElem,"click",this._handleEvent);
+			$D.remove(this.checkboxElem);
 		}
 	
 	});

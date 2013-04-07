@@ -11,6 +11,7 @@ JM.$package("MUI",function(J){
 	var startEvt = isTouchDevice ? "touchstart" : "mousedown";
 	var moveEvt = isTouchDevice ? "touchmove" : "mousemove";
 	var endEvt = isTouchDevice ? "touchend" : "mouseup";
+	var body = document.body;
 
 
 	var ToggleSwitch = J.Class({
@@ -26,7 +27,7 @@ JM.$package("MUI",function(J){
 			this.handlerRight = this.handler.offsetLeft;
 			this.handlerLeft = this.elem.clientWidth - this.handlerRight - this.handlerWidth;
 			//默认移动到右边
-			this._moveToRight();
+			this.turnOn();
 		},
 		_moveTo:function(left){
 
@@ -35,15 +36,9 @@ JM.$package("MUI",function(J){
 		
 			//左内容宽度百分比
 			var l_percent = (left + this.handler.clientWidth)/this.elem.clientWidth * 100 / 2;
-			//右内容宽度百分比
-			// var r_percent = (this.elem.clientWidth - left)/this.elem.clientWidth * 100 / 2;
-
 			$D.setStyle(this.toggle_items[0], {
 				"width" : l_percent + "%"
 			});
-			// $D.setStyle(this.toggle_items[1], {
-			// 	"width" : r_percent + "%"
-			// });
 
 		},
 		_showLeft:function(){
@@ -58,7 +53,7 @@ JM.$package("MUI",function(J){
 		_hideRight:function(){
 			$D.setStyle(this.toggle_items[1],"opacity",0);
 		},
-		_moveToLeft:function(){
+		turnOff:function(){
 			this._moveTo(this.handlerLeft);
 			this._showRight();
 			this._hideLeft();
@@ -68,7 +63,7 @@ JM.$package("MUI",function(J){
 				selectedItem : this.toggle_items[1]
 			});
 		},
-		_moveToRight:function(){
+		turnOn:function(){
 			this._moveTo(this.handlerRight);
 			this._showLeft();
 			this._hideRight();
@@ -78,63 +73,75 @@ JM.$package("MUI",function(J){
 				selectedItem : this.toggle_items[0]
 			});
 		},
-		bindHandlers:function(){
-
-			var self = this;
+		_handleEvent:function(e){
+			switch (e.type) {
+				case startEvt: this._onStartEvt(e); break;
+				case moveEvt: this._onMoveEvt(e); break;
+				case endEvt: this._onEndEvt(e); break;
+				case tapEvt: this._onTap(e); break;
+			}
+		},
+		_onStartEvt:function(e){
+			var target = e.target || e.srcElement;
 			var h = this.handler;
+			if(e.target == h){
+				e.preventDefault();
+				dragingHandler = h;
+				this._showLeft();
+				this._showRight();
+			}
+		},
+		_onMoveEvt:function(e){
+			if(dragingHandler != this.handler) return;
+			e.preventDefault();
 			var elem = this.elem;
+			var touch = isTouchDevice? e.touches[0] : e;
+			var pos = {x : touch.clientX , y : touch.clientY};
+			var ep = elem.getBoundingClientRect();
+			currentLeft = Math.min(Math.max(0 , pos.x - ep.left) ,elem.clientWidth - this.handlerWidth);
+			this._moveTo(currentLeft);
+		},
+		_onEndEvt:function(e){
+			if($T.isUndefined(currentLeft) || dragingHandler!=this.handler) return;
+			e.preventDefault();
+			dragingHandler = null;
+			
+			var handlerLeft = this.handlerLeft;
+			var handlerRight = this.handlerRight;
+			var halfLeft = (handlerRight - handlerLeft)/2;
+
+			if(currentLeft >= halfLeft){//right
+				this.turnOn();
+			}
+			else{//left
+				this.turnOff();
+			}
+		},
+		_onTap:function(e){
+			var target = e.target || e.srcElement;
+			if(target == this.toggle_items[1]){//right
+				this.turnOn();
+			}
+			else if(target == this.toggle_items[0]){//left
+				this.turnOff();
+			}
+		},
+		bindHandlers:function(){	
+			var _handleEvent = this._handleEvent = J.bind(this._handleEvent , this);
 	
-			//模拟的drag事件并不能冒泡，所以这里还是使用原生的
-			$E.on(h, startEvt ,function(e){
-				var target = e.target || e.srcElement;
-				if(e.target == h){
-					e.preventDefault();
-					dragingHandler = h;
-					self._showLeft();
-					self._showRight();
-				}
-			});
-			$E.on(document.body, moveEvt ,function(e){
-				if(dragingHandler != self.handler) return;
-
-				e.preventDefault();
-				var touch = isTouchDevice? e.touches[0] : e;
-				var pos = {x : touch.clientX , y : touch.clientY};
-				var ep = elem.getBoundingClientRect();
-
-
-				currentLeft = Math.min(Math.max(0 , pos.x - ep.left) ,elem.clientWidth - self.handlerWidth);
-				self._moveTo(currentLeft);
-			});
-
-			$E.on(document.body, endEvt ,function(e){
-				if($T.isUndefined(currentLeft) || dragingHandler!=self.handler) return;
-				e.preventDefault();
-				dragingHandler = null;
-				
-
-				var handlerLeft = self.handlerLeft;
-				var handlerRight = self.handlerRight;
-				var halfLeft = (handlerRight - handlerLeft)/2;
-
-				if(currentLeft >= halfLeft){//right
-					self._moveToRight();
-				}
-				else{//left
-					self._moveToLeft();
-				}
-				
-			});
-
-			$E.on(this.elem, tapEvt ,function(e){
-				var target = e.target || e.srcElement;
-				if(target == self.toggle_items[1]){//right
-					self._moveToRight();
-				}
-				else if(target == self.toggle_items[0]){//left
-					self._moveToLeft();
-				}
-			});
+			$E.on(this.handler, startEvt ,_handleEvent);
+			$E.on(body, moveEvt ,_handleEvent);
+			$E.on(body, endEvt ,_handleEvent);
+			$E.on(this.elem, tapEvt ,_handleEvent);
+		},
+		destory:function(){
+			var ele = this.elem;
+			var _handleEvent = this._handleEvent;
+			$E.off(this.handler, startEvt ,_handleEvent);
+			$E.off(body, moveEvt ,_handleEvent);
+			$E.off(body, endEvt ,_handleEvent);
+			$E.off(ele, tapEvt ,_handleEvent);	
+			$D.remove(ele);
 		}
 
 	});
