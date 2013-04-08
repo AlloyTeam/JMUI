@@ -91,6 +91,8 @@
 	font-size: 14px;
 }
 
+
+
 .list_group_blue_title{
 	border: 1px solid #456f9a;
 	background: #5e87b0;
@@ -101,9 +103,25 @@
 	background: -o-linear-gradient( #6facd5, #497bae);
 	background: linear-gradient( #6facd5, #497bae);	
 }
+.list_group_white_title{
+	border: 1px solid #ccc;
+	border-width: 1px;
+	background: #f1f1f1;
+	background: -webkit-gradient(linear, left top, left bottom, from( rgb(235, 235, 235)), to(rgb(211, 211, 211)));
+	background: -webkit-linear-gradient(rgb(235, 235, 235) , rgb(211, 211, 211));
+	background: -moz-linear-gradient(rgb(235, 235, 235) , rgb(211, 211, 211));
+	background: -ms-linear-gradient(rgb(235, 235, 235) , rgb(211, 211, 211));
+	background: -o-linear-gradient(rgb(235, 235, 235) , rgb(211, 211, 211));
+	background: linear-gradient( rgb(235, 235, 235) , rgb(211, 211, 211));
+}
 .list_group_blue_title > h4{
 	color: #fff;
 }
+.list_group_white_title > h4{
+	color: #333;
+}
+
+
 .list_white > .list_loading_tips , .list_white > .list_load_btn{
 	margin-top: -1px;
 	padding: 10px 0;

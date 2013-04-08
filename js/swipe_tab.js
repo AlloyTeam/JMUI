@@ -12,7 +12,7 @@ JM.$package("MUI",function(J){
 			this.wrapClassName = this.wrapClassName || "tab_body";
 			this.tabBodySlide = MUI.SwipeChange({
 				id:options.id,
-				slideTime:options.animateDuration || 600,
+				slideTime:options.slideTime || 600,
 				wrapClassName:this.wrapClassName,
 				fastChange:options.fastChange
 			});

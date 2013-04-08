@@ -10,7 +10,7 @@ JM.$package("MUI",function(J){
 		
 			this.tabBodySlide = MUI.Slide({
 				id:options.id,
-				slideTime:options.animateDuration || 1000,
+				slideTime:options.slideTime || 1000,
 				wrapClassName:"tab_body",
 				fastChange:options.fastChange
 			});

@@ -64,8 +64,10 @@
 <script type="text/javascript" src="js/JM.js"></script>
 <script type="text/javascript" src="js/slider.js?123"></script>
 <script type="text/javascript">
-	var sl = MUI.Slider({
-		id:"slider"
+	var sc = MUI.Slide({
+		id:"slider",
+		currentIndex:4,
+		fastChange:true	
 	});
 	sl.setValue(20);
 	var w_sl = MUI.Slider({

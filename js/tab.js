@@ -25,6 +25,7 @@ JM.$package("MUI",function(J){
 
 			this.bindHandlers();
 			this._setIndex();
+			this._setHeaderWidth();
 
 			$D.addClass(this.tabs[this.currentIndex] ,this.selectedClass);
 			$D.setStyle(this.tabContents[this.currentIndex],"display","block");
@@ -54,6 +55,13 @@ JM.$package("MUI",function(J){
 			$D.setStyle(this.tabContents[currentIndex],"display","none");
 			$D.addClass(tabs[selectedIndex],this.selectedClass);
 			$D.setStyle(this.tabContents[selectedIndex],"display","block");
+		},
+		_setHeaderWidth:function(){
+			var tabs = this.tabs;
+			var count = this.tabs.length;
+			J.each(tabs,function(t,i){
+				$D.setStyle(t,"width",100/count + "%");
+			});
 		},
 		_setIndex:function(){
 			var tabs = this.tabs;

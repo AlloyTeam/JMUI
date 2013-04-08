@@ -24,7 +24,7 @@ JM.$package("MUI",function(J){
 			this.slideTime = options.slideTime || 200;
 			this.fastChange = options.fastChange;
 			this._sizeAdjust();
-			this._moveTo(this.currentIndex * -this.contentWidth);debugger;
+			this._moveTo(this.currentIndex * -this.contentWidth);
 			this.bindHandlers();
 		},
 		bindHandlers:function(){
@@ -57,7 +57,7 @@ JM.$package("MUI",function(J){
 			var count = this.count;
 			//幻灯片宽度
 			var contentWidth = hasClientRect ? ele.getBoundingClientRect().width : ele.offsetWidth;
-			debugger;
+		
 			$D.setStyle(this.contentWrap , "width" ,contentWidth * count + "px");
 			J.each(this.contents ,function(e){
 				$D.setStyle(e,"width",contentWidth + "px");
