@@ -11,7 +11,7 @@ JM.$package("MUI",function(J){
 			this.isFade = options.isFade;		
 
 			this._loadFunc = this.isFade ? function(img,loadSrc){
-					var newImg = new Image();
+					var newImg = img.cloneNode();
 					$D.setStyle(newImg,{
 						"-webkit-transition":"all 1s",
 						"opacity":"0"
@@ -24,6 +24,7 @@ JM.$package("MUI",function(J){
 						
 					});
 					newImg.src = loadSrc;
+					newImg.removeAttribute(self.souceProperty);
 				} : function(img,loadSrc){
 				img.src = loadSrc;
 				img.removeAttribute(self.souceProperty);
