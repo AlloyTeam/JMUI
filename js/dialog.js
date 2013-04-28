@@ -1,6 +1,7 @@
 JM.$package("MUI",function(J){
 	var $D = J.dom,
-		$E = J.event;
+		$E = J.event,
+		$U = J.Util;
 	var _transform = $D.getVendorPropertyName("transform");
 
 	//show 效果
@@ -179,15 +180,24 @@ JM.$package("MUI",function(J){
 			this.maskClassName = this.maskClassName || "mask";
 			this.mask = $D.className(this.maskClassName)[0];
 			this.use3d = options.use3d;
+			this.preventScroll = options.preventScroll;
 
 		},
 		show:function(type){
 			type = type || "none";
 			showEffect[type].call(this ,this.elem ,this.mask ,this.onShow);
+			if(this.preventScroll){
+				$U.preventScrolling();
+			}
+			$E.fire(this,"show");
 		},
 		hide:function(type){
 			type = type || "none";
 			hideEffect[type].call(this ,this.elem ,this.mask);
+			if(this.preventScroll){
+				$U.activeScrolling();
+			}
+			$E.fire(this,"hide");
 		},
 		destory:function(){
 			$D.remove(this.mask);

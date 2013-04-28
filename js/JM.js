@@ -1382,6 +1382,7 @@ J.$package(function(J){
 			var isPost = 'POST' == m;
 			var isComplete = false;
 			var overtime = o.overtime;
+			var withCredentials = o.withCredentials;//跨域ajax
 
 			var xhr = window.XMLHttpRequest ? new XMLHttpRequest() : false;
 			if ( !xhr ) {
@@ -1395,6 +1396,8 @@ J.$package(function(J){
 			!isPost && ( o.url += ( o.url.indexOf( '?' ) > -1 ?  '&' : '?' ) + qstr );
 
 			xhr.open( m, o.url, true );
+
+			if(withCredentials) xhr.withCredentials = true;
 
 			isPost && xhr.setRequestHeader( 'Content-Type', 'application/x-www-form-urlencoded' );
 
