@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>ProUI</title>
+	<link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="ui-app">
+	<div class="ui-header">固定的头部</div>
+	<div class="ui-content-container">
+		<div class="ui-content js-active">
+			<section id="tab">
+				<h2>tab</h2>
+				<p class="demo-desc"></p>
+				<div class="demo-block">
+				    <div id="tab-demo">
+				        <div id="tab-demo">
+				            <ul class="ui-tab">
+				                <li class="item js-active">点我点我</li>
+				                <li class="item">点我点我</li>
+				            </ul>
+				            <ul class="tab-content">
+				                <li class="panel-1">
+				                	摩擦摩擦啊啊
+				                </li>
+				                <li class="panel-2" style="display: none;">
+				                	我想送你滑板鞋
+				                </li>
+				            </ul>
+				        </div>
+				    </div>
+				</div>				           
+			</section>	
+		</div>
+	</div>
+	<div class="ui-footer">固定的底部</div>
+
+<script src="../lib/zeptojs/zepto.js"></script>
+<script src="../lib/zeptojs/event.js"></script>
+<script src="../lib/zeptojs/touch.js"></script>
+<script src="../lib/zeptojs/detect.js"></script>
+<script src="../js/core.js"></script>
+<script>
+    // TOTO
+    $.env = {};
+</script>
+<script src="../js/tab.js"></script>
+<script>
+	;(function (){
+	    $('#tab-demo').tab({
+	        $el: '.ui-tab',
+	        relateSelector: ['.panel-1', '.panel-2'],
+	        onSwitchTab: function(index, item){}
+	    });
+	})();
+</script>
+</body>
+</html>

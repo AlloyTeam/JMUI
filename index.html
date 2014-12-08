@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>ProUI Demo</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./lib/prism/prism.css">
+    <style>
+    .iframe-wrap {
+        position: fixed;
+        top: 0;
+        left: 200px;
+
+        width: 500px;
+        height: 950px;
+        background-image:url(./img/iphone.png); 
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+    iframe {
+        width: 378px;
+        height: 645px;
+        display: block;
+        margin: 174px 61px;
+    }
+    .ui-list-item-link {
+        cursor: pointer;
+        text-align: center;
+    }
+    .ui-list-text > li {
+        padding: 0;
+    }
+    #nav {
+        width: 200px;
+        position: fixed;
+    }
+    .demo-sections {
+        padding-left: 680px;
+    }
+    section {
+        cursor: pointer;
+    }
+    </style>
+</head>
+
+<body>
+    <p>打开控制台开启手机设备模拟功能, 才可使用所有控件操作.</p>
+    <ul id="nav" class="ui-list ui-list-text ui-border-tb">
+            <!-- <li class="ui-border-t ui-list-item-link">
+                <a data-hash="base">base</a>
+            </li> -->
+        </ul>
+    <div class="iframe-wrap">
+        <iframe src="./demo/base.html" frameborder="0"></iframe>
+    </div>
+    <div class="demo-sections">
+        <section id="base">
+            <h2>base</h2>
+            <p class="demo-desc">字体颜色</p>
+            <div class="demo-block">
+&lt;p class="ui-color-black"&gt;黑色&lt;/p&gt;
+&lt;p class="ui-color-white"&gt;白色&lt;/p&gt;
+&lt;p class="ui-color-gray"&gt;灰色&lt;/p&gt;
+&lt;p class="ui-color-blue"&gt;蓝色&lt;/p&gt;
+&lt;p class="ui-color-red"&gt;红色&lt;/p&gt;
+&lt;p class="ui-color-orange"&gt;橙色&lt;/p&gt;                           
+            </pre>               
+            </div>
+
+            <p class="demo-desc">清除浮动</p>
+            <div class="demo-block">
+ &lt;div class="ui-clear-fix" style="outline: 1px solid orange; height: 50px; line-height: 50px;"&gt; 
+    &lt;div style="float: left;"&gt;float left&lt;/div&gt;
+    &lt;div style="float: right;"&gt;float right&lt;/div&gt;                        
+&lt;/div&gt;
+            </div>
+
+            <p class="demo-desc">模拟1px边框</p>
+            <div class="demo-block">
+ &lt;ul class="demo-borders"&gt;
+    &lt;li class="ui-border"&gt;边框&lt;/li&gt;
+    &lt;li class="ui-border-t"&gt;上边框&lt;/li&gt;
+    &lt;li class="ui-border-b"&gt;下边框&lt;/li&gt;
+    &lt;li class="ui-border-tb"&gt;上下边框&lt;/li&gt;
+    &lt;li class="ui-border-l"&gt;左边框&lt;/li&gt;
+    &lt;li class="ui-border-r"&gt;右边框&lt;/li&gt;
+&lt;/ul&gt;
+            </div>
+
+            <p class="demo-desc">居中</p>
+            <div class="demo-block">
+ &lt;div class="ui-center" style="height: 100px; outline: 1px solid orange;"&gt;
+    &lt;p&gt;内容内容内容&lt;/p&gt;
+&lt;/div&gt;
+            </div>
+            
+            <p class="demo-desc">单行/多行文字超长显示省略号</p>
+            <div class="demo-block">
+ &lt;p class="ui-no-wrap"&gt;单行文字超长显示省略号 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores consequatur dolor dolorem error, et excepturi explicabo fugit incidunt magni necessitatibus &lt;/p&gt;
+&lt;p class="ui-multi-no-wrap"&gt;多行文字超长显示省略号 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias aspernatur corporis cupiditate eos error ex expedita fugiat harum ipsam iste nihil nulla numquam&lt;/p&gt;
+            </div>
+        </section>
+
+        <section id="buttons">
+            <h2>button</h2>
+            
+            <p class="demo-desc">默认</p>
+            <div class="demo-block">
+&lt;button class="ui-btn"&gt;确定&lt;/button&gt;
+&lt;button class="ui-btn active"&gt;确定&lt;/button&gt;
+&lt;button class="ui-btn disabled"&gt;取消&lt;/button&gt;
+&lt;button class="ui-btn" disabled&gt;取消&lt;/button&gt;
+            </div>
+
+            <p class="demo-desc">蓝色</p>
+            <div class="demo-block">
+&lt;button class="ui-btn ui-btn-primary"&gt;确定&lt;/button&gt;
+&lt;button class="ui-btn ui-btn-primary active"&gt;确定&lt;/button&gt;
+&lt;button class="ui-btn disabled"&gt;取消&lt;/button&gt;
+            </div>
+
+            <p class="demo-desc">红色</p>
+            <div class="demo-block">
+&lt;button class="ui-btn ui-btn-danger"&gt;确定&lt;/button&gt;
+&lt;button class="ui-btn ui-btn-danger active"&gt;确定&lt;/button&gt;
+&lt;button class="ui-btn disabled"&gt;取消&lt;/button&gt;
+            </div>
+
+            <p class="demo-desc">块级按钮</p>
+            <div class="demo-block">
+&lt;div class="ui-btn-wrap"&gt;
+    &lt;button class="ui-btn-lg"&gt;确定&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="ui-btn-wrap"&gt;
+    &lt;button class="ui-btn-lg active"&gt;确定&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="ui-btn-wrap"&gt;    
+    &lt;button class="ui-btn-lg disabled"&gt;取消&lt;/button&gt;
+&lt;/div&gt;
+&lt;div class="ui-btn-wrap"&gt;    
+    &lt;button class="ui-btn-lg" disabled&gt;取消&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="ui-btn-wrap"&gt;
+    &lt;button class="ui-btn-lg ui-btn-primary"&gt;确定&lt;/button&gt;
+    &lt;/div&gt;
+&lt;div class="ui-btn-wrap"&gt;
+    &lt;button class="ui-btn-lg ui-btn-primary active"&gt;确定&lt;/button&gt;
+    &lt;/div&gt;
+&lt;div class="ui-btn-wrap"&gt;
+    &lt;button class="ui-btn-lg disabled"&gt;取消&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="ui-btn-wrap"&gt;
+    &lt;button class="ui-btn-lg ui-btn-danger"&gt;确定&lt;/button&gt;
+    &lt;/div&gt;
+&lt;div class="ui-btn-wrap"&gt;
+      &lt;button class="ui-btn-lg ui-btn-danger active"&gt;确定&lt;/button&gt;
+      &lt;/div&gt;
+&lt;div class="ui-btn-wrap"&gt;
+      &lt;button class="ui-btn-lg disabled"&gt;取消&lt;/button&gt;
+&lt;/div&gt;
+            </div>
+
+            <p class="demo-desc">底部操作按钮</p>
+            <div class="demo-block">
+&lt;div class="ui-btn-group ui-btn-group-bottom"&gt;
+    &lt;button type="button"&gt;加为好友&lt;/button&gt;
+    &lt;button type="button"&gt;发消息&lt;/button&gt;
+&lt;/div&gt;    
+
+&lt;div class="ui-btn-group ui-btn-group-bottom"&gt;
+    &lt;button type="button"&gt;加为好友&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="ui-btn-group-tiled ui-btn-wrap"&gt;
+    &lt;button class="ui-btn-lg"&gt;拒绝&lt;/button&gt; &lt;button class="ui-btn-lg ui-btn-primary"&gt;同意&lt;/button&gt;
+&lt;/div&gt;
+            </div>
+        </section>
+
+        <section id="avatar">
+            <h2>avatar</h2>
+            
+            <p class="demo-desc">资料场景头像</p>
+            <div class="demo-block">
+&lt;div class="ui-avatar-one"&gt;&lt;span style="background-image:url(http://icase.tencent.com/vlabs/img/?128*128)"&gt;&lt;/span&gt;&lt;/div&gt;                               
+            </div>
+
+            <p class="demo-desc">圆角头像，列表场景</p>
+            <div class="demo-block">
+&lt;div class="ui-avatar-lg"&gt;&lt;span style="background-image:url(http://icase.tencent.com/vlabs/img/?108*108)"&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class="ui-avatar"&gt;&lt;span style="background-image:url(http://icase.tencent.com/vlabs/img/?100*100)"&gt;&lt;/span&gt;&lt;/div&gt;
+&lt;div class="ui-avatar-s"&gt;&lt;span style="background-image:url(http://icase.tencent.com/vlabs/img/?80*80)"&gt;&lt;/span&gt;&lt;/div&gt;
+            </div>
+
+            <p class="demo-desc">平铺头像</p>
+            <div class="demo-block">
+&lt;span class="ui-avatar-tiled"&gt;&lt;span style="background-image:url(http://icase.tencent.com/vlabs/img/?60*60)"&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="ui-avatar-tiled"&gt;&lt;span style="background-image:url(http://icase.tencent.com/vlabs/img/?60*60)"&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="ui-avatar-tiled"&gt;&lt;span style="background-image:url(http://icase.tencent.com/vlabs/img/?60*60)"&gt;&lt;/span&gt;&lt;/span&gt;
+&lt;span class="ui-avatar-tiled"&gt;&lt;span style="background-image:url(http://icase.tencent.com/vlabs/img/?60*60)"&gt;&lt;/span&gt;&lt;/span&gt;
+            </div>
+        </section>
+
+        <section id="corner-tag">
+            <h2>corner-tag</h2>
+            <p class="demo-desc">边角标记</p>
+            <div class="demo-block">
+&lt;div class="ui-corner-tag"&gt;
+    &lt;img src="../img/qq.png"/&gt;
+    &lt;div class="ui-tag-red"&gt;红&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="ui-corner-tag"&gt;
+    &lt;img src="../img/qq.png"/&gt;
+    &lt;div class="ui-tag-orange"&gt;橙&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="ui-corner-tag"&gt;
+    &lt;img src="../img/qq.png"/&gt;
+    &lt;div class="ui-tag-blue"&gt;蓝&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="ui-corner-tag"&gt;
+    &lt;img src="../img/qq.png"/&gt;
+    &lt;div class="ui-tag-green"&gt;绿&lt;/div&gt;
+&lt;/div&gt;
+            </div>
+        </section>
+
+        <section id="form">
+            <h2>form</h2>
+            <p class="demo-desc">表单命令项</p>
+            <div class="demo-block">
+&lt;div class="ui-form ui-border-t"&gt;
+    &lt;div class="ui-form ui-border-t"&gt;
+        &lt;form action="#" &gt;
+            &lt;div class="ui-form-item ui-form-item-order ui-border-b"&gt;
+                &lt;a href="#"&gt;清空消息列表&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="ui-form-item ui-form-item-order ui-border-b"&gt;
+                &lt;a href="#"&gt;清空所有聊天记录&lt;/a&gt;
+            &lt;/div&gt;
+            &lt;div class="ui-form-item ui-form-item-order ui-border-b"&gt;
+                &lt;a href="#"&gt;清空缓存数据&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/form&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+            </div>
+
+            <p class="demo-desc">表单输入项</p>
+            <div class="demo-block">
+&lt;div class="ui-form ui-border-t"&gt;
+    &lt;form action="#" &gt;
+        &lt;div class="ui-form-item ui-border-b"&gt;
+            &lt;label for="#"&gt;身份证号码&lt;/label&gt;
+            &lt;input type="text" placeholder="18位身份证号码"&gt;
+            &lt;a href="#" class="ui-icon-close"&gt;&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-form-item ui-form-item-textarea ui-border-b"&gt;
+            &lt;label for="#"&gt;详细地址&lt;/label&gt;
+            &lt;textarea placeholder="街道等详细地址"&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+            </div>
+
+            <p class="demo-desc">表单输入项</p>
+            <div class="demo-block">
+&lt;div class="ui-form ui-border-t"&gt;
+    &lt;form action="#" &gt;
+        &lt;div class="ui-form-item ui-form-item-pure ui-border-b"&gt;
+            &lt;input type="text" placeholder="QQ号/手机号/邮箱"&gt;
+            &lt;a href="#" class="ui-icon-close"&gt;&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-form-item ui-form-item-pure ui-border-b"&gt;
+            &lt;input type="password" placeholder="密码"&gt;
+            &lt;a href="#" class="ui-icon-close"&gt;&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+            </div>
+
+            <p class="demo-desc">表单输入项</p>
+            <div class="demo-block">
+&lt;div class="ui-form ui-border-t"&gt;
+    &lt;form action="#" &gt;
+        &lt;div class="ui-form-item ui-form-item-l ui-border-b"&gt;
+            &lt;label class="ui-border-r"&gt;中国 +86&lt;/label&gt;
+            &lt;input type="text" placeholder="请输入手机号码"&gt;
+            &lt;a href="#" class="ui-icon-close"&gt;&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+            </div>
+
+            <p class="demo-desc">表单项</p>
+            <div class="demo-block">
+&lt;div class="ui-form ui-border-t"&gt;
+    &lt;form action="#" &gt;
+        &lt;div class="ui-form-item ui-form-item-r ui-border-b"&gt;
+            &lt;input type="text" placeholder="请输入验证码"&gt;
+            &lt;!-- 若按钮不可点击则添加 disabled 类 --&gt;
+            &lt;button type="button" class="ui-border-l"&gt;重新发送&lt;/button&gt;
+            &lt;a href="#" class="ui-icon-close"&gt;&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+            </div>
+
+            <p class="demo-desc">表单项</p>
+            <div class="demo-block">
+&lt;div class="ui-form ui-border-t"&gt;
+    &lt;form action="#" &gt;
+        &lt;div class="ui-form-item ui-form-item-show ui-form-item-link ui-border-b"&gt;
+            &lt;label for="#"&gt;账号&lt;/label&gt;
+            &lt;input type="text" value="421205351" readonly&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-form-item ui-form-item-show ui-border-b"&gt;
+            &lt;label for="#"&gt;身份证号码&lt;/label&gt;
+            &lt;input type="text" value="445331199401055317" readonly&gt;
+        &lt;/div&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+            </div>
+
+            <p class="demo-desc">checkbox</p>
+            <div class="demo-block">
+&lt;ul class="ui-list ui-list-text ui-list-checkbox ui-border-tb"&gt;  
+    &lt;li class="ui-border-t"&gt;
+        &lt;label class="ui-checkbox"&gt;
+           &lt;input type="checkbox"&gt;
+        &lt;/label&gt;
+        &lt;p&gt;用于一般单选或多选普通操作&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li class="ui-border-t"&gt;
+        &lt;label class="ui-checkbox"&gt;
+           &lt;input type="checkbox" checked&gt;
+        &lt;/label&gt;
+        &lt;p&gt;内容内容内容内容内容内容内容内容内容内容内容内容内容内容&lt;/p&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+            </div>
+
+            <p class="demo-desc">radio</p>
+            <div class="demo-block">
+&lt;p&gt;
+    &lt;label class="ui-checkbox ui-checkbox-s"&gt;
+           我已阅读并同意&lt;input type="checkbox" checked&gt;
+    &lt;/label&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    &lt;label class="ui-checkbox ui-checkbox-s"&gt;
+           我已阅读并同意&lt;input type="checkbox"&gt;
+    &lt;/label&gt;
+&lt;/p&gt;
+            </div>
+
+            <p class="demo-desc">switch</p>
+            <div class="demo-block">
+&lt;div class="ui-form ui-border-t"&gt;
+    &lt;div class="ui-form-item ui-form-item-switch ui-border-b"&gt;
+        &lt;span&gt;对附近的人可见&lt;/span&gt;
+        &lt;label for="#" class="ui-switch"&gt;
+            &lt;input type="checkbox" /&gt;
+        &lt;/label&gt;
+    &lt;/div&gt;
+
+    &lt;div class="ui-form-item ui-form-item-switch ui-border-b"&gt;
+        &lt;span&gt;对附近的人可见&lt;/span&gt;
+        &lt;label for="#" class="ui-switch"&gt;
+            &lt;input type="checkbox" checked/&gt;
+        &lt;/label&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+            </div>
+
+            <p class="demo-desc">表单项</p>
+            <div class="demo-block">
+&lt;p&gt;
+    &lt;label class="ui-radio" name="radio"&gt;
+        &lt;input type="radio" name="radio"&gt;用于一般单选普通操作
+    &lt;/label&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    &lt;label class="ui-radio"&gt;
+        &lt;input type="radio" checked name="radio"&gt;内容内容内容内容内容内容内容内容内容内容内容内容内容内容
+    &lt;/label&gt;
+&lt;/p&gt;
+            </div>
+
+        </section>
+
+        <section id="list">
+            <h2>toast</h2>
+            
+            <p class="demo-desc">文字普通</p>
+            <div class="demo-block">
+&lt;ul class="ui-list ui-list-text ui-border-tb"&gt;
+    &lt;li class="ui-border-t ui-list-item-link"&gt;
+        &lt;p&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li class="ui-border-t"&gt;
+        &lt;p&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/p&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+            </div>
+
+            <p class="demo-desc">文字通栏</p>
+            <div class="demo-block">
+&lt;ul class="ui-list ui-list-text ui-list-cover ui-border-tb"&gt;
+    &lt;li class="ui-border-t"&gt;
+        &lt;p&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li class="ui-border-t"&gt;
+        &lt;p&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/p&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+            </div>
+
+            <p class="demo-desc">带选中态</p>
+            <div class="demo-block">
+&lt;ul class="ui-list ui-list-text ui-list-active ui-border-tb"&gt;
+    &lt;li class="ui-border-t selected"&gt;
+        &lt;p&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li class="ui-border-t"&gt;
+        &lt;p&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/p&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+            </div>
+
+            <p class="demo-desc">文字连接</p>
+            <div class="demo-block">
+&lt;ul class="ui-list ui-list-text ui-list-link ui-border-tb"&gt;
+    &lt;li class="ui-border-t"&gt;
+        &lt;p&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/p&gt;
+    &lt;/li&gt;
+    &lt;li class="ui-border-t"&gt;
+        &lt;p&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/p&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+            </div>
+
+            <p class="demo-desc">文字连接</p>
+            <div class="demo-block">
+&lt;ul class="ui-list ui-list-text ui-border-tb"&gt;
+    &lt;li class="ui-border-t ui-list-item-link"&gt;
+        &lt;div class="ui-list-info"&gt;
+            &lt;h4&gt;加h4可以超出长度截断加h4可以超出长度截断加h4可以超出长度截断加h4可以超出长度截断加h4可以超出长度截断加h4可以超出长度截断&lt;/h4&gt;
+            &lt;p&gt;内容内容内容内容内容内容内容内容内容内容内容&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-badge"&gt;123&lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li class="ui-border-t"&gt;
+        &lt;div class="ui-list-info"&gt;
+            &lt;h4&gt;加h4可以超出长度截断加h4可以超出长度截断加h4可以超出长度截断加h4可以超出长度截断加h4可以超出长度截断加h4可以超出长度截断&lt;/h4&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-badge-muted"&gt;123&lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li class="ui-border-t"&gt;
+        &lt;div class="ui-list-info"&gt;
+           &lt;h4&gt;标题标题标题标题标题标题标&lt;/h4&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-list-action"&gt;使用中&lt;/div&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+            </div>
+
+            <p class="demo-desc">圆图文</p>
+            <div class="demo-block">
+&lt;ul class="ui-list ui-border-tb"&gt;  
+    &lt;li&gt;
+        &lt;div class="ui-avatar-s"&gt;
+           &lt;span style="background-image:url(http://icase.tencent.com/vlabs/img/?100*100)"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-list-info ui-border-t"&gt;
+            &lt;h4&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/h4&gt;
+            &lt;p&gt;内容内容内容内容内容内容内容内容内容内容内容内容内容内容&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;div class="ui-avatar-s"&gt;
+            &lt;span  style="background-image:url(http://icase.tencent.com/vlabs/img/?100*100)"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-list-info ui-border-t"&gt;
+            &lt;h4&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/h4&gt;
+            &lt;p&gt;内容内容内容内容内容内容内容内容内容内容内容内容内容内容&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+            </div>
+
+            <p class="demo-desc">小图图文</p>
+            <div class="demo-block">
+&lt;ul class="ui-list ui-border-tb"&gt;
+    &lt;li&gt;
+        &lt;div class="ui-list-thumb-s"&gt;
+           &lt;span style="background-image:url(http://icase.tencent.com/vlabs/img/?56*56)"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-list-info ui-border-t"&gt;
+            &lt;h4&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/h4&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;div class="ui-list-thumb-s"&gt;
+           &lt;span  style="background-image:url(http://icase.tencent.com/vlabs/img/?56*56)"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-list-info ui-border-t"&gt;
+            &lt;h4&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/h4&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+            </div>
+
+            <p class="demo-desc">图文</p>
+            <div class="demo-block">
+&lt;ul class="ui-list ui-border-tb"&gt;
+    &lt;li class="ui-border-t"&gt;
+        &lt;div class="ui-list-thumb"&gt;
+           &lt;span style="background-image:url(http://icase.tencent.com/vlabs/img/?100*100)"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-list-info"&gt;
+            &lt;h4&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/h4&gt;
+            &lt;p&gt;内容内容内容内容内容内容内容内容内容内容内容内容内容内容&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li class="ui-border-t"&gt;
+        &lt;div class="ui-list-thumb"&gt;
+            &lt;span style="background-image:url(http://icase.tencent.com/vlabs/img/?100*100)"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-list-info"&gt;
+            &lt;h4&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/h4&gt;
+            &lt;p&gt;内容内容内容内容内容内容内容内容内容内容内容内容内容内容&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+            </div>
+
+            <p class="demo-desc">图文链接</p>
+            <div class="demo-block">
+&lt;ul class="ui-list ui-list-link ui-border-tb"&gt;
+    &lt;li class="ui-border-t"&gt;
+        &lt;div class="ui-list-thumb"&gt;
+            &lt;span  style="background-image:url(http://icase.tencent.com/vlabs/img/?100*100)"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-list-info"&gt;
+            &lt;h4&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/h4&gt;
+            &lt;p&gt;内容内容内容内容内容内容内容内容内容内容内容内容内容内容&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li class="ui-border-t"&gt;
+        &lt;div class="ui-list-thumb"&gt;
+           &lt;span style="background-image:url(http://icase.tencent.com/vlabs/img/?100*100)"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-list-info"&gt;
+            &lt;h4&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/h4&gt;
+            &lt;p&gt;内容内容内容内容内容内容内容内容内容内容内容内容内容内容&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+            </div>
+
+            <p class="demo-desc">功能列表</p>
+            <div class="demo-block">
+&lt;ul class="ui-list ui-list-function ui-border-tb"&gt;
+    &lt;li&gt;
+        &lt;div class="ui-avatar-s"&gt;
+            &lt;span style="background-image:url(http://icase.tencent.com/vlabs/img/?80*80)"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-list-info ui-border-t"&gt;
+            &lt;h4&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/h4&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-btn"&gt;PK&lt;/div&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;div class="ui-avatar-s"&gt;
+            &lt;span style="background-image:url(http://icase.tencent.com/vlabs/img/?80*80)"&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="ui-list-info ui-border-t"&gt;
+            &lt;h4&gt;标题标题标题标题标题标题标题标题标题标题标题&lt;/h4&gt;
+        &lt;/div&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+            </div>
+
+        </section>
+
+        <section id="table">
+            <h2 >table</h2>
+            <p class="demo-desc">默认表格</p>
+            <div class="demo-block">
+&lt;table class="ui-table ui-border-tb"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;已购买&lt;/th&gt;&lt;th&gt;状态&lt;/th&gt;&lt;th&gt;会员到期时间&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;使用中&lt;/td&gt;&lt;td&gt;2016-02-06&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;待付款&lt;/td&gt;&lt;td&gt;&lt;a href="#"&gt;付款&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;待付款&lt;/td&gt;&lt;td&gt;&lt;a href="#"&gt;付款&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+            </div>
+            <p>全框表格</p>
+            <div class="demo-block">
+&lt;table class="ui-table ui-border"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;已购买&lt;/th&gt;&lt;th&gt;状态&lt;/th&gt;&lt;th&gt;会员到期时间&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;使用中&lt;/td&gt;&lt;td&gt;2016-02-06&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;待付款&lt;/td&gt;&lt;td&gt;&lt;a href="#"&gt;付款&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;待付款&lt;/td&gt;&lt;td&gt;&lt;a href="#"&gt;付款&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+            </div>
+        </section>
+
+        <section id="notice">
+            <h2>notice</h2>
+            
+            <p class="demo-desc">无网络</p>
+            <div class="demo-block">
+&lt;div class="ui-notice"&gt;
+     &lt;i&gt;&lt;/i&gt;
+     &lt;p&gt;请检查网络&lt;/p&gt;
+&lt;/div&gt;                         
+            </div>
+
+            <p class="demo-desc">没有内容</p>
+            <div class="demo-block">
+&lt;div class="ui-notice ui-notice-news"&gt;
+   &lt;i&gt;&lt;/i&gt;
+   &lt;p&gt;暂时没有新消息&lt;/p&gt;
+&lt;/div&gt;                     
+            </div>
+
+            <p class="demo-desc">附近位置</p>
+            <div class="demo-block">
+&lt;div class="ui-notice ui-notice-nearby"&gt;
+   &lt;i&gt;&lt;/i&gt;
+   &lt;p&gt;分享自己的位置&lt;/p&gt;
+&lt;/div&gt;                         
+            </div>
+
+            <p class="demo-desc">加载中</p>
+            <div class="demo-block">
+&lt;div class="ui-notice"&lt;
+    &lt;p&lt;加载中...&lt;/p&lt;
+&lt;/div&lt;                         
+            </div>
+
+            <p class="demo-desc">带按钮</p>
+            <div class="demo-block">
+&lt;div class="ui-notice"&gt;
+     &lt;p&gt;待激活的号码&lt;/p&gt;
+     &lt;p&gt;待激活的号码&lt;/p&gt;
+     &lt;div class="ui-notice-btn"&gt;
+         &lt;a class="ui-btn-block ui-btn-blue"&gt;续费超级会员&lt;/a&gt;
+     &lt;/div&gt;
+&lt;/div&gt;                         
+            </div>
+        </section>
+
+        <section id="tooltips">
+            <h2 >tooltips</h2>
+            
+            <p class="demo-desc">警告</p>
+            <div class="demo-block">
+&lt;div class="ui-tooltips ui-tooltips-warn"&gt;
+    &lt;div class="ui-tooltips-cnt ui-tooltips-cnt-link ui-border-b"&gt;
+        &lt;i&gt;&lt;/i&gt;当前网路不可用，请检查你的网路设置。
+    &lt;/div&gt;
+&lt;/div&gt;
+            </div>
+
+            <p class="demo-desc">引导、引导</p>
+            <div class="demo-block">
+&lt;div class="ui-tooltips ui-tooltips-guide"&gt;
+    &lt;div class="ui-tooltips-cnt ui-tooltips-cnt-link ui-border-b"&gt;
+        &lt;i&gt;&lt;/i&gt;新手引导、功能引导
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="ui-tooltips ui-tooltips-guide"&gt;
+    &lt;div class="ui-tooltips-cnt ui-border-b"&gt;
+        新手引导、功能引导
+        &lt;button class="ui-btn"&gt;加入&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+            </div>
+
+            <p class="demo-desc">状态</p>
+            <div class="demo-block">
+&lt;div class="ui-tooltips ui-tooltips-state"&gt;
+    &lt;div class="ui-tooltips-cnt ui-tooltips-cnt-link ui-border-b"&gt;
+        状态
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="ui-tooltips ui-tooltips-guide"&gt;
+    &lt;div class="ui-tooltips ui-tooltips-state"&gt;
+        &lt;div class="ui-tooltips-cnt ui-border-b"&gt;
+            状态
+            &lt;button class="ui-btn ui-btn-primary"&gt;加入&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+            </div>
+        </section>
+
+        <section id="debug">
+            <h2>开发辅助类组件</h2>
+
+            <p class="demo-desc">图片占位</p>
+            <small>使用 &lt;img data-src="100x200"&gt; 即可生成 100*200px 的占位图</small>
+            <div class="demo-block">
+&lt;img data-holder="100x200"&gt;
+&lt;img data-holder="200x200"&gt;
+&lt;img data-holder="300x200"&gt;
+&lt;img data-holder="400x200"&gt;
+            </div>
+        </section>
+    </div>
+    <script src="./lib/zeptojs/zepto.js"></script>
+    <script src="./lib/zeptojs/event.js"></script>
+    <script src="./lib/zeptojs/touch.js"></script>
+    <script>
+    var hashes = ['base', 
+                    'button', 
+                    'avatar',
+                    'icon',
+                    'corner-tag',
+                    'form',
+                    'list',
+                    'table',
+                    'dialog',
+                    'action-sheet',
+                    'notice',
+                    'tooltips',
+                    'toast',
+                    'loading',
+                'debug'];
+    var lis = $.map(hashes, function (hash, index) {
+        return '<li class="ui-border-t ui-list-item-link">'+ hash +'</li>';
+    });   
+
+    function changeDemo(id) {
+        var src = './demo/' + id + '.html';
+        $('iframe').attr('src', src);
+        window.location.hash = id;
+    }
+    $('#nav').append(lis.toString());
+
+
+    $('#nav li').on('click', function (e) {
+        e.preventDefault();
+        var id = $(this).text();
+        changeDemo(id);
+    });
+
+    $('section').on('click', function (e) {
+        e.preventDefault();
+        var id = $(this).attr('id');
+        changeDemo(id);
+    });
+
+    var pre = '<pre class="language-markup"><code></code></pre>';
+    $('.demo-block').wrapInner(pre);
+    </script>
+</body>
+<script src="./lib/prism/prism.js"></script>
+</html>

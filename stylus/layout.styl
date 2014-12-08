@@ -1,0 +1,82 @@
+/* usually for body */
+.ui-app {
+    background: #fff;
+    -webkit-overflow-scrolling: touch;
+}
+
+.ui-header, 
+.ui-footer {
+    position: fixed;
+    background: #fff;
+    width: 100%;
+    height: 48px;
+
+    z-index: 10;
+}
+
+.ui-header {
+    top: 0;
+}
+.ui-header:after {
+    border-bottom: 1px solid #cacaca;
+}
+
+.ui-footer {
+    bottom: 0;
+}
+.ui-footer:after{
+    border-top: 1px solid #cacaca;
+}
+
+/* content container may have more than one content like tab switch */
+.ui-content-container {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    
+    -webkit-box-sizing: border-box;
+
+    min-height: 100%;
+
+    z-index: 1;
+}
+
+/* 
+ * for ios6+ use scrollbar of ".ui-content-container" instead of body's to make better experience
+ * because on ios page can be scroll that we can see the area that not belong to our page  
+ */
+.js-bounce-fix .ui-content-container {
+    bottom: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.ui-header ~ .ui-content-container {
+    border-top: 48px solid transparent;
+}
+
+.ui-footer ~ .ui-content-container {
+    border-bottom: 48px solid transparent;
+}
+
+.ui-content {
+    display: none;
+}
+
+.js-bounce-fix .ui-content{
+    position: relative;
+    min-height: 100%;
+}
+
+
+/* js style */
+.ui-content.js-active {
+    display: block;
+}
+
+/* low device style */
+.poor-device .ui-header {
+    position: absolute;
+}

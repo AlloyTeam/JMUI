@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>ProUI</title>
+	<link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="ui-app">
+	<div class="ui-header">固定的头部</div>
+	<div class="ui-content-container">
+		<div class="ui-content js-active">
+			<section id="search-bar">
+				<h2>search-bar</h2>
+				<p class="demo-desc">搜索框</p>
+				<div class="demo-block">
+					<div class="ui-search-bar">
+			            <form class="ui-search-form ui-border-1px">
+			                <i class="ui-icon ui-icon-search"></i>
+			                <input class="ui-search-input" type="search" autocomplete="off" autocorrect="off" placeholder="请输入商户名、分类、地点">
+			                <div class="btn-clear" cmd="clearInput"><i class="ui-icon-clear"></i></div>
+			            </form>
+			            <div class="ui-color-gray btn-cancel" cmd="cancelSearch">取消</div>
+			        </div>
+				</div>
+			</section>
+		</div>
+	</div>
+	<div class="ui-footer">固定的底部</div>
+
+<script src="../lib/zeptojs/zepto.js"></script>
+<script src="../lib/zeptojs/event.js"></script>
+<script src="../lib/zeptojs/touch.js"></script>
+<script src="../lib/zeptojs/detect.js"></script>
+<script src="../js/core.js"></script>
+<script>
+    // TOTO
+    $.env = {};
+</script>
+</body>
+</html>

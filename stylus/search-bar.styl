@@ -1,0 +1,123 @@
+.ui-search-bar {
+    display: -webkit-box;
+    -webkit-box-sizing: border-box;
+
+    padding: 0 10px;
+    height: 48px;
+
+    -webkit-box-align: center;
+}
+.ui-search-bar:after {
+    border-bottom: 1px solid #cacaca;
+}
+.ui-search-form {
+    display: -webkit-box;
+
+    border-radius: 5px;
+    height: 30px;
+
+    background: #fff;
+
+    -webkit-box-flex: 1;
+
+    -webkit-box-align: center;
+}
+.ui-search-form:after {
+    border: 1px solid #a6a6a6;
+    border-radius: 10px;
+}
+
+.ui-search-form .ui-icon-search {
+    margin: 0 6px 0 9px;
+}
+
+.ui-icon-search {
+    display: block;
+
+    width: 13px;
+    height: 13px;
+
+    background-image: url(./../img/inline/search.png?embed);
+}
+
+.ui-search-input {
+    display: block;
+
+    position: relative;
+    top: 500px;
+
+    border: 0;
+    border-radius: 5px;
+
+    height: 30px;
+
+    font-size: 14px;
+
+    -webkit-box-flex: 1;
+    -webkit-transform: translateY(-500px);   
+}
+
+.ui-search-input::-webkit-search-cancel-button {
+    display: none;
+}
+
+.ui-search-form .btn-clear {
+    display: none;
+
+    padding: 7px 9px 7px 6px;
+}
+
+.ui-icon-clear {
+    display: block;
+    position: relative;
+
+    border-radius: 8px;
+    width: 16px;
+    height: 16px;
+
+    background: #8e8e93; 
+}
+.ui-icon-clear:before,
+.ui-icon-clear:after {
+    display: block;
+    content: "";
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    width: 66.7%;
+    height: 2px;
+
+    background: #fff;
+}
+.ui-icon-clear:before {
+    -webkit-transform: translate(-50%, -50%) rotate(45deg);
+}
+.ui-icon-clear:after {
+    -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+}
+
+.ui-search-bar .btn-cancel {
+    display: none;
+
+    padding: 0 10px;
+
+    font-size: 14px;
+    line-height: 48px;
+}
+.ui-search-bar .btn-cancel.js-active {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+/* js style */
+.ui-search-bar.js-input .btn-clear {
+    display: block;
+}
+.ui-search-bar.js-focus{
+    padding-right: 0;
+}
+.ui-search-bar.js-focus .btn-cancel {
+    display: block;
+}
+

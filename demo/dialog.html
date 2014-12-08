@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>ProUI</title>
+	<link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="ui-app">
+	<div class="ui-header">固定的头部</div>
+	<div class="ui-content-container">
+		<div class="ui-content js-active">
+			<section id="dialog">
+				<h2>dialog</h2>
+				<p class="demo-desc">弹出对话框</p>
+				<div class="demo-block">
+				    <a class="action-show ui-btn">显示</a>
+				</div>
+			</section>
+		</div>
+	</div>
+	<div class="ui-footer">固定的底部</div>
+
+<script src="../lib/zeptojs/zepto.js"></script>
+<script src="../lib/zeptojs/event.js"></script>
+<script src="../lib/zeptojs/touch.js"></script>
+<script src="../lib/zeptojs/detect.js"></script>
+<script src="../js/util.js"></script>
+<script src="../js/core.js"></script>
+<script src="../js/mask.js"></script>
+<script src="../js/state.js"></script>
+<script>
+    // TOTO
+    $.env = {};
+</script>
+<script src="../js/dialog.js"></script>
+<script>
+	;(function (){
+	    var func0 = function () {
+	        console.log('哇哦，真的不喜欢？');
+	    };
+	    var func1 = function () {
+	        console.log('哇哦，我也喜欢你！');
+	    };
+	    var opts = {
+	        mask: true,
+	        animation: true,
+	        tapHide: true,
+	        preventScroll: true,
+	        title: '提示',
+	        content: '你喜欢我么？',
+	        btnText: ['不喜欢', '超喜欢'],
+	        btnHandle: [func0, func1]
+	    };
+	    $('#dialog').on('click', '.action-show',function (){
+	        pro.dialog.show(opts);
+	    });
+	})();
+</script>
+</body>
+</html>

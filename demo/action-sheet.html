@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>ProUI</title>
+	<link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="ui-app">
+	<div class="ui-header">固定的头部</div>
+	<div class="ui-content-container">
+		<div class="ui-content js-active">
+			<section id="action-sheet">
+				<h2>action-sheet</h2>
+				<p class="demo-desc">弹出菜单</p>
+				<div class="demo-block">
+                	<a class="action-show ui-btn">显示</a>
+            	</div>
+			</section>			
+		</div>
+	</div>
+	<div class="ui-footer">固定的底部</div>
+
+<script src="../lib/zeptojs/zepto.js"></script>
+<script src="../lib/zeptojs/event.js"></script>
+<script src="../lib/zeptojs/touch.js"></script>
+<script src="../lib/zeptojs/detect.js"></script>
+<script src="../js/util.js"></script>
+<script src="../js/core.js"></script>
+<script src="../js/mask.js"></script>
+<script src="../js/state.js"></script>
+<script>
+    // TOTO
+    $.env = {};
+</script>
+<script src="../js/action-sheet.js"></script>
+<script>
+	$(function (){
+	    var func0 = function () {
+	        console.log('么么哒!');
+	    };
+	    var func1 = function () {
+	        console.log('为啥不要啊?');
+	    };
+	    var opts = {
+	        mask: true,
+	        animation: true,
+	        tapHide: true,
+	        preventScroll: true,
+	        content: ['我喜欢你', '我不喜欢你'],
+	        btnHandle: [func0, func1]
+	    };
+	    $('#action-sheet').on('click', '.action-show', function (){
+	        pro.actionSheet.show(opts);
+	    });
+	})
+</script>
+</body>
+</html>

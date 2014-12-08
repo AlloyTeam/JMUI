@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>ProUI</title>
+	<link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="ui-app">
+	<div class="ui-header">固定的头部</div>
+	<div class="ui-content-container">
+		<div class="ui-content js-active">
+			<section id="mult-selector">
+				<h2>mult-selector</h2>
+				<p class="demo-desc">层级菜单</p>
+				<div class="demo-block">
+				    <div class="js-navtree"></div>
+				</div>				            
+			</section>
+		</div>
+	</div>
+	<div class="ui-footer">固定的底部</div>
+
+<script src="../lib/zeptojs/zepto.js"></script>
+<script src="../lib/zeptojs/event.js"></script>
+<script src="../lib/zeptojs/touch.js"></script>
+<script src="../lib/zeptojs/detect.js"></script>
+<script src="../js/util.js"></script>
+<script src="../js/core.js"></script>
+<script src="../js/mask.js"></script>
+<script src="../js/state.js"></script>
+<script>
+    // TOTO
+    $.env = {};
+</script>
+<script src="../js/mult-selector.js"></script>
+<script>
+	;(function (){
+	    var children = [
+	        {
+	            defaultParent : "福田区",
+	            defaultChild : "梅林",
+	            tree : [
+	                ["全部商圈"],
+	                ["福田区&futian", ["荔枝公园片区","梅林","八卦岭/园岭","华强北","皇岗","沙头","香蜜湖","市中心区","华强南","车公庙","新洲","石厦","景田","岗厦","市民中心","上沙/下沙","竹子林","福田保税区"]],
+	                ["南山区&nanshan", ["南头","华侨城","蛇口","科技园","南油","西丽","南山中心区","前海","白石洲"]],
+	                ["福田区&futian", ["荔枝公园片区","梅林","八卦岭/园岭","华强北","皇岗","沙头","香蜜湖","市中心区","华强南","车公庙","新洲","石厦","景田","岗厦","市民中心","上沙/下沙","竹子林","福田保税区"]],
+	                ["南山区&nanshan", ["南头","华侨城","蛇口","科技园","南油","西丽","南山中心区","前海","白石洲"]],
+	                ["福田区&futian", ["荔枝公园片区","梅林","八卦岭/园岭","华强北","皇岗","沙头","香蜜湖","市中心区","华强南","车公庙","新洲","石厦","景田","岗厦","市民中心","上沙/下沙","竹子林","福田保税区"]],
+	                ["南山区&nanshan", ["南头","华侨城","蛇口","科技园","南油","西丽","南山中心区","前海","白石洲"]],
+	                ["福田区&futian", ["荔枝公园片区","梅林","八卦岭/园岭","华强北","皇岗","沙头","香蜜湖","市中心区","华强南","车公庙","新洲","石厦","景田","岗厦","市民中心","上沙/下沙","竹子林","福田保税区"]],
+	                ["南山区&nanshan", ["南头","华侨城","蛇口","科技园","南油","西丽","南山中心区","前海","白石洲"]],
+	                ["福田区&futian", ["荔枝公园片区","梅林","八卦岭/园岭","华强北","皇岗","沙头","香蜜湖","市中心区","华强南","车公庙","新洲","石厦","景田","岗厦","市民中心","上沙/下沙","竹子林","福田保税区"]],
+	                ["南山区&nanshan", ["南头","华侨城","蛇口","科技园","南油","西丽","南山中心区","前海","白石洲"]],
+	                ["福田区&futian", ["荔枝公园片区","梅林","八卦岭/园岭","华强北","皇岗","沙头","香蜜湖","市中心区","华强南","车公庙","新洲","石厦","景田","岗厦","市民中心","上沙/下沙","竹子林","福田保税区"]],
+	                ["南山区&nanshan", ["南头","华侨城","蛇口","科技园","南油","西丽","南山中心区","前海","白石洲"]]
+	            ]
+	        },
+	        {
+	            defaultParent : "全部分类",
+	            defaultChild : "",
+	            tree : [
+	                ["全部分类"],
+	                ["美食&meishi", ["粤菜","火锅","小吃快餐","西餐","面包甜点","川菜","自助餐","日本菜","韩国料理","湘菜","海鲜","茶餐厅","烧烤","西北菜","东北菜","清真菜"]],
+	                ["娱乐&yule", ["电影","KTV","景点门票","咖啡厅","洗浴","足疗按摩","酒吧","公园","茶馆","游乐游艺","DIY手工坊","桌面游戏"]]
+	            ]
+	        },
+	        {
+	            defaultParent : "默认排序",
+	            defaultChild : "",
+	            tree : ["默认排序&yule", "附近优先&yule", "人气最高&yule", "价格最低&yule", "价格最高&yule"]
+	        }
+	    ];
+
+	    $(".js-navtree").multSelector({
+	        selected : ["福田区", "全部分类", "默认排序"],
+	        option : children,
+	        onSelect : function (dat) {
+	            console.log(dat)
+	        }
+	    });
+	})();
+</script>
+</body>
+</html>

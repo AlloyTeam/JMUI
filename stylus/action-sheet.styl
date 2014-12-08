@@ -1,0 +1,69 @@
+.ui-action-sheet {
+    display: none;
+
+    position: fixed;
+    right: 8px;
+    bottom: 0;
+    left: 8px;
+
+    opacity: 0;
+
+    -webkit-transform: translateY(100%);
+    
+    -webkit-transition-property: opacity -webkit-transform;
+    -webkit-transition-timing-function: ease-out;
+
+    z-index: 10000;
+}
+.ui-action-sheet.js-effect {
+    -webkit-transition-duration: 0.3s;
+}
+.ui-action-sheet.js-show {
+    display: block;
+
+    opacity: 1;
+
+    -webkit-transform: translateY(0);
+}
+
+.ui-action-sheet .btn-cancel {
+    border-radius: 3px;
+}
+.ui-action-sheet li:first-child{
+    border-radius: 3px 3px 0 0;
+}
+.ui-action-sheet li:last-child{
+    border-radius: 0 0 3px 3px;
+}
+.ui-action-sheet li:after{
+    border-top: 1px solid #c9c9cc;
+}
+.ui-action-sheet li:first-child:after{
+    border-top-width: 0;
+}
+
+.ui-action-sheet .btn {
+    padding: 11px 0 12px;
+
+    background: rgb(237, 237, 237);
+
+    font-size: 21px;
+    line-height: 1;
+    text-align: center; 
+}
+.ui-action-sheet .btn.js-active{
+    background: rgba(237, 237, 237, 0.84)
+}
+
+.ui-action-sheet .btn-cancel{
+    margin: 8px 0;
+}
+
+.ui-action-sheet .ui-actionsheet-title {
+    font-size: 18px !important;
+    color: #808080 !important;
+}
+.ui-action-sheet .ui-actionsheet-del {
+    color:#fd472b !important;
+}
+

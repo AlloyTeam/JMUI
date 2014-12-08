@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>ProUI</title>
+	<link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="ui-app">
+	<div class="ui-header">固定的头部</div>
+	<div class="ui-content-container">
+		<div class="ui-content js-active">
+			<section id="buttons">
+				<h2>button</h2>
+				
+				<p class="demo-desc">默认</p>
+				<div class="demo-block">
+					<button class="ui-btn">确定</button>
+					<button class="ui-btn active">确定</button>
+					<button class="ui-btn disabled">取消</button>
+					<button class="ui-btn" disabled>取消</button>
+				</div>
+
+				<p class="demo-desc">蓝色</p>
+				<div class="demo-block">
+					<button class="ui-btn ui-btn-primary">确定</button>
+					<button class="ui-btn ui-btn-primary active">确定</button>
+					<button class="ui-btn disabled">取消</button>
+				</div>
+
+				<p class="demo-desc">红色</p>
+				<div class="demo-block">
+					<button class="ui-btn ui-btn-danger">确定</button>
+					<button class="ui-btn ui-btn-danger active">确定</button>
+					<button class="ui-btn disabled">取消</button>
+				</div>
+
+				<p class="demo-desc">块级按钮</p>
+				<div class="demo-block">
+					<div class="ui-btn-wrap">
+					    <button class="ui-btn-lg">确定</button>
+					</div>
+					<div class="ui-btn-wrap">
+					    <button class="ui-btn-lg active">确定</button>
+					</div>
+					<div class="ui-btn-wrap">    
+					    <button class="ui-btn-lg disabled">取消</button>
+					</div>
+					<div class="ui-btn-wrap">    
+					    <button class="ui-btn-lg" disabled>取消</button>
+					</div>
+
+					<div class="ui-btn-wrap">
+					    <button class="ui-btn-lg ui-btn-primary">确定</button>
+					    </div>
+					<div class="ui-btn-wrap">
+					    <button class="ui-btn-lg ui-btn-primary active">确定</button>
+					    </div>
+					<div class="ui-btn-wrap">
+					    <button class="ui-btn-lg disabled">取消</button>
+					</div>
+
+					<div class="ui-btn-wrap">
+					    <button class="ui-btn-lg ui-btn-danger">确定</button>
+					    </div>
+					<div class="ui-btn-wrap">
+					      <button class="ui-btn-lg ui-btn-danger active">确定</button>
+					      </div>
+					<div class="ui-btn-wrap">
+					      <button class="ui-btn-lg disabled">取消</button>
+					</div>
+				</div>
+
+				<p class="demo-desc">底部操作按钮</p>
+				<div class="demo-block">
+					<div class="ui-btn-group ui-btn-group-bottom">
+					    <button type="button">加为好友</button>
+					    <button type="button">发消息</button>
+					</div>    
+					
+					<div class="ui-btn-group ui-btn-group-bottom">
+					    <button type="button">加为好友</button>
+					</div>
+
+					<div class="ui-btn-group-tiled ui-btn-wrap">
+					    <button class="ui-btn-lg">拒绝</button> <button class="ui-btn-lg ui-btn-primary">同意</button>
+					</div>
+				</div>
+
+			</section>
+		</div>
+	</div>
+	<div class="ui-footer">固定的底部</div>
+
+<script src="../lib/zeptojs/zepto.js"></script>
+<script src="../lib/zeptojs/event.js"></script>
+<script src="../lib/zeptojs/touch.js"></script>
+<script src="../lib/zeptojs/detect.js"></script>
+<script src="../js/core.js"></script>
+<script>
+    // TOTO
+    $.env = {};
+</script>
+</body>
+</html>
