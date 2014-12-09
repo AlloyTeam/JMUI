@@ -1,9 +1,7 @@
+dist/
+.idea/*
 node_modules/
-
-# css 使用自动生成
-css
-
 npm-debug.log
 .sass-cache
-.idea
+
 

@@ -19,7 +19,7 @@
                     if(img){
                         img.onload = function(){
                             $el.addClass('js-loaded');
-                        }
+                        };
 
                         img.src = src;
                     }

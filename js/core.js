@@ -3,13 +3,13 @@
 
 	// Read all "data-*" attributes from a node
 	function attributeData(node) {
-		var store = {}
+		var store = {};
 		$.each(node.attributes || [], function(i, attr){
-		  	if (attr.name.indexOf('data-') == 0)
+		  	if (parseInt(attr.name.indexOf('data-'), 10) === 0)
 		    	store[$.camelCase(attr.name.replace('data-', ''))] =
-		      		$.zepto.deserializeValue(attr.value)
-		})
-		return store
+		      		$.zepto.deserializeValue(attr.value);
+		});
+		return store;
 	}
 
 	// 将组件挂到$.fn上
@@ -166,8 +166,7 @@
          * @desc show组件
          */
     	show: function( opts ){
-			var self = this;
-
+			// var self = this;
 			this.setOption( opts );
 
 			if(!this.$el){
@@ -232,5 +231,5 @@
 				$(document).off('touchmove', $.preventDefault);
 			}*/
 		}
-    }
-})(Zepto)
+    };
+})(Zepto);

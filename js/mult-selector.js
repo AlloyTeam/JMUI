@@ -22,7 +22,7 @@
             tapHide: true,
             selected: [],
             option: [],
-            effect: "from-top",
+            effect: 'from-top',
             maxRoot: 4,
             onShowChild : function () {},
             onChangeChild : function () {},
@@ -118,7 +118,7 @@
 			var selected = opts.selected;
 
 			if ( selected && selected.length ) {
-				this.$roots = this.$el.html($.template(this.tpl.selected, { dat : selected, maxRoot : opts.maxRoot })).find(".ui-multselect-selected");
+				this.$roots = this.$el.html($.template(this.tpl.selected, { dat : selected, maxRoot : opts.maxRoot })).find('.ui-multselect-selected');
 			}
         },
         _initPullDown : function () {
@@ -129,7 +129,7 @@
 				// 检查子节点是否存在
                 // console.log(child)
 				if ( child.tree && child.tree.length ) {
-					$roots.eq(k).addClass("ui-multselect-root-more")
+					$roots.eq(k).addClass('ui-multselect-root-more');
 				}
 			});
         },
@@ -137,49 +137,49 @@
         	var that = this;
 
         	this.$el
-            .on("touchmove", function (e) {
-                e.preventDefault()
+            .on('touchmove', function (e) {
+                e.preventDefault();
             })
-            .on("tap", ".ui-multselect-selected", function () {
+            .on('tap', '.ui-multselect-selected', function () {
         		var $elem = $(this);
 
-        		if ( $elem.hasClass("ui-multselect-root-more") ) {
-        			if ( $elem.hasClass("active") ) {
-                        that.hide()
-        				that.currShowing = null
+        		if ( $elem.hasClass('ui-multselect-root-more') ) {
+        			if ( $elem.hasClass('active') ) {
+                        that.hide();
+        				that.currShowing = null;
         			} else {
         				var index = parseInt($elem.index());
 	        			var children = that.options.option;
 	        			var child;
 
 	        			if ( that.currShowing !== null ) {
-                            that.$roots[that.currShowing].$panel.css("display", "none")
-	        				that.hide()
+                            that.$roots[that.currShowing].$panel.css('display', 'none');
+	        				that.hide();
 	        			}
 
 	        			if ( children && (child = children[index]) ) {
-	        				that.currShowing = index
-	        				that.showSubPanel(this, child)
+	        				that.currShowing = index;
+	        				that.showSubPanel(this, child);
 	        			}
         			}
         		}
         	});
 
             // var that = this;
-            this.$body.on("tap", ".ui-multselect-panel li", function () {
+            this.$body.on('tap', '.ui-multselect-panel li', function () {
                 if ( this.currShowing !== null ) {
                     var $this = $(this);
-                    var $parent = $this.parents(".ui-multselect-child");
+                    var $parent = $this.parents('.ui-multselect-child');
 
                     var child = that.options.option[that.currShowing];
-                    var index = parseInt($this.data("index"));
-                    var panel = $parent.hasClass("left") ? "tmpSecond" : "tmpThird";
+                    var index = parseInt($this.data('index'));
+                    var panel = $parent.hasClass('left') ? 'tmpSecond' : 'tmpThird';
                     var slChildIndex = child[panel];
                     // 触发onSelect标识
                     var isSelect;
 
                     // 存在子节点
-                    if ( panel === "tmpSecond" ) {
+                    if ( panel === 'tmpSecond' ) {
 
                         var curr = child.tree[index][1] || [];
                         // 非选中状态，即可更新面板
@@ -187,7 +187,7 @@
                             that._renderThirdPanel($parent.next(), curr);
                         }
                         // 不存在三级菜单
-                        if ($this.hasClass("no-more")) {
+                        if ($this.hasClass('no-more')) {
                             // 这里要清空三级选中状态
                             // 主要避免上一次选择遗留的数据
                             delete child.tmpThird;
@@ -203,9 +203,9 @@
                     if ( index != slChildIndex ) {
                         // 初始化选中索引有可能为undefined
                         if ( slChildIndex !== undefined ) {
-                            $parent.find("li:nth-child("+ (slChildIndex+1) +")").removeClass("active");
+                            $parent.find('li:nth-child('+ (slChildIndex+1) +')').removeClass('active');
                         }
-                        $parent.find("li:nth-child("+ (index+1) +")").addClass("active");
+                        $parent.find('li:nth-child('+ (index+1) +')').addClass('active');
                         child[panel] = index;
                     }
 
@@ -217,17 +217,17 @@
                 // var $uisearchinput = $(".ui-search-input")[0];
                 var currY, startScrollTop;
 
-                this.$body.on("touchstart", ".ui-multselect-child[data-bouncefix]", function (e) {
+                this.$body.on('touchstart', '.ui-multselect-child[data-bouncefix]', function (e) {
                     e.preventDefault();
                 })
-                .on("touchstart", ".ui-multselect-child[data-scrollable]", function (e) {
+                .on('touchstart', '.ui-multselect-child[data-scrollable]', function (e) {
                     var touch = e.touches[0];
                     var el = e.currentTarget;
 
                     currY = touch.pageY;
                     startScrollTop = el.scrollTop;
                 })
-                .on("touchmove", ".ui-multselect-child[data-scrollable]", function (e) {
+                .on('touchmove', '.ui-multselect-child[data-scrollable]', function (e) {
                     var touch = e.touches[0];
                     var dis = touch.pageY - currY;
 
@@ -256,7 +256,7 @@
             // render tree panel
         	this._renderSubPanel(root, child);
         	// undate root's status
-            $(root).addClass("active");
+            $(root).addClass('active');
             // 是否出遮罩
             this.options.mask && pro.mask.show({
                 tapHide: this.options.tapHide,
@@ -264,18 +264,18 @@
             });
         	var that = this;
         	setTimeout(function () {
-        		$( root.$panel ).removeClass(that.options.effect)
+        		$( root.$panel ).removeClass(that.options.effect);
         	}, 30);
         },
         hide : function () {
             var root = this.$roots[this.currShowing];
             if ( root ) {
 
-                $(root).removeClass("active");
+                $(root).removeClass('active');
                 
                 if ( root.$panel ) {
                     $( root.$panel )
-                        .css("top", 0)
+                        .css('top', 0)
                         .addClass(this.options.effect);
                 }
 
@@ -289,13 +289,13 @@
             var curr = option.length;
 
             // 指定强制更新某一节点
-            if ( typeof index === "number" && $.isArray(root) && root.length ) {
+            if ( typeof index === 'number' && $.isArray(root) && root.length ) {
 
                 var child;
 
                 if ( index < max && (child = option[index]) ) {
                     child.tree = root;
-                    child.refresh = true
+                    child.refresh = true;
                 }
                 // call _initPullDown
                 this._initPullDown();
@@ -307,7 +307,7 @@
                     var tree = Array.prototype.slice.call(arguments, 0, max - curr);
                     
                     for ( var i = 0, len = tree.length; i < len; i++ ) {
-                        option.tree.push( tree[i] )
+                        option.tree.push( tree[i] );
                     }
                     // call _initPullDown
                     this._initPullDown();
@@ -315,19 +315,19 @@
             }
         },
         reset : function (index, opt) {
-            if ( typeof index === "number" && opt ) {
+            if ( typeof index === 'number' && opt ) {
 
-                var child;
+                // var child;
                 var options = this.options;
                 var max = options.selected.length;
 
                 if ( index < max ) {
-                    opt.refresh = true
+                    opt.refresh = true;
                     options.option[index] = opt;
                     var selected = opt.defaultChild || opt.defaultParent;
                     // 更新selected字段
                     if ( selected !== options.selected[index] ) {
-                        this.$roots.eq(index).find(".ui-selected-text").text(options.selected[index] = selected);
+                        this.$roots.eq(index).find('.ui-selected-text').text(options.selected[index] = selected);
                     }
                 }
                 // call _initPullDown
@@ -337,13 +337,14 @@
         _renderSubPanel : function (root, child) {
 
             var force = false;
+            var that = this;
 
             // 选项子集有变动，重新生成选择面板
             if ( child.refresh ) {
                 // release panel node
                 if ( root.$panel ) {
                     // 移除android端兼容事件
-                    if ( $.os.android ) root.$panel.find(".ui-multselect-child").off();
+                    if ( $.os.android ) root.$panel.find('.ui-multselect-child').off();
                     // 移除节点
                     root.$panel.remove();
                     delete root.$panel;
@@ -353,39 +354,37 @@
 
         	if ( !root.$panel ) {
                 var opts = this.options;
-                var that = this;
 
         		child.effect = opts.effect;
-                child.cla = "js-multselect-panel-"+this.currShowing;
+                child.cla = 'js-multselect-panel-'+this.currShowing;
                 // child.top = opts.panelOffsetTop;
         		// 从模版中提取变量
         		// 省去重新遍历
         		child.bridging = function (dat) {
-        			$.extend(child, dat)
-        		}
+        			$.extend(child, dat);
+        		};
         		root.$panel = $($.template(this.tpl.option, child)).appendTo(this.$body);
 
         		// 不存在第三级面板
-        		if ( !child.hasThirdPanel ) root.$panel.addClass("no-third");
+        		if ( !child.hasThirdPanel ) root.$panel.addClass('no-third');
 
         		// this._bindSubEvents(root.$panel);
                 // 初始化强制刷新标识
                 force = true;
                 // 初始化二级菜单滚动条
                 setTimeout( function () {
-                    that._initScroll(root.$panel.find(".ui-multselect-child.left"));
-                }, 0 )
+                    that._initScroll(root.$panel.find('.ui-multselect-child.left'));
+                }, 0 );
         	}
 
             var $panel = root.$panel;
-            var that = this;
 
             var clientRect = that.$el[0].getBoundingClientRect();
 
             $panel.css({
                 // hack for poor equipment
-                "top": clientRect.bottom + ($.env.isPoorDevice ? document.body.scrollTop : 0),
-                "display": "-webkit-box"
+                'top': clientRect.bottom + ($.env.isPoorDevice ? document.body.scrollTop : 0),
+                'display': '-webkit-box'
             });
 
             var slSecond = child.slSecond;
@@ -402,35 +401,35 @@
                 // 这边不再重复对数据类型检查
                 if ( child.hasThirdPanel ) {
                     var hasThird = child.tree[slSecond];
-                    this._renderThirdPanel($panel.find(".ui-multselect-child.right"), hasThird[1] || []);
+                    this._renderThirdPanel($panel.find('.ui-multselect-child.right'), hasThird[1] || []);
                 }
                 
             }
 
             // 初始化下拉菜单选择状态
-            $panel.find(".ui-multselect-child.left li").removeClass("active").eq(slSecond).addClass("active");
+            $panel.find('.ui-multselect-child.left li').removeClass('active').eq(slSecond).addClass('active');
 
             if ( slThird !== undefined )
-                $panel.find(".ui-multselect-child.right li").removeClass("active").eq(slThird).addClass("active");
+                $panel.find('.ui-multselect-child.right li').removeClass('active').eq(slThird).addClass('active');
 
         },
         _renderThirdPanel : function ($parent, children) {
         	$parent.html('<ul>'+$.map(children, function (child, k) {
-        		return '<li class="ui-border-1px ui-multselect-child-li" data-index="'+ k +'"><div class="ui-multselect-child-text ui-no-wrap">'+ child +'</div></li>'
-        	}).join("")+'</ul>');
+        		return '<li class="ui-border-1px ui-multselect-child-li" data-index="'+ k +'"><div class="ui-multselect-child-text ui-no-wrap">'+ child +'</div></li>';
+        	}).join('')+'</ul>');
 
             var that = this;
             setTimeout(function () {
                 that._initScroll($parent);
-            }, 0)
+            }, 0);
         },
         _initScroll : function ($node) {
             var node = $node[0];
             node.scrollTop = 0;
             $node
-                .attr( "data-bouncefix", null )
-                .attr( "data-scrollable", null )
-                .attr( node.clientHeight >= node.scrollHeight ? "data-bouncefix" : "data-scrollable", "")
+                .attr( 'data-bouncefix', null )
+                .attr( 'data-scrollable', null )
+                .attr( node.clientHeight >= node.scrollHeight ? 'data-bouncefix' : 'data-scrollable', '');
         },
         _onSelect : function () {
 
@@ -449,14 +448,14 @@
                 var parent = tree[tmpSecond];
 
                 child.defaultParent = $.isArray(parent) ? parent[0] : parent;
-                child.defaultChild  = tmpThird !== undefined ? parent[1][tmpThird] : "";
+                child.defaultChild  = tmpThird !== undefined ? parent[1][tmpThird] : '';
 
                 // call onSelect function
                 this.options.onSelect(this.options.option);
                 // console.log(this.options.option)
 
                 // refresh root's text
-                this.$roots.eq(this.currShowing).find(".ui-selected-text").text(child.defaultChild || child.defaultParent);
+                this.$roots.eq(this.currShowing).find('.ui-selected-text').text(child.defaultChild || child.defaultParent);
             }
 
         },
@@ -477,7 +476,7 @@
                 hadChange = true;
             }
 
-            return hadChange
+            return hadChange;
         }
 	});
 

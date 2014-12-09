@@ -14,10 +14,10 @@
 	canvas.width = +width;
 	canvas.height = +height;
 
-	context.fillStyle = "#eee";
+	context.fillStyle = '#eee';
 	context.fillRect(0,0,width,height);
 
-	context.fillStyle = "#000";
+	context.fillStyle = '#000';
 	context.fillText(text, textX, textY);
 
 	$(imgs[i]).attr('src', canvas.toDataURL());  

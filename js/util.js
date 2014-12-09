@@ -1,4 +1,5 @@
 (function($){
+    var domainPrefix = window.location.domain;
     $.extend($, {
         emptyFunction: function(){},
         preventDefault: function(e){
@@ -27,12 +28,11 @@
                             .replace(/\t=(.*?)%>/g, "',$1,'")
                             .split("\t").join("');")
                             .split("%>").join("p.push('")
-                            .split("\r").join("\\'")
-                        + "');}return p.join('');");
+                            .split("\r").join("\\'") + "');}return p.join('');");
 
                 // Provide some basic currying to the user
                 return data ? fn( data ) : fn;
-            }
+            };
         })(),
         insertStyleSheet: function() {
             var $el = $('<style type="text/css"></style>').appendTo('head');
@@ -62,10 +62,13 @@
                 }
             };
         },
-        setCookie: function(name, value, domain, path, hour) {
+        setCookie: function(name, value, domain, path, hour) {            
+            var today,
+                expire;
+
             if (hour) {
-                var today = new Date();
-                var expire = new Date();
+                today = new Date();
+                expire = new Date();
                 expire.setTime(today.getTime() + 3600000 * hour);
             }
             window.document.cookie = name + "=" + value + "; " + (hour ? ("expires=" + expire.toGMTString() + "; ") : "") + (path ? ("path=" + path + "; ") : "path=/; ") + (domain ? ("domain=" + domain + ";") : ("domain=" + domainPrefix + ";"));

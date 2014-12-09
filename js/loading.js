@@ -19,19 +19,19 @@
         },
         tpl: '<canvas></canvas>',
         _addAnimation: function(lines){
-            var name = "js-loading-" + lines;
+            var name = 'js-loading-' + lines;
 
             if (!cache[name] && lines > 0) {
 
-                var rule = "",
+                var rule = '',
                     percentage;
 
-                rule += "@" + cssPrefix + "keyframes " + name + "{";
+                rule += '@' + cssPrefix + 'keyframes ' + name + '{';
                 for (var i = 0; i <= lines; i++) {
                     percentage = i/lines;
-                    rule += percentage*100 + "%{" + cssPrefix + "transform:rotate(" + percentage*360 + "deg)}";
+                    rule += percentage*100 + '%{' + cssPrefix + 'transform:rotate(' + percentage*360 + 'deg)}';
                 }
-                rule += "}";
+                rule += '}';
 
                 sheet.insertRule(rule, sheet.cssRules.length);
                 
@@ -48,14 +48,14 @@
             var options = this.options;
 
             var size = options.size * ratio,
-                halfSize = size/2;
-                inner = halfSize * (1/3) ;
-                outer = halfSize * (2/3) ;
+                halfSize = size/2,
+                inner = halfSize * (1/3) ,
+                outer = halfSize * (2/3) ,
                 lineWidth = options.lineWidth * ratio,
                 lines = options.lines;
 
             this.$el.attr({ width: size, height: size });
-            var ctx = this.$el[0].getContext("2d");
+            var ctx = this.$el[0].getContext('2d');
 
             ctx.lineWidth = lineWidth;
             ctx.lineCap = 'round';
@@ -67,7 +67,7 @@
             for (var i = 0, l = lines; i < l; i++) {
                 ctx.rotate(Math.PI * 2 / lines);
 
-                ctx.strokeStyle = "rgba(" + options.color + "," + ( i < (1/4 * l) ? 1/4 : i/l )  + ")";
+                ctx.strokeStyle = 'rgba(' + options.color + ',' + ( i < (1/4 * l) ? 1/4 : i/l )  + ')';
 
                 ctx.beginPath();
 

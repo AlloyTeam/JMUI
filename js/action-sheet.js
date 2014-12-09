@@ -65,7 +65,7 @@
                 var command = $btn.data('cmd');
 
                 $btn.active(function(){
-                    var fu = null;
+                    var fn = null;
                     var index = -1;
                     if(command === 'as-cancel'){
                         index = self.$el.find('.content').children().length;

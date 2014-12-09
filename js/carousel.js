@@ -3,21 +3,22 @@
  * 20140625
  * summary : a slider depend on zetpo, which work for mobile
  */
-define(function() { 'use stick';
+define(function() { 
+    // 'use strict';
 
     // if exist
     if ( $([]).carousel ) return;
 
-    var slice = Array.prototype.slice;
+    // var slice = Array.prototype.slice;
 
     function slider ( element, options ) {
 
         var $wrap = this.$wrap = $(element);
 
         $.extend(this, {
-            $inner : $wrap.find(".ui-carousel-inner"),
+            $inner : $wrap.find('.ui-carousel-inner'),
             // son item 内部子节点
-            $item : $wrap.find(".ui-carousel-item"),
+            $item : $wrap.find('.ui-carousel-item'),
             // 容器宽度
             // TODO 如果有需要可以做成自适应
             width : $wrap.width(),
@@ -46,7 +47,7 @@ define(function() { 'use stick';
         // initialize event
         _prepareForEvt(this);
         // 
-        _autoLoop.start.call(this)
+        _autoLoop.start.call(this);
     }
 
     slider.prototype.to = function ( index, noanim ) {
@@ -56,39 +57,39 @@ define(function() { 'use stick';
         setTimeout(function() {
 
             that.$inner.css({
-                "-webkitTransitionDuration" : (!noanim ? that.webkitTransitionDuration : 0)+"ms",
-                "-webkitTransform" : 'translate3d('+-(that.width*(that.current=index))+'px, 0, 0)'
+                '-webkitTransitionDuration' : (!noanim ? that.webkitTransitionDuration : 0)+ 'ms',
+                '-webkitTransform' : 'translate3d('+-(that.width*(that.current=index))+'px, 0, 0)'
             });
             that.currentpos = -index * that.width;
             // 当无动画切换时，不会触发`webkitTransitionEnd`事件
             // 需在这里更新一下dots ui
-            if ( noanim ) _updateDotsUI.call(that)
+            if ( noanim ) _updateDotsUI.call(that);
 
         }, 0);
-    }
+    };
     slider.prototype.clear = function () {
 
-        this.$inner.off()
+        this.$inner.off();
 
         if ( this.enableDots ) {
             delete this.$dots;
-            this.$wrap.find(".ui-carousel-dots").remove();
+            this.$wrap.find('.ui-carousel-dots').remove();
         }
 
         if ( this.enableAutoLoop ) {
-            _autoLoop.stop.call(this)
+            _autoLoop.stop.call(this);
         }
 
         if ( this.enableCircleLoop ) {
             var len = this.$item.length;
-            this.$item.eq(len-1).remove()
-            this.$item.eq(len-2).remove()
+            this.$item.eq(len-1).remove();
+            this.$item.eq(len-2).remove();
         }
 
         this.$inner = null;
         this.$item = null;
         this.$wrap = null;
-    }
+    };
 
     // 启动/关闭 自动轮换，便于其他地方调用
     var _autoLoop = function () {
@@ -100,26 +101,26 @@ define(function() { 'use stick';
                 var that = this;
                 if (!timer && this.enableCircleLoop && this.enableAutoLoop) {
                     timer = setInterval(function() {
-                        that.to(++that.current)
-                    }, this.autoLoopDuration)
+                        that.to(++that.current);
+                    }, this.autoLoopDuration);
                 }
             },
             stop : function () {
                 if ( timer ) {
                     clearInterval(timer);
-                    timer = null
+                    timer = null;
                 }
             }
-        }
+        };
     }();
 
     // 更新dots控点UI
     var _updateDotsUI = function () {
 
-        var CALSS = "ui-carousel-dots-curr";
+        var CALSS = 'ui-carousel-dots-curr';
         return function () {
             this.enableDots && this.$dots.removeClass(CALSS).eq(this.current).addClass(CALSS);
-        }
+        };
 
     }();
 
@@ -129,21 +130,21 @@ define(function() { 'use stick';
         var startpos,
             starttime,
             touchstartpos,
-            speed = .4,
+            speed = 0.4,
             framesLen = that.$item.length,
             max = that.width*(framesLen-1);
 
         that.$inner
-            .on("touchstart", function (evt) {
+            .on('touchstart', function (evt) {
 
                 if ( that.current <= -1 || that.current >= framesLen ) return;
                 var e = evt.touches[0];
                 touchstartpos = startpos = e.pageX;
-                starttime = +new Date;
+                starttime = +new Date();
 
             }, !!1)
 
-            .on("touchmove", function (evt) {
+            .on('touchmove', function (evt) {
 
                 _autoLoop.stop.call(that);
                 if ( that.current <= -1 || that.current >= framesLen ) return;
@@ -159,12 +160,12 @@ define(function() { 'use stick';
                 startpos = e.pageX;
 
                 that.$inner.css({
-                    "-webkitTransform" : 'translate3d('+that.currentpos+'px, 0px, 0px)'
+                    '-webkitTransform' : 'translate3d('+that.currentpos+'px, 0px, 0px)'
                 });
 
             }, !!1)
 
-            .on("touchend", function (evt) {
+            .on('touchend', function (evt) {
 
                 if ( that.current <= -1 || that.current >= framesLen ) return;
                 // 时间间隔
@@ -183,7 +184,7 @@ define(function() { 'use stick';
                 // 是否滚动过半
                  var isHalf = absdistance >= Math.floor(that.width/2);
                 // 手指滑动速度
-                var ss = absdistance / (+new Date-starttime);
+                var ss = absdistance / (+new Date()-starttime);
 
                // log(that.width)
                // log(ss)
@@ -191,22 +192,22 @@ define(function() { 'use stick';
                     var index = that.current - ((speed < ss || isHalf) && isInRange ? diration : 0);
                     // console.log(index)
                     // that.currentpos = -index * that.width;
-                    return index
+                    return index;
                 }());
 
             }, !!1)
-            .on("webkitTransitionEnd", function (evt) {
+            .on('webkitTransitionEnd', function () {
 
                 _autoLoop.start.call(that);
 
-                that.$inner.css({"-webkitTransitionDuration" : '0'});
+                that.$inner.css({'-webkitTransitionDuration' : '0'});
 
                 // 到了第一张的临时节点
                 if ( that.current >= framesLen ) {
                     // setClass(delClass(that.$dots, "curr")[that.current = 0], "curr");
                     // that.currentpos = that.current = 0
                     that.$inner.css({
-                        "-webkitTransform" : 'translate3d('+(that.currentpos = that.current = 0)+'px, 0px, 0px)'
+                        '-webkitTransform' : 'translate3d('+(that.currentpos = that.current = 0)+'px, 0px, 0px)'
                     });
                 }
                 // 到了最后一张的临时节点
@@ -215,7 +216,7 @@ define(function() { 'use stick';
                     // that.currentpos = (that.current = framesLen-1) * that.width
                     // setClass(delClass(that.$dots, "curr")[that.current = framesLen-1], "curr");
                     that.$inner.css({
-                        "-webkitTransform" : 'translate3d('+(that.currentpos = -(that.current = framesLen-1) * that.width)+'px, 0px, 0px)'
+                        '-webkitTransform' : 'translate3d('+(that.currentpos = -(that.current = framesLen-1) * that.width)+'px, 0px, 0px)'
                     });
                 }
 
@@ -234,12 +235,12 @@ define(function() { 'use stick';
         that.$inner.css({
             width : 100 * realLen + '%',
             // display : "-webkit-box"
-            display : "block"
+            display : 'block'
         });
 
         that.$item.css({
             // width : (100 / realLen) + "%"
-            width : that.width + "px"
+            width : that.width + 'px'
         });
 
         // console.log(that.$item)
@@ -249,9 +250,9 @@ define(function() { 'use stick';
             var lastNode = that.$item[framesLen-1].cloneNode(1);
             // IOS5.0+, android3.0+
             if ( lastNode.classList ) {
-                lastNode.classList.add("ui-carousel-item-last");
+                lastNode.classList.add('ui-carousel-item-last');
             } else {
-                lastNode.className = "ui-carousel-item ui-carousel-item-last"
+                lastNode.className = 'ui-carousel-item ui-carousel-item-last';
             }
 
             // 插入复制的节点
@@ -264,14 +265,14 @@ define(function() { 'use stick';
             var dotstmpl = '<p class="ui-carousel-dots">';
 
             for ( var i = 0; i < framesLen; i++ ) {
-                dotstmpl += '<a class="ui-carousel-dots-i">'+ (i+1) +'</a>'
+                dotstmpl += '<a class="ui-carousel-dots-i">'+ (i+1) +'</a>';
             }
             dotstmpl += '</p>';
 
-            that.$wrap.append(dotstmpl)
+            that.$wrap.append(dotstmpl);
             // collection dots node
-            that.$dots = that.$wrap.find(".ui-carousel-dots-i")
-            that.$dots.eq(that.current).addClass("ui-carousel-dots-curr");
+            that.$dots = that.$wrap.find('.ui-carousel-dots-i');
+            that.$dots.eq(that.current).addClass('ui-carousel-dots-curr');
         }
     }
 
@@ -282,7 +283,7 @@ define(function() { 'use stick';
             var $this   = $(this);
             var data    = $this.data('carousel');
 
-            if ( option === "clear" ) {
+            if ( option === 'clear' ) {
                 if ( data ) {
                     $this.data('carousel', null);
                     data.clear();
@@ -290,17 +291,17 @@ define(function() { 'use stick';
                 }
             } else {
 
-                var options = $.extend({}, $this.data(), typeof option == "object" ? option : {});
+                var options = $.extend({}, $this.data(), typeof option == 'object' ? option : {});
                 // console.log($this)
                 // var action  = typeof option == 'string' ? option : options.slide;
 
                 if ( !data ) {
-                    $this.data('carousel', (data = new slider(this, options)))
+                    $this.data('carousel', (data = new slider(this, options)));
                 }
 
-                if ( typeof option === "number" ) data.to(option, !!1);
+                if ( typeof option === 'number' ) data.to(option, !!1);
             }
-        })
-    }
+        });
+    };
 
 });

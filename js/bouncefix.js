@@ -29,7 +29,7 @@
                     el.scrollTop = scrollHeight - clientHeight - 1;
                 }
             }
-        })
+        });
     }
 
     // only for ios6+
