@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>ProUI</title>
+	<link rel="stylesheet" href="../css/main.css">
+</head>
+<body class="ui-app">
+	<div class="ui-header">固定的头部</div>
+	<div class="ui-content-container">
+		<div class="ui-content js-active">
+			<section id="progress">
+				<h2>progress</h2>
+				
+				<p class="demo-desc">传输文件或下载壁纸的进度条</p>
+				<div class="demo-block">
+					<div id="progress-demo-1">
+						<div class="ui-progress-file ui-clearfix">
+							<div class="progress-info">
+								<span class="progress-text">下载中...</span>
+								(<span class="progress-size-curr">0</span>M/<span class="progress-size-total">0</span>M)
+
+								<p class="progress-bar-wrap">
+									<span class="progress-bar"></span>
+								</p>
+							</div>
+							<div class="progress-action">
+								<button class="action-cancle ui-btn ui-btn-danger">取消</button>
+							</div>
+						</div>
+						<button id="progress-demo-1-test" class="ui-btn ui-btn-success">test</button>
+					</div>
+				</div>
+				<p class="demo-desc">水满型图片上传进度条</p>
+				<div class="demo-block">
+					<div id="progress-demo-2">
+						<div class="ui-progress-img ui-center">
+							<span class="progress-number">20</span>
+							<div class="progress-mask"></div>
+						</div>
+
+						<button id="progress-demo-2-test" class="ui-btn ui-btn-success">test</button>
+					</div>
+				</div>
+
+				<p class="demo-desc">圆环形进度条</p>
+				<div class="demo-block">
+					<div id="progress-demo-3">
+						<div class="ui-progress-circle ui-center">
+							<div class="ui-progress-pie">
+								<div class="ui-progress-pie-left">
+									<div class="ui-progress-left"></div>
+								</div>
+								<div class="ui-progress-pie-right">
+									<div class="ui-progress-right"></div>
+								</div>
+								<div class="ui-progress-mask ui-center">
+									<span class="progress-number">30</span>
+								</div>
+							</div>	
+						</div>
+
+						<button id="progress-demo-3-test" class="ui-btn ui-btn-success">test</button>
+					</div>
+				</div>
+
+				
+
+			</section>
+		</div>
+	</div>
+	<div class="ui-footer">固定的底部</div>
+
+<script src="../lib/zeptojs/zepto.js"></script>
+<script src="../lib/zeptojs/event.js"></script>
+<script src="../lib/zeptojs/touch.js"></script>
+<script src="../lib/zeptojs/detect.js"></script>
+<script src="../js/core.js"></script>
+<script src="../js/progress.js"></script>
+<script>
+    // TOTO
+    $.env = {};
+</script>
+
+<script>
+	;(function (){
+		// 图片或壁纸上传进度条
+	    var progress1 = $('#progress-demo-1').progress({
+	        $el: '.ui-progress-file', // 进度条容器
+	        percentage: 20, // 当前进度
+	        total: 1.03     // 文件大小
+	    });
+	    // 模拟收到后台新进度, 更新当前进度条的百分比
+	    $('#progress-demo-1-test').on('click', function (){
+	    	var newPercentage = progress1.options.percentage + 10;
+	    	if (newPercentage > 100) {
+	    		newPercentage = 10;
+	    	}
+	    	progress1.changeProgress(newPercentage)
+	    });
+
+	    var progress2 = $('#progress-demo-2').progress({
+	        $el: '.ui-progress-img',
+	        percentage: 0,
+	        total: 9.03
+	    });
+	    $('#progress-demo-2-test').on('click', function (){
+	    	var newPercentage = progress2.options.percentage + 10;
+	    	if (newPercentage > 100) {
+	    		newPercentage = 10;
+	    	}
+	    	progress2.changeProgress(newPercentage)
+	    });
+
+	    var progress3 = $('#progress-demo-3').progress({
+	        $el: '.ui-progress-circle',
+	        percentage: 30,
+	        total: 78
+	    });
+	    $('#progress-demo-3-test').on('click', function (){
+	    	var newPercentage = progress3.options.percentage + 10;
+	    	if (newPercentage > 100) {
+	    		newPercentage = 10;
+	    	}
+	    	progress3.changeProgress(newPercentage)
+	    });
+	})();
+</script>
+</body>
+</html>

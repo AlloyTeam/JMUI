@@ -27,7 +27,7 @@
     "grunt-contrib-stylus": "^0.20.0",
     "grunt-contrib-uglify": "^0.6.0",
     "grunt-contrib-watch": "^0.6.1",
-    "grunt-jsdoc": "^0.5.7",
+    "grunt-jsdoc": "^0.6.1",
     "grunt-livereload": "^0.1.3"
   }
 }

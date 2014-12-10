@@ -1,0 +1,149 @@
+$progress-bar-color-outer = #DEDAD9;
+$progress-bar-color-inner = #66D521;
+$progress-bar-height = 4px;
+$progress-bar-radius = 2px;
+
+// 第一种进度条: 文件类型
+.ui-progress-file {
+	padding: 20px 30px;
+	border: 1px solid #eee;
+	
+	background: rgba(255, 255, 255, 0.8);
+}
+.ui-progress-file .progress-info {
+	width: 80%;
+	float: left;
+	font-size: 24px;
+}
+
+.ui-progress-file .progress-bar-wrap {
+	width: 100%;
+	height: $progress-bar-height;
+	
+	margin: 12px 0;
+	
+	background: $progress-bar-color-outer;
+	
+	.progress-bar {
+		display: block;
+		height: 100%;
+		width: 50%;
+		
+		background: $progress-bar-color-inner;
+		border-radius: $progress-bar-radius;
+	}
+}
+
+.ui-progress-file .progress-action {
+	width: 20%;
+	height: 60px;
+	float: right;
+	
+	@extend .ui-center;
+}
+
+// 第二种进度条: 水满型类型
+.ui-progress-img {
+	position: relative;
+
+	width: 150px;
+	height: 200px;
+	
+	background: $progress-bar-color-outer url('http://placekitten.com/150/200') center center no-repeat;
+	background-size: cover;
+}
+
+.ui-progress-img .progress-mask {
+	// display: none;
+    
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+	
+	width: 100%;
+	height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.ui-progress-img .progress-number {
+	position: relative;
+	z-index: 2;
+	
+	font-size: 30px;
+	color: #fff;
+}
+
+.ui-progress-img .progress-number:after {
+	content: '%';
+}
+
+
+// 第三种进度条: 圆环形
+$circle-progress-size = 200px;
+$circle-progress-mask-size = 150px;
+.ui-progress-circle {
+	position: relative;
+
+	width: $circle-progress-size;
+	height: $circle-progress-size;
+	
+	background: #7F7F7F;
+	background-size: cover;
+}
+.ui-progress-circle .ui-progress-pie {
+	width: $circle-progress-size;
+	height: $circle-progress-size;
+	position: absolute;
+	border-radius: 50%;
+	background: #fff;
+}
+.ui-progress-circle .ui-progress-pie-left, 
+.ui-progress-circle .ui-progress-pie-right {
+	width: $circle-progress-size; 
+	height: $circle-progress-size;
+	position: absolute;
+	top: 0;left: 0;
+}
+.ui-progress-circle .ui-progress-left, 
+.ui-progress-circle .ui-progress-right {
+	width: $circle-progress-size; 
+	height: $circle-progress-size;
+	background: #262626;
+	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.ui-progress-circle .ui-progress-pie-right, 
+.ui-progress-circle .ui-progress-right {
+	clip: rect(0,auto,auto,100px);
+}
+.ui-progress-circle .ui-progress-pie-left, 
+.ui-progress-circle .ui-progress-left {
+	clip: rect(0,100px,auto,0);
+}
+.ui-progress-circle .ui-progress-mask {
+	position: absolute;
+	left: 25px;
+	top: 25px;
+	
+	width: $circle-progress-mask-size;
+	height: $circle-progress-mask-size;
+	
+	border-radius: 50%;
+	background: #4C4C4C;
+}
+
+.ui-progress-circle .progress-number {
+	position: relative;
+	z-index: 2;
+	
+	font-size: 20px;
+	color: #fff;
+}
+
+.ui-progress-circle .progress-number:after {
+	content: '%';
+}
