@@ -5,7 +5,6 @@
             color: 'green',   
             content: ''
         },
-        tpl: '<div></div>',
 
         _init: function (el, opts){
             this.$super('_init', el, opts);

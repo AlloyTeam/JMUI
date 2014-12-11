@@ -712,6 +712,60 @@
             </div>
         </section>
 
+        <section id="progress">
+            <h2>progress</h2>
+            
+            <p class="demo-desc">传输文件或下载壁纸的进度条</p>
+            <div class="demo-block">
+&lt;div id="progress-demo-1"&gt;
+    &lt;div class="ui-progress-file ui-clearfix"&gt;
+        &lt;div class="progress-info"&gt;
+            &lt;span class="progress-text"&gt;下载中...&lt;/span&gt;
+            (&lt;span class="progress-size-curr"&gt;0&lt;/span&gt;M/&lt;span class="progress-size-total"&gt;0&lt;/span&gt;M)
+
+            &lt;p class="progress-bar-wrap"&gt;
+                &lt;span class="progress-bar"&gt;&lt;/span&gt;
+            &lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="progress-action"&gt;
+            &lt;button class="action-cancle ui-btn ui-btn-danger"&gt;取消&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    <!-- <button id="progress-demo-1-test" class="ui-btn ui-btn-success">test</button> -->
+&lt;/div&gt;
+            </div>
+            <p class="demo-desc">水满型图片上传进度条</p>
+            <div class="demo-block">
+&lt;div id="progress-demo-2"&gt;
+    &lt;div class="ui-progress-img ui-center"&gt;
+        &lt;span class="progress-number"&gt;20&lt;/span&gt;
+        &lt;div class="progress-mask"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    <!-- &lt;button id="progress-demo-2-test" class="ui-btn ui-btn-success"&gt;test&lt;/button&gt; -->
+&lt;/div&gt;
+            </div>
+
+            <p class="demo-desc">圆环形进度条</p>
+            <div class="demo-block">
+&lt;div id="progress-demo-3"&gt;
+    &lt;div class="ui-progress-circle ui-center"&gt;
+        &lt;div class="ui-progress-pie"&gt;
+            &lt;div class="ui-progress-pie-left"&gt;
+                &lt;div class="ui-progress-left"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="ui-progress-pie-right"&gt;
+                &lt;div class="ui-progress-right"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="ui-progress-mask ui-center"&gt;
+                &lt;span class="progress-number"&gt;30&lt;/span&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;  
+    &lt;/div&gt;
+    <!-- &lt;button id="progress-demo-3-test" class="ui-btn ui-btn-success"&gt;test&lt;/button&gt; -->
+&lt;/div&gt;
+            </div>
+        </section>
+
         <section id="debug">
             <h2>开发辅助类组件</h2>
 
@@ -743,6 +797,7 @@
                     'tooltips',
                     'toast',
                     'loading',
+                    'progress',
                 'debug'];
     var lis = $.map(hashes, function (hash, index) {
         return '<li class="ui-border-t ui-list-item-link">'+ hash +'</li>';
