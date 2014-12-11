@@ -12,7 +12,6 @@
             this._render();
         },
         _render: function(){
-            console.log('render')
             var options = this.options;  
             this._setProgress(options);          
         },
@@ -37,9 +36,8 @@
         },
 
         _bindEvents: function(){
-            console.log('bindEvents')
-            var self = this;
             this.$el.on('tap', '.action-cancle', function(e){
+                // TODO
                 console.log(1)
             });
         },

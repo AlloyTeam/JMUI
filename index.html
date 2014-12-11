@@ -766,6 +766,23 @@
             </div>
         </section>
 
+
+        <section id="range">
+            <h2 >range</h2>
+            <p class="demo-desc">范围控制条</p>
+            <div class="demo-block">
+&lt;div id="range-demo"&gt;
+    &lt;div class="ui-form-item ui-form-item-range ui-border"&gt;
+        &lt;span&gt;音量控制&lt;/span&gt;
+        &lt;label for="#" class="ui-range"&gt;
+            &lt;input type="range" min="1" max="100" step="1" value="50"/&gt;
+            &lt;span class="ui-range-val"&gt;50&lt;/span&gt;
+        &lt;/label&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+            </div>
+        </section>
+
         <section id="debug">
             <h2>开发辅助类组件</h2>
 
@@ -798,6 +815,7 @@
                     'toast',
                     'loading',
                     'progress',
+                    'range',
                 'debug'];
     var lis = $.map(hashes, function (hash, index) {
         return '<li class="ui-border-t ui-list-item-link">'+ hash +'</li>';
