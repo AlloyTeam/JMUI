@@ -6,6 +6,8 @@
 
 - index.html
     + 示例入口文件
+- demo/
+    + 示例 
 - stylus/
     + 存放 .styl 源码
 - css/
@@ -14,8 +16,7 @@
     + 存放 .js 源码
 - lib/
     + 存放第三方依赖
-- demo/
-    + 示例
+
 
 ## 代码规范
 
@@ -23,16 +24,11 @@
 
 ## 构建方式
 
-- 下载 repo 到本地
--  执行 ` $ cd xxxx ` 切换到 repo 根目录
--  执行 ` $ grunt `
+    $ git clone https://github.com/AlloyTeam/JMUI.git
 
+    $ cd JMUI
 
+    $ npm install 
 
-## 开发进度
-    
-- 2014.11.29 整理组件
-- 2014.12.04 添加占位图组件: ./js/debug/holder.js
-- 2014.12.04 添加提示条组件: ./scss/tooltips.scss
-- 2014.12.08 使用 Stylus 替代 Sass, 重构部分 .scss 为 .styl  
+    $ grunt 
 
