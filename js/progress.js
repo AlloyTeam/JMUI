@@ -1,9 +1,9 @@
 (function($, pro) {
     pro.createWidget('Progress', {
         options: {
-            type: 'normal',   
-            color: 'green',   
-            content: ''
+            percentage: 0, // 0% 当前进度   
+            total: 100, // 100MB 总大小  
+            content: '下载中' // 提示文字
         },
 
         _init: function (el, opts){
@@ -18,6 +18,7 @@
 
         _setProgress: function (options){
             var deg = options.percentage / 100 * 360;
+            this.$el.find('.progress-text').text(options.content);
             this.$el.find('.progress-size-total').text(options.total);
             this.$el.find('.progress-size-curr').text((options.total * options.percentage / 100).toFixed(2));
             this.$el.find('.progress-bar').width(options.percentage + '%');

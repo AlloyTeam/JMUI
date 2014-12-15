@@ -1,5 +1,5 @@
 /*
-** debug.css 做 demo 用, 生产欢迎不该引入
+** debug.css 做 demo 用, 生产环境不该引入
 */
 ::-webkit-scrollbar {
 	width: 0;
@@ -8,9 +8,6 @@
 h2 {
 	text-align: center;
 	font-size: 40px;
-}
-h2:after {
-	content: '.css';
 }
 
 .demo-desc {
@@ -72,4 +69,11 @@ h2:after {
 	position: absolute;
 	top: 10px;
 	left: 10px;
+}
+
+#debug .demo-block {
+	font-size: 0;
+}
+#debug .demo-block  img{
+	margin-top: 4px;
 }

@@ -1,15 +1,10 @@
 /**
  * by jdo
  * 20140625
- * summary : a slider depend on zetpo, which work for mobile
+ * summary: a slider depend on zetpo, which work for mobile
+ * update: by felixqslai on 20141215
  */
-define(function() { 
-    // 'use strict';
 
-    // if exist
-    if ( $([]).carousel ) return;
-
-    // var slice = Array.prototype.slice;
 
     function slider ( element, options ) {
 
@@ -121,7 +116,6 @@ define(function() {
         return function () {
             this.enableDots && this.$dots.removeClass(CALSS).eq(this.current).addClass(CALSS);
         };
-
     }();
 
     // 初始化事件逻辑
@@ -223,7 +217,6 @@ define(function() {
                 _updateDotsUI.call(that);
 
             }, !!1);
-
     }
 
     // 初始化UI（样式/生成节点）
@@ -278,30 +271,23 @@ define(function() {
 
     $.Carousel = slider;
 
-    $.fn.carousel = function (option) {
-        return this.each(function () {
-            var $this   = $(this);
-            var data    = $this.data('carousel');
+    // $.fn.carousel = function (option) {
+    //     return this.each(function () {
+    //         var $this   = $(this);
+    //         var data    = $this.data('carousel');
 
-            if ( option === 'clear' ) {
-                if ( data ) {
-                    $this.data('carousel', null);
-                    data.clear();
-                    data = null;
-                }
-            } else {
-
-                var options = $.extend({}, $this.data(), typeof option == 'object' ? option : {});
-                // console.log($this)
-                // var action  = typeof option == 'string' ? option : options.slide;
-
-                if ( !data ) {
-                    $this.data('carousel', (data = new slider(this, options)));
-                }
-
-                if ( typeof option === 'number' ) data.to(option, !!1);
-            }
-        });
-    };
-
-});
+    //         if ( option === 'clear' ) {
+    //             if ( data ) {
+    //                 $this.data('carousel', null);
+    //                 data.clear();
+    //                 data = null;
+    //             }
+    //         } else {
+    //             var options = $.extend({}, $this.data(), typeof option == 'object' ? option : {});
+    //             if ( !data ) {
+    //                 $this.data('carousel', (data = new slider(this, options)));
+    //             }
+    //             if ( typeof option === 'number' ) data.to(option, !!1);
+    //         }
+    //     });
+    // };
