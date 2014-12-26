@@ -1,3 +1,5 @@
+var path = require('path');
+
 module.exports = function(grunt){
 	grunt.initConfig({
 		// pkg: grunt.file.readJSON('package.json'),
@@ -40,6 +42,13 @@ module.exports = function(grunt){
 		    }
 		},
 
+		concat: {
+			dist: {
+				src: ['dist/intro.js', 'src/project.js', 'src/outro.js'],
+				dest: 'dist/built.js',
+			},
+		},
+
 		copy: {
 		  dist: {
 		  	files: [
@@ -50,7 +59,7 @@ module.exports = function(grunt){
 			  	{src: 'js/**', dest: 'dist/'},
 			  	{src: 'lib/**', dest: 'dist/'}
 			]
-		  },
+		  }
 		},
 
         watch: {
@@ -83,6 +92,7 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-stylus');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-concat');
 
 	grunt.loadNpmTasks('grunt-jsdoc');
 
@@ -90,5 +100,4 @@ module.exports = function(grunt){
 
 	grunt.registerTask('build', ['clean', 'jshint', 'stylus:compile', 'copy:dist', 'uglify:dist']);
 	grunt.registerTask('default', ['clean', 'stylus:compile', 'copy:dist', 'uglify:dist', 'watch']);
-
 };

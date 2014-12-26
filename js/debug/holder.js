@@ -5,7 +5,7 @@
 
   for (var i = 0, len = imgs.length; i < len; i++) {
   	var size = $(imgs[i]).data('holder'),
-        text = $(imgs[i]).data('holder-text') || $(imgs[i]).data('holder')
+        text = $(imgs[i]).data('holder-text') || $(imgs[i]).data('holder');
   		textWidth = context.measureText(text).width,
   		width = size.split('x')[0],
   		height = size.split('x')[1],

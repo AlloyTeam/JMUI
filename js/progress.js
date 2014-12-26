@@ -33,13 +33,13 @@
                 // 大于 180 旋转左半圆
                  this.$el.find('.ui-progress-right').css('transform', "rotate(180deg)");
                  this.$el.find('.ui-progress-left').css('transform', "rotate(" + (deg - 180) + "deg)");
-            };
+            }
         },
 
         _bindEvents: function(){
             this.$el.on('tap', '.action-cancle', function(e){
                 // TODO
-                console.log(1)
+                console.log('cancle');
             });
         },
 
