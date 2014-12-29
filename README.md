@@ -37,6 +37,8 @@
 
     $ grunt build
 
+`grunt build` 后将生成 JMUI/dist/ 目录.
+
 ## 备忘
 
 为了方便自动生成文档, 约定如下:

@@ -4,7 +4,7 @@ module.exports = function(grunt){
 	grunt.initConfig({
 		// pkg: grunt.file.readJSON('package.json'),
 
-		clean: ['dist/'],
+		clean: ['dist/**/*'],
 
 		stylus: {
 		  compile: {
@@ -93,11 +93,8 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-concat');
-
 	grunt.loadNpmTasks('grunt-jsdoc');
 
 	// grunt.loadNpmTasks('grunt-contrib-concat');
-
-	grunt.registerTask('build', ['clean', 'jshint', 'stylus:compile', 'copy:dist', 'uglify:dist']);
-	grunt.registerTask('default', ['clean', 'stylus:compile', 'copy:dist', 'uglify:dist', 'watch']);
+	grunt.registerTask('default', ['clean', 'jshint', 'stylus:compile', 'copy:dist', 'uglify:dist', 'watch']);
 };

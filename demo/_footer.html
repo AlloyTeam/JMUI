@@ -1,0 +1,16 @@
+</div>
+
+<script src="../lib/zeptojs/zepto.js"></script>
+<script src="../lib/zeptojs/event.js"></script>
+<script src="../lib/zeptojs/touch.js"></script>
+<script>
+    $('.ui-content').removeClass('js-active');
+    $('.ui-content').eq(1).addClass('js-active');
+    $(window).on('hashchange', function () {
+        $('.ui-content').removeClass('js-active');
+        var id= window.location.hash;
+        $(id).parent('.ui-content').addClass('js-active');
+    })
+</script>
+</body>
+</html>

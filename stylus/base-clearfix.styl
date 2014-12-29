@@ -1,0 +1,13 @@
+
+/**
+ * 清楚浮动
+ */
+.ui-clearfix {
+    &:before,
+    &:after {
+        display: block;
+        content: "";
+        visibility: hidden;
+        clear: both;
+    }
+}
