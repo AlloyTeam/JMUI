@@ -5,7 +5,10 @@
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
 	<title>ProUI</title>
-	<link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../css/jmui.css">
+
+	<script src="../lib/zeptojs/zepto.min.js"></script>
+	<script src="../js/jmui.js"></script>
 </head>
 <body class="ui-app">
 	<div class="ui-header">
@@ -17,49 +20,35 @@
 				<div class="demo-item">
 					<p class="demo-desc">弹出对话框</p>
 					<div class="demo-block">
-
+						<!--无 html-->
 					</div>
+					<script class="demo-script">
+						;(function (){
+							var func0 = function () {
+								console.log('哇哦，真的不喜欢？');
+							};
+							var func1 = function () {
+								console.log('哇哦，我也喜欢你！');
+							};
+							var opts = {
+								mask: true,
+								animation: true,
+								tapHide: true,
+								preventScroll: true,
+								title: '提示',
+								content: '你喜欢我么？',
+								btnText: ['不喜欢', '超喜欢'],
+								btnHandle: [func0, func1]
+							};
+							$('#dialog').on('click', '.action-show',function (){
+								pro.dialog.show(opts);
+							});
+						})();
+					</script>
 				</div>
 				<a class="action-show ui-btn">显示</a>
 			</section>
 		</div>
 	</div>
-	<div class="ui-footer">固定的底部</div>
-
-<script src="../lib/zeptojs/zepto.js"></script>
-<script src="../lib/zeptojs/event.js"></script>
-<script src="../lib/zeptojs/touch.js"></script>
-<script src="../js/util.js"></script>
-<script src="../js/core.js"></script>
-<script src="../js/mask.js"></script>
-<script src="../js/state.js"></script>
-<script>
-    // TOTO
-    $.env = {};
-</script>
-<script src="../js/dialog.js"></script>
-<script>
-	;(function (){
-	    var func0 = function () {
-	        console.log('哇哦，真的不喜欢？');
-	    };
-	    var func1 = function () {
-	        console.log('哇哦，我也喜欢你！');
-	    };
-	    var opts = {
-	        mask: true,
-	        animation: true,
-	        tapHide: true,
-	        preventScroll: true,
-	        title: '提示',
-	        content: '你喜欢我么？',
-	        btnText: ['不喜欢', '超喜欢'],
-	        btnHandle: [func0, func1]
-	    };
-	    $('#dialog').on('click', '.action-show',function (){
-	        pro.dialog.show(opts);
-	    });
-	})();
-</script>
 </body>
 </html>

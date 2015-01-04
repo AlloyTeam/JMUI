@@ -4,10 +4,13 @@ module.exports = function(grunt){
 	grunt.initConfig({
 		// pkg: grunt.file.readJSON('package.json'),
 
-		clean: ['dist/**/*'],
+		clean: ['dist/**/*', 'js/jmui.js'],
 
 		stylus: {
 		  compile: {
+			  options: {
+				  compress: false
+			  },
 		    files: [{
 		             expand: true,
 		             cwd: 'stylus/',
@@ -27,36 +30,52 @@ module.exports = function(grunt){
         		"expr": true,
         		// 允许使用类似这种函数  new Function("obj","return 123")
         		"evil": true
-	        },
+	        }
 		},
 
 		uglify: {
 		    dist: {
 		    	files: [{
 	    	         expand: true,
-	    	         cwd: 'js/',
+	    	         cwd: 'dist/',
 	    	         src: ['**/*.js'],
-	    	         dest: 'dist/js',
-	    	         ext: '.js'
+	    	         dest: 'dist/',
+	    	         ext: '.min.js'
 	    	       }]
 		    }
 		},
 
+		cssmin: {
+			target: {
+				files: [{
+					expand: true,
+					cwd: 'dist/',
+					src: ['**/*.css'],
+					dest: 'dist/',
+					ext: '.min.css'
+				}]
+			}
+		},
+
 		concat: {
-			dist: {
-				src: ['dist/intro.js', 'src/project.js', 'src/outro.js'],
-				dest: 'dist/built.js',
+			zepto: {
+				src: ['lib/zeptojs/zepto.js', 'lib/zeptojs/*.js'],
+				dest: 'lib/zeptojs/zepto.min.js'
 			},
+			js: {
+				src: ['js/util.js','js/core.js', 'js/mask.js', 'js/state.js', 'js/**'],
+				dest: 'js/jmui.js'
+			}
 		},
 
 		copy: {
 		  dist: {
 		  	files: [
-			  	{src: 'index.html', dest: 'dist/'}, 
-			  	{src: 'demo/**', dest: 'dist/'}, 
-			  	{src: 'img/**', dest: 'dist/'}, 
-			  	{src: 'css/**', dest: 'dist/'}, 
-			  	{src: 'js/**', dest: 'dist/'},
+			  	{src: 'index.html', dest: 'dist/'},
+			  	{src: 'demo/**', dest: 'dist/'},
+			  	{src: 'img/**', dest: 'dist/'},
+			  	{src: 'css/jmui.css', dest: 'dist/css/jmui.css'},
+			  	{src: 'js/jmui.js', dest: 'dist/js/jmui.js'},
 			  	{src: 'lib/**', dest: 'dist/'}
 			]
 		  }
@@ -92,9 +111,9 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-stylus');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-jsdoc');
 
-	// grunt.loadNpmTasks('grunt-contrib-concat');
-	grunt.registerTask('default', ['clean', 'jshint', 'stylus:compile', 'copy:dist', 'uglify:dist', 'watch']);
+	grunt.registerTask('default', ['clean', 'stylus:compile', 'concat:js', 'copy:dist', 'uglify', 'cssmin']);
 };

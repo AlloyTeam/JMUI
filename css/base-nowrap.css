@@ -1,0 +1,19 @@
+/*
+** 单行文字超长显示省略号 
+**/
+.ui-no-wrap {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* 
+** 多行文字超长显示省略号 
+**/
+.ui-multi-no-wrap {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+/* 设置行数 */
+  -webkit-line-clamp: 2;
+}

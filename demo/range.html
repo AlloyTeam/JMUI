@@ -5,7 +5,10 @@
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
 	<title>ProUI</title>
-	<link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../css/jmui.css">
+
+	<script src="../lib/zeptojs/zepto.min.js"></script>
+	<script src="../js/jmui.js"></script>
 </head>
 <body class="ui-app">
 	<div class="ui-header">
@@ -20,45 +23,40 @@
 						<div id="range-demo">
 							<div class="ui-form-item ui-form-item-range ui-border">
 								<span>音量控制</span>
-								<label for="#" class="ui-range">
+								<label class="ui-range">
 									<input type="range" min="1" max="100" step="1" value="50"/>
 									<span class="ui-range-val">50</span>
 								</label>
 							</div>
 						</div>
-						<div id="range-demo-test">
-							<p class="test-ouput"></p>
-						</div>
 					</div>
+					<div id="range-demo-test">
+						<p class="test-ouput"></p>
+					</div>
+					<script class="demo-script">
+						;(function (){
+							// 图片或壁纸上传进度条
+							var range = $('#range-demo').range({
+								$el: '.ui-range',
+								min: 0, 	 // 最小
+								max: 100,    // 最大
+								step: 1, 	 // 步长
+								value: 50,   // 默认值
+								onInput: function (){
+									$('.test-ouput').text('range value is changing.');
+								},
+								onChange: function () {
+									var self = this;
+									$('.test-ouput').text('range value had been changed to: ' + self.value);
+								}
+							});
+
+						})();
+					</script>
 				</div>
 			</section>
 		</div>
 	</div>
 
-<script src="../lib/zeptojs/zepto.js"></script>
-<script src="../lib/zeptojs/event.js"></script>
-<script src="../lib/zeptojs/touch.js"></script>
-<script src="../js/core.js"></script>
-<script src="../js/range.js"></script>
-<script>
-	;(function (){
-		// 图片或壁纸上传进度条
-	    var range = $('#range-demo').range({
-	        $el: '.ui-range',
-	        min: 0, 	 // 最小
-	        max: 100,    // 最大
-	        step: 1, 	 // 步长
-	        value: 50,   // 默认值
-	        onInput: function (){
-	        	$('.test-ouput').text('range value is changing.');
-	        },
-	        onChange: function () {
-	        	var self = this;
-	        	$('.test-ouput').text('range value had been changed to: ' + self.value);
-	        }
-	    });
-
-	})();
-</script>
 </body>
 </html>

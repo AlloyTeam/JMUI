@@ -5,7 +5,10 @@
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
 	<title>ProUI</title>
-	<link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../css/jmui.css">
+
+	<script src="../lib/zeptojs/zepto.min.js"></script>
+	<script src="../js/jmui.js"></script>
 </head>
 <body class="ui-app">
 	<div class="ui-header">
@@ -15,9 +18,9 @@
 		<div class="ui-content js-active">
 			<section id="base-clearfix">
 				<div class="demo-item">
-					<p class="demo-desc">清除浮动</p>
+					<p class="demo-desc">清除浮动, 添加到浮动元素的父元素中.</p>
 					<div class="demo-block">
-						<div class="ui-clear-fix" style="outline: 1px solid orange; height: 50px; line-height: 50px;">
+						<div class="ui-clear-fix">
 							<div style="float: left;">float left</div>
 							<div style="float: right;">float right</div>
 						</div>

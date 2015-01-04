@@ -1,1 +1,41 @@
-.ui-form-item-range{width:100%}.ui-range{position:relative;display:inline-block;}.ui-range .ui-range-val{position:absolute;top:0;right:0;width:40px;text-align:center}.ui-range input[type=range]{width:260px;padding:0 40px;-webkit-appearance:none}.ui-range input[type=range]:focus{outline:none}.ui-range input[type=range]::-webkit-slider-runnable-track{height:6px;cursor:pointer;background:#0079ff;border-radius:3px}.ui-range input[type=range]::-webkit-slider-thumb{height:25px;width:25px;border-radius:12.5px;background:#fff;cursor:pointer;-webkit-appearance:none;margin-top:-12.5px;border:1px solid #eee}.ui-range input[type=range]:focus::-webkit-slider-runnable-track{background:#0079ff}
+.ui-form-item-range {
+  width: 100%;
+}
+.ui-range {
+  position: relative;
+  display: inline-block;
+}
+.ui-range .ui-range-val {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  text-align: center;
+}
+.ui-range input[type=range] {
+  width: 260px;
+  padding: 0 40px;
+  -webkit-appearance: none;
+}
+.ui-range input[type=range]:focus {
+  outline: none;
+}
+.ui-range input[type=range]::-webkit-slider-runnable-track {
+  height: 6px;
+  cursor: pointer;
+  background: #0079ff;
+  border-radius: 3px;
+}
+.ui-range input[type=range]::-webkit-slider-thumb {
+  height: 25px;
+  width: 25px;
+  border-radius: 12.5px;
+  background: #fff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -12.5px;
+  border: 1px solid #eee;
+}
+.ui-range input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #0079ff;
+}

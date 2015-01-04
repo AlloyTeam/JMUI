@@ -5,7 +5,10 @@
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
 	<title>ProUI</title>
-	<link rel="stylesheet" href="../css/main.css">
+	<link rel="stylesheet" href="../css/jmui.css">
+
+	<script src="../lib/zeptojs/zepto.min.js"></script>
+	<script src="../js/jmui.js"></script>
 </head>
 <body class="ui-app">
 	<div class="ui-header">
@@ -31,9 +34,27 @@
 									<button class="action-cancle ui-btn ui-btn-danger">取消</button>
 								</div>
 							</div>
-							<button id="progress-demo-1-test" class="ui-btn ui-btn-success">test</button>
 						</div>
 					</div>
+					<button id="progress-demo-1-test" class="ui-btn ui-btn-success">test</button>
+					<script class="demo-script">
+						;(function (){
+							// 图片或壁纸上传进度条
+							var progress1 = $('#progress-demo-1').progress({
+								$el: '.ui-progress-file', // 进度条容器
+								percentage: 20, // 当前进度
+								total: 1.03     // 文件大小
+							});
+							// 模拟收到后台新进度, 更新当前进度条的百分比
+							$('#progress-demo-1-test').on('click', function (){
+								var newPercentage = progress1.options.percentage + 10;
+								if (newPercentage > 100) {
+									newPercentage = 10;
+								}
+								progress1.changeProgress(newPercentage)
+							});
+						})();
+					</script>
 				</div>
 
 				<div class="demo-item">
@@ -44,10 +65,25 @@
 								<span class="progress-number">20</span>
 								<div class="progress-mask"></div>
 							</div>
-
-							<button id="progress-demo-2-test" class="ui-btn ui-btn-success">test</button>
 						</div>
 					</div>
+					<button id="progress-demo-2-test" class="ui-btn ui-btn-success">test</button>
+					<script class="demo-script">
+						;(function (){
+							var progress2 = $('#progress-demo-2').progress({
+								$el: '.ui-progress-img',
+								percentage: 0,
+								total: 9.03
+							});
+							$('#progress-demo-2-test').on('click', function (){
+								var newPercentage = progress2.options.percentage + 10;
+								if (newPercentage > 100) {
+									newPercentage = 10;
+								}
+								progress2.changeProgress(newPercentage)
+							});
+						})();
+					</script>
 				</div>
 
 				<div class="demo-item">
@@ -67,63 +103,29 @@
 									</div>
 								</div>
 							</div>
-
-							<button id="progress-demo-3-test" class="ui-btn ui-btn-success">test</button>
 						</div>
 					</div>
+					<button id="progress-demo-3-test" class="ui-btn ui-btn-success">test</button>
+					<script class="demo-script">
+						;(function (){
+							var progress3 = $('#progress-demo-3').progress({
+								$el: '.ui-progress-circle',
+								percentage: 30,
+								total: 78
+							});
+							$('#progress-demo-3-test').on('click', function (){
+								var newPercentage = progress3.options.percentage + 10;
+								if (newPercentage > 100) {
+									newPercentage = 10;
+								}
+								progress3.changeProgress(newPercentage)
+							});
+						})();
+					</script>
 				</div>
 			</section>
 		</div>
 	</div>
 
-<script src="../lib/zeptojs/zepto.js"></script>
-<script src="../lib/zeptojs/event.js"></script>
-<script src="../lib/zeptojs/touch.js"></script>
-<script src="../js/core.js"></script>
-<script src="../js/progress.js"></script>
-<script>
-	;(function (){
-		// 图片或壁纸上传进度条
-	    var progress1 = $('#progress-demo-1').progress({
-	        $el: '.ui-progress-file', // 进度条容器
-	        percentage: 20, // 当前进度
-	        total: 1.03     // 文件大小
-	    });
-	    // 模拟收到后台新进度, 更新当前进度条的百分比
-	    $('#progress-demo-1-test').on('click', function (){
-	    	var newPercentage = progress1.options.percentage + 10;
-	    	if (newPercentage > 100) {
-	    		newPercentage = 10;
-	    	}
-	    	progress1.changeProgress(newPercentage)
-	    });
-
-	    var progress2 = $('#progress-demo-2').progress({
-	        $el: '.ui-progress-img',
-	        percentage: 0,
-	        total: 9.03
-	    });
-	    $('#progress-demo-2-test').on('click', function (){
-	    	var newPercentage = progress2.options.percentage + 10;
-	    	if (newPercentage > 100) {
-	    		newPercentage = 10;
-	    	}
-	    	progress2.changeProgress(newPercentage)
-	    });
-
-	    var progress3 = $('#progress-demo-3').progress({
-	        $el: '.ui-progress-circle',
-	        percentage: 30,
-	        total: 78
-	    });
-	    $('#progress-demo-3-test').on('click', function (){
-	    	var newPercentage = progress3.options.percentage + 10;
-	    	if (newPercentage > 100) {
-	    		newPercentage = 10;
-	    	}
-	    	progress3.changeProgress(newPercentage)
-	    });
-	})();
-</script>
 </body>
 </html>

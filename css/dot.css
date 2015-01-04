@@ -1,1 +1,50 @@
-*[class*="ui-dot"]{z-index:20}.ui-dot-normal{border-radius:5px;width:9px;height:9px}.ui-dot-num,.ui-dot-new{border-radius:100px;color:#fff;font-size:12px;text-align:center;font-style:normal}.ui-dot-num{min-width:19px;height:19px;line-height:19px}.ui-dot-new{width:30px;height:15px;font-size:12px;line-height:15px}.ui-dot-tr{position:absolute;top:0;right:0;-webkit-transform:translate(50%,-50%)}.ui-dot-small{width:6px;height:6px}.ui-dot-red{background:#ff3b30}.ui-dot-blue{background:#00acff}
+*[class*="ui-dot"] {
+  z-index: 20;
+}
+/* dot */
+.ui-dot-normal {
+  border-radius: 5px;
+  width: 9px;
+  height: 9px;
+}
+.ui-dot-num,
+.ui-dot-new {
+  border-radius: 100px;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+  font-style: normal;
+}
+/* dot with number */
+.ui-dot-num {
+  min-width: 19px;
+  height: 19px;
+  line-height: 19px;
+}
+/* dot with content "New" */
+.ui-dot-new {
+  width: 30px;
+  height: 15px;
+  font-size: 12px;
+  line-height: 15px;
+}
+/* position: top right */
+.ui-dot-tr {
+  position: absolute;
+  top: 0;
+  right: 0;
+  -webkit-transform: translate(50%, -50%);
+}
+/* small style only for dot */
+.ui-dot-small {
+  width: 6px;
+  height: 6px;
+}
+/* red style */
+.ui-dot-red {
+  background: #ff3b30;
+}
+/* blue style */
+.ui-dot-blue {
+  background: #00acff;
+}
