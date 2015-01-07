@@ -49,13 +49,14 @@
                     'dialog',
                     'action-sheet',
                     'action-share'];
-    var lis = $.map(hashes, function (hash, index) {
-        return '<li class="ui-border-t ui-list-item-link"><a href="./demo/'+ hash +'.html">'+ hash +'</a></li>';
+    var lis = $.map(hashes, function (hash) {
+        return '<li data-href="./demo/'+ hash +'.html" class="ui-border-t ui-list-item-link"> ' + hash +'</li>';
     });   
     $('#nav').append(lis.toString().replace(/,/g, ''));
-    $('#nav .ui-list-item-link').on('click', function (){
-        $(this).find('a').click();
-    });
+        $('.ui-list-item-link').on('click', function () {
+            var href = $(this).data('href');
+            window.location.href = href;
+        })
     </script>
 </body>
 </html>
