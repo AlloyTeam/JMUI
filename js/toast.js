@@ -1,4 +1,4 @@
-(function( $, pro ) {
+;(function( $, pro ) {
 	pro.createWidget( 'Toast', {
 		options: {
 			animation: true,

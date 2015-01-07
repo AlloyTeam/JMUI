@@ -1,4 +1,4 @@
-(function( $, pro ) {
+;(function( $, pro ) {
     var cssPrefix = '-webkit-';
     var ratio = window.devicePixelRatio == 1? 1 : 2;
 

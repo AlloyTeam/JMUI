@@ -1,4 +1,4 @@
-(function( $, pro ) {
+;(function( $, pro ) {
     /*底部浮层组件
     * 
     * 调用示例：by gctang

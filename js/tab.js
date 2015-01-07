@@ -1,4 +1,4 @@
-(function( $, pro ) {
+;(function( $, pro ) {
     /*
     *   Tab 组件
     *

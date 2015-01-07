@@ -1,4 +1,4 @@
-(function( $, pro ) {
+;(function( $, pro ) {
     pro.createWidget( 'Dialog', {
         options: {
             mask: true,

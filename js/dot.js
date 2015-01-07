@@ -1,4 +1,4 @@
-(function( $, pro ) {
+;(function( $, pro ) {
     pro.createWidget( 'Dot', {
         options: {
             type: 'normal',   // normal, new, num

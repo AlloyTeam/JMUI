@@ -1,4 +1,4 @@
-(function($, pro) {
+;(function($, pro) {
     pro.createWidget('Range', {
         options: {
             min: 1,      // 最小

@@ -1,4 +1,4 @@
-(function( $, pro ) {
+;(function( $, pro ) {
 	pro.createWidget( 'Mask', {
 		options: {
 			animation: true,

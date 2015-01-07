@@ -1,4 +1,4 @@
-(function( $, pro ) {
+;(function( $, pro ) {
     pro.createWidget( 'Lazyload', {
         options: {
             attribute: 'data-lazy',
