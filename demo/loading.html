@@ -25,29 +25,34 @@
 					<script src="../js/jmui.js"></script>
 					<script class="demo-script">
 						;(function (){
-							$('#loading').on('click', '#loading-page', function (){
+							// 第一种，页面中间出现菊花提示
+							// 测试
+							$('#loading').on('tap', '#loading-page', function (){
 								pro.textLoading.hide();
 								pro.richLoading.hide();
 								pro.pageLoading.show();
 							});
 
+							// 第二种，页面中间出现文字提示
 							var opts1 = {
-								preventScroll: true,
+								preventScroll: true, // 是否禁止滚动
 								content: '拼命加载中...'
 							};
-							$('#loading').on('click', '#loading-text', function (){
-								pro.textLoading.hide();
+							// 测试
+							$('#loading').on('tap', '#loading-text', function (){
 								pro.pageLoading.hide();
 								pro.richLoading.hide();
 								pro.textLoading.show(opts1);
 							});
 
+							// 第三种，页面中间出现文字提示，含关闭按钮
 							var opts2 = {
 								preventScroll: true,
 								content: '我也在拼命加载中...',
 								onClose: function (){console.log('哎呀, 我被关闭了,心好痛!')}
 							};
-							$('#loading').on('click', '#loading-rich', function (){
+							// 测试
+							$('#loading').on('tap', '#loading-rich', function (){
 								pro.pageLoading.hide();
 								pro.textLoading.hide();
 								pro.richLoading.show(opts2);

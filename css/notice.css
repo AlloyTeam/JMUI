@@ -18,13 +18,13 @@
   width: 100px;
   height: 100px;
   margin-bottom: 20px;
-  background-image: url("../img/icon_warn.png?_bid=306");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/icon_warn.png");
 }
 .ui-notice-news i {
-  background-image: url("../img/icon_warn_news.png?_bid=306");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/icon_warn_news.png");
 }
 .ui-notice-nearby i {
-  background-image: url("../img/icon_warn_nearby.png?_bid=306");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/icon_warn_nearby.png");
 }
 .ui-notice p {
   font-size: 16px;

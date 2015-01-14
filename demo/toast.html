@@ -26,13 +26,14 @@
 					<script class="demo-script">
 						;(function (){
 							var opts = {
-								animation: true,
-								preventScroll: true,
+								animation: true, 	// 是否开启动画
+								preventScroll: true,// 是否禁止滚动
 								state: 'warning',   // 三种状态 warning，tips，success
 								content: '哇!我是 warning',
-								duration: 2000
+								duration: 2000		// 指定自动关闭的时间，单位为 ms
 							};
-							$('#toast').on('click', '.action-show', function (){
+							// 测试
+							$('#toast').on('tap', '.action-show', function (){
 								opts.state = $(this).text();
 								opts.content = '哇! 我是 ' + opts.state;
 								pro.toast.show(opts);

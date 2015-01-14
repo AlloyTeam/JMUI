@@ -30,11 +30,11 @@
   background-size: 100% 100%;
 }
 .ui-icon-warning {
-  background-image: url("./../img/inline/warning.png?embed");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/inline/warning.png");
 }
 .ui-icon-tips {
-  background-image: url("./../img/inline/tips.png?embed");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/inline/tips.png");
 }
 .ui-icon-success {
-  background-image: url("./../img/inline/success.png?embed");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/inline/success.png");
 }

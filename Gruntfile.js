@@ -93,14 +93,24 @@ module.exports = function(grunt){
 		},
 
         watch: {
+			//options: {
+			//	livereload: true
+			//},
+			html: {
+				files: ['index.html', 'demo/*.html']
+			},
 			stylus:{
 				files: ['stylus/*.styl'],
-				tasks: ['stylus']
+				tasks: ['newer:stylus']
+			},
+			css:{
+				files: ['css/*.css']
 			},
 			js:{
-				files: ['Gruntfile.js', 'js/**/*.js', '!js/jmui.js'],
-				tasks: ['concat']
+				files: ['js/**/*.js', '!js/jmui.js'],
+				tasks: ['concat:js']
 			}
+
         },
 
         jsdoc: {
@@ -122,7 +132,9 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-jsdoc');
+	grunt.loadNpmTasks('grunt-newer');
 
-	grunt.registerTask('default', ['clean', 'stylus:compile', 'concat:js', 'copy:dist', 'uglify', 'cssmin', 'watch']);
-	grunt.registerTask('build', ['clean', 'stylus:compile', 'concat:js', 'copy:dist', 'uglify', 'cssmin']);
+	grunt.registerTask('default', ['clean', 'stylus', 'concat:js', 'copy:dist', 'uglify', 'cssmin']);
+	grunt.registerTask('build', ['clean', 'stylus', 'concat:js', 'copy:dist', 'uglify', 'cssmin']);
+	grunt.registerTask('dev', ['build', 'watch']);
 };

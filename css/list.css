@@ -46,7 +46,7 @@
   height: 28px;
   -webkit-background-size: 28px auto;
   margin: 11px 15px 11px 0px;
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
 .ui-list-thumb span,
 .ui-list-thumb-s span {
@@ -170,7 +170,7 @@ li.ui-list-item-link:active + .ui-border-t {
 /*连接列表*/
 .ui-list-link li:after,
 li.ui-list-item-link:after {
-  background: url("../img/icon.png?_bid=306") no-repeat 0 -75px;
+  background: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/icon.png") no-repeat 0 -75px;
   -webkit-background-size: 150px auto;
   content: "";
   display: block;
@@ -199,7 +199,7 @@ li.ui-list-item-link:after {
   display: block;
   width: 14px;
   height: 12px;
-  background: url("../img/icon.png?_bid=306") no-repeat -100px 0;
+  background: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/icon.png") no-repeat -100px 0;
   -webkit-background-size: 150px auto;
   position: absolute;
   right: 15px;

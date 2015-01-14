@@ -372,7 +372,7 @@ em {
   width: 100%;
 }
 .ui-avatar {
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
 .ui-avatar-lg {
   width: 54px;
@@ -381,7 +381,7 @@ em {
   -webkit-border-radius: 200px;
   display: block;
   -webkit-background-size: 100% 100%;
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
 .ui-avatar-lg span {
   width: 54px;
@@ -398,7 +398,7 @@ em {
   -webkit-border-radius: 200px;
   display: block;
   -webkit-background-size: 100% 100%;
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
 .ui-avatar-s span {
   width: 40px;
@@ -415,7 +415,7 @@ em {
   -webkit-border-radius: 200px;
   display: block;
   -webkit-background-size: 100% 100%;
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
 .ui-avatar-one span {
   width: 64px;
@@ -432,7 +432,7 @@ em {
   -webkit-border-radius: 200px;
   display: block;
   -webkit-background-size: 100% 100%;
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
   display: inline-block;
 }
 .ui-avatar-tiled span {
@@ -690,7 +690,7 @@ em {
   vertical-align: middle;
 }
 .ui-checkbox input:before {
-  background: url("../img/icon.png?_bid=306") no-repeat -50px -25px;
+  background: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/icon.png") no-repeat -50px -25px;
   -webkit-background-size: 150px auto;
   content: "";
   display: block;
@@ -803,7 +803,7 @@ em {
   color: #808080;
 }
 .ui-form-item-link:after {
-  background: url("../img/icon.png?_bid=306") no-repeat 0 -75px;
+  background: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/icon.png") no-repeat 0 -75px;
   -webkit-background-size: 150px auto;
   content: "";
   display: block;
@@ -997,7 +997,7 @@ em {
 .ui-bg-default {
   position: relative;
   background-color: #e6e6e6;
-  background-image: url("./../img/inline/bg-default.png?embed");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/inline/bg-default.png");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -1115,7 +1115,7 @@ em {
   background: #6ab147;
 }
 .ui-avatar {
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
 .ui-avatar-lg {
   width: 54px;
@@ -1124,7 +1124,7 @@ em {
   -webkit-border-radius: 200px;
   display: block;
   -webkit-background-size: 100% 100%;
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
 .ui-avatar-lg span {
   width: 54px;
@@ -1141,7 +1141,7 @@ em {
   -webkit-border-radius: 200px;
   display: block;
   -webkit-background-size: 100% 100%;
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
 .ui-avatar-s span {
   width: 40px;
@@ -1158,7 +1158,7 @@ em {
   -webkit-border-radius: 200px;
   display: block;
   -webkit-background-size: 100% 100%;
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
 .ui-avatar-one span {
   width: 64px;
@@ -1175,7 +1175,7 @@ em {
   -webkit-border-radius: 200px;
   display: block;
   -webkit-background-size: 100% 100%;
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
   display: inline-block;
 }
 .ui-avatar-tiled span {
@@ -1231,7 +1231,7 @@ em {
   height: 28px;
   -webkit-background-size: 28px auto;
   margin: 11px 15px 11px 0px;
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
 .ui-list-thumb span,
 .ui-list-thumb-s span {
@@ -1347,7 +1347,7 @@ li.ui-list-item-link:active + .ui-border-t {
 }
 .ui-list-link li:after,
 li.ui-list-item-link:after {
-  background: url("../img/icon.png?_bid=306") no-repeat 0 -75px;
+  background: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/icon.png") no-repeat 0 -75px;
   -webkit-background-size: 150px auto;
   content: "";
   display: block;
@@ -1375,7 +1375,7 @@ li.ui-list-item-link:after {
   display: block;
   width: 14px;
   height: 12px;
-  background: url("../img/icon.png?_bid=306") no-repeat -100px 0;
+  background: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/icon.png") no-repeat -100px 0;
   -webkit-background-size: 150px auto;
   position: absolute;
   right: 15px;
@@ -1399,13 +1399,13 @@ li.ui-list-item-link:after {
   width: 100px;
   height: 100px;
   margin-bottom: 20px;
-  background-image: url("../img/icon_warn.png?_bid=306");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/icon_warn.png");
 }
 .ui-notice-news i {
-  background-image: url("../img/icon_warn_news.png?_bid=306");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/icon_warn_news.png");
 }
 .ui-notice-nearby i {
-  background-image: url("../img/icon_warn_nearby.png?_bid=306");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/icon_warn_nearby.png");
 }
 .ui-notice p {
   font-size: 16px;
@@ -1462,7 +1462,7 @@ li.ui-list-item-link:after {
   background-color: rgba(205,242,255,0.95);
 }
 .ui-tooltips-cnt-link:after {
-  background: url("../img/icon.png?_bid=306") no-repeat -75px 0;
+  background: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/icon.png") no-repeat -75px 0;
   -webkit-background-size: 150px auto;
   content: "";
   display: block;
@@ -1483,7 +1483,7 @@ li.ui-list-item-link:after {
   vertical-align: middle;
 }
 .ui-tooltips-warn i:before {
-  background: url("../img/icon.png?_bid=306") no-repeat -50px 0px;
+  background: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/icon.png") no-repeat -50px 0px;
   -webkit-background-size: 150px auto;
   content: "";
   display: block;
@@ -1782,7 +1782,7 @@ li.ui-list-item-link:after {
   background-size: 16px 17px;
 }
 .ui-icon-close {
-  background-image: url("./../img/inline/close.png?embed");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/inline/close.png");
 }
 .ui-search-bar {
   display: -webkit-box;
@@ -1813,7 +1813,7 @@ li.ui-list-item-link:after {
   display: block;
   width: 13px;
   height: 13px;
-  background-image: url("./../img/inline/search.png?embed");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/inline/search.png");
 }
 .ui-search-input {
   display: block;
@@ -2088,13 +2088,13 @@ li.ui-list-item-link:after {
   background-size: 100% 100%;
 }
 .ui-icon-warning {
-  background-image: url("./../img/inline/warning.png?embed");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/inline/warning.png");
 }
 .ui-icon-tips {
-  background-image: url("./../img/inline/tips.png?embed");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/inline/tips.png");
 }
 .ui-icon-success {
-  background-image: url("./../img/inline/success.png?embed");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/inline/success.png");
 }
 .ui-progress-file {
   padding: 20px 30px;
@@ -2104,7 +2104,7 @@ li.ui-list-item-link:after {
 .ui-progress-file .progress-info {
   width: 80%;
   float: left;
-  font-size: 24px;
+  font-size: 12px;
 }
 .ui-progress-file .progress-bar-wrap {
   width: 100%;

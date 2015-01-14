@@ -29,23 +29,23 @@
 										<span class="progress-bar"></span>
 									</p>
 								</div>
-								<div class="progress-action">
+								<div class="progress-action ui-center">
 									<button class="action-cancle ui-btn ui-btn-danger">取消</button>
 								</div>
 							</div>
 						</div>
 					</div>
-					<button id="progress-demo-1-test" class="ui-btn ui-btn-success">test</button>
+					<button id="progress-demo-1-test" class="ui-btn ui-btn-success">点我测试</button>
 					<script class="demo-script">
 						;(function (){
 							// 图片或壁纸上传进度条
 							var progress1 = $('#progress-demo-1').progress({
-								$el: '.ui-progress-file', // 进度条容器
-								percentage: 20, // 当前进度
-								total: 1.03     // 文件大小
+								$el: '.ui-progress-file', // 指定条容器
+								percentage: 20, 		  // 初始化当前进度
+								total: 1.03    			  // 初始化文件大小
 							});
 							// 模拟收到后台新进度, 更新当前进度条的百分比
-							$('#progress-demo-1-test').on('click', function (){
+							$('#progress-demo-1-test').on('tap', function (){
 								var newPercentage = progress1.options.percentage + 10;
 								if (newPercentage > 100) {
 									newPercentage = 10;
@@ -66,7 +66,7 @@
 							</div>
 						</div>
 					</div>
-					<button id="progress-demo-2-test" class="ui-btn ui-btn-success">test</button>
+					<button id="progress-demo-2-test" class="ui-btn ui-btn-success">点我测试</button>
 					<script class="demo-script">
 						;(function (){
 							var progress2 = $('#progress-demo-2').progress({
@@ -74,7 +74,7 @@
 								percentage: 0,
 								total: 9.03
 							});
-							$('#progress-demo-2-test').on('click', function (){
+							$('#progress-demo-2-test').on('tap', function (){
 								var newPercentage = progress2.options.percentage + 10;
 								if (newPercentage > 100) {
 									newPercentage = 10;
@@ -104,7 +104,7 @@
 							</div>
 						</div>
 					</div>
-					<button id="progress-demo-3-test" class="ui-btn ui-btn-success">test</button>
+					<button id="progress-demo-3-test" class="ui-btn ui-btn-success">点我测试</button>
 					<script class="demo-script">
 						;(function (){
 							var progress3 = $('#progress-demo-3').progress({
@@ -112,7 +112,8 @@
 								percentage: 30,
 								total: 78
 							});
-							$('#progress-demo-3-test').on('click', function (){
+							// 测试
+							$('#progress-demo-3-test').on('tap', function (){
 								var newPercentage = progress3.options.percentage + 10;
 								if (newPercentage > 100) {
 									newPercentage = 10;

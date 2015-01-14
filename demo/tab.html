@@ -37,9 +37,12 @@
 					<script class="demo-script">
 						;(function (){
 							$('#tab-demo').tab({
-								$el: '.ui-tab',
-								relateSelector: ['.panel-1', '.panel-2'],
-								onSwitchTab: function(index, item){}
+								$el: '.ui-tab', 						  // 指定 tab 栏标题容器
+								relateSelector: ['.panel-1', '.panel-2'], // 指定关联内容
+								onSwitchTab: function(index, item){
+									// 切换时的回调函数
+									console.log('已切换到第 %s 个 tab', index);
+								}
 							});
 						})();
 					</script>

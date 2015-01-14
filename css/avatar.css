@@ -2,7 +2,7 @@
  * 圆角头像，列表场景，默认用100px的
  */
 .ui-avatar {
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
 .ui-avatar-lg {
   width: 54px;
@@ -11,7 +11,7 @@
   -webkit-border-radius: 200px;
   display: block;
   -webkit-background-size: 100% 100%;
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
 .ui-avatar-lg span {
   width: 54px;
@@ -28,7 +28,7 @@
   -webkit-border-radius: 200px;
   display: block;
   -webkit-background-size: 100% 100%;
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
 .ui-avatar-s span {
   width: 40px;
@@ -46,7 +46,7 @@
   -webkit-border-radius: 200px;
   display: block;
   -webkit-background-size: 100% 100%;
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
 .ui-avatar-one span {
   width: 64px;
@@ -64,7 +64,7 @@
   -webkit-border-radius: 200px;
   display: block;
   -webkit-background-size: 100% 100%;
-  background-image: url("../img/default.png");
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
   display: inline-block;
 }
 .ui-avatar-tiled span {
