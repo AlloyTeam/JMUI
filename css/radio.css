@@ -1,9 +1,9 @@
-.ui-radio {
+.jmu-radio {
   line-height: 26px;
   display: inline-block;
   margin: 5px 0;
 }
-.ui-radio input {
+.jmu-radio input {
   display: inline-block;
   width: 24px;
   height: 1px;
@@ -16,7 +16,7 @@
   margin-right: 8px;
   vertical-align: middle;
 }
-.ui-radio input:before {
+.jmu-radio input:before {
   content: '';
   display: block;
   width: 24px;
@@ -28,7 +28,7 @@
   left: 0px;
   top: -14px;
 }
-.ui-radio input:checked:after {
+.jmu-radio input:checked:after {
   content: '';
   display: block;
   width: 14px;

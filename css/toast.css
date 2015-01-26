@@ -1,11 +1,13 @@
-.ui-toast {
+.jmu-toast {
   display: none;
   position: fixed;
   top: 0;
   right: 10px;
   left: 10px;
-  border-radius: 0 0 5px 5px;
-  background: rgba(0,0,0,0.5);
+  border-radius: 0 0 3px 3px;
+  padding: 0 10px;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
   font-size: 15px;
   line-height: 40px;
   text-align: center;
@@ -14,14 +16,14 @@
   -webkit-transition-timing-function: ease-out;
   z-index: 10000;
 }
-.ui-toast.js-effect {
+.jmu-toast.jmu-effect {
   -webkit-transition-duration: 0.2s;
 }
-.ui-toast.js-show {
+.jmu-toast.jmu-show {
   display: block;
   -webkit-transform: translateY(0);
 }
-.ui-toast i {
+.jmu-toast [class^='jmu-icon-'] {
   display: inline-block;
   position: relative;
   top: 3px;
@@ -29,12 +31,12 @@
   height: 18px;
   background-size: 100% 100%;
 }
-.ui-icon-warning {
-  background-image: url("./../img/inline/warning.png?embed");
+.jmu-toast .jmu-icon-warning {
+  background-image: url("../img/inline/warning.png?embed");
 }
-.ui-icon-tips {
-  background-image: url("./../img/inline/tips.png?embed");
+.jmu-toast .jmu-icon-tips {
+  background-image: url("../img/inline/tips.png?embed");
 }
-.ui-icon-success {
-  background-image: url("./../img/inline/success.png?embed");
+.jmu-toast .jmu-icon-success {
+  background-image: url("../img/inline/success.png?embed");
 }

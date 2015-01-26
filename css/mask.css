@@ -1,4 +1,4 @@
-.ui-mask {
+.jmu-mask {
   display: none;
   position: fixed;
   top: 0;
@@ -11,10 +11,10 @@
   -webkit-transition-timing-function: ease-out;
   z-index: 9000;
 }
-.ui-mask.js-effect {
+.jmu-mask.jmu-effect {
   -webkit-transition-duration: 0.2s;
 }
-.ui-mask.js-show {
+.jmu-mask.jmu-show {
   display: block;
   opacity: 1;
 }

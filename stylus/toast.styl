@@ -1,55 +1,47 @@
-.ui-toast {
-    display: none;
+@import base-color
 
-    position: fixed;
-    top: 0;
-    right: 10px;
-    left: 10px;
+$border-radius = 3px
+$background-color = rgba(0, 0, 0, 0.7)
+$transition-duration = 0.2s
 
-    border-radius: 0 0 5px 5px;
+.jmu-toast
+    display none
+    position fixed
+    top 0
+    right 10px
+    left 10px
+    border-radius 0 0 $border-radius $border-radius
+    padding 0 10px
+    background $background-color
+    color $jmu-color-white
+    font-size 15px
+    line-height 40px
+    text-align center
+    -webkit-transform translateY(-100%)
+    -webkit-transition-property -webkit-transform
+    -webkit-transition-timing-function ease-out
+    z-index 10000
 
-    background: rgba(0, 0, 0, 0.5);
+    &.jmu-effect
+        -webkit-transition-duration $transition-duration
 
-    font-size: 15px;
-    line-height: 40px;
-    text-align: center;
+    &.jmu-show
+        display block
+        -webkit-transform translateY(0)
 
-    -webkit-transform: translateY(-100%);
+    [class^='jmu-icon-']
+        display inline-block
+        position relative
+        top 3px
+        width 18px
+        height 18px
+        background-size 100% 100%
 
-    -webkit-transition-property: -webkit-transform;
-    -webkit-transition-timing-function: ease-out;
+    .jmu-icon-warning
+        background-image url(../img/inline/warning.png?embed)
 
-    z-index: 10000;
-}
+    .jmu-icon-tips
+        background-image url(../img/inline/tips.png?embed)
 
-.ui-toast.js-effect {
-    -webkit-transition-duration: 0.2s;
-}
-
-.ui-toast.js-show {
-    display: block;
-
-    -webkit-transform: translateY(0);
-}
-
-.ui-toast i {
-    display: inline-block;
-
-    position: relative;
-    top: 3px;
-
-    width: 18px;
-    height: 18px;
-
-    background-size: 100% 100%;
-}
-
-.ui-icon-warning {
-    background-image: url(./../img/inline/warning.png?embed);
-}
-.ui-icon-tips {
-    background-image: url(./../img/inline/tips.png?embed);
-}
-.ui-icon-success {
-    background-image: url(./../img/inline/success.png?embed);
-}
+    .jmu-icon-success
+        background-image url(../img/inline/success.png?embed)

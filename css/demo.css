@@ -25,26 +25,26 @@ h2 {
   text-align: center;
   margin: 10px;
 }
-#base-clearfix .ui-clear-fix {
+#base-clearfix .jmu-clear-fix {
   outline: 1px solid #ffa500;
   height: 50px;
   line-height: 50px;
 }
-#base-center .ui-center {
+#base-center .jmu-center {
   outline: 1px solid #ffa500;
 }
-#corner-tag .ui-corner-tag {
+#corner-tag .jmu-corner-tag {
   display: inline-block;
 }
 #tab .tab-content li {
   text-align: center;
   margin-top: 20px;
 }
-#table .ui-table {
+#table .jmu-table {
   text-align: center;
   line-height: 40px;
 }
-#notice .ui-notice {
+#notice .jmu-notice {
   position: relative;
 }
 #dot .demo-block > div {
@@ -54,7 +54,7 @@ h2 {
   height: 50px;
   line-height: 50px;
 }
-#grid .ui-col {
+#grid .jmu-col {
   outline: 1px solid #eee;
   height: 50px;
   line-height: 50px;

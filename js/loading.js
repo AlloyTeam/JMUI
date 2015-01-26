@@ -95,9 +95,9 @@
             preventScroll: true,
             content: ''
         },
-        tpl: '<div class="ui-text-loading">\
+        tpl: '<div class="jmu-text-loading">\
                 <div class="loading" data-color="255,255,255" data-size="36"></div>\
-                <div class="content ui-color-white"></div>\
+                <div class="content jmu-color-white"></div>\
             </div>',
         _render: function(){
             var options = this.options;
@@ -114,7 +114,7 @@
         options: {
             content: ''
         },
-        tpl: '<div class="ui-page-loading">\
+        tpl: '<div class="jmu-page-loading">\
                 <div class="loading"></div>\
                 <div class="content"></div>\
             </div>',
@@ -136,10 +136,10 @@
             content: '',
             onClose: $.emptyFunction
         },
-        tpl: '<div class="ui-rich-loading">\
+        tpl: '<div class="jmu-rich-loading">\
                 <div class="loading" data-color="255,255,255" data-size="36"></div>\
-                <div class="ui-no-wrap content"></div>\
-                <div class="ui-icon-close btn"></div>\
+                <div class="jmu-no-wrap content"></div>\
+                <div class="jmu-icon-close btn"></div>\
             </div>',
         _render: function(){
             var options = this.options;

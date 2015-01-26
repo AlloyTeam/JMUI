@@ -1,19 +1,19 @@
 /**
  * 底部操作区
  */
-.ui-btn-group,.ui-btn-group-tiled {
+.jmu-btn-group,.jmu-btn-group-tiled {
     display: -webkit-box;
     width: 100%;
     box-sizing: border-box;
 }
-.ui-btn-group button,.ui-btn-group-tiled button {
+.jmu-btn-group button,.jmu-btn-group-tiled button {
     display: block;
     -webkit-box-flex: 1;
 }
-.ui-btn-group-tiled .ui-btn:first-child {
+.jmu-btn-group-tiled .jmu-btn:first-child {
     margin-right: 15px;
 }
-.ui-btn-group button {
+.jmu-btn-group button {
     color: #00a5e0;
     line-height: 50px;
     height: 48px;
@@ -29,7 +29,7 @@
         border-right: none;
     } 
 }
-.ui-btn-group-bottom {
+.jmu-btn-group-bottom {
     position: fixed;
     left: 0;
     bottom: 0;
@@ -47,11 +47,11 @@
 }
 
 @media screen and (-webkit-min-device-pixel-ratio:2.0) {
-    .ui-btn-group button{
+    .jmu-btn-group button{
         position: relative;
         border: 0;
     }
-    .ui-btn-group button:before {
+    .jmu-btn-group button:before {
         content: "";
         position: absolute;
         -webkit-transform-origin: right top;
@@ -62,7 +62,7 @@
         bottom: 0;
         -webkit-transform: scaleX(.5);
     }
-    .ui-btn-group button:after {
+    .jmu-btn-group button:after {
         content: "";
         position: absolute;
         -webkit-transform-origin: right top;
@@ -73,7 +73,7 @@
         top: 0;
         -webkit-transform: scaleY(.5);
     }
-    .ui-btn-group button:last-child:before {
+    .jmu-btn-group button:last-child:before {
         border-right: none;
     }
 }

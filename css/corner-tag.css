@@ -1,8 +1,8 @@
-.ui-corner-tag {
+.jmu-corner-tag {
   position: relative;
   overflow: hidden;
 }
-.ui-corner-tag [class*="ui-tag-"] {
+.jmu-corner-tag [class*="jmu-tag-"] {
   position: absolute;
   top: -20px;
   left: 0;
@@ -16,15 +16,15 @@
   line-height: 20px;
   text-align: center;
 }
-.ui-tag-red {
+.jmu-tag-red {
   background: #fc4226;
 }
-.ui-tag-orange {
+.jmu-tag-orange {
   background: #f70;
 }
-.ui-tag-blue {
+.jmu-tag-blue {
   background: #0079ff;
 }
-.ui-tag-green {
+.jmu-tag-green {
   background: #6ab147;
 }

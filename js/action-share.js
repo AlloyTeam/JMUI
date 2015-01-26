@@ -11,7 +11,7 @@
     *   content: [
     *       {
     *           id: 'testId',//给节点添加自定义id
-    *           className: 'ui-clor-red',//添加自己的样式
+    *           className: 'jmu-clor-red',//添加自己的样式
     *           value: 'value1' //展示的值
     *           cmd: 'customEvent1' //自定义事件名
     *       },
@@ -35,17 +35,17 @@
             btnHandle: []
         },
         tpl: {
-            main: '<div class="ui-action-sheet">\
-                    <div class="sheet-title ui-border-b">分享到:</div>\
+            main: '<div class="jmu-action-sheet">\
+                    <div class="sheet-title jmu-border-b">分享到:</div>\
                     <ul class="content"></ul>\
-                    <div class="ui-color-blue btn btn-cancel" data-cmd="as-cancel" data-dismiss="true">取消</div>\
+                    <div class="jmu-color-blue btn btn-cancel" data-cmd="as-cancel" data-dismiss="true">取消</div>\
                 </div>',
             ul: '<% for(var i = 0, l = list.length; i < l; i++){\
                       if(typeof(list[i]) === "string"){\
                  %>\
-                      <li class="ui-color-blue btn" data-dismiss="true"><%=list[i]%></li>\
+                      <li class="jmu-color-blue btn" data-dismiss="true"><%=list[i]%></li>\
                       <% }else{ %>\
-                      <li <%=list[i].id ? "id="+list[i].id : ""%> class="ui-color-blue btn <%=list[i].className ? list[i].className : ""%>" data-dismiss="true" <%=list[i].cmd ? "data-cmd="+list[i].cmd : ""%> ><%=list[i].value ? list[i].value : ""%></li>\
+                      <li <%=list[i].id ? "id="+list[i].id : ""%> class="jmu-color-blue btn <%=list[i].className ? list[i].className : ""%>" data-dismiss="true" <%=list[i].cmd ? "data-cmd="+list[i].cmd : ""%> ><%=list[i].value ? list[i].value : ""%></li>\
                       <% }\
                 } %>'
         }, 

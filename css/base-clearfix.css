@@ -1,8 +1,4 @@
-/**
- * 清楚浮动
- */
-.ui-clearfix:before,
-.ui-clearfix:after {
+.jmu-clear-fix:after {
   display: block;
   content: "";
   visibility: hidden;

@@ -27,12 +27,12 @@
 
             if (deg <= 180) {
                 // 小于 180 旋转右半圆
-                 this.$el.find('.ui-progress-right').css('transform', "rotate(" + deg + "deg)");
-                 this.$el.find('.ui-progress-left').css('transform', "rotate(0deg)");
+                 this.$el.find('.jmu-progress-right').css('transform', "rotate(" + deg + "deg)");
+                 this.$el.find('.jmu-progress-left').css('transform', "rotate(0deg)");
             } else {
                 // 大于 180 旋转左半圆
-                 this.$el.find('.ui-progress-right').css('transform', "rotate(180deg)");
-                 this.$el.find('.ui-progress-left').css('transform', "rotate(" + (deg - 180) + "deg)");
+                 this.$el.find('.jmu-progress-right').css('transform', "rotate(180deg)");
+                 this.$el.find('.jmu-progress-left').css('transform', "rotate(" + (deg - 180) + "deg)");
             }
         },
 

@@ -1,10 +1,10 @@
-.ui-loading {
+.jmu-loading {
   -webkit-animation: rotate 1s steps(12) infinite;
 }
-.ui-loading-bright {
+.jmu-loading-bright {
   -webkit-animation: rotate2 1s steps(12) infinite;
 }
-.ui-icon-refresh.loading {
+.jmu-icon-refresh.loading {
   -webkit-animation: rotate3 1s infinite linear;
 }
 @-webkit-keyframes rotate {

@@ -11,9 +11,9 @@
         var $wrap = this.$wrap = $(element);
 
         $.extend(this, {
-            $inner : $wrap.find('.ui-carousel-inner'),
+            $inner : $wrap.find('.jmu-carousel-inner'),
             // son item 内部子节点
-            $item : $wrap.find('.ui-carousel-item'),
+            $item : $wrap.find('.jmu-carousel-item'),
             // 容器宽度
             // TODO 如果有需要可以做成自适应
             width : $wrap.width(),
@@ -68,7 +68,7 @@
 
         if ( this.enableDots ) {
             delete this.$dots;
-            this.$wrap.find('.ui-carousel-dots').remove();
+            this.$wrap.find('.jmu-carousel-dots').remove();
         }
 
         if ( this.enableAutoLoop ) {
@@ -112,7 +112,7 @@
     // 更新dots控点UI
     var _updateDotsUI = function () {
 
-        var CALSS = 'ui-carousel-dots-curr';
+        var CALSS = 'jmu-carousel-dots-curr';
         return function () {
             this.enableDots && this.$dots.removeClass(CALSS).eq(this.current).addClass(CALSS);
         };
@@ -243,9 +243,9 @@
             var lastNode = that.$item[framesLen-1].cloneNode(1);
             // IOS5.0+, android3.0+
             if ( lastNode.classList ) {
-                lastNode.classList.add('ui-carousel-item-last');
+                lastNode.classList.add('jmu-carousel-item-last');
             } else {
-                lastNode.className = 'ui-carousel-item ui-carousel-item-last';
+                lastNode.className = 'jmu-carousel-item jmu-carousel-item-last';
             }
 
             // 插入复制的节点
@@ -255,17 +255,17 @@
         // 检测是否激活触点导航控件
         if ( that.enableDots ) {
             // create navigator
-            var dotstmpl = '<p class="ui-carousel-dots">';
+            var dotstmpl = '<p class="jmu-carousel-dots">';
 
             for ( var i = 0; i < framesLen; i++ ) {
-                dotstmpl += '<a class="ui-carousel-dots-i">'+ (i+1) +'</a>';
+                dotstmpl += '<a class="jmu-carousel-dots-i">'+ (i+1) +'</a>';
             }
             dotstmpl += '</p>';
 
             that.$wrap.append(dotstmpl);
             // collection dots node
-            that.$dots = that.$wrap.find('.ui-carousel-dots-i');
-            that.$dots.eq(that.current).addClass('ui-carousel-dots-curr');
+            that.$dots = that.$wrap.find('.jmu-carousel-dots-i');
+            that.$dots.eq(that.current).addClass('jmu-carousel-dots-curr');
         }
     }
 
