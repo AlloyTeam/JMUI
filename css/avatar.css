@@ -1,10 +1,10 @@
 /**
  * 圆角头像，列表场景，默认用100px的
  */
-.ui-avatar {
+.jmu-avatar {
   background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
-.ui-avatar-lg {
+.jmu-avatar-lg {
   width: 54px;
   height: 54px;
   overflow: hidden;
@@ -13,7 +13,7 @@
   -webkit-background-size: 100% 100%;
   background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
-.ui-avatar-lg span {
+.jmu-avatar-lg span {
   width: 54px;
   height: 54px;
   overflow: hidden;
@@ -21,7 +21,7 @@
   display: block;
   -webkit-background-size: 100% 100%;
 }
-.ui-avatar-s {
+.jmu-avatar-s {
   width: 40px;
   height: 40px;
   overflow: hidden;
@@ -30,7 +30,7 @@
   -webkit-background-size: 100% 100%;
   background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
-.ui-avatar-s span {
+.jmu-avatar-s span {
   width: 40px;
   height: 40px;
   overflow: hidden;
@@ -39,7 +39,7 @@
   -webkit-background-size: 100% 100%;
 }
 /* 资料场景 */
-.ui-avatar-one {
+.jmu-avatar-one {
   width: 64px;
   height: 64px;
   overflow: hidden;
@@ -48,7 +48,7 @@
   -webkit-background-size: 100% 100%;
   background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
 }
-.ui-avatar-one span {
+.jmu-avatar-one span {
   width: 64px;
   height: 64px;
   overflow: hidden;
@@ -57,7 +57,7 @@
   -webkit-background-size: 100% 100%;
 }
 /* 平铺场景 */
-.ui-avatar-tiled {
+.jmu-avatar-tiled {
   width: 30px;
   height: 30px;
   overflow: hidden;
@@ -67,7 +67,7 @@
   background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
   display: inline-block;
 }
-.ui-avatar-tiled span {
+.jmu-avatar-tiled span {
   width: 30px;
   height: 30px;
   overflow: hidden;

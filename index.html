@@ -14,11 +14,11 @@
     <script src="js/jmui.js"></script>
 </head>
 
-<body class="ui-app">
-    <div class="ui-content-container">
-        <div class="ui-content js-active">
-            <ul id="nav" class="ui-list ui-list-text ui-list-link ui-border-tb">
-                <!-- <li class="ui-border-t">base</li> -->
+<body class="jmu-app">
+    <div class="jmu-content-container">
+        <div class="jmu-content js-active">
+            <ul id="nav" class="jmu-list jmu-list-text jmu-list-link jmu-border-tb">
+                <!-- <li class="jmu-border-t">base</li> -->
             </ul>
         </div>
     </div>
@@ -50,13 +50,13 @@
                     'action-sheet',
                     'action-share'];
     var lis = $.map(hashes, function (hash) {
-        return '<li data-href="./demo/'+ hash +'.html" class="ui-border-t ui-list-item-link"> ' + hash +'</li>';
+        return '<li class="jmu-border-t jmu-list-item-link"><a href="./demo/'+ hash +'.html" >' + hash +'</a></li>';
     });   
     $('#nav').append(lis.toString().replace(/,/g, ''));
-        $('.ui-list-item-link').on('click', function () {
-            var href = $(this).data('href');
-            window.location.href = href;
-        })
+//        $('.jmu-list-item-link').on('click', function () {
+//            var href = $(this).data('href');
+//            window.location.href = href;
+//        })
     </script>
 </body>
 </html>

@@ -7,19 +7,19 @@
 	<title>ProUI</title>
 	<link rel="stylesheet" href="../css/jmui.css">
 </head>
-<body class="ui-app">
-<div class="ui-header">
-	<a class="ui-btn demo-return-btn" href="../index.html">返回</a><h2>action-sheet</h2>
+<body class="jmu-app">
+<div class="jmu-header">
+	<a class="jmu-btn demo-return-btn" href="../index.html">返回</a><h2>action-sheet</h2>
 </div>
-<div class="ui-content-container">
-	<div class="ui-content js-active">
+<div class="jmu-content-container">
+	<div class="jmu-content js-active">
 		<section id="action-sheet">
 			<div class="demo-item">
 				<p class="demo-desc">弹出菜单</p>
 				<div class="demo-block">
 					<!--无 html-->
 				</div>
-				<a class="action-show ui-btn">显示</a>
+				<a class="action-show jmu-btn">显示</a>
 				<span class="test-output"></span>
 				<script src="../lib/zeptojs/zepto.min.js"></script>
 				<script src="../js/jmui.js"></script>
@@ -41,7 +41,7 @@
 						};
 						// 测试
 						$('#action-sheet').on('tap', '.action-show', function (){
-							pro.actionSheet.show(opts);
+							JMU.actionSheet.show(opts);
 						});
 					})
 				</script>

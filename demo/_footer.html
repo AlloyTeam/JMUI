@@ -1,13 +1,13 @@
 </div>
 <script>
 $(function () {
-    $('.ui-content').removeClass('js-active');
-    $('.ui-content').eq(1).addClass('js-active');
+    $('.jmu-content').removeClass('js-active');
+    $('.jmu-content').eq(1).addClass('js-active');
     // $(window).on('hashchange, fn) 有问题
     window.onhashchange = function () {
-        $('.ui-content').removeClass('js-active');
+        $('.jmu-content').removeClass('js-active');
         var id= window.location.hash;
-        $(id).parent('.ui-content').addClass('js-active');
+        $(id).parent('.jmu-content').addClass('js-active');
     }
 });
 </script>

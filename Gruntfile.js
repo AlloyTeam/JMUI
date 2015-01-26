@@ -73,8 +73,13 @@ module.exports = function(grunt){
 			},
 			js: {
 				src: [
-					'js/core.js',
-					'js/**/*.js'],
+					'js/core/core.js',
+					'js/core/component.js',
+					'js/util/*.js',
+					'js/component/*.js',
+					'!js/component/carousel.js',
+					'!js/component/mult-selector.js'
+				],
 				dest: 'js/jmui.js'
 			}
 		},
@@ -115,7 +120,7 @@ module.exports = function(grunt){
 
         jsdoc: {
             dist: {
-                src: ['js/**/*.js'], 
+                src: ['test/*.js'], 
                 options: {
                     destination: 'doc'
                 }

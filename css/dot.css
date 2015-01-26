@@ -1,14 +1,14 @@
-*[class*="ui-dot"] {
+*[class*="jmu-dot"] {
   z-index: 20;
 }
 /* dot */
-.ui-dot-normal {
+.jmu-dot-normal {
   border-radius: 5px;
   width: 9px;
   height: 9px;
 }
-.ui-dot-num,
-.ui-dot-new {
+.jmu-dot-num,
+.jmu-dot-new {
   border-radius: 100px;
   color: #fff;
   font-size: 12px;
@@ -16,35 +16,35 @@
   font-style: normal;
 }
 /* dot with number */
-.ui-dot-num {
+.jmu-dot-num {
   min-width: 19px;
   height: 19px;
   line-height: 19px;
 }
 /* dot with content "New" */
-.ui-dot-new {
+.jmu-dot-new {
   width: 30px;
   height: 15px;
   font-size: 12px;
   line-height: 15px;
 }
 /* position: top right */
-.ui-dot-tr {
+.jmu-dot-tr {
   position: absolute;
   top: 0;
   right: 0;
   -webkit-transform: translate(50%, -50%);
 }
 /* small style only for dot */
-.ui-dot-small {
+.jmu-dot-small {
   width: 6px;
   height: 6px;
 }
 /* red style */
-.ui-dot-red {
+.jmu-dot-red {
   background: #ff3b30;
 }
 /* blue style */
-.ui-dot-blue {
+.jmu-dot-blue {
   background: #00acff;
 }

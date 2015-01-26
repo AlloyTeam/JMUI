@@ -7,19 +7,19 @@
 	<title>ProUI</title>
 	<link rel="stylesheet" href="../css/jmui.css">
 </head>
-<body class="ui-app">
-	<div class="ui-header">
-		<a class="ui-btn demo-return-btn" href="../index.html">返回</a><h2>toast</h2>
+<body class="jmu-app">
+	<div class="jmu-header">
+		<a class="jmu-btn demo-return-btn" href="../index.html">返回</a><h2>toast</h2>
 	</div>
-	<div class="ui-content-container">
-		<div class="ui-content js-active">
+	<div class="jmu-content-container">
+		<div class="jmu-content js-active">
 			<section id="toast">
 				<div class="demo-item">
 					<p class="demo-desc">提醒/警告/成功提示条</p>
 					<div class="demo-block">
-						<a class="action-show ui-btn">tips</a>
-						<a class="action-show ui-btn">warning</a>
-						<a class="action-show ui-btn">success</a>
+						<a class="action-show jmu-btn">tips</a>
+						<a class="action-show jmu-btn">warning</a>
+						<a class="action-show jmu-btn">success</a>
 					</div>
 					<script src="../lib/zeptojs/zepto.min.js"></script>
 					<script src="../js/jmui.js"></script>
@@ -36,7 +36,7 @@
 							$('#toast').on('tap', '.action-show', function (){
 								opts.state = $(this).text();
 								opts.content = '哇! 我是 ' + opts.state;
-								pro.toast.show(opts);
+								JMU.toast.show(opts);
 							});
 						})();
 					</script>

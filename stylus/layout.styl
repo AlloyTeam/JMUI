@@ -1,11 +1,11 @@
 /* usually for body */
-.ui-app {
+.jmu-app {
     background: #fff;
     -webkit-overflow-scrolling: touch;
 }
 
-.ui-header, 
-.ui-footer {
+.jmu-header, 
+.jmu-footer {
     position: fixed;
     background: #fff;
     width: 100%;
@@ -14,22 +14,22 @@
     z-index: 10;
 }
 
-.ui-header {
+.jmu-header {
     top: 0;
 }
-.ui-header:after {
+.jmu-header:after {
     border-bottom: 1px solid #cacaca;
 }
 
-.ui-footer {
+.jmu-footer {
     bottom: 0;
 }
-.ui-footer:after{
+.jmu-footer:after{
     border-top: 1px solid #cacaca;
 }
 
 /* content container may have more than one content like tab switch */
-.ui-content-container {
+.jmu-content-container {
     position: absolute;
     top: 0;
     right: 0;
@@ -43,45 +43,45 @@
 }
 
 /* 
- * for ios6+ use scrollbar of ".ui-content-container" instead of body's to make better experience
+ * for ios6+ use scrollbar of ".jmu-content-container" instead of body's to make better experience
  * because on ios page can be scroll that we can see the area that not belong to our page  
  */
-.js-bounce-fix .ui-content-container {
+.js-bounce-fix .jmu-content-container {
     bottom: 0;
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
 }
 
-.ui-header ~ .ui-content-container {
+.jmu-header ~ .jmu-content-container {
     border-top: 48px solid transparent;
 }
 
-.ui-footer ~ .ui-content-container {
+.jmu-footer ~ .jmu-content-container {
     border-bottom: 48px solid transparent;
 }
 
-.ui-content {
+.jmu-content {
     display: none;
 }
 
-.js-bounce-fix .ui-content{
+.js-bounce-fix .jmu-content{
     position: relative;
     min-height: 100%;
 }
 
 
 /* js style */
-.ui-content.js-active {
+.jmu-content.js-active {
     display: block;
 }
 
 /* low device style */
-.poor-device .ui-header {
+.poor-device .jmu-header {
     position: absolute;
 }
 
-.ui-clearfix {
+.jmu-clearfix {
     &:before,
     &:after {
         display: block;
@@ -91,49 +91,49 @@
     }
 }
 
-.ui-row {
-    @extend .ui-clearfix;
+.jmu-row {
+    @extend .jmu-clearfix;
 }
-.ui-col {
+.jmu-col {
     float: left;
 }
 
-.ui-col-10 {
+.jmu-col-10 {
     width: 10%;
 }
-.ui-col-20 {
+.jmu-col-20 {
     width: 20%;
 }
-.ui-col-25 {
+.jmu-col-25 {
     width: 25%;
 }
-.ui-col-30 {
+.jmu-col-30 {
     width: 20%;
 }
-.ui-col-33 {
+.jmu-col-33 {
     width: 33.3333%
 }
-.ui-col-40 {
+.jmu-col-40 {
     width: 40%;
 }
-.ui-col-50 {
+.jmu-col-50 {
     width: 50%;
 }
-.ui-col-60 {
+.jmu-col-60 {
     width: 60%;
 }
-.ui-col-67 {
+.jmu-col-67 {
     width: 66.6666%
 }
-.ui-col-70 {
+.jmu-col-70 {
     width: 70%;
 }
-.ui-col-80 {
+.jmu-col-80 {
     width: 90%;
 }
-.ui-col-90 {
+.jmu-col-90 {
     width: 90%;
 }
-.ui-col-100 {
+.jmu-col-100 {
     width: 100%;    
 }

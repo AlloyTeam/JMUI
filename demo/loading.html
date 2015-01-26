@@ -7,19 +7,19 @@
 	<title>ProUI</title>
 	<link rel="stylesheet" href="../css/jmui.css">
 </head>
-<body class="ui-app">
-	<div class="ui-header">
-		<a class="ui-btn demo-return-btn" href="../index.html">返回</a><h2>page loading</h2>
+<body class="jmu-app">
+	<div class="jmu-header">
+		<a class="jmu-btn demo-return-btn" href="../index.html">返回</a><h2>page loading</h2>
 	</div>
-	<div class="ui-content-container">
-		<div class="ui-content js-active">
+	<div class="jmu-content-container">
+		<div class="jmu-content js-active">
 			<section id="loading">
 				<div class="demo-item">
 					<p class="demo-desc">显示加载中, 三种类型.</p>
 					<div class="demo-block">
-						<a id="loading-page" class="action-show ui-btn">page</a>
-						<a id="loading-text" class="action-show ui-btn">text</a>
-						<a id="loading-rich" class="action-show ui-btn">rich</a>
+						<a id="loading-page" class="action-show jmu-btn">page</a>
+						<a id="loading-text" class="action-show jmu-btn">text</a>
+						<a id="loading-rich" class="action-show jmu-btn">rich</a>
 					</div>
 					<script src="../lib/zeptojs/zepto.min.js"></script>
 					<script src="../js/jmui.js"></script>
@@ -28,9 +28,9 @@
 							// 第一种，页面中间出现菊花提示
 							// 测试
 							$('#loading').on('tap', '#loading-page', function (){
-								pro.textLoading.hide();
-								pro.richLoading.hide();
-								pro.pageLoading.show();
+								JMU.textLoading.hide();
+								JMU.richLoading.hide();
+								JMU.pageLoading.show();
 							});
 
 							// 第二种，页面中间出现文字提示
@@ -40,9 +40,9 @@
 							};
 							// 测试
 							$('#loading').on('tap', '#loading-text', function (){
-								pro.pageLoading.hide();
-								pro.richLoading.hide();
-								pro.textLoading.show(opts1);
+								JMU.pageLoading.hide();
+								JMU.richLoading.hide();
+								JMU.textLoading.show(opts1);
 							});
 
 							// 第三种，页面中间出现文字提示，含关闭按钮
@@ -53,9 +53,9 @@
 							};
 							// 测试
 							$('#loading').on('tap', '#loading-rich', function (){
-								pro.pageLoading.hide();
-								pro.textLoading.hide();
-								pro.richLoading.show(opts2);
+								JMU.pageLoading.hide();
+								JMU.textLoading.hide();
+								JMU.richLoading.show(opts2);
 							});
 						})();
 					</script>

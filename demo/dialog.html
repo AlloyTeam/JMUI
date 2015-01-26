@@ -7,12 +7,12 @@
 	<title>ProUI</title>
 	<link rel="stylesheet" href="../css/jmui.css">
 </head>
-<body class="ui-app">
-	<div class="ui-header">
-		<a class="ui-btn demo-return-btn" href="../index.html">返回</a><h2>dialog</h2>
+<body class="jmu-app">
+	<div class="jmu-header">
+		<a class="jmu-btn demo-return-btn" href="../index.html">返回</a><h2>dialog</h2>
 	</div>
-	<div class="ui-content-container">
-		<div class="ui-content js-active">
+	<div class="jmu-content-container">
+		<div class="jmu-content js-active">
 			<section id="dialog">
 				<div class="demo-item">
 					<p class="demo-desc">弹出对话框</p>
@@ -22,7 +22,7 @@
 
 					<script src="../lib/zeptojs/zepto.min.js"></script>
 					<script src="../js/jmui.js"></script>
-					<a class="action-show ui-btn">显示对话框</a>
+					<a class="action-show jmu-btn">显示对话框</a>
 					<script class="demo-script">
 						;(function (){
 							// 取消按钮的回调函数
@@ -45,7 +45,7 @@
 							};
 							// 测试
 							$('#dialog').on('tap', '.action-show',function (){
-								pro.dialog.show(opts);
+								JMU.dialog.show(opts);
 							});
 						})();
 					</script>

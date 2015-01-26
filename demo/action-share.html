@@ -7,20 +7,20 @@
 	<title>ProUI</title>
 	<link rel="stylesheet" href="../css/jmui.css">
 </head>
-<body class="ui-app">
-	<div class="ui-header">
-		<a class="ui-btn demo-return-btn" href="../index.html">返回</a>
+<body class="jmu-app">
+	<div class="jmu-header">
+		<a class="jmu-btn demo-return-btn" href="../index.html">返回</a>
 		<h2>action-share</h2>
 	</div>
-	<div class="ui-content-container">
-		<div class="ui-content js-active">
+	<div class="jmu-content-container">
+		<div class="jmu-content js-active">
 			<section id="action-share">
 				<div class="demo-item">
 					<p class="demo-desc">弹出分享菜单</p>
 					<div class="demo-block">
 						<!--无 html-->
 					</div>
-					<a class="action-show ui-btn">分享到</a>
+					<a class="action-show jmu-btn">分享到</a>
 					<span class="test-output"></span>
 
 					<script src="../lib/zeptojs/zepto.min.js"></script>
@@ -100,7 +100,7 @@
 							};
 							// 测试
 							$('#action-share').on('click', '.action-show', function (){
-								pro.actionShare.show(optsShare);
+								JMU.actionShare.show(optsShare);
 							});
 						})
 					</script>

@@ -1,428 +1,348 @@
-;(function($){
-	var PREFIX = 'pro';		// data存储前缀
+/**
+ * Copyright (c) 2014 Tencent AlloyTeam, All rights reserved.
+ * http://www.AlloyTeam.com/
+ * Code licensed under the BSD License:
+ * http://www.AlloyTeam.com/license.txt
+ * 
+ * @file JMUI核心js
+ * @author  Yussicahe
+ */
 
-	// Read all "data-*" attributes from a node
+;(function ($) {
+	var DATA_PREFIX = 'jmu';		// data存储前缀
+
+	/**
+	 * @function attributeData 
+	 * @description 从DOM节点上获取所有"data-*"属性
+	 * @param object DOM节点
+	 * @returns {object} "data-*"属性的键值对
+	 */
 	function attributeData(node) {
 		var store = {};
-		$.each(node.attributes || [], function(i, attr){
-		  	if (parseInt(attr.name.indexOf('data-'), 10) === 0)
-		    	store[$.camelCase(attr.name.replace('data-', ''))] =
-		      		$.zepto.deserializeValue(attr.value);
+
+		$.each(node.attributes || [], function (i, attr) {
+		  	if (parseInt(attr.name.indexOf('data-'), 10) === 0) {
+		    	store[$.camelCase(attr.name.replace('data-', ''))] = $.zepto.deserializeValue(attr.value);
+		    }
 		});
+
 		return store;
 	}
 
-	// 将组件挂到$.fn上
-	function zeptolize( name ) {
-	    var key = name.substring( 0, 1 ).toLowerCase() + name.substring( 1 ),
-	        old = $.fn[ key ];
+	/**
+	 * @function zeptolize 
+	 * @description 将组件挂到$.fn上，便于调用
+	 * @param {string} 组件名
+	 */
+	function zeptolize(name) {
+	    var key = $.camelCase(name.substring(0, 1).toLowerCase() + name.substring(1)),
+	        old = $.fn[key];
 
-	    $.fn[ key ] = function( opts, fuc ) {
-	        var args = [].slice.call( arguments, (typeof opts === 'string'? 1 : 2)),
-	            method = (typeof opts === 'string' && opts) || (typeof fuc === 'string' && fuc),
+        /**
+         * @function 
+         * @description 调用组件
+         * @param {object} 组件配置选项
+         * @param {string} 组件方法名
+         * @returns {*} 组件实例或者相应方法的返回值
+         */
+	    $.fn[key] = function (options, func) {
+	        var args,
 	            ret,
-	            obj;
+	            component,
+	            dataName = DATA_PREFIX + '-' + name;
 
-	        $.each( this, function( i, el ) {
-	        	var $el = $( el ),
-	        		attr = attributeData( el );
+	        if (typeof options === 'string') {
+                args = [].slice.call(arguments, 1);
+	        	func = options;
+	        } else {
+                args = [].slice.call(arguments, 2);
+            }
 
-	            // 从data中取，没有则创建一个
-	            obj = $el.data( PREFIX + '-' + name );
+	        $.each(this, function (i, el) {
+	            // 尝试从data中取组件实例
+	            component = $(el).data(dataName);
 
-	            if( obj === undefined ) {
-	            	obj = new pro[ name ]( el, $.isPlainObject( opts ) ? $.extend( opts, attr ) : attr );
-	            	$el.data( PREFIX + '-' + name, obj );
-	            }else {
-	            	obj.setOption( opts );
+	            if (typeof component === 'undefined') {
+                    var attrOptions = attributeData(el);
+
+	            	component = new JMU[name](el, $.extend({}, options, attrOptions));    // 无实例则创建一个
+
+	            	$(el).data(dataName, component);
+	            } else if (options) {    // 更新组件的配置选项
+	            	component.setOptions(options);
 	            }
 
-	            // 取实例
-	            if ( method === false ) {
-	                ret = obj;
-	                return false;    // 断开each循环
-	            } else if ( method ) {
+	            if (typeof func === 'undefined') {    // 未指定方法，返回组件实例
+	                ret = component;
 
-	                // 当取的方法不存在时，抛出错误信息
-	                if ( !$.isFunction( obj[ method ] ) ) {
-	                    throw new Error( 'no such method' );
+	                return false;    // 断开循环
+	            } else {    // 调用组件指定方法
+                    func = component[func];
+
+	                // 如果组件无指定方法，抛出错误信息
+	                if (!$.isFunction(func)) {
+	                    throw new Error(name + ' has no such method "' + func + '".');
 	                }
 
-	                ret = obj[ method ].apply( obj, args );
+	                ret = func.apply(component, args);
 
-	                // 断定它是getter性质的方法，所以需要断开each循环，把结果返回
-	                if ( ret !== undefined && ret !== obj ) {
+	                // 如果是get性质的方法，断开循环
+	                if (typeof ret !== 'undefined') {
 	                    return false;
 	                }
-
-	                // ret为obj时为无效值，为了不影响后面的返回
-	                ret = undefined;
 	            }
-	        } );
+	        });
 
-	        return ret !== undefined ? ret : this;
+	        return typeof ret !== 'undefined'? ret : this;
 	    };
 
-	    /*
-	     * NO CONFLICT
-	     */
-	    $.fn[ key ].noConflict = function() {
-	        $.fn[ key ] = old;
+	    // NO CONFLICT
+	    $.fn[key].noConflict = function () {
+	        $.fn[key] = old;
 	        return this;
 	    };
 	}
 
-    window.pro = {
-    	
-    	// 创建组件
-	    createWidget: function ( name, object, isSingleton, superClass ) {
-	        if ( !$.isFunction(superClass) ) {
-	            superClass = Widget;	// 默认基类为Widget
+    window.JMU = {
+        /**
+         * @function emptyFunction
+         * @description 空函数
+         */
+        emptyFunction: function () {},
+        /**
+         * @function preventDefault
+         * @description 阻止事件的默认行为
+         * @param {object} 事件对象e
+         */
+        preventDefault: function (e) {
+            e = e || window.event;
+            e.preventDefault();
+        },
+    	/**
+         * @function defineComponent
+         * @description 定义组件
+         * @param {string} 组件名
+         * @param {object} 组件原型
+         * @param {class} 组件的父类
+         * @returns {class} 组件类
+         */
+	    defineComponent: function (name, object, superClass) {
+	        if (!$.isFunction(superClass)) {
+	            superClass = JMU.Component;    // 默认基类为Component
 	        }
 
-	        function subClass( el, opts ) {
-	            this._init( el, opts );
+            /**
+             * @class
+             * @description 组件类
+             * @param object 组件的容器节点
+             * @param {object} 组件配置选项
+             */
+	        function subClass(container, options) {
+                // 设置组件配置选项
+                this.setOptions(options);
+
+                // 初始化组件
+	            this._init(container);
 	        }
 
 	        subClass.superClass = superClass;
-	        subClass.prototype = Object.create( superClass.prototype );
+	        subClass.prototype = Object.create(superClass.prototype);
 
-	        object.$super = function( name ) {
-	            var fn = superClass.prototype[ name ];
-	            return $.isFunction( fn ) && fn.apply( this, [].slice.call( arguments, 1 ) );
+            /**
+             * @function $super
+             * @description 调用父类的方法
+             * @param {string} 方法名
+             * @returns {*} 方法的返回值
+             */ 
+	        object.$super = function (name) {
+	            var func = superClass.prototype[name];
+	            return $.isFunction(func) && func.apply(this, arguments.slice(1));
 	        };
 
-	        $.extend( subClass.prototype, object );
+	        $.extend(subClass.prototype, object);
 
-	        if( isSingleton ) {
-	        	pro[ name.substring( 0, 1 ).toLowerCase() + name.substring( 1 ) ] = new subClass();		// 单例的组件直接实例化
-	        }else {
-	        	pro[ name ] = subClass;
-	        	zeptolize( name );
-	        } 
+        	JMU[name] = subClass;
+        	zeptolize(name);
 
 	        return subClass;
 	    }
     };
+})(Zepto);
 
+/**
+ * Copyright (c) 2014 Tencent AlloyTeam, All rights reserved.
+ * http://www.AlloyTeam.com/
+ * Code licensed under the BSD License:
+ * http://www.AlloyTeam.com/license.txt
+ * 
+ * @author  Yussicahe
+ * @description 定义组件基类Component
+ */
+
+ ;(function ($, JMU) {
     /*
-     * @class 基类Widget
+     * @class Component
+     * @description 组件的基类Component
      */
-    function Widget() {}
+    function Component() {}
 
-    Widget.prototype = {
-    	options: {},
-    	tpl: '',
-    	/*
+    Component.prototype = {
+        /**
+         * @property {object} 组件默认配置选项
+         */
+        options: {},
+        /**
+         * @property {string|object} 组件模板
+         */
+        template: '',
+        /**
+         * @property {boolean} 组件是否显示
+         */
+        isShow: false,
+        /*
+         * @method setOptions
+         * @description 设置组件配置选项
+         * @param {object} 配置选项
+         */
+        setOptions: function (options) {
+            $.extend(this.options, options);
+        },
+        /**
          * @method _init
-         * @desc 组件初始化
+         * @description 组件初始化
+         * @param object 组件的容器节点
          */
-    	_init: function( el, opts) {
-    		this.$container = $( el || document.body);
-
-    		this.options = $.extend( {}, this.options, opts );
-
-            if(opts && opts.$el){
-                //处理已有内容的类型，不需要调用show方法来绑定事件，如Tab 
-                /* this.$el = typeof opts.$el === 'string' ? $(opts.$el) : opts.$el; */
-                this.$el = $(opts.$el, this.$container);
-
-                this._bindEvents();
-            }
-    	},
-    	/*
-         * @method setOption
-         * @desc 设置options
-         */
-    	setOption: function( opts ) {
-    		this.options = $.extend( this.options, opts );
-    	},
-    	/*
+        _init: function (container) {
+            this.$container = $(container || document.body);
+        },
+        /*
          * @method _create
-         * @desc 创建组件相应的dom
+         * @description 创建组件的DOM节点
          */
-    	_create: function(){
-    		this.$el = $($.isPlainObject(this.tpl)? this.tpl.main : this.tpl).appendTo(this.$container);
-    		this._bindEvents();
+        _create: function () {
+            var options = this.options || {},
+                $el = options.$el,
+                template = this.template || '';
 
-			if(this.options.preventScroll){
-				// fix by jdochen
-				// 这里改为是否阻止该wedget默认行为比较合适
-				this.$el.on('touchmove', $.preventDefault);
-			}
-    	},
-    	/*
+            if ($el) {    // 组件DOM已经存在的情况
+                this.$el = typeof $el === 'string'? $($el, this.$container) : $el;    // $el可以是selector
+            } else {    // 不存在则通过模板创建一个
+                this.$el = $(typeof template === 'string'? template : template.main);    // 模板如果是对象，则以main来创建组件
+            }
+
+            // 将组件添加到DOM中
+            this.$container.append(this.$el);
+            
+            this._bindEvents();
+        },
+        /*
          * @method _render
-         * @desc 根据配置项渲染相应的dom
+         * @description 渲染组件
          */
-    	_render: $.emptyFunction,
-    	/*
+        _render: JMU.emptyFunction,
+        /*
          * @method _bindEvents
          * @desc 给组件绑定相应的事件
          */
-    	_bindEvents: $.emptyFunction,
-    	/*
+        _bindEvents: function () {
+            // 需要的情况下阻止掉页面滚动
+            if (this.options.preventScroll) {
+                this.$el.on('touchmove', JMU.preventDefault);
+            }
+        },
+        /*
          * @method show
-         * @desc show组件
+         * @description 显示组件
          */
-    	show: function( opts ){
-			// var self = this;
-			this.setOption( opts );
+        show: function (options) {
+            var self = this;
 
-			if(!this.$el){
-				this._create();
-				this._render();
-			}else if(opts){
-				this._render();
-			}else if(this.isShow){
-				return;
-			}
+            this.setOptions(options);
 
-			this.isShow = true;
+            if (!this.$el) {
+                this._create();
+            }
+            
+            this._render();
 
-			// 是否出遮罩
-			this.options.mask && pro.mask.show({
-				tapHide: this.options.tapHide,
-				relatedWidget: this
-			});
+            if (this.isShow) {
+                return;
+            }
 
-			// 是否有动画
-			if(this.options.animation){
-				this.$el.show().addClass('js-effect');
-				this.$el[0].offsetWidth;	// repaint
-			}else{
-				this.$el.removeClass('js-effect').show();
-			}
+            this.isShow = true;
 
-			this.$el.off('webkitTransitionEnd');
-			this.$el.addClass('js-show');
+            options = this.options;
 
-			// 是否需要阻止页面滚动
-			/*if(this.options.preventScroll){
-				$(document).on('touchmove', $.preventDefault);
-			}*/
-		},
-		/*
+            // 是否有遮罩
+            if (options.mask && JMU.Mask) {
+                $('body').mask('show', {
+                    tapHide: options.tapHide,
+                    relatedComponent: this    // tapHide为true时点击遮罩同时会隐藏组件
+                });
+            }
+
+            // 显示之前加的class
+            this.$el.addClass('jmu-before-show');
+
+            // 是否有动画
+            if (options.animation) {
+                this.$el.show().addClass('jmu-effect');
+                this.$el[0].offsetWidth;    // repaint
+            } else {
+                this.$el.removeClass('jmu-effect').show();
+            }
+
+            this.$el.off('webkitTransitionEnd');
+            this.$el.addClass('jmu-show');
+
+            // 是否显示一段时间后自动隐藏
+            if(options.duration){
+                clearTimeout(this.hideTimer);
+                
+                this.hideTimer = setTimeout(function(){
+                    self.hide();
+                }, options.duration);
+            }
+        },
+        /*
          * @method hide
-         * @desc hide组件
+         * @description 隐藏组件
          */
-		hide: function(){
-			var self = this;
+        hide: function(options){
+            var self = this;
 
-			if(!this.isShow){
-				return;
-			}
+            this.setOptions(options);
 
-			this.isShow = false;
+            if (!this.isShow) {
+                return;
+            }
 
-			if(this.options.animation){
-				this.$el.one('webkitTransitionEnd', function(){
-					self.$el.hide();
-				});
-			}else{
-				this.$el.hide();
-			}
+            this.isShow = false;
 
-			this.$el.removeClass('js-show');
+            options = this.options;
 
-			this.options.mask && pro.mask.hide();
+            this.$el.removeClass('jmu-before-show');
 
-			/*if(this.options.preventScroll){
-				$(document).off('touchmove', $.preventDefault);
-			}*/
-		}
+            // 是否有动画
+            if (options.animation) {
+                this.$el.one('webkitTransitionEnd', function () {
+                    self.$el.hide();
+                });
+            } else {
+                this.$el.hide();
+            }
+
+            this.$el.removeClass('jmu-show');
+
+            // 是否有遮罩
+            if (options.mask && JMU.Mask) {
+                $('body').mask('hide');
+            }
+        }
     };
 
-
-	// TODO $.env 为业务代码, 需要抽离
-	$.env = {};
-})(Zepto);
-
-
-
-;(function( $, pro ) {
-    /*底部浮层组件
-    * 
-    * 调用示例：by gctang
-    * pro.actionSheet.show({
-    *   content: ['value1','value2'], // 或以'<li>value1</li><li>value2</li>>'的字符串形式传入
-    *   binHandle: [function(){}, function(){}]//需与content一一对应
-    *})
-    * or 高级配置用法：
-    * pro.actionSheet.show({
-    *   content: [
-    *       {
-    *           id: 'testId',//给节点添加自定义id
-    *           className: 'ui-clor-red',//添加自己的样式
-    *           value: 'value1' //展示的值
-    *           cmd: 'customEvent1' //自定义事件名
-    *       },
-    *       {
-    *           value: 'value2',
-    *           cmd: 'customEvent2' //自定义事件名
-    *       }
-    *    ],
-    *    customEvent1: function(){
-    *        //自定义事件 do something
-    *    }
-    * })
-    */
-    pro.createWidget( 'ActionShare', {
-        options: {
-            mask: true,
-            animation: true,
-            tapHide: true,
-            preventScroll: true,
-            content: '',
-            btnHandle: []
-        },
-        tpl: {
-            main: '<div class="ui-action-sheet">\
-                    <div class="sheet-title ui-border-b">分享到:</div>\
-                    <ul class="content"></ul>\
-                    <div class="ui-color-blue btn btn-cancel" data-cmd="as-cancel" data-dismiss="true">取消</div>\
-                </div>',
-            ul: '<% for(var i = 0, l = list.length; i < l; i++){\
-                      if(typeof(list[i]) === "string"){\
-                 %>\
-                      <li class="ui-color-blue btn" data-dismiss="true"><%=list[i]%></li>\
-                      <% }else{ %>\
-                      <li <%=list[i].id ? "id="+list[i].id : ""%> class="ui-color-blue btn <%=list[i].className ? list[i].className : ""%>" data-dismiss="true" <%=list[i].cmd ? "data-cmd="+list[i].cmd : ""%> ><%=list[i].value ? list[i].value : ""%></li>\
-                      <% }\
-                } %>'
-        }, 
-        _render: function(){
-            var options = this.options;
-
-            if($.isArray(options.content)){
-                this.$el.find('.content').html($.template(this.tpl.ul, { list : options.content }));
-            }else{
-                this.$el.find('.content').html(options.content);
-            } 
-        },
-        _bindEvents: function(){
-            var self = this;
-
-            this.$el.on('tap', '.btn', function(e){
-                var $btn = $(e.currentTarget);
-                var command = $btn.data('cmd');
-
-                $btn.active(function(){
-                    var fn = null;
-                    var index = -1;
-                    if(command === 'as-cancel'){
-                        index = self.$el.find('.content').children().length;
-                    }else{
-                        index = $btn.index();
-                    }
-                   
-                    if($btn.data('dismiss')){
-                        self.hide();    // 点击后隐藏action-sheet
-                    } 
-
-                    if(self.options.btnHandle.length > 0){
-                        fn = self.options.btnHandle[index];
-                        $.isFunction( fn ) && fn();
-                    } else if($.isFunction( self.options[command] )){
-                        self.options[command]();
-                    }
-                });
-            });
-        }
-    }, true);
-})(Zepto, pro);
-
-;(function( $, pro ) {
-    /*底部浮层组件
-    * 
-    * 调用示例：by gctang
-    * pro.actionSheet.show({
-    *   content: ['value1','value2'], // 或以'<li>value1</li><li>value2</li>>'的字符串形式传入
-    *   binHandle: [function(){}, function(){}]//需与content一一对应
-    *})
-    * or 高级配置用法：
-    * pro.actionSheet.show({
-    *   content: [
-    *       {
-    *           id: 'testId',//给节点添加自定义id
-    *           className: 'ui-clor-red',//添加自己的样式
-    *           value: 'value1' //展示的值
-    *           cmd: 'customEvent1' //自定义事件名
-    *       },
-    *       {
-    *           value: 'value2',
-    *           cmd: 'customEvent2' //自定义事件名
-    *       }
-    *    ],
-    *    customEvent1: function(){
-    *        //自定义事件 do something
-    *    }
-    * })
-    */
-    pro.createWidget( 'ActionSheet', {
-        options: {
-            mask: true,
-            animation: true,
-            tapHide: true,
-            preventScroll: true,
-            content: '',
-            btnHandle: []
-        },
-        tpl: {
-            main: '<div class="ui-action-sheet">\
-                    <ul class="content"></ul>\
-                    <div class="ui-color-blue btn btn-cancel" data-cmd="as-cancel" data-dismiss="true">取消</div>\
-                </div>',
-            ul: '<% for(var i = 0, l = list.length; i < l; i++){\
-                      if(typeof(list[i]) === "string"){\
-                 %>\
-                      <li class="ui-color-blue ui-border-1px btn" data-dismiss="true"><%=list[i]%></li>\
-                      <% }else{ %>\
-                      <li <%=list[i].id ? "id="+list[i].id : ""%> class="ui-color-blue ui-border-1px btn <%=list[i].className ? list[i].className : ""%>" data-dismiss="true" <%=list[i].cmd ? "data-cmd="+list[i].cmd : ""%> ><%=list[i].value ? list[i].value : ""%></li>\
-                      <% }\
-                } %>'
-        }, 
-        _render: function(){
-            var options = this.options;
-
-            if($.isArray(options.content)){
-                this.$el.find('.content').html($.template(this.tpl.ul, { list : options.content }));
-            }else{
-                this.$el.find('.content').html(options.content);
-            } 
-        },
-        _bindEvents: function(){
-            var self = this;
-
-            this.$el.on('tap', '.btn', function(e){
-                var $btn = $(e.currentTarget);
-                var command = $btn.data('cmd');
-
-                $btn.active(function(){
-                    var fn = null;
-                    var index = -1;
-                    if(command === 'as-cancel'){
-                        index = self.$el.find('.content').children().length;
-                    }else{
-                        index = $btn.index();
-                    }
-                   
-                    if($btn.data('dismiss')){
-                        self.hide();    // 点击后隐藏action-sheet
-                    } 
-
-                    if(self.options.btnHandle.length > 0){
-                        fn = self.options.btnHandle[index];
-                        $.isFunction( fn ) && fn();
-                    } else if($.isFunction( self.options[command] )){
-                        self.options[command]();
-                    }
-                });
-            });
-        }
-    }, true);
-})(Zepto, pro);
-
+    JMU.Component = Component;
+})(Zepto, JMU);
 ;(function($){
     function bounceFix() {
         $.isBounceFix = true;
@@ -464,400 +384,47 @@
     }
 })(Zepto);
 
-/**
- * by jdo
- * 20140625
- * summary: a slider depend on zetpo, which work for mobile
- * update: by felixqslai on 20141215
- */
+;(function($){
+  var canvas = $('<canvas></canvas>')[0],
+      context = canvas.getContext('2d'),
+      imgs = $('img[data-holder]');
 
+  for (var i = 0, len = imgs.length; i < len; i++) {
+  	var size = $(imgs[i]).data('holder'),
+        text = $(imgs[i]).data('holder-text') || $(imgs[i]).data('holder');
+  		textWidth = context.measureText(text).width,
+  		width = size.split('x')[0],
+  		height = size.split('x')[1],
+  		textX = (width-textWidth) / 2,
+  		textY = height / 2;
 
-function slider ( element, options ) {
+	canvas.width = +width;
+	canvas.height = +height;
 
-    var $wrap = this.$wrap = $(element);
+	context.fillStyle = getRandomColor(0, 255);
+	context.fillRect(0,0,width,height);
 
-    $.extend(this, {
-        $inner : $wrap.find('.ui-carousel-inner'),
-        // son item 内部子节点
-        $item : $wrap.find('.ui-carousel-item'),
-        // 容器宽度
-        // TODO 如果有需要可以做成自适应
-        width : $wrap.width(),
-        // webkitTransitionDuration
-        webkitTransitionDuration : 300,
-        // 当前帧数
-        current : 0,
-        // 当前距离
-        currentpos : 0,
-        // 激活circle轮播方式，默认激活
-        enableCircleLoop : !!1,
-        // 激活自动轮播，默认激活
-        // 自动轮播激活前提是激活了circle轮播方式
-        enableAutoLoop : !!1,
-        // 激活触点导航控件
-        enableDots : !!1,
-        // 自动轮换时长
-        autoLoopDuration : 5e3
-    }, options);
+	context.fillStyle = '#fff';
+	context.fillText(text, textX, textY);
 
-    // 少于等于一帧时
-    // 不启动自动轮播&circle轮播
-    if ( this.$item.length <= 1 ) this.enableCircleLoop = this.enableAutoLoop = !!0;
-    // initialize ui
-    _prepareForUI(this);
-    // initialize event
-    _prepareForEvt(this);
-    //
-    _autoLoop.start.call(this);
-}
+	$(imgs[i]).attr('src', canvas.toDataURL());  
+	$(imgs[i]).attr('alt', text);  
+  }    
 
-slider.prototype.to = function ( index, noanim ) {
-    if ( this.current > this.$item.length ) return;
-    var that = this;
-    // 等待$inner渲染出来
-    setTimeout(function() {
-
-        that.$inner.css({
-            '-webkitTransitionDuration' : (!noanim ? that.webkitTransitionDuration : 0)+ 'ms',
-            '-webkitTransform' : 'translate3d('+-(that.width*(that.current=index))+'px, 0, 0)'
-        });
-        that.currentpos = -index * that.width;
-        // 当无动画切换时，不会触发`webkitTransitionEnd`事件
-        // 需在这里更新一下dots ui
-        if ( noanim ) _updateDotsUI.call(that);
-
-    }, 0);
-};
-slider.prototype.clear = function () {
-
-    this.$inner.off();
-
-    if ( this.enableDots ) {
-        delete this.$dots;
-        this.$wrap.find('.ui-carousel-dots').remove();
-    }
-
-    if ( this.enableAutoLoop ) {
-        _autoLoop.stop.call(this);
-    }
-
-    if ( this.enableCircleLoop ) {
-        var len = this.$item.length;
-        this.$item.eq(len-1).remove();
-        this.$item.eq(len-2).remove();
-    }
-
-    this.$inner = null;
-    this.$item = null;
-    this.$wrap = null;
-};
-
-// 启动/关闭 自动轮换，便于其他地方调用
-var _autoLoop = function () {
-
-    var timer;
-
-    return {
-        start : function () {
-            var that = this;
-            if (!timer && this.enableCircleLoop && this.enableAutoLoop) {
-                timer = setInterval(function() {
-                    that.to(++that.current);
-                }, this.autoLoopDuration);
-            }
-        },
-        stop : function () {
-            if ( timer ) {
-                clearInterval(timer);
-                timer = null;
-            }
-        }
-    };
-}();
-
-// 更新dots控点UI
-var _updateDotsUI = function () {
-
-    var CALSS = 'ui-carousel-dots-curr';
-    return function () {
-        this.enableDots && this.$dots.removeClass(CALSS).eq(this.current).addClass(CALSS);
-    };
-}();
-
-// 初始化事件逻辑
-function _prepareForEvt ( that ) {
-
-    var startpos,
-        starttime,
-        touchstartpos,
-        speed = 0.4,
-        framesLen = that.$item.length,
-        max = that.width*(framesLen-1);
-
-    that.$inner
-        .on('touchstart', function (evt) {
-
-            if ( that.current <= -1 || that.current >= framesLen ) return;
-            var e = evt.touches[0];
-            touchstartpos = startpos = e.pageX;
-            starttime = +new Date();
-
-        }, !!1)
-
-        .on('touchmove', function (evt) {
-
-            _autoLoop.stop.call(that);
-            if ( that.current <= -1 || that.current >= framesLen ) return;
-            var e = evt.touches[0];
-            evt.preventDefault();
-
-            if ( that.enableCircleLoop ) {
-                that.currentpos += e.pageX - startpos;
-            } else {
-                that.currentpos += (e.pageX - startpos)/(that.currentpos > 0 || that.currentpos < -max ? 3 : 1);
-            }
-
-            startpos = e.pageX;
-
-            that.$inner.css({
-                '-webkitTransform' : 'translate3d('+that.currentpos+'px, 0px, 0px)'
-            });
-
-        }, !!1)
-
-        .on('touchend', function (evt) {
-
-            if ( that.current <= -1 || that.current >= framesLen ) return;
-            // 时间间隔
-            ///var duration = +new Date + starttime;
-            // 距离
-            var distance = evt.changedTouches[0].pageX-touchstartpos;
-            // 距离绝对值
-            var absdistance = Math.abs(distance);
-            // 方向
-            var diration = distance/absdistance;
-            // 滑动范围[0,lenght-1]
-            // [注]当激活enableCircleLoop时
-            // isInRange一直为true
-            // 表示不受范围控制
-            var isInRange = that.enableCircleLoop ? !!1 : diration > 0 ? that.current > 0 : that.current < framesLen-1;
-            // 是否滚动过半
-             var isHalf = absdistance >= Math.floor(that.width/2);
-            // 手指滑动速度
-            var ss = absdistance / (+new Date()-starttime);
-
-           // log(that.width)
-           // log(ss)
-            that.to(function(){
-                var index = that.current - ((speed < ss || isHalf) && isInRange ? diration : 0);
-                // console.log(index)
-                // that.currentpos = -index * that.width;
-                return index;
-            }());
-
-        }, !!1)
-        .on('webkitTransitionEnd', function () {
-
-            _autoLoop.start.call(that);
-
-            that.$inner.css({'-webkitTransitionDuration' : '0'});
-
-            // 到了第一张的临时节点
-            if ( that.current >= framesLen ) {
-                // setClass(delClass(that.$dots, "curr")[that.current = 0], "curr");
-                // that.currentpos = that.current = 0
-                that.$inner.css({
-                    '-webkitTransform' : 'translate3d('+(that.currentpos = that.current = 0)+'px, 0px, 0px)'
-                });
-            }
-            // 到了最后一张的临时节点
-            if ( that.current <= -1 ) {
-                // that.current = framesLen-1
-                // that.currentpos = (that.current = framesLen-1) * that.width
-                // setClass(delClass(that.$dots, "curr")[that.current = framesLen-1], "curr");
-                that.$inner.css({
-                    '-webkitTransform' : 'translate3d('+(that.currentpos = -(that.current = framesLen-1) * that.width)+'px, 0px, 0px)'
-                });
-            }
-
-            _updateDotsUI.call(that);
-
-        }, !!1);
-}
-
-// 初始化UI（样式/生成节点）
-function _prepareForUI ( that ) {
-
-    var framesLen = that.$item.length;
-    var realLen = framesLen+(that.enableCircleLoop?2:0);
-
-    that.$inner.css({
-        width : 100 * realLen + '%',
-        // display : "-webkit-box"
-        display : 'block'
-    });
-
-    that.$item.css({
-        // width : (100 / realLen) + "%"
-        width : that.width + 'px'
-    });
-
-    // console.log(that.$item)
-    if ( that.enableCircleLoop ) {
-        // 用于无限循环轮播
-        var firstNode = that.$item[0].cloneNode(1);
-        var lastNode = that.$item[framesLen-1].cloneNode(1);
-        // IOS5.0+, android3.0+
-        if ( lastNode.classList ) {
-            lastNode.classList.add('ui-carousel-item-last');
-        } else {
-            lastNode.className = 'ui-carousel-item ui-carousel-item-last';
-        }
-
-        // 插入复制的节点
-        that.$inner.append([firstNode, lastNode]);
-    }
-
-    // 检测是否激活触点导航控件
-    if ( that.enableDots ) {
-        // create navigator
-        var dotstmpl = '<p class="ui-carousel-dots">';
-
-        for ( var i = 0; i < framesLen; i++ ) {
-            dotstmpl += '<a class="ui-carousel-dots-i">'+ (i+1) +'</a>';
-        }
-        dotstmpl += '</p>';
-
-        that.$wrap.append(dotstmpl);
-        // collection dots node
-        that.$dots = that.$wrap.find('.ui-carousel-dots-i');
-        that.$dots.eq(that.current).addClass('ui-carousel-dots-curr');
-    }
-}
-
-$.Carousel = slider;
-
-// $.fn.carousel = function (option) {
-//     return this.each(function () {
-//         var $this   = $(this);
-//         var data    = $this.data('carousel');
-
-//         if ( option === 'clear' ) {
-//             if ( data ) {
-//                 $this.data('carousel', null);
-//                 data.clear();
-//                 data = null;
-//             }
-//         } else {
-//             var options = $.extend({}, $this.data(), typeof option == 'object' ? option : {});
-//             if ( !data ) {
-//                 $this.data('carousel', (data = new slider(this, options)));
-//             }
-//             if ( typeof option === 'number' ) data.to(option, !!1);
-//         }
-//     });
-// };
-
-;(function( $, pro ) {
-    pro.createWidget( 'Dialog', {
-        options: {
-            mask: true,
-            animation: true,
-            tapHide: true,
-            preventScroll: true,
-            title: '提示',
-            content: '',
-            btnText: ['取消', '确定'],
-            btnHandle: []
-        },
-        tpl: '<div class="ui-dialog">\
-                <div class="body ui-color-black">\
-                    <div class="title"></div>\
-                    <div class="content"></div>\
-                </div>\
-                <div class="btns ui-border-1px ui-color-blue">\
-                    <div class="btn"></div>\
-                    <div class="btn ui-border-1px"></div>\
-                </div>\
-            </div>',
-        _render: function(){
-            var options = this.options;
-            if(options.title){
-                this.$el.find('.title').text(options.title).css('display', 'block');
-            }else{
-                this.$el.find('.title').css('display', 'none');
-            }
-            this.$el.find('.content').html(options.content);
-            this.$el.find('.btn:nth-child(1)').text(options.btnText[0]);
-            if(options.btnText.length > 1){
-                this.$el.find('.btn:nth-child(2)').text(options.btnText[1]).css('display', 'block');
-            }else{
-                this.$el.find('.btn:nth-child(2)').css('display', 'none');
-            }
-        },
-        _bindEvents: function(){
-            var self = this;
-
-            this.$el.on('tap', '.btn', function(e){
-                var $btn = $(e.currentTarget);
-
-                $btn.active(function(){
-                    self.hide();    // 点击后隐藏dialog
-
-                    // 防止dialog隐藏动画和其他渲染一起出现卡顿
-                    setTimeout(function(){
-                        var fn = self.options.btnHandle[$btn.index()];
-                        $.isFunction( fn ) && fn();
-                    }, 0); 
-                });
-            });
-        },
-        show: function( opts ){
-            if(!this.$el){
-                this._create();
-                this._render();
-            }
-
-            if($.env.isPoorDevice){
-                this.$el.css('top', window.scrollY + window.innerHeight/2);
-            }
-            this.$el.addClass('js-before-show');
-
-            this.$super('show', opts);
-        },
-        hide: function(){
-            this.$el.removeClass('js-before-show');
-
-            this.$super('hide');
-        }
-    }, true);
-})(Zepto, pro);
-
-;(function( $, pro ) {
-    pro.createWidget( 'Dot', {
-        options: {
-            type: 'normal',   // normal, new, num
-            color: 'red',   // red 或 blue
-            content: '',    // New红点和数字红点需要指定content
-            css: null   // 样式，可以自由控制红点的位置和大小，默认红点在容器的右上角
-        },
-        tpl: '<div></div>',
-        _render: function(){
-            var options = this.options;
-            
-            this.$el.removeClass().addClass('ui-dot-' + options.type + ' ' + 'ui-dot-' + options.color).text(options.content);
-
-            if(options.css){
-                this.$el.css(options.css);
-            }else{
-                this.$el.addClass('ui-dot-tr');     // 位置默认在容器的右上角
-            }
-        }
-    });
-})(Zepto, pro);
-
-;(function( $, pro ) {
-    pro.createWidget( 'Lazyload', {
+  function getRandomNumber(min, max) {
+    return Math.round(Math.random() * (max - min)) +1;
+  }
+  function getRandomColor(min, max) {
+    var r = getRandomNumber(min, max),
+        g = getRandomNumber(min, max),
+        b = getRandomNumber(min, max),
+        a = getRandomNumber(0.1, 0.5),
+        color = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';  
+    return color;    
+  }
+})(Zepto);
+(function( $, JMU ) {
+    JMU.Component( 'Lazyload', {
         options: {
             attribute: 'data-lazy',
 
@@ -924,9 +491,367 @@ $.Carousel = slider;
             }
         }
     });
-})(Zepto, pro);
+})(Zepto, JMU);
 
-;(function( $, pro ) {
+(function($){
+    var domainPrefix = window.location.domain;
+    $.extend($, {
+        emptyFunction: function(){},
+        preventDefault: function(e){
+            e.preventDefault();
+        },
+        template: (function(){
+            var cache = {};
+
+            return function(str, data){
+                // Figure out if we're getting a template, or if we need to
+                // load the template - and be sure to cache the result.
+                var fn = cache[str] ||
+                        // Generate a reusable function that will serve as a template
+                        // generator (and which will be cached).
+                    new Function("obj",
+                        "var p=[],print=function(){p.push.apply(p,arguments);};" +
+
+                            // Introduce the data as local variables using with(){}
+                        "with(obj){p.push('" +
+
+                            // Convert the template into pure JavaScript
+                        str
+                            .replace(/[\r\t\n]/g, " ")
+                            .split("<%").join("\t")
+                            .replace(/((^|%>)[^\t]*)'/g, "$1\r")
+                            .replace(/\t=(.*?)%>/g, "',$1,'")
+                            .split("\t").join("');")
+                            .split("%>").join("p.push('")
+                            .split("\r").join("\\'") + "');}return p.join('');");
+
+                // Provide some basic currying to the user
+                return data ? fn( data ) : fn;
+            };
+        })(),
+        insertStyleSheet: function() {
+            var $el = $('<style type="text/css"></style>').appendTo('head');
+            return $el[0].sheet;
+        },
+        debounce: function(func, wait, immediate){
+            var timeout;
+
+            return function() {
+                var context = this,
+                    args = arguments,
+                    callNow = immediate && !timeout;
+
+                var later = function() {
+                    timeout = null;
+                    if (!immediate) {
+                        func.apply(context, args);
+                    }
+                };
+
+                clearTimeout(timeout);
+
+                timeout = setTimeout(later, wait);
+
+                if (callNow) {
+                    func.apply(context, args);
+                }
+            };
+        }
+    });
+
+    $.extend($.fn, {
+        isInView: function(viewWidth, viewHeight){
+            var el = $(this)[0];
+            if(!el){
+                return false;
+            }
+
+            var rect = el.getBoundingClientRect();
+
+            if((rect.left > -rect.width && rect.right < (viewWidth || window.innerWidth) + rect.width) &&
+                (rect.top > -rect.height && rect.bottom < (viewHeight || window.innerHeight) + rect.height)){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    });
+})(Zepto);
+;(function( $, JMU ) {
+    /*底部浮层组件
+    * 
+    * 调用示例：by gctang
+    * pro.actionSheet.show({
+    *   content: ['value1','value2'], // 或以'<li>value1</li><li>value2</li>>'的字符串形式传入
+    *   binHandle: [function(){}, function(){}]//需与content一一对应
+    *})
+    * or 高级配置用法：
+    * pro.actionSheet.show({
+    *   content: [
+    *       {
+    *           id: 'testId',//给节点添加自定义id
+    *           className: 'jmu-clor-red',//添加自己的样式
+    *           value: 'value1' //展示的值
+    *           cmd: 'customEvent1' //自定义事件名
+    *       },
+    *       {
+    *           value: 'value2',
+    *           cmd: 'customEvent2' //自定义事件名
+    *       }
+    *    ],
+    *    customEvent1: function(){
+    *        //自定义事件 do something
+    *    }
+    * })
+    */
+    JMU.Component( 'ActionShare', {
+        options: {
+            mask: true,
+            animation: true,
+            tapHide: true,
+            preventScroll: true,
+            content: '',
+            btnHandle: []
+        },
+        tpl: {
+            main: '<div class="jmu-action-sheet">\
+                    <div class="sheet-title jmu-border-b">分享到:</div>\
+                    <ul class="content"></ul>\
+                    <div class="jmu-color-blue btn btn-cancel" data-cmd="as-cancel" data-dismiss="true">取消</div>\
+                </div>',
+            ul: '<% for(var i = 0, l = list.length; i < l; i++){\
+                      if(typeof(list[i]) === "string"){\
+                 %>\
+                      <li class="jmu-color-blue btn" data-dismiss="true"><%=list[i]%></li>\
+                      <% }else{ %>\
+                      <li <%=list[i].id ? "id="+list[i].id : ""%> class="jmu-color-blue btn <%=list[i].className ? list[i].className : ""%>" data-dismiss="true" <%=list[i].cmd ? "data-cmd="+list[i].cmd : ""%> ><%=list[i].value ? list[i].value : ""%></li>\
+                      <% }\
+                } %>'
+        }, 
+        _render: function(){
+            var options = this.options;
+
+            if($.isArray(options.content)){
+                this.$el.find('.content').html($.template(this.tpl.ul, { list : options.content }));
+            }else{
+                this.$el.find('.content').html(options.content);
+            } 
+        },
+        _bindEvents: function(){
+            var self = this;
+
+            this.$el.on('tap', '.btn', function(e){
+                var $btn = $(e.currentTarget);
+                var command = $btn.data('cmd');
+
+                $btn.active(function(){
+                    var fn = null;
+                    var index = -1;
+                    if(command === 'as-cancel'){
+                        index = self.$el.find('.content').children().length;
+                    }else{
+                        index = $btn.index();
+                    }
+                   
+                    if($btn.data('dismiss')){
+                        self.hide();    // 点击后隐藏action-sheet
+                    } 
+
+                    if(self.options.btnHandle.length > 0){
+                        fn = self.options.btnHandle[index];
+                        $.isFunction( fn ) && fn();
+                    } else if($.isFunction( self.options[command] )){
+                        self.options[command]();
+                    }
+                });
+            });
+        }
+    }, true);
+})(Zepto, JMU);
+
+(function( $, JMU ) {
+    /*底部浮层组件
+    * 
+    * 调用示例：by gctang
+    * pro.actionSheet.show({
+    *   content: ['value1','value2'], // 或以'<li>value1</li><li>value2</li>>'的字符串形式传入
+    *   binHandle: [function(){}, function(){}]//需与content一一对应
+    *})
+    * or 高级配置用法：
+    * pro.actionSheet.show({
+    *   content: [
+    *       {
+    *           id: 'testId',//给节点添加自定义id
+    *           className: 'jmu-clor-red',//添加自己的样式
+    *           value: 'value1' //展示的值
+    *           cmd: 'customEvent1' //自定义事件名
+    *       },
+    *       {
+    *           value: 'value2',
+    *           cmd: 'customEvent2' //自定义事件名
+    *       }
+    *    ],
+    *    customEvent1: function(){
+    *        //自定义事件 do something
+    *    }
+    * })
+    */
+    JMU.Component( 'ActionSheet', {
+        options: {
+            mask: true,
+            animation: true,
+            tapHide: true,
+            preventScroll: true,
+            content: '',
+            btnHandle: []
+        },
+        tpl: {
+            main: '<div class="jmu-action-sheet">\
+                    <ul class="content"></ul>\
+                    <div class="jmu-color-blue btn btn-cancel" data-cmd="as-cancel" data-dismiss="true">取消</div>\
+                </div>',
+            ul: '<% for(var i = 0, l = list.length; i < l; i++){\
+                      if(typeof(list[i]) === "string"){\
+                 %>\
+                      <li class="jmu-color-blue jmu-border-1px btn" data-dismiss="true"><%=list[i]%></li>\
+                      <% }else{ %>\
+                      <li <%=list[i].id ? "id="+list[i].id : ""%> class="jmu-color-blue jmu-border-1px btn <%=list[i].className ? list[i].className : ""%>" data-dismiss="true" <%=list[i].cmd ? "data-cmd="+list[i].cmd : ""%> ><%=list[i].value ? list[i].value : ""%></li>\
+                      <% }\
+                } %>'
+        }, 
+        _render: function(){
+            var options = this.options;
+
+            if($.isArray(options.content)){
+                this.$el.find('.content').html($.template(this.tpl.ul, { list : options.content }));
+            }else{
+                this.$el.find('.content').html(options.content);
+            } 
+        },
+        _bindEvents: function(){
+            var self = this;
+
+            this.$el.on('tap', '.btn', function(e){
+                var $btn = $(e.currentTarget);
+                var command = $btn.data('cmd');
+
+                $btn.active(function(){
+                    var fn = null;
+                    var index = -1;
+                    if(command === 'as-cancel'){
+                        index = self.$el.find('.content').children().length;
+                    }else{
+                        index = $btn.index();
+                    }
+                   
+                    if($btn.data('dismiss')){
+                        self.hide();    // 点击后隐藏action-sheet
+                    } 
+
+                    if(self.options.btnHandle.length > 0){
+                        fn = self.options.btnHandle[index];
+                        $.isFunction( fn ) && fn();
+                    } else if($.isFunction( self.options[command] )){
+                        self.options[command]();
+                    }
+                });
+            });
+        }
+    }, true);
+})(Zepto, JMU);
+
+/**
+ * Copyright (c) 2014 Tencent AlloyTeam, All rights reserved.
+ * http://www.AlloyTeam.com/
+ * Code licensed under the BSD License:
+ * http://www.AlloyTeam.com/license.txt
+ * 
+ * @author  Yussicahe
+ * @description dialog组件
+ */
+
+ ;(function ($, JMU) {
+    JMU.defineComponent('Dialog', {
+        options: {
+            mask: true,
+            animation: true,
+            tapHide: true,
+            preventScroll: true,
+            showCloseBtn: false,
+            title: '提示',
+            content: '',
+            btnText: ['取消', '确定'],
+            btnHandle: []
+        },
+        template: '<div class="jmu-dialog">\
+                <div class="body jmu-color-black">\
+                    <div class="title"></div>\
+                    <div class="content"></div>\
+                </div>\
+                <div class="btns jmu-border-1px jmu-color-blue">\
+                    <div class="btn"></div>\
+                    <div class="btn jmu-border-1px"></div>\
+                </div>\
+            </div>',
+        _render: function(){
+            var options = this.options;
+            if(options.title){
+                this.$el.find('.title').text(options.title).css('display', 'block');
+            }else{
+                this.$el.find('.title').css('display', 'none');
+            }
+            this.$el.find('.content').html(options.content);
+            this.$el.find('.btn:nth-child(1)').text(options.btnText[0]);
+            if(options.btnText.length > 1){
+                this.$el.find('.btn:nth-child(2)').text(options.btnText[1]).css('display', 'block');
+            }else{
+                this.$el.find('.btn:nth-child(2)').css('display', 'none');
+            }
+        },
+        _bindEvents: function(){
+            var self = this;
+
+            this.$el.on('tap', '.btn', function(e){
+                var $btn = $(e.currentTarget);
+
+                $btn.active(function(){
+                    self.hide();    // 点击后隐藏dialog
+
+                    // 防止dialog隐藏动画和其他渲染一起出现卡顿
+                    setTimeout(function(){
+                        var fn = self.options.btnHandle[$btn.index()];
+                        $.isFunction( fn ) && fn();
+                    }, 0); 
+                });
+            });
+        }
+    });
+})(Zepto, JMU);
+
+(function( $, JMU ) {
+    JMU.Component( 'Dot', {
+        options: {
+            type: 'normal',   // normal, new, num
+            color: 'red',   // red 或 blue
+            content: '',    // New红点和数字红点需要指定content
+            css: null   // 样式，可以自由控制红点的位置和大小，默认红点在容器的右上角
+        },
+        tpl: '<div></div>',
+        _render: function(){
+            var options = this.options;
+            
+            this.$el.removeClass().addClass('jmu-dot-' + options.type + ' ' + 'jmu-dot-' + options.color).text(options.content);
+
+            if(options.css){
+                this.$el.css(options.css);
+            }else{
+                this.$el.addClass('jmu-dot-tr');     // 位置默认在容器的右上角
+            }
+        }
+    });
+})(Zepto, JMU);
+
+;(function( $, JMU ) {
     var cssPrefix = '-webkit-';
     var ratio = window.devicePixelRatio == 1? 1 : 2;
 
@@ -934,7 +859,7 @@ $.Carousel = slider;
 
     var cache = {}; /* Cache animation rules */
     
-    pro.createWidget( 'Loading', {
+    JMU.Component( 'Loading', {
         options: {
             size: 30,               // The width/ height of the spinner
 
@@ -1015,17 +940,17 @@ $.Carousel = slider;
             this.$el.appendTo(this.$container);
         }
     });
-})(Zepto, pro);
+})(Zepto, JMU);
 
-(function( $, pro ) {
-    pro.createWidget( 'TextLoading', {
+(function( $, JMU ) {
+    JMU.Component( 'TextLoading', {
         options: {
             preventScroll: true,
             content: ''
         },
-        tpl: '<div class="ui-text-loading">\
+        tpl: '<div class="jmu-text-loading">\
                 <div class="loading" data-color="255,255,255" data-size="36"></div>\
-                <div class="content ui-color-white"></div>\
+                <div class="content jmu-color-white"></div>\
             </div>',
         _render: function(){
             var options = this.options;
@@ -1035,14 +960,14 @@ $.Carousel = slider;
             this.$el.find('.content').html(options.content);
         }
     }, true);
-})(Zepto, pro);
+})(Zepto, JMU);
 
-(function( $, pro ) {
-    pro.createWidget( 'PageLoading', {
+(function( $, JMU ) {
+    JMU.Component( 'PageLoading', {
         options: {
             content: ''
         },
-        tpl: '<div class="ui-page-loading">\
+        tpl: '<div class="jmu-page-loading">\
                 <div class="loading"></div>\
                 <div class="content"></div>\
             </div>',
@@ -1054,20 +979,20 @@ $.Carousel = slider;
             this.$el.find('.content').html(options.content);
         }
     }, true);
-})(Zepto, pro);
+})(Zepto, JMU);
 
 
-(function( $, pro ) {
-    pro.createWidget( 'RichLoading', {
+(function( $, JMU ) {
+    JMU.Component( 'RichLoading', {
         options: {
             preventScroll: true,
             content: '',
             onClose: $.emptyFunction
         },
-        tpl: '<div class="ui-rich-loading">\
+        tpl: '<div class="jmu-rich-loading">\
                 <div class="loading" data-color="255,255,255" data-size="36"></div>\
-                <div class="ui-no-wrap content"></div>\
-                <div class="ui-icon-close btn"></div>\
+                <div class="jmu-no-wrap content"></div>\
+                <div class="jmu-icon-close btn"></div>\
             </div>',
         _render: function(){
             var options = this.options;
@@ -1089,524 +1014,56 @@ $.Carousel = slider;
             });
         }
     }, true);
-})(Zepto, pro);
+})(Zepto, JMU);
 
 
-;(function( $, pro ) {
-	pro.createWidget( 'Mask', {
+/**
+ * Copyright (c) 2014 Tencent AlloyTeam, All rights reserved.
+ * http://www.AlloyTeam.com/
+ * Code licensed under the BSD License:
+ * http://www.AlloyTeam.com/license.txt
+ * 
+ * @author  Yussicahe
+ * @description mask组件
+ */
+
+;(function ($, JMU) {
+	JMU.defineComponent('Mask', {
 		options: {
 			animation: true,
-			preventScroll: true
+            tapHide: true,
+			preventScroll: true,
 		},
-		tpl: '<div class="ui-mask"></div>',
+		template: '<div class="jmu-mask"></div>',
 		_bindEvents: function(){
             var self = this;
 
             var options = this.options;
 
-            this.$el.on('tap', function(){
-            	if(options.tapHide === true){
-					if(options.relatedWidget){
-						$.isFunction(options.relatedWidget.hide) && options.relatedWidget.hide();
+            this.$el.on('tap', function () {
+            	if (options.tapHide !== false) {
+                    var relatedComponent = options.relatedComponent;
+
+					if (relatedComponent && $.isFunction(relatedComponent.hide)) {
+						relatedWidget.hide();
 					}
+
+                    if ($.isFunction(options.tapHide)) {    // tapHide支持回调形式
+                        options.tapHide();
+                    }
+
 					self.hide();
-				}else if($.isFunction(options.tapHide)){
-					options.tapHide();
 				}
 			});
-        }
-	}, true);
-})(Zepto, pro);
-
-/**
- * by jdo
- * 
- * summary : 多级下拉菜单，最多支持3级
- */
-;(function ($, pro, undefined){
-
-	// var _initialize = 0;
-    // android 4, 4.4
-    // 页面滚动触发时，不触发`touchmove`事件
-    // 暂无更好办法，先列为低端设备，做最原始的功能支持
-    var ver = parseFloat($.env.systemVersion);
-    var isPoorDevice = $.isPoorDevice || $.os.android && (ver === 4.4 || ver === 4);
-
-    // alert(isPoorDevice)
-	
-	pro.createWidget('MultSelector', {
-
-		options : {
-			mask: true,
-            animation: true,
-            tapHide: true,
-            selected: [],
-            option: [],
-            effect: 'from-top',
-            maxRoot: 4,
-            onShowChild : function () {},
-            onChangeChild : function () {},
-            onSelect : function () {}
-		},
-
-		$roots : null,
-		$body : $(document.body),
-
-		currShowing : null,
-
-		tpl : {
-			main: '<div class="ui-border-1px ui-multselect"></div>',
-
-			selected : '<% \
-						for ( var i = 0, len = Math.min(dat.length, maxRoot); i < len; i++ ) {\
-					%>\
-						<div class="ui-multselect-selected ui-multselect-<%= len %>grid">\
-                            <div class="ui-selected-text-wrap<%= i+1 === len ? "":" ui-border-1px" %>">\
-    				            <span class="ui-selected-text ui-no-wrap"><%= dat[i] %></span>\
-    				            <i class="ui-icon-arrow ui-arrow-down"></i>\
-                            </div>\
-				        </div>\
-					<% } %>',
-
-			option : '<div class="ui-multselect-panel ui-border-1px <%= effect %> <%= cla %>">\
-							<div class="ui-multselect-child left" data-panel="left">\
-								<ul>\
-								<%\
-									var hasThirdPanel, currChild, slSecond, isActive = "";\
-									defaultParent = defaultParent || tree[1][0];\
-									for ( var i = 0, len = tree.length; i < len; i++ ) {\
-										var item = tree[i], text, third;\
-										if ( $.isArray(item) ) {\
-											text = item[0];\
-											third = item[1];\
-											var hasThird = $.isArray(third) && third.length;\
-											if ( !hasThirdPanel && hasThird ) hasThirdPanel = true;\
-										} else {\
-											text = item;\
-											hasThird = hasThirdPanel = false;\
-										}\
-                                        var roots = text.split("&"), icon = "";\
-                                        if ( roots.length === 2 ) {\
-                                            text  = roots[0];\
-                                            icon = roots[1];\
-                                            third ? tree[i][0] = text : tree[i] = text\
-                                        }\
-										if ( defaultParent === text ) {\
-											isActive = "active";\
-											slSecond = i;\
-											currChild = third;\
-										} else {\
-											isActive = "";\
-										}\
-								%>\
-									<li class="ui-border-1px ui-multselect-child-li <%= isActive %><%= hasThird ? "" : " no-more" %>" data-index="<%=i%>">\
-					            		<% if (icon) { %>\
-                                            <div class="ui-multselect-child-li-icon <%= icon %>"></div>\
-                                        <% } %>\
-                                        <div class="ui-multselect-child-text ui-no-wrap"><%= text %></div>\
-					            		<i class="ui-icon-arrow ui-arrow-right"></i>\
-					            	</li>\
-				            	<% } %>\
-				            	</ul>\
-       						</div>\
-       						<div class="ui-multselect-child right" data-panel="right"><ul></ul></div>\
-			            	<%\
-                            var slThird = $.isArray(currChild) && currChild.length ? currChild.indexOf(defaultChild) : -1;\
-                            slThird = slThird === -1 ? undefined : slThird;\
-			            	bridging({\
-			            		slSecond : slSecond,\
-                                slThird : slThird,\
-			            		tmpSecond : slSecond,\
-                                tmpThird : slThird,\
-			            		hasThirdPanel : hasThirdPanel\
-			            	});\
-			            	%>\
-   						</div>'
-
-		},
-		_init: function (el, opts) {
-
-            this.$super('_init', el, opts);
-            this._create();
-
-            if ( opts.selected && opts.selected.length ) this._renderRoot();
-            if ( opts.option &&  opts.option.length) this._initPullDown();
-
-		},
-		_renderRoot: function(){
-			var opts = this.options;
-			var selected = opts.selected;
-
-			if ( selected && selected.length ) {
-				this.$roots = this.$el.html($.template(this.tpl.selected, { dat : selected, maxRoot : opts.maxRoot })).find('.ui-multselect-selected');
-			}
-        },
-        _initPullDown : function () {
-        	var opts = this.options;
-        	var $roots = this.$roots;
-
-			$.each(opts.option, function (k, child) {
-				// 检查子节点是否存在
-                // console.log(child)
-				if ( child.tree && child.tree.length ) {
-					$roots.eq(k).addClass('ui-multselect-root-more');
-				}
-			});
-        },
-        _bindEvents: function () {
-        	var that = this;
-
-        	this.$el
-            .on('touchmove', function (e) {
-                e.preventDefault();
-            })
-            .on('tap', '.ui-multselect-selected', function () {
-        		var $elem = $(this);
-
-        		if ( $elem.hasClass('ui-multselect-root-more') ) {
-        			if ( $elem.hasClass('active') ) {
-                        that.hide();
-        				that.currShowing = null;
-        			} else {
-        				var index = parseInt($elem.index());
-	        			var children = that.options.option;
-	        			var child;
-
-	        			if ( that.currShowing !== null ) {
-                            that.$roots[that.currShowing].$panel.css('display', 'none');
-	        				that.hide();
-	        			}
-
-	        			if ( children && (child = children[index]) ) {
-	        				that.currShowing = index;
-	        				that.showSubPanel(this, child);
-	        			}
-        			}
-        		}
-        	});
-
-            // var that = this;
-            this.$body.on('tap', '.ui-multselect-panel li', function () {
-                if ( this.currShowing !== null ) {
-                    var $this = $(this);
-                    var $parent = $this.parents('.ui-multselect-child');
-
-                    var child = that.options.option[that.currShowing];
-                    var index = parseInt($this.data('index'));
-                    var panel = $parent.hasClass('left') ? 'tmpSecond' : 'tmpThird';
-                    var slChildIndex = child[panel];
-                    // 触发onSelect标识
-                    var isSelect;
-
-                    // 存在子节点
-                    if ( panel === 'tmpSecond' ) {
-
-                        var curr = child.tree[index][1] || [];
-                        // 非选中状态，即可更新面板
-                        if ( index != slChildIndex ) {
-                            that._renderThirdPanel($parent.next(), curr);
-                        }
-                        // 不存在三级菜单
-                        if ($this.hasClass('no-more')) {
-                            // 这里要清空三级选中状态
-                            // 主要避免上一次选择遗留的数据
-                            delete child.tmpThird;
-                            that.hide();
-                            isSelect = true;
-                        }
-                    } else {
-                        that.hide();
-                        isSelect = true;
-                    }
-
-                    // 更新选择状态
-                    if ( index != slChildIndex ) {
-                        // 初始化选中索引有可能为undefined
-                        if ( slChildIndex !== undefined ) {
-                            $parent.find('li:nth-child('+ (slChildIndex+1) +')').removeClass('active');
-                        }
-                        $parent.find('li:nth-child('+ (index+1) +')').addClass('active');
-                        child[panel] = index;
-                    }
-
-                    isSelect && that._onSelect();
-                }
-            });
-            // hack for android
-            if ( $.os.android ) {
-                // var $uisearchinput = $(".ui-search-input")[0];
-                var currY, startScrollTop;
-
-                this.$body.on('touchstart', '.ui-multselect-child[data-bouncefix]', function (e) {
-                    e.preventDefault();
-                })
-                .on('touchstart', '.ui-multselect-child[data-scrollable]', function (e) {
-                    var touch = e.touches[0];
-                    var el = e.currentTarget;
-
-                    currY = touch.pageY;
-                    startScrollTop = el.scrollTop;
-                })
-                .on('touchmove', '.ui-multselect-child[data-scrollable]', function (e) {
-                    var touch = e.touches[0];
-                    var dis = touch.pageY - currY;
-
-                    var el = e.currentTarget,
-                        curPos = el.scrollTop,
-                        height = el.clientHeight,
-                        scroll = el.scrollHeight;
-
-                    // alert(el.className);
-                    // $uisearchinput.value = Math.random();
-
-                    if ( curPos === 0 && dis > 0 || curPos === scroll - height && dis < 0 ) {
-                        e.preventDefault();
-                    }
-
-                    // hack for poor device - andriod 3.0-
-                    if ( isPoorDevice ) {
-                        el.scrollTop = startScrollTop-dis;
-                        e.preventDefault();
-                    }
-
-                });
-            }
-        },
-        showSubPanel : function (root, child) {
-            // render tree panel
-        	this._renderSubPanel(root, child);
-        	// undate root's status
-            $(root).addClass('active');
-            // 是否出遮罩
-            this.options.mask && pro.mask.show({
-                tapHide: this.options.tapHide,
-                relatedWidget: this
-            });
-        	var that = this;
-        	setTimeout(function () {
-        		$( root.$panel ).removeClass(that.options.effect);
-        	}, 30);
-        },
-        hide : function () {
-            var root = this.$roots[this.currShowing];
-            if ( root ) {
-
-                $(root).removeClass('active');
-                
-                if ( root.$panel ) {
-                    $( root.$panel )
-                        .css('top', 0)
-                        .addClass(this.options.effect);
-                }
-
-                this.options.mask && pro.mask.hide();
-            }
-        },
-        add : function (index, root) {
-            var opts = this.options;
-            var option = opts.option;
-            var max = opts.selected.length;
-            var curr = option.length;
-
-            // 指定强制更新某一节点
-            if ( typeof index === 'number' && $.isArray(root) && root.length ) {
-
-                var child;
-
-                if ( index < max && (child = option[index]) ) {
-                    child.tree = root;
-                    child.refresh = true;
-                }
-                // call _initPullDown
-                this._initPullDown();
-
-
-            } else if ( $.isArray(index) ) {
-                if ( curr < max ) {
-                    // 复制节点数据
-                    var tree = Array.prototype.slice.call(arguments, 0, max - curr);
-                    
-                    for ( var i = 0, len = tree.length; i < len; i++ ) {
-                        option.tree.push( tree[i] );
-                    }
-                    // call _initPullDown
-                    this._initPullDown();
-                }
-            }
-        },
-        reset : function (index, opt) {
-            if ( typeof index === 'number' && opt ) {
-
-                // var child;
-                var options = this.options;
-                var max = options.selected.length;
-
-                if ( index < max ) {
-                    opt.refresh = true;
-                    options.option[index] = opt;
-                    var selected = opt.defaultChild || opt.defaultParent;
-                    // 更新selected字段
-                    if ( selected !== options.selected[index] ) {
-                        this.$roots.eq(index).find('.ui-selected-text').text(options.selected[index] = selected);
-                    }
-                }
-                // call _initPullDown
-                this._initPullDown();
-            }
-        },
-        _renderSubPanel : function (root, child) {
-
-            var force = false;
-            var that = this;
-
-            // 选项子集有变动，重新生成选择面板
-            if ( child.refresh ) {
-                // release panel node
-                if ( root.$panel ) {
-                    // 移除android端兼容事件
-                    if ( $.os.android ) root.$panel.find('.ui-multselect-child').off();
-                    // 移除节点
-                    root.$panel.remove();
-                    delete root.$panel;
-                }
-                delete child.refresh;
-            }
-
-        	if ( !root.$panel ) {
-                var opts = this.options;
-
-        		child.effect = opts.effect;
-                child.cla = 'js-multselect-panel-'+this.currShowing;
-                // child.top = opts.panelOffsetTop;
-        		// 从模版中提取变量
-        		// 省去重新遍历
-        		child.bridging = function (dat) {
-        			$.extend(child, dat);
-        		};
-        		root.$panel = $($.template(this.tpl.option, child)).appendTo(this.$body);
-
-        		// 不存在第三级面板
-        		if ( !child.hasThirdPanel ) root.$panel.addClass('no-third');
-
-        		// this._bindSubEvents(root.$panel);
-                // 初始化强制刷新标识
-                force = true;
-                // 初始化二级菜单滚动条
-                setTimeout( function () {
-                    that._initScroll(root.$panel.find('.ui-multselect-child.left'));
-                }, 0 );
-        	}
-
-            var $panel = root.$panel;
-
-            var clientRect = that.$el[0].getBoundingClientRect();
-
-            $panel.css({
-                // hack for poor equipment
-                'top': clientRect.bottom + ($.env.isPoorDevice ? document.body.scrollTop : 0),
-                'display': '-webkit-box'
-            });
-
-            var slSecond = child.slSecond;
-            var slThird  = child.slThird;
-
-            if ( this._need2Refresh(child, force) ) {
-
-                // 更新临时选中字段
-                child.tmpSecond = slSecond;
-                child.tmpThird  = slThird;
-
-                // 渲染第三级子菜单
-                // `hasThirdPanel`由模版内部遍历检查
-                // 这边不再重复对数据类型检查
-                if ( child.hasThirdPanel ) {
-                    var hasThird = child.tree[slSecond];
-                    this._renderThirdPanel($panel.find('.ui-multselect-child.right'), hasThird[1] || []);
-                }
-                
-            }
-
-            // 初始化下拉菜单选择状态
-            $panel.find('.ui-multselect-child.left li').removeClass('active').eq(slSecond).addClass('active');
-
-            if ( slThird !== undefined )
-                $panel.find('.ui-multselect-child.right li').removeClass('active').eq(slThird).addClass('active');
-
-        },
-        _renderThirdPanel : function ($parent, children) {
-        	$parent.html('<ul>'+$.map(children, function (child, k) {
-        		return '<li class="ui-border-1px ui-multselect-child-li" data-index="'+ k +'"><div class="ui-multselect-child-text ui-no-wrap">'+ child +'</div></li>';
-        	}).join('')+'</ul>');
-
-            var that = this;
-            setTimeout(function () {
-                that._initScroll($parent);
-            }, 0);
-        },
-        _initScroll : function ($node) {
-            var node = $node[0];
-            node.scrollTop = 0;
-            $node
-                .attr( 'data-bouncefix', null )
-                .attr( 'data-scrollable', null )
-                .attr( node.clientHeight >= node.scrollHeight ? 'data-bouncefix' : 'data-scrollable', '');
-        },
-        _onSelect : function () {
-
-            var child = this.options.option[this.currShowing];
-            var tree = child.tree;
-
-            if ( this._need2Refresh(child) ) {
-
-                var tmpSecond = child.tmpSecond;
-                var tmpThird = child.tmpThird;
-                // 更新选中字段
-                child.slSecond = tmpSecond;
-                child.slThird = tmpThird;
-
-                // 更新文案字段
-                var parent = tree[tmpSecond];
-
-                child.defaultParent = $.isArray(parent) ? parent[0] : parent;
-                child.defaultChild  = tmpThird !== undefined ? parent[1][tmpThird] : '';
-
-                // call onSelect function
-                this.options.onSelect(this.options.option);
-                // console.log(this.options.option)
-
-                // refresh root's text
-                this.$roots.eq(this.currShowing).find('.ui-selected-text').text(child.defaultChild || child.defaultParent);
-            }
-
-        },
-        _need2Refresh : function (child, isForce) {
-
-            var slSecond = child.slSecond;
-            var slThird = child.slThird;
-
-            var tmpSecond = child.tmpSecond;
-            var tmpThird = child.tmpThird;
-
-            var hadChange = false;
-
-            // 初始状态`slThird` `tmpThird` 都为undefined
-            // 但初始化时候需要生成第三级菜单
-            // `isForce`用于初始化时候强制生成
-            if ( isForce || slSecond !== tmpSecond || slThird !== tmpThird ) {
-                hadChange = true;
-            }
-
-            return hadChange;
         }
 	});
-
-})(Zepto, pro);
-;(function($, pro) {
-    pro.createWidget('Progress', {
+})(Zepto, JMU);
+(function($, JMU) {
+    JMU.Component('Progress', {
         options: {
-            percentage: 0, // 0% 当前进度   
-            total: 100, // 100MB 总大小  
-            content: '下载中' // 提示文字
+            type: 'normal',   
+            color: 'green',   
+            content: ''
         },
 
         _init: function (el, opts){
@@ -1621,7 +1078,6 @@ $.Carousel = slider;
 
         _setProgress: function (options){
             var deg = options.percentage / 100 * 360;
-            this.$el.find('.progress-text').text(options.content);
             this.$el.find('.progress-size-total').text(options.total);
             this.$el.find('.progress-size-curr').text((options.total * options.percentage / 100).toFixed(2));
             this.$el.find('.progress-bar').width(options.percentage + '%');
@@ -1630,19 +1086,19 @@ $.Carousel = slider;
 
             if (deg <= 180) {
                 // 小于 180 旋转右半圆
-                 this.$el.find('.ui-progress-right').css('transform', "rotate(" + deg + "deg)");
-                 this.$el.find('.ui-progress-left').css('transform', "rotate(0deg)");
+                 this.$el.find('.jmu-progress-right').css('transform', "rotate(" + deg + "deg)");
+                 this.$el.find('.jmu-progress-left').css('transform', "rotate(0deg)");
             } else {
                 // 大于 180 旋转左半圆
-                 this.$el.find('.ui-progress-right').css('transform', "rotate(180deg)");
-                 this.$el.find('.ui-progress-left').css('transform', "rotate(" + (deg - 180) + "deg)");
+                 this.$el.find('.jmu-progress-right').css('transform', "rotate(180deg)");
+                 this.$el.find('.jmu-progress-left').css('transform', "rotate(" + (deg - 180) + "deg)");
             }
         },
 
         _bindEvents: function(){
             this.$el.on('tap', '.action-cancle', function(e){
                 // TODO
-                console.log('cancle');
+                console.log(1);
             });
         },
 
@@ -1653,10 +1109,10 @@ $.Carousel = slider;
             this._setProgress(options);         
         }
     });
-})(Zepto, pro);
+})(Zepto, JMU);
 
-;(function($, pro) {
-    pro.createWidget('Range', {
+(function($, JMU) {
+    JMU.Component('Range', {
         options: {
             min: 1,      // 最小
             max: 100,    // 最大
@@ -1687,7 +1143,7 @@ $.Carousel = slider;
         _bindEvents: function(){
             var self = this;
             var $range = this.$el.find('input[type="range"]');
-            var $val =  this.$el.find('.ui-range-val');
+            var $val =  this.$el.find('.jmu-range-val');
             $range.on('input', function(e){
                 $val.text($range.val());
                 self.options.onInput();
@@ -1702,7 +1158,7 @@ $.Carousel = slider;
             //                 
         }
     });
-})(Zepto, pro);
+})(Zepto, JMU);
 
 ;(function($){
   $.fn.scrollTo = function(position, animation){
@@ -1813,13 +1269,13 @@ $.Carousel = slider;
 		}
 	});
 })(Zepto);
-;(function( $, pro ) {
+(function( $, JMU ) {
     /*
     *   Tab 组件
     *
     *   使用示例：
     *    $("#id").tab({
-    *       $el: '.ui-tab',//tab item 父层通常为ul
+    *       $el: '.jmu-tab',//tab item 父层通常为ul
     *       relateSelector:[], //可选，表示tab关联的下面的容器，可用data-target="#id1"写在HTML中
     *       onSwitchTab: function(index,item){} //监听tab切换函数,index:第几个tab; item: 当前tab
     *   })
@@ -1827,8 +1283,8 @@ $.Carousel = slider;
     *   样式需引入tab.css 
     */
     var activeClass = 'js-active';
-    
-    pro.createWidget( 'Tab', {
+
+    JMU.Component( 'Tab', {
         options: {
             content: [],
             currentIndex: 0,
@@ -1836,9 +1292,9 @@ $.Carousel = slider;
             onSwitchTab: $.emptyFunction
         },
         tpl: {
-            main: '<ul class="ui-tab"></ul>',
+            main: '<ul class="jmu-tab"></ul>',
             ul: '<% for(var i = 0, l = list.length; i < l; i++){ %>\
-                    <li class="ui-border-1px item"><%=list[i]%></li>\
+                    <li class="jmu-border-1px item"><%=list[i]%></li>\
                 <% } %>'
         },
         _init: function(el, opts){
@@ -1910,77 +1366,59 @@ $.Carousel = slider;
             }   
         }
     });
-})(Zepto, pro);
+})(Zepto, JMU);
 
-;(function( $, pro ) {
-	pro.createWidget( 'Toast', {
+(function( $, JMU ) {
+    JMU.Component( 'TextLoading', {
+        options: {
+            preventScroll: true,
+            content: ''
+        },
+        tpl: '<div class="jmu-text-loading">\
+                <div class="loading" data-color="255,255,255" data-size="36"></div>\
+                <div class="content jmu-color-white"></div>\
+            </div>',
+        _render: function(){
+            var options = this.options;
+            
+            this.$el.find('.loading').loading('show');
+
+            this.$el.find('.content').html(options.content);
+        }
+    }, true);
+})(Zepto, JMU);
+
+/**
+ * Copyright (c) 2014 Tencent AlloyTeam, All rights reserved.
+ * http://www.AlloyTeam.com/
+ * Code licensed under the BSD License:
+ * http://www.AlloyTeam.com/license.txt
+ * 
+ * @author  Yussicahe
+ * @description toast组件
+ */
+
+;(function ($, JMU) {
+	JMU.defineComponent('Toast', {
 		options: {
 			animation: true,
 			preventScroll: true,
-			state: 'warning',	// 三种状态 warning，tips，success，参见 http://waltz.cdc.com/mqq.html#3539
+			state: 'warning',    // 三种状态 warning|tips|success，参见 http://waltz.cdc.com/mqq.html#3539
 			content: '',
 			duration: 2000
 		},
-		tpl: '<div class="ui-toast">\
-			  	<i></i>\
-			  	<span class="ui-color-white"></span>\
-			  </div>',
+		template: '<div class="jmu-toast jmu-no-wrap">\
+				       <i class="jmu-icon-warning"></i>\
+				       <span class="jmu-content"></span>\
+				   </div>',
+		state: 'warning',
 		_render: function(){
-			this.$el.find('i').removeClass().addClass('ui-icon-' + this.options.state);
-			this.$el.find('span').text(this.options.content);
-		},
-		show: function( opts ){
-			var self = this;
+			var options = this.options;
 
-			this.$super('show', opts);
+			this.$el.find('.jmu-icon-' + this.state).removeClass('jmu-icon-' + this.state).addClass('jmu-icon-' + options.state);
+			this.$el.find('.jmu-content').text(options.content);
 
-			if(this.options.duration){
-				clearTimeout(this.timer);
-				
-				this.timer = setTimeout(function(){
-					self.hide();
-				}, this.options.duration);
-			}
-		},
-	}, true);
-})(Zepto, pro);
-
-;(function($){
-  var canvas = $('<canvas></canvas>')[0],
-      context = canvas.getContext('2d'),
-      imgs = $('img[data-holder]');
-
-  for (var i = 0, len = imgs.length; i < len; i++) {
-  	var size = $(imgs[i]).data('holder'),
-        text = $(imgs[i]).data('holder-text') || $(imgs[i]).data('holder');
-  		textWidth = context.measureText(text).width,
-  		width = size.split('x')[0],
-  		height = size.split('x')[1],
-  		textX = (width-textWidth) / 2,
-  		textY = height / 2;
-
-	canvas.width = +width;
-	canvas.height = +height;
-
-	context.fillStyle = getRandomColor(0, 255);
-	context.fillRect(0,0,width,height);
-
-	context.fillStyle = '#fff';
-	context.fillText(text, textX, textY);
-
-	$(imgs[i]).attr('src', canvas.toDataURL());  
-	$(imgs[i]).attr('alt', text);  
-  }    
-
-  function getRandomNumber(min, max) {
-    return Math.round(Math.random() * (max - min)) +1;
-  }
-  function getRandomColor(min, max) {
-    var r = getRandomNumber(min, max),
-        g = getRandomNumber(min, max),
-        b = getRandomNumber(min, max),
-        a = getRandomNumber(0.1, 0.5),
-        color = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';  
-    return color;    
-  }
-})(Zepto);
+			this.state = options.state;
+		}
+	});
+})(Zepto, JMU);

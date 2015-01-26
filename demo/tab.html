@@ -7,18 +7,18 @@
 	<title>ProUI</title>
 	<link rel="stylesheet" href="../css/jmui.css">
 </head>
-<body class="ui-app">
-	<div class="ui-header">
-		<a class="ui-btn demo-return-btn" href="../index.html">返回</a><h2>tab</h2>
+<body class="jmu-app">
+	<div class="jmu-header">
+		<a class="jmu-btn demo-return-btn" href="../index.html">返回</a><h2>tab</h2>
 	</div>
-	<div class="ui-content-container">
-		<div class="ui-content js-active">
+	<div class="jmu-content-container">
+		<div class="jmu-content js-active">
 			<section id="tab">
 				<div class="demo-item">
 					<p class="demo-desc">tab 切换</p>
 					<div class="demo-block">
 						<div id="tab-demo">
-							<ul class="ui-tab">
+							<ul class="jmu-tab">
 								<li class="item js-active">tab1</li>
 								<li class="item">tab2</li>
 							</ul>
@@ -37,7 +37,7 @@
 					<script class="demo-script">
 						;(function (){
 							$('#tab-demo').tab({
-								$el: '.ui-tab', 						  // 指定 tab 栏标题容器
+								$el: '.jmu-tab', 						  // 指定 tab 栏标题容器
 								relateSelector: ['.panel-1', '.panel-2'], // 指定关联内容
 								onSwitchTab: function(index, item){
 									// 切换时的回调函数
