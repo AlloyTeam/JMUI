@@ -58,12 +58,23 @@ module.exports = function(grunt){
 		},
 
 		concat: {
+			// TODO 这里的 zepto 来自 coupon/js/lib/zepto 含业务代码，应抽离
 			zepto: {
-				src: ['lib/zeptojs/zepto.js', 'lib/zeptojs/*.js'],
+				src: ['lib/zeptojs/zepto.js',
+					'lib/zeptojs/event.js',
+					'lib/zeptojs/extend/touch.js',     // modify fix ios 误点击
+					'lib/zeptojs/detect.js',
+					'lib/zeptojs/extend/util.js'
+					//'lib/zeptojs/data.js',
+					//'lib/zeptojs/animate.js',
+					//'lib/zeptojs/extend/ajax.js',      // modify fix 跨域ajax bort触发error
+				],
 				dest: 'lib/zeptojs/zepto.min.js'
 			},
 			js: {
-				src: ['js/util.js','js/core.js', 'js/mask.js', 'js/state.js', 'js/**'],
+				src: [
+					'js/core.js',
+					'js/**/*.js'],
 				dest: 'js/jmui.js'
 			}
 		},
@@ -74,24 +85,22 @@ module.exports = function(grunt){
 			  	{src: 'index.html', dest: 'dist/'},
 			  	{src: 'demo/**', dest: 'dist/'},
 			  	{src: 'img/**', dest: 'dist/'},
-			  	{src: 'css/jmui.css', dest: 'dist/css/jmui.css'},
-			  	{src: 'js/jmui.js', dest: 'dist/js/jmui.js'},
+			  	{src: 'css/**', dest: 'dist/'},
+			  	{src: 'js/**', dest: 'dist/'},
 			  	{src: 'lib/**', dest: 'dist/'}
 			]
 		  }
 		},
 
         watch: {
-            stylus:{
-                files: ['stylus/*.styl'],
-                tasks: ['stylus']
-            },
-            livereload: {
-            	files: ['css/*.css', 'demo/*.html'],
-            	options: {
-            		livereload: true
-            	}
-            }
+			stylus:{
+				files: ['stylus/*.styl'],
+				tasks: ['stylus']
+			},
+			js:{
+				files: ['Gruntfile.js', 'js/**/*.js', '!js/jmui.js'],
+				tasks: ['concat']
+			}
         },
 
         jsdoc: {
@@ -105,7 +114,6 @@ module.exports = function(grunt){
 	});
 	
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-stylus');
@@ -115,5 +123,6 @@ module.exports = function(grunt){
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-jsdoc');
 
-	grunt.registerTask('default', ['clean', 'stylus:compile', 'concat:js', 'copy:dist', 'uglify', 'cssmin']);
+	grunt.registerTask('default', ['clean', 'stylus:compile', 'concat:js', 'copy:dist', 'uglify', 'cssmin', 'watch']);
+	grunt.registerTask('build', ['clean', 'stylus:compile', 'concat:js', 'copy:dist', 'uglify', 'cssmin']);
 };

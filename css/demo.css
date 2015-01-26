@@ -1,5 +1,45 @@
+.jmu-border-1px {
+  position: relative;
+}
+.jmu-border-1px:after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-transform-origin: 0 0;
+  -webkit-transform: scale(1);
+  pointer-events: none;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .jmu-border-1px:after {
+    right: -100%;
+    bottom: -100%;
+    -webkit-transform: scale(0.5);
+  }
+}
 ::-webkit-scrollbar {
   width: 0;
+}
+.demo-border-1px,
+#base-color .demo-block p,
+#base-clearfix .ui-clear-fix,
+#base-center .ui-center,
+#base-nowrap .demo-block p,
+#dot .demo-block > div {
+  border: 1px solid #eee;
+}
+.demo-padding,
+#base-nowrap .demo-block p,
+#dot .demo-block > div {
+  padding: 5px;
+}
+.demo-margin,
+#base-nowrap .demo-block p,
+#dot .demo-block > div {
+  margin: 5px auto;
 }
 h2 {
   text-align: center;
@@ -16,6 +56,13 @@ h2 {
 .demo-block {
   margin: 20px;
 }
+#base-color .demo-block p {
+  padding: 10px 0;
+  text-align: center;
+}
+#base-color .demo-block p.ui-color-white {
+  background: #eee;
+}
 #base-1px .demo-block {
   text-align: center;
 }
@@ -25,36 +72,34 @@ h2 {
   text-align: center;
   margin: 10px;
 }
-#base-clearfix .jmu-clear-fix {
-  outline: 1px solid #ffa500;
-  height: 50px;
-  line-height: 50px;
+#base-clearfix .ui-clear-fix {
+  height: 40px;
+  line-height: 40px;
+  padding: 10px 0;
 }
-#base-center .jmu-center {
+#base-clearfix .ui-clear-fix div {
   outline: 1px solid #ffa500;
 }
-#corner-tag .jmu-corner-tag {
+#corner-tag .ui-corner-tag {
   display: inline-block;
 }
 #tab .tab-content li {
   text-align: center;
   margin-top: 20px;
 }
-#table .jmu-table {
+#table .ui-table {
   text-align: center;
   line-height: 40px;
 }
-#notice .jmu-notice {
+#notice .ui-notice {
   position: relative;
 }
 #dot .demo-block > div {
   position: relative;
-  background: #eee;
-  margin: 10px;
-  height: 50px;
-  line-height: 50px;
+  height: 40px;
+  line-height: 40px;
 }
-#grid .jmu-col {
+#grid .ui-col {
   outline: 1px solid #eee;
   height: 50px;
   line-height: 50px;

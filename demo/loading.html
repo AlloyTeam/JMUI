@@ -6,8 +6,6 @@
 	<meta name="format-detection" content="telephone=no">
 	<title>ProUI</title>
 	<link rel="stylesheet" href="../css/jmui.css">
-	<script src="../lib/zeptojs/zepto.min.js"></script>
-	<script src="../js/jmui.js"></script>
 </head>
 <body class="ui-app">
 	<div class="ui-header">
@@ -19,51 +17,47 @@
 				<div class="demo-item">
 					<p class="demo-desc">显示加载中, 三种类型.</p>
 					<div class="demo-block">
-						<a id="loading-page" class="action-show ui-btn">pageLoading</a>
-						<a id="loading-text" class="action-show ui-btn">textLoading</a>
-						<a id="loading-rich" class="action-show ui-btn">richLoading</a>
+						<a id="loading-page" class="action-show ui-btn">page</a>
+						<a id="loading-text" class="action-show ui-btn">text</a>
+						<a id="loading-rich" class="action-show ui-btn">rich</a>
 					</div>
-					<a class="action-hide ui-btn">隐藏</a>
+					<script src="../lib/zeptojs/zepto.min.js"></script>
+					<script src="../js/jmui.js"></script>
+					<script class="demo-script">
+						;(function (){
+							$('#loading').on('click', '#loading-page', function (){
+								pro.textLoading.hide();
+								pro.richLoading.hide();
+								pro.pageLoading.show();
+							});
+
+							var opts1 = {
+								preventScroll: true,
+								content: '拼命加载中...'
+							};
+							$('#loading').on('click', '#loading-text', function (){
+								pro.textLoading.hide();
+								pro.pageLoading.hide();
+								pro.richLoading.hide();
+								pro.textLoading.show(opts1);
+							});
+
+							var opts2 = {
+								preventScroll: true,
+								content: '我也在拼命加载中...',
+								onClose: function (){console.log('哎呀, 我被关闭了,心好痛!')}
+							};
+							$('#loading').on('click', '#loading-rich', function (){
+								pro.pageLoading.hide();
+								pro.textLoading.hide();
+								pro.richLoading.show(opts2);
+							});
+						})();
+					</script>
 				</div>
 			</section>
 		</div>
 	</div>
-	<script class="demo-script">
-		;(function (){
-			$('#loading').on('click', '#loading-page', function (){
-				pro.textLoading.hide();
-				pro.richLoading.hide();
-				pro.pageLoading.show();
-			});
 
-			var opts1 = {
-				preventScroll: true,
-				content: '拼命加载中...'
-			};
-			$('#loading').on('click', '#loading-text', function (){
-				pro.textLoading.hide();
-				pro.pageLoading.hide();
-				pro.richLoading.hide();
-				pro.textLoading.show(opts1);
-			});
-
-			var opts2 = {
-				preventScroll: true,
-				content: '我也在拼命加载中...',
-				onClose: function (){console.log('哎呀, 我被关闭了,心好痛!')}
-			};
-			$('#loading').on('click', '#loading-rich', function (){
-				pro.pageLoading.hide();
-				pro.textLoading.hide();
-				pro.richLoading.show(opts2);
-			});
-
-			$('#loading').on('click', '.action-hide', function (){
-				pro.pageLoading.hide();
-				pro.textLoading.hide();
-				pro.richLoading.hide();
-			});
-		})();
-	</script>
 </body>
 </html>

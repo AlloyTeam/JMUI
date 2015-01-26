@@ -6,9 +6,6 @@
 	<meta name="format-detection" content="telephone=no">
 	<title>ProUI</title>
 	<link rel="stylesheet" href="../css/jmui.css">
-
-	<script src="../lib/zeptojs/zepto.min.js"></script>
-	<script src="../js/jmui.js"></script>
 </head>
 <body class="ui-app">
 	<div class="ui-header">
@@ -24,27 +21,26 @@
 						<a class="action-show ui-btn">warning</a>
 						<a class="action-show ui-btn">success</a>
 					</div>
-					<a class="action-hide ui-btn">隐藏</a>
+					<script src="../lib/zeptojs/zepto.min.js"></script>
+					<script src="../js/jmui.js"></script>
+					<script class="demo-script">
+						;(function (){
+							var opts = {
+								animation: true,
+								preventScroll: true,
+								state: 'warning',   // 三种状态 warning，tips，success
+								content: '哇!我是 warning',
+								duration: 2000
+							};
+							$('#toast').on('click', '.action-show', function (){
+								opts.state = $(this).text();
+								opts.content = '哇! 我是 ' + opts.state;
+								pro.toast.show(opts);
+							});
+						})();
+					</script>
 				</div>
-				<script class="demo-script">
-					;(function (){
-						var opts = {
-							animation: true,
-							preventScroll: true,
-							state: 'warning',   // 三种状态 warning，tips，success
-							content: '哇!我是 warning',
-							duration: 2000
-						};
-						$('#toast').on('click', '.action-show', function (){
-							opts.state = $(this).text();
-							opts.content = '哇! 我是 ' + opts.state;
-							pro.toast.show(opts);
-						});
-						$('#toast').on('click', '.action-hide', function (){
-							pro.toast.hide();
-						});
-					})();
-				</script>
+
 			</section>
 		</div>
 	</div>

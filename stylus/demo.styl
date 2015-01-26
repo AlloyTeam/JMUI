@@ -1,91 +1,135 @@
+@import 'base-1px.styl';
+@import 'base-color.styl';
 
 ::-webkit-scrollbar {
-	width: 0;
+  width: 0;
+}
+
+.demo-border-1px {
+  border: 1px solid #eee;
+}
+
+.demo-padding {
+  padding: 5px;
+}
+
+.demo-margin {
+  margin: 5px auto;
 }
 
 h2 {
-	text-align: center;
-  	line-height: 48px;
-	font-size: 16px;
+  text-align: center;
+  line-height: 48px;
+  font-size: 16px;
 }
 
 .demo-desc {
-	padding: 1em 20px;
-	border-top: 1px solid #dedfe0;
-}
-.demo-desc + small {
-	padding: 0 20px;
-}
-.demo-block {
-	margin: 20px;
+  padding: 1em 20px;
+  border-top: 1px solid #dedfe0;
 }
 
+.demo-desc + small {
+  padding: 0 20px;
+}
+
+.demo-block {
+  margin: 20px;
+}
+
+#base-color {
+  .demo-block p {
+    padding: 10px 0;
+    @extend  .demo-border-1px;
+    text-align center;
+
+    &.ui-color-white {
+      background: #eee;
+    }
+  }
+}
 
 #base-1px {
   .demo-block {
-	text-align: center;
+    text-align: center;
   }
   .demo-borders li {
-	height:50px;
-	line-height:50px;
-	text-align: center;
-	margin:10px;
-  }
-}
-#base-clearfix {
-  .jmu-clear-fix {
-	outline: 1px solid orange; height: 50px; line-height: 50px;
-  }
-}
-#base-center {
-  .jmu-center {
-	outline: 1px solid orange;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    margin: 10px;
   }
 }
 
-#corner-tag .jmu-corner-tag {
-	display: inline-block;
+#base-clearfix {
+  .ui-clear-fix {
+    @extend  .demo-border-1px;
+    height: 40px;
+    line-height: 40px;
+    padding: 10px 0;
+    div {
+      outline: 1px solid orange;
+    }
+  }
+}
+
+#base-center {
+  .ui-center {
+    @extend  .demo-border-1px;
+  }
+}
+
+#base-nowrap {
+  .demo-block p {
+    @extend  .demo-border-1px;
+    @extend  .demo-padding;
+    @extend  .demo-margin;
+  }
+}
+
+#corner-tag .ui-corner-tag {
+  display: inline-block;
 }
 
 #tab .tab-content li {
-	text-align: center;
-	margin-top: 20px;
+  text-align: center;
+  margin-top: 20px;
 }
 
-#table .jmu-table {
-	text-align: center;
-	line-height: 40px;
+#table .ui-table {
+  text-align: center;
+  line-height: 40px;
 }
 
-
-#notice .jmu-notice {
-	position: relative;
+#notice .ui-notice {
+  position: relative;
 }
 
 #dot .demo-block > div {
-	position: relative;
-	background: #eee;
-	margin: 10px;
-	height: 50px;
-	line-height:50px;
+  position: relative;
+  @extend  .demo-border-1px;
+  @extend  .demo-padding;
+  @extend  .demo-margin;
+  height: 40px;
+  line-height: 40px;
 }
 
-#grid .jmu-col {
-	outline: 1px solid #eee;
-	height: 50px;
-	line-height: 50px;
-	text-align: center;
+#grid .ui-col {
+  outline: 1px solid #eee;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
 }
 
 .demo-return-btn {
-	position: absolute;
-	top: 10px;
-	left: 10px;
+  position: absolute;
+  top: 10px;
+  left: 10px;
 }
 
 #debug .demo-block {
-	font-size: 0;
+  font-size: 0;
 }
-#debug .demo-block  img{
-	margin-top: 4px;
+
+#debug .demo-block img {
+  margin-top: 4px;
 }

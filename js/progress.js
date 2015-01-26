@@ -1,4 +1,4 @@
-(function($, pro) {
+;(function($, pro) {
     pro.createWidget('Progress', {
         options: {
             percentage: 0, // 0% 当前进度   
