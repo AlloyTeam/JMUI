@@ -8,55 +8,73 @@
     <meta name="description" content="JMUI" />
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="format-detection" content="telephone=no">
-    <title>ProUI Demo</title>
+    <title>JMUI Demo</title>
     <link rel="stylesheet" href="css/jmui.css">
     <script src="lib/zeptojs/zepto.min.js"></script>
     <script src="js/jmui.js"></script>
 </head>
 
 <body class="jmu-app">
+    <div class="jmu-header">
+        JMUI Demo
+    </div>
     <div class="jmu-content-container">
         <div class="jmu-content js-active">
-            <ul id="nav" class="jmu-list jmu-list-text jmu-list-link jmu-border-tb">
-                <!-- <li class="jmu-border-t">base</li> -->
-            </ul>
+            <ul id="nav"></ul>
         </div>
     </div>
     <script>
-    var hashes = [  // base css
-                    'base-color',
-                    'base-clearfix',
-                    'base-center',
-                    'base-1px',
-                    'base-nowrap',
+    var exports = {
+        // page 设置不同页面需要输出的文档
+        page: {
+            // http://localhost/base-css 基础样式
+            "base-css": {
+                "files": [
+                    {"name": "base-color", "title": "基础颜色"},
+                    {"name": "base-clearfix", "title": "清除浮动"},
+                    {"name": "base-center", "title": "垂直居中"},
+                    {"name": "base-1px", "title": "1像素边框"},
+                    {"name": "base-nowrap", "title": "文字不换行"}
+                ]
+            },
+            // http://localhost/ui-css UI组件
+            "ui-css": {
+                "files": [
+                    {"name": "button", "title": "按钮"},
+                    {"name": "button-group", "title": "按钮组"},
+                    {"name": "dot", "title": "点"},
+                    {"name": "corner-tag", "title": "角标"},
+                    {"name": "tooltips", "title": "提示条"},
+                    {"name": "table", "title": "表格"},
+                    {"name": "form", "title": "表单"},
+                    {"name": "list", "title": "列表"}
+                ]
+            },
+            // http://localhost/ui-js JS 插件
+            "ui-js": {
+                "files": [
+                    {"name": "loading", "title": "加载中"},
+                    {"name": "tab", "title": "标签栏"},
+                    {"name": "toast", "title": "提示"},
+                    {"name": "progress", "title": "进度条"},
+                    {"name": "range", "title": "范围条"},
+                    {"name": "dialog", "title": "对话框"},
+                    {"name": "action-sheet", "title": "菜单"},
+                    {"name": "action-share", "title": "分享到"}
+                ]
+            }
+        }
+    };
 
-                    // ui css
-                    'button',
-                    'button-group',
-                    'dot',
-                    'corner-tag',
-                    'tooltips',
-                    'table',
-                    'form',
-                    'list',
-
-                    // ui js
-                    'loading',
-                    'tab',
-                    'toast',
-                    'progress',
-                    'range',
-                    'dialog',
-                    'action-sheet',
-                    'action-share'];
-    var lis = $.map(hashes, function (hash) {
-        return '<li class="jmu-border-t jmu-list-item-link"><a href="./demo/'+ hash +'.html" >' + hash +'</a></li>';
-    });   
-    $('#nav').append(lis.toString().replace(/,/g, ''));
-//        $('.jmu-list-item-link').on('click', function () {
-//            var href = $(this).data('href');
-//            window.location.href = href;
-//        })
+    var lis = '';
+    for (var i in exports.page) {
+        var files = exports.page[i].files;
+        lis += '<li class="divider">'+ i +'</li>';
+        for (var j in files) {
+            lis += '<li><a href="./demo/'+ files[j].name +'.html" >' + files[j].title +'</a></li>';
+        }
+    }
+    $('#nav').append(lis);
     </script>
 </body>
 </html>

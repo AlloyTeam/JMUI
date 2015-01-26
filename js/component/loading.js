@@ -6,7 +6,7 @@
 
     var cache = {}; /* Cache animation rules */
     
-    JMU.Component( 'Loading', {
+    JMU.defineComponent( 'Loading', {
         options: {
             size: 30,               // The width/ height of the spinner
 
@@ -90,7 +90,7 @@
 })(Zepto, JMU);
 
 (function( $, JMU ) {
-    JMU.Component( 'TextLoading', {
+    JMU.defineComponent( 'TextLoading', {
         options: {
             preventScroll: true,
             content: ''
@@ -110,7 +110,7 @@
 })(Zepto, JMU);
 
 (function( $, JMU ) {
-    JMU.Component( 'PageLoading', {
+    JMU.defineComponent( 'PageLoading', {
         options: {
             content: ''
         },
@@ -130,7 +130,7 @@
 
 
 (function( $, JMU ) {
-    JMU.Component( 'RichLoading', {
+    JMU.defineComponent( 'RichLoading', {
         options: {
             preventScroll: true,
             content: '',

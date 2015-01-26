@@ -1,5 +1,5 @@
 (function($, JMU) {
-    JMU.Component('Range', {
+    JMU.defineComponent('Range', {
         options: {
             min: 1,      // 最小
             max: 100,    // 最大

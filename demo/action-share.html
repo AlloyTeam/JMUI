@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
-	<title>ProUI</title>
+	<title>JMUI</title>
 	<link rel="stylesheet" href="../css/jmui.css">
 </head>
 <body class="jmu-app">
@@ -20,7 +20,7 @@
 					<div class="demo-block">
 						<!--无 html-->
 					</div>
-					<a class="action-show jmu-btn">分享到</a>
+					<a class="demo-show jmu-btn">分享到</a>
 					<span class="test-output"></span>
 
 					<script src="../lib/zeptojs/zepto.min.js"></script>
@@ -99,8 +99,9 @@
 								func6: func6
 							};
 							// 测试
-							$('#action-share').on('click', '.action-show', function (){
-								JMU.actionShare.show(optsShare);
+							var actionShare = new JMU.ActionShare();
+							$('#action-share').on('click', '.demo-show', function (){
+								actionShare.show(optsShare);
 							});
 						})
 					</script>

@@ -604,7 +604,7 @@
     *    }
     * })
     */
-    JMU.Component( 'ActionShare', {
+    JMU.defineComponent( 'ActionShare', {
         options: {
             mask: true,
             animation: true,
@@ -696,7 +696,7 @@
     *    }
     * })
     */
-    JMU.Component( 'ActionSheet', {
+    JMU.defineComponent( 'ActionSheet', {
         options: {
             mask: true,
             animation: true,
@@ -829,7 +829,7 @@
 })(Zepto, JMU);
 
 (function( $, JMU ) {
-    JMU.Component( 'Dot', {
+    JMU.defineComponent( 'Dot', {
         options: {
             type: 'normal',   // normal, new, num
             color: 'red',   // red 或 blue
@@ -859,7 +859,7 @@
 
     var cache = {}; /* Cache animation rules */
     
-    JMU.Component( 'Loading', {
+    JMU.defineComponent( 'Loading', {
         options: {
             size: 30,               // The width/ height of the spinner
 
@@ -943,7 +943,7 @@
 })(Zepto, JMU);
 
 (function( $, JMU ) {
-    JMU.Component( 'TextLoading', {
+    JMU.defineComponent( 'TextLoading', {
         options: {
             preventScroll: true,
             content: ''
@@ -963,7 +963,7 @@
 })(Zepto, JMU);
 
 (function( $, JMU ) {
-    JMU.Component( 'PageLoading', {
+    JMU.defineComponent( 'PageLoading', {
         options: {
             content: ''
         },
@@ -983,7 +983,7 @@
 
 
 (function( $, JMU ) {
-    JMU.Component( 'RichLoading', {
+    JMU.defineComponent( 'RichLoading', {
         options: {
             preventScroll: true,
             content: '',
@@ -1059,7 +1059,7 @@
 	});
 })(Zepto, JMU);
 (function($, JMU) {
-    JMU.Component('Progress', {
+    JMU.defineComponent('Progress', {
         options: {
             type: 'normal',   
             color: 'green',   
@@ -1112,7 +1112,7 @@
 })(Zepto, JMU);
 
 (function($, JMU) {
-    JMU.Component('Range', {
+    JMU.defineComponent('Range', {
         options: {
             min: 1,      // 最小
             max: 100,    // 最大
@@ -1284,7 +1284,7 @@
     */
     var activeClass = 'js-active';
 
-    JMU.Component( 'Tab', {
+    JMU.defineComponent( 'Tab', {
         options: {
             content: [],
             currentIndex: 0,
@@ -1369,7 +1369,7 @@
 })(Zepto, JMU);
 
 (function( $, JMU ) {
-    JMU.Component( 'TextLoading', {
+    JMU.defineComponent( 'TextLoading', {
         options: {
             preventScroll: true,
             content: ''

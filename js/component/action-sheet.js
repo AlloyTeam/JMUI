@@ -25,7 +25,7 @@
     *    }
     * })
     */
-    JMU.Component( 'ActionSheet', {
+    JMU.defineComponent( 'ActionSheet', {
         options: {
             mask: true,
             animation: true,

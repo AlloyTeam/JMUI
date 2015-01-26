@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
-	<title>ProUI</title>
+	<title>JMUI</title>
 	<link rel="stylesheet" href="../css/jmui.css">
 </head>
 <body class="jmu-app">
@@ -17,20 +17,24 @@
 				<div class="demo-item">
 					<p class="demo-desc">显示加载中, 三种类型.</p>
 					<div class="demo-block">
-						<a id="loading-page" class="action-show jmu-btn">page</a>
-						<a id="loading-text" class="action-show jmu-btn">text</a>
-						<a id="loading-rich" class="action-show jmu-btn">rich</a>
+						<a id="loading-page" class="demo-show jmu-btn">page</a>
+						<a id="loading-text" class="demo-show jmu-btn">text</a>
+						<a id="loading-rich" class="demo-show jmu-btn">rich</a>
 					</div>
 					<script src="../lib/zeptojs/zepto.min.js"></script>
 					<script src="../js/jmui.js"></script>
 					<script class="demo-script">
 						;(function (){
+							var textLoading = new JMU.TextLoading();
+							var richLoading = new JMU.RichLoading();
+							var pageLoading = new JMU.PageLoading();
+
 							// 第一种，页面中间出现菊花提示
 							// 测试
 							$('#loading').on('tap', '#loading-page', function (){
-								JMU.textLoading.hide();
-								JMU.richLoading.hide();
-								JMU.pageLoading.show();
+								textLoading.hide();
+								richLoading.hide();
+								pageLoading.show();
 							});
 
 							// 第二种，页面中间出现文字提示
@@ -40,9 +44,9 @@
 							};
 							// 测试
 							$('#loading').on('tap', '#loading-text', function (){
-								JMU.pageLoading.hide();
-								JMU.richLoading.hide();
-								JMU.textLoading.show(opts1);
+								pageLoading.hide();
+								richLoading.hide();
+								textLoading.show(opts1);
 							});
 
 							// 第三种，页面中间出现文字提示，含关闭按钮
@@ -53,9 +57,9 @@
 							};
 							// 测试
 							$('#loading').on('tap', '#loading-rich', function (){
-								JMU.pageLoading.hide();
-								JMU.textLoading.hide();
-								JMU.richLoading.show(opts2);
+								pageLoading.hide();
+								textLoading.hide();
+								richLoading.show(opts2);
 							});
 						})();
 					</script>

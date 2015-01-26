@@ -109,7 +109,8 @@ module.exports = function(grunt){
 				tasks: ['newer:stylus']
 			},
 			css:{
-				files: ['css/*.css']
+				files: ['css/*.css'],
+				tasks: ['stylus']
 			},
 			js:{
 				files: ['js/**/*.js', '!js/jmui.js'],

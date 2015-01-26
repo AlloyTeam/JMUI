@@ -25,7 +25,7 @@
     *    }
     * })
     */
-    JMU.Component( 'ActionShare', {
+    JMU.defineComponent( 'ActionShare', {
         options: {
             mask: true,
             animation: true,

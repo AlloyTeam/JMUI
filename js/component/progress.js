@@ -1,5 +1,5 @@
 (function($, JMU) {
-    JMU.Component('Progress', {
+    JMU.defineComponent('Progress', {
         options: {
             type: 'normal',   
             color: 'green',   

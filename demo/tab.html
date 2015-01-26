@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
-	<title>ProUI</title>
+	<title>JMUI</title>
 	<link rel="stylesheet" href="../css/jmui.css">
 </head>
 <body class="jmu-app">
@@ -36,14 +36,15 @@
 					<script src="../js/jmui.js"></script>
 					<script class="demo-script">
 						;(function (){
-							$('#tab-demo').tab({
+							var opts = {
 								$el: '.jmu-tab', 						  // 指定 tab 栏标题容器
 								relateSelector: ['.panel-1', '.panel-2'], // 指定关联内容
 								onSwitchTab: function(index, item){
 									// 切换时的回调函数
 									console.log('已切换到第 %s 个 tab', index);
 								}
-							});
+							};
+							$('#tab-demo').tab(opts);
 						})();
 					</script>
 				</div>

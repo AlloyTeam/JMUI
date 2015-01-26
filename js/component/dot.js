@@ -1,5 +1,5 @@
 (function( $, JMU ) {
-    JMU.Component( 'Dot', {
+    JMU.defineComponent( 'Dot', {
         options: {
             type: 'normal',   // normal, new, num
             color: 'red',   // red 或 blue

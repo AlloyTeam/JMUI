@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
-	<title>ProUI</title>
+	<title>JMUI</title>
 	<link rel="stylesheet" href="../css/jmui.css">
 </head>
 <body class="jmu-app">
@@ -19,7 +19,7 @@
 				<div class="demo-block">
 					<!--无 html-->
 				</div>
-				<a class="action-show jmu-btn">显示</a>
+				<a class="demo-show jmu-btn">显示</a>
 				<span class="test-output"></span>
 				<script src="../lib/zeptojs/zepto.min.js"></script>
 				<script src="../js/jmui.js"></script>
@@ -40,8 +40,9 @@
 							btnHandle: [func0, func1]
 						};
 						// 测试
-						$('#action-sheet').on('tap', '.action-show', function (){
-							JMU.actionSheet.show(opts);
+						var actionSheet = new JMU.ActionSheet();
+						$('#action-sheet').on('tap', '.demo-show', function (){
+							actionSheet.show(opts);
 						});
 					})
 				</script>

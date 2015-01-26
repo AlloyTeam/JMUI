@@ -1,5 +1,5 @@
 (function( $, JMU ) {
-    JMU.Component( 'TextLoading', {
+    JMU.defineComponent( 'TextLoading', {
         options: {
             preventScroll: true,
             content: ''

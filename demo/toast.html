@@ -4,8 +4,10 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 	<meta name="format-detection" content="telephone=no">
-	<title>ProUI</title>
+	<title>JMUI</title>
 	<link rel="stylesheet" href="../css/jmui.css">
+	<script src="../lib/zeptojs/zepto.min.js"></script>
+	<script src="../js/jmui.js"></script>
 </head>
 <body class="jmu-app">
 	<div class="jmu-header">
@@ -15,33 +17,33 @@
 		<div class="jmu-content js-active">
 			<section id="toast">
 				<div class="demo-item">
-					<p class="demo-desc">提醒/警告/成功提示条</p>
+					<p class="demo-desc">提醒/成功/警告提示条</p>
 					<div class="demo-block">
-						<a class="action-show jmu-btn">tips</a>
-						<a class="action-show jmu-btn">warning</a>
-						<a class="action-show jmu-btn">success</a>
+						<a class="demo-show jmu-btn">tips</a>
+						<a class="demo-show jmu-btn">success</a>
+						<a class="demo-show jmu-btn">warning</a>
 					</div>
-					<script src="../lib/zeptojs/zepto.min.js"></script>
-					<script src="../js/jmui.js"></script>
 					<script class="demo-script">
 						;(function (){
 							var opts = {
-								animation: true, 	// 是否开启动画
-								preventScroll: true,// 是否禁止滚动
-								state: 'warning',   // 三种状态 warning，tips，success
-								content: '哇!我是 warning',
-								duration: 2000		// 指定自动关闭的时间，单位为 ms
+								// 必填项
+								state: 'warning',   // 三种状态 warning, tips, success
+								content: '我是提示内容',
+
+								// 可选项, 以下为默认值
+								animation: true, 	// 是否开启动画, 默认为 true
+								preventScroll: true,// 是否禁止滚动, 默认为 true
+								duration: 2000		// 指定自动关闭的时间, 单位为 ms, 默认未 2000ms
 							};
 							// 测试
-							$('#toast').on('tap', '.action-show', function (){
+							var toast = new JMU.Toast();
+							$('#toast').on('tap', '.demo-show', function (){
 								opts.state = $(this).text();
-								opts.content = '哇! 我是 ' + opts.state;
-								JMU.toast.show(opts);
+								toast.show(opts);
 							});
 						})();
 					</script>
 				</div>
-
 			</section>
 		</div>
 	</div>

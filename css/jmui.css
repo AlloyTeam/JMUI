@@ -7,7 +7,8 @@
 .jmu-color-gray {
   color: #808080;
 }
-.jmu-color-blue {
+.jmu-color-blue,
+#nav li a {
   color: #0079ff;
 }
 .jmu-color-red {
@@ -1811,7 +1812,8 @@ li.jmu-list-item-link:after {
 .jmu-color-gray {
   color: #808080;
 }
-.jmu-color-blue {
+.jmu-color-blue,
+#nav li a {
   color: #0079ff;
 }
 .jmu-color-red {
@@ -1844,6 +1846,9 @@ li.jmu-list-item-link:after {
 .jmu-toast.jmu-show {
   display: block;
   -webkit-transform: translateY(0);
+}
+.jmu-toast .jmu-content {
+  display: inline-block;
 }
 .jmu-toast [class^='jmu-icon-'] {
   display: inline-block;
@@ -1974,28 +1979,6 @@ li.jmu-list-item-link:after {
 .jmu-progress-circle .progress-number:after {
   content: '%';
 }
-.jmu-border-1px {
-  position: relative;
-}
-.jmu-border-1px:after {
-  display: block;
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  -webkit-transform-origin: 0 0;
-  -webkit-transform: scale(1);
-  pointer-events: none;
-}
-@media only screen and (-webkit-min-device-pixel-ratio: 2) {
-  .jmu-border-1px:after {
-    right: -100%;
-    bottom: -100%;
-    -webkit-transform: scale(0.5);
-  }
-}
 .jmu-color-black {
   color: #000;
 }
@@ -2005,7 +1988,8 @@ li.jmu-list-item-link:after {
 .jmu-color-gray {
   color: #808080;
 }
-.jmu-color-blue {
+.jmu-color-blue,
+#nav li a {
   color: #0079ff;
 }
 .jmu-color-red {
@@ -2018,12 +2002,24 @@ li.jmu-list-item-link:after {
   width: 0;
 }
 .demo-border-1px,
+.jmu-header,
+#nav li,
 #base-color .demo-block p,
 #base-clearfix .ui-clear-fix,
 #base-center .ui-center,
 #base-nowrap .demo-block p,
 #dot .demo-block > div {
   border: 1px solid #eee;
+}
+.jmu-header {
+  text-align: center;
+  line-height: 48px;
+}
+.jmu-content-container {
+  padding: 20px;
+}
+.demo-desc {
+  display: none;
 }
 .demo-padding,
 #base-nowrap .demo-block p,
@@ -2047,14 +2043,28 @@ h2 {
 .demo-desc + small {
   padding: 0 20px;
 }
-.demo-block {
-  margin: 20px;
+#nav li {
+  list-style: none;
+  margin-bottom: 10px;
+  height: 40px;
+  line-height: 40px;
+  text-indent: 2em;
+  font-size: 24px;
+}
+#nav li.divider {
+  border: none;
+}
+#nav li a {
+  display: block;
+  width: 100%;
+  height: 100%;
 }
 #base-color .demo-block p {
+  margin: 30px 0;
   padding: 10px 0;
   text-align: center;
 }
-#base-color .demo-block p.ui-color-white {
+#base-color .demo-block p.jmu-color-white {
   background: #eee;
 }
 #base-1px .demo-block {

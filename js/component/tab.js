@@ -13,7 +13,7 @@
     */
     var activeClass = 'js-active';
 
-    JMU.Component( 'Tab', {
+    JMU.defineComponent( 'Tab', {
         options: {
             content: [],
             currentIndex: 0,

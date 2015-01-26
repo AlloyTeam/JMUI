@@ -41,6 +41,9 @@
   display: block;
   -webkit-transform: translateY(0);
 }
+.jmu-toast .jmu-content {
+  display: inline-block;
+}
 .jmu-toast [class^='jmu-icon-'] {
   display: inline-block;
   position: relative;
