@@ -15,11 +15,11 @@
 
             color : '158,158,158',      // Must be an RGB string
 
-            duration: 1.6        // Seconds per round
+            roundDuration: 1.6        // Seconds per round
         },
-        tpl: '<canvas></canvas>',
+        template: '<canvas></canvas>',
         _addAnimation: function(lines){
-            var name = 'js-loading-' + lines;
+            var name = 'jmu-loading-' + lines;
 
             if (!cache[name] && lines > 0) {
 
@@ -77,14 +77,14 @@
                 ctx.stroke();
             }
 
-            this.$el.css(cssPrefix + 'animation', this._addAnimation(lines) + ' ' + options.duration + 's step-start infinite');
+            this.$el.css(cssPrefix + 'animation', this._addAnimation(lines) + ' ' + options.roundDuration + 's step-start infinite');
 
             var style = { width: halfSize, height: halfSize };
             style[cssPrefix + 'transform-origin'] = '0 0';
             style[cssPrefix + 'transform'] = 'scale(0.5)';
             this.$container.css(style);
 
-            this.$el.appendTo(this.$container);
+            // this.$el.appendTo(this.$container);
         }
     });
 })(Zepto, JMU);
@@ -95,7 +95,7 @@
             preventScroll: true,
             content: ''
         },
-        tpl: '<div class="jmu-text-loading">\
+        template: '<div class="jmu-text-loading">\
                 <div class="loading" data-color="255,255,255" data-size="36"></div>\
                 <div class="content jmu-color-white"></div>\
             </div>',
@@ -106,7 +106,7 @@
 
             this.$el.find('.content').html(options.content);
         }
-    }, true);
+    });
 })(Zepto, JMU);
 
 (function( $, JMU ) {
@@ -114,7 +114,7 @@
         options: {
             content: ''
         },
-        tpl: '<div class="jmu-page-loading">\
+        template: '<div class="jmu-page-loading">\
                 <div class="loading"></div>\
                 <div class="content"></div>\
             </div>',
@@ -125,7 +125,7 @@
 
             this.$el.find('.content').html(options.content);
         }
-    }, true);
+    });
 })(Zepto, JMU);
 
 
@@ -136,7 +136,7 @@
             content: '',
             onClose: $.emptyFunction
         },
-        tpl: '<div class="jmu-rich-loading">\
+        template: '<div class="jmu-rich-loading">\
                 <div class="loading" data-color="255,255,255" data-size="36"></div>\
                 <div class="jmu-no-wrap content"></div>\
                 <div class="jmu-icon-close btn"></div>\
@@ -160,6 +160,6 @@
                 });
             });
         }
-    }, true);
+    });
 })(Zepto, JMU);
 

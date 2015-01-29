@@ -41,8 +41,13 @@
          * @description 组件初始化
          * @param object 组件的容器节点
          */
-        _init: function (container) {
+        _init: function (container, options) {
             this.$container = $(container || document.body);
+
+            // 设置组件配置选项
+            this.setOptions(options);
+
+            this._create();
         },
         /*
          * @method _create
@@ -57,11 +62,10 @@
                 this.$el = typeof $el === 'string'? $($el, this.$container) : $el;    // $el可以是selector
             } else {    // 不存在则通过模板创建一个
                 this.$el = $(typeof template === 'string'? template : template.main);    // 模板如果是对象，则以main来创建组件
+
+                this.$container.append(this.$el);    // 将组件添加到DOM中
             }
 
-            // 将组件添加到DOM中
-            this.$container.append(this.$el);
-            
             this._bindEvents();
         },
         /*
@@ -87,10 +91,6 @@
             var self = this;
 
             this.setOptions(options);
-
-            if (!this.$el) {
-                this._create();
-            }
             
             this._render();
 

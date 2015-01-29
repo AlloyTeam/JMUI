@@ -78,16 +78,16 @@
   font-size: 14px;
   line-height: 48px;
 }
-.jmu-search-bar .btn-cancel.js-active {
+.jmu-search-bar .btn-cancel.jmu-active {
   background: rgba(0,0,0,0.1);
 }
 /* js style */
-.jmu-search-bar.js-input .btn-clear {
+.jmu-search-bar.jmu-input .btn-clear {
   display: block;
 }
-.jmu-search-bar.js-focus {
+.jmu-search-bar.jmu-focus {
   padding-right: 0;
 }
-.jmu-search-bar.js-focus .btn-cancel {
+.jmu-search-bar.jmu-focus .btn-cancel {
   display: block;
 }

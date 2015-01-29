@@ -4,7 +4,7 @@
             preventScroll: true,
             content: ''
         },
-        tpl: '<div class="jmu-text-loading">\
+        template: '<div class="jmu-text-loading">\
                 <div class="loading" data-color="255,255,255" data-size="36"></div>\
                 <div class="content jmu-color-white"></div>\
             </div>',

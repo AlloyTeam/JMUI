@@ -12,14 +12,14 @@
 		<a class="jmu-btn demo-return-btn" href="../index.html">返回</a><h2>tab</h2>
 	</div>
 	<div class="jmu-content-container">
-		<div class="jmu-content js-active">
+		<div class="jmu-content jmu-active">
 			<section id="tab">
 				<div class="demo-item">
 					<p class="demo-desc">tab 切换</p>
 					<div class="demo-block">
 						<div id="tab-demo">
 							<ul class="jmu-tab">
-								<li class="item js-active">tab1</li>
+								<li class="item jmu-active">tab1</li>
 								<li class="item">tab2</li>
 							</ul>
 							<ul class="tab-content">
@@ -44,7 +44,7 @@
 									console.log('已切换到第 %s 个 tab', index);
 								}
 							};
-							$('#tab-demo').tab(opts);
+							$('#tab-demo').tab(opts).show();
 						})();
 					</script>
 				</div>

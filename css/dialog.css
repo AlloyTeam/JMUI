@@ -23,7 +23,7 @@
   opacity: 1;
   -webkit-transform: translate(-50%, -50%) scale(1);
 }
-.jmu-dialog .jmu-body {
+.jmu-dialog .body {
   padding: 18px;
 }
 .jmu-dialog .title {
@@ -40,7 +40,7 @@
 .jmu-dialog .btns {
   display: -webkit-box;
 }
-.jmu-dialog .btnsafter {
+.jmu-dialog .btns:after {
   border-top: 1px solid #b2b2b2;
 }
 .jmu-dialog .btn {
@@ -54,9 +54,9 @@
 .jmu-dialog .btn.jmu-active {
   background: rgba(0,0,0,0.1);
 }
-.jmu-dialog .btnnth-child(2) {
+.jmu-dialog .btn:nth-child(2) {
   font-weight: 600;
 }
-.jmu-dialog .btnnth-child(2)after {
+.jmu-dialog .btn:nth-child(2):after {
   border-left: 1px solid #b2b2b2;
 }

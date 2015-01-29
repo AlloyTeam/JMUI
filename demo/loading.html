@@ -12,7 +12,7 @@
 		<a class="jmu-btn demo-return-btn" href="../index.html">返回</a><h2>page loading</h2>
 	</div>
 	<div class="jmu-content-container">
-		<div class="jmu-content js-active">
+		<div class="jmu-content jmu-active">
 			<section id="loading">
 				<div class="demo-item">
 					<p class="demo-desc">显示加载中, 三种类型.</p>
@@ -25,16 +25,12 @@
 					<script src="../js/jmui.js"></script>
 					<script class="demo-script">
 						;(function (){
-							var textLoading = new JMU.TextLoading();
-							var richLoading = new JMU.RichLoading();
-							var pageLoading = new JMU.PageLoading();
-
 							// 第一种，页面中间出现菊花提示
 							// 测试
 							$('#loading').on('tap', '#loading-page', function (){
-								textLoading.hide();
-								richLoading.hide();
-								pageLoading.show();
+								$('body').textLoading('hide');
+								$('body').richLoading('hide');
+								$('body').pageLoading('show');
 							});
 
 							// 第二种，页面中间出现文字提示
@@ -44,9 +40,9 @@
 							};
 							// 测试
 							$('#loading').on('tap', '#loading-text', function (){
-								pageLoading.hide();
-								richLoading.hide();
-								textLoading.show(opts1);
+								$('body').richLoading('hide');
+								$('body').pageLoading('hide');
+								$('body').textLoading('show', opts1);
 							});
 
 							// 第三种，页面中间出现文字提示，含关闭按钮
@@ -57,9 +53,9 @@
 							};
 							// 测试
 							$('#loading').on('tap', '#loading-rich', function (){
-								pageLoading.hide();
-								textLoading.hide();
-								richLoading.show(opts2);
+								$('body').textLoading('hide');
+								$('body').pageLoading('hide');
+								$('body').richLoading('show', opts1);
 							});
 						})();
 					</script>

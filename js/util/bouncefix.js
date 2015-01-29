@@ -34,7 +34,7 @@
 
     // only for ios6+
     if( $.os.ios && $.os.version >= '6' ) {
-        $('body').addClass('js-bounce-fix');
+        $('body').addClass('jmu-bounce-fix');
         bounceFix();
     }
 })(Zepto);

@@ -5,15 +5,15 @@
  * http://www.AlloyTeam.com/license.txt
  * 
  * @file JMUI核心js
- * @author  Yussicahe
+ * @author  Yussicahe yussicahe@gmail.com
  */
 
 ;(function ($) {
 	var DATA_PREFIX = 'jmu';		// data存储前缀
 
 	/**
-	 * @function attributeData 
-	 * @description 从DOM节点上获取所有"data-*"属性
+	 * @func attributeData 
+	 * @desc 从DOM节点上获取所有"data-*"属性
 	 * @param object DOM节点
 	 * @returns {object} "data-*"属性的键值对
 	 */
@@ -49,11 +49,12 @@
 	        var args,
 	            ret,
 	            component,
-	            dataName = DATA_PREFIX + '-' + name;
+	            dataName = DATA_PREFIX + '-' + key;
 
 	        if (typeof options === 'string') {
                 args = [].slice.call(arguments, 1);
 	        	func = options;
+                options = {};
 	        } else {
                 args = [].slice.call(arguments, 2);
             }
@@ -138,11 +139,8 @@
              * @param {object} 组件配置选项
              */
 	        function subClass(container, options) {
-                // 设置组件配置选项
-                this.setOptions(options);
-
                 // 初始化组件
-	            this._init(container);
+	            this._init(container, options);
 	        }
 
 	        subClass.superClass = superClass;
@@ -156,7 +154,7 @@
              */ 
 	        object.$super = function (name) {
 	            var func = superClass.prototype[name];
-	            return $.isFunction(func) && func.apply(this, arguments.slice(1));
+	            return $.isFunction(func) && func.apply(this, [].slice.call(arguments, 1));
 	        };
 
 	        $.extend(subClass.prototype, object);
@@ -212,8 +210,13 @@
          * @description 组件初始化
          * @param object 组件的容器节点
          */
-        _init: function (container) {
+        _init: function (container, options) {
             this.$container = $(container || document.body);
+
+            // 设置组件配置选项
+            this.setOptions(options);
+
+            this._create();
         },
         /*
          * @method _create
@@ -228,11 +231,10 @@
                 this.$el = typeof $el === 'string'? $($el, this.$container) : $el;    // $el可以是selector
             } else {    // 不存在则通过模板创建一个
                 this.$el = $(typeof template === 'string'? template : template.main);    // 模板如果是对象，则以main来创建组件
+
+                this.$container.append(this.$el);    // 将组件添加到DOM中
             }
 
-            // 将组件添加到DOM中
-            this.$container.append(this.$el);
-            
             this._bindEvents();
         },
         /*
@@ -258,10 +260,6 @@
             var self = this;
 
             this.setOptions(options);
-
-            if (!this.$el) {
-                this._create();
-            }
             
             this._render();
 
@@ -379,7 +377,7 @@
 
     // only for ios6+
     if( $.os.ios && $.os.version >= '6' ) {
-        $('body').addClass('js-bounce-fix');
+        $('body').addClass('jmu-bounce-fix');
         bounceFix();
     }
 })(Zepto);
@@ -443,7 +441,7 @@
 
                     if(img){
                         img.onload = function(){
-                            $el.addClass('js-loaded');
+                            $el.addClass('jmu-loaded');
                         };
 
                         img.src = src;
@@ -613,7 +611,7 @@
             content: '',
             btnHandle: []
         },
-        tpl: {
+        template: {
             main: '<div class="jmu-action-sheet">\
                     <div class="sheet-title jmu-border-b">分享到:</div>\
                     <ul class="content"></ul>\
@@ -632,7 +630,7 @@
             var options = this.options;
 
             if($.isArray(options.content)){
-                this.$el.find('.content').html($.template(this.tpl.ul, { list : options.content }));
+                this.$el.find('.content').html($.template(this.template.ul, { list : options.content }));
             }else{
                 this.$el.find('.content').html(options.content);
             } 
@@ -666,7 +664,7 @@
                 });
             });
         }
-    }, true);
+    });
 })(Zepto, JMU);
 
 (function( $, JMU ) {
@@ -705,7 +703,7 @@
             content: '',
             btnHandle: []
         },
-        tpl: {
+        template: {
             main: '<div class="jmu-action-sheet">\
                     <ul class="content"></ul>\
                     <div class="jmu-color-blue btn btn-cancel" data-cmd="as-cancel" data-dismiss="true">取消</div>\
@@ -723,7 +721,7 @@
             var options = this.options;
 
             if($.isArray(options.content)){
-                this.$el.find('.content').html($.template(this.tpl.ul, { list : options.content }));
+                this.$el.find('.content').html($.template(this.template.ul, { list : options.content }));
             }else{
                 this.$el.find('.content').html(options.content);
             } 
@@ -757,7 +755,7 @@
                 });
             });
         }
-    }, true);
+    });
 })(Zepto, JMU);
 
 /**
@@ -836,7 +834,7 @@
             content: '',    // New红点和数字红点需要指定content
             css: null   // 样式，可以自由控制红点的位置和大小，默认红点在容器的右上角
         },
-        tpl: '<div></div>',
+        template: '<div></div>',
         _render: function(){
             var options = this.options;
             
@@ -868,11 +866,11 @@
 
             color : '158,158,158',      // Must be an RGB string
 
-            duration: 1.6        // Seconds per round
+            roundDuration: 1.6        // Seconds per round
         },
-        tpl: '<canvas></canvas>',
+        template: '<canvas></canvas>',
         _addAnimation: function(lines){
-            var name = 'js-loading-' + lines;
+            var name = 'jmu-loading-' + lines;
 
             if (!cache[name] && lines > 0) {
 
@@ -930,14 +928,14 @@
                 ctx.stroke();
             }
 
-            this.$el.css(cssPrefix + 'animation', this._addAnimation(lines) + ' ' + options.duration + 's step-start infinite');
+            this.$el.css(cssPrefix + 'animation', this._addAnimation(lines) + ' ' + options.roundDuration + 's step-start infinite');
 
             var style = { width: halfSize, height: halfSize };
             style[cssPrefix + 'transform-origin'] = '0 0';
             style[cssPrefix + 'transform'] = 'scale(0.5)';
             this.$container.css(style);
 
-            this.$el.appendTo(this.$container);
+            // this.$el.appendTo(this.$container);
         }
     });
 })(Zepto, JMU);
@@ -948,7 +946,7 @@
             preventScroll: true,
             content: ''
         },
-        tpl: '<div class="jmu-text-loading">\
+        template: '<div class="jmu-text-loading">\
                 <div class="loading" data-color="255,255,255" data-size="36"></div>\
                 <div class="content jmu-color-white"></div>\
             </div>',
@@ -959,7 +957,7 @@
 
             this.$el.find('.content').html(options.content);
         }
-    }, true);
+    });
 })(Zepto, JMU);
 
 (function( $, JMU ) {
@@ -967,7 +965,7 @@
         options: {
             content: ''
         },
-        tpl: '<div class="jmu-page-loading">\
+        template: '<div class="jmu-page-loading">\
                 <div class="loading"></div>\
                 <div class="content"></div>\
             </div>',
@@ -978,7 +976,7 @@
 
             this.$el.find('.content').html(options.content);
         }
-    }, true);
+    });
 })(Zepto, JMU);
 
 
@@ -989,7 +987,7 @@
             content: '',
             onClose: $.emptyFunction
         },
-        tpl: '<div class="jmu-rich-loading">\
+        template: '<div class="jmu-rich-loading">\
                 <div class="loading" data-color="255,255,255" data-size="36"></div>\
                 <div class="jmu-no-wrap content"></div>\
                 <div class="jmu-icon-close btn"></div>\
@@ -1013,7 +1011,7 @@
                 });
             });
         }
-    }, true);
+    });
 })(Zepto, JMU);
 
 
@@ -1244,7 +1242,7 @@
 	$.extend($.fn, {
 		// 有点击态的按钮
 		active: function(fn, className){
-			className = className || 'js-active';
+			className = className || 'jmu-active';
 			$.each( this, function( i, el ) {
 				var $el = $(el);
 
@@ -1282,7 +1280,7 @@
     *
     *   样式需引入tab.css 
     */
-    var activeClass = 'js-active';
+    var activeClass = 'jmu-active';
 
     JMU.defineComponent( 'Tab', {
         options: {
@@ -1291,7 +1289,7 @@
             relateSelector: [],
             onSwitchTab: $.emptyFunction
         },
-        tpl: {
+        template: {
             main: '<ul class="jmu-tab"></ul>',
             ul: '<% for(var i = 0, l = list.length; i < l; i++){ %>\
                     <li class="jmu-border-1px item"><%=list[i]%></li>\
@@ -1306,20 +1304,20 @@
              * 此时可以不传relateSelector
              * by gc
              */
-            if(this.options.relateSelector.length === 0){
-                var tabItems = this.$el.children();
-                $.each(tabItems, function(index, item){
-                    var relateItem = $($(item).data('target') || '');
-                    self.options.relateSelector[index] = relateItem;
-                });
+            // if(this.options.relateSelector.length === 0){
+            //     var tabItems = this.$el.children();
+            //     $.each(tabItems, function(index, item){
+            //         var relateItem = $($(item).data('target') || '');
+            //         self.options.relateSelector[index] = relateItem;
+            //     });
 
-            }else{
+            // }else{
                 $.each(this.options.relateSelector, function(index, item){
                     if(typeof item === 'string'){
                         self.options.relateSelector[index] = $(item);
                     }
                 });
-            }
+            // }
 
         }, 
         _render: function(){
@@ -1327,7 +1325,7 @@
 
             //兼容固定内容的tab，用于优先展示tab的情景，此时可不传content
             if(options.content.length > 0){
-                this.$el.html($.template(this.tpl.ul, { list : options.content }));
+                this.$el.html($.template(this.template.ul, { list : options.content }));
             }
 
             this.switchTab();
@@ -1374,7 +1372,7 @@
             preventScroll: true,
             content: ''
         },
-        tpl: '<div class="jmu-text-loading">\
+        template: '<div class="jmu-text-loading">\
                 <div class="loading" data-color="255,255,255" data-size="36"></div>\
                 <div class="content jmu-color-white"></div>\
             </div>',

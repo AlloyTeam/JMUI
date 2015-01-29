@@ -11,7 +11,7 @@
     *
     *   样式需引入tab.css 
     */
-    var activeClass = 'js-active';
+    var activeClass = 'jmu-active';
 
     JMU.defineComponent( 'Tab', {
         options: {
@@ -20,7 +20,7 @@
             relateSelector: [],
             onSwitchTab: $.emptyFunction
         },
-        tpl: {
+        template: {
             main: '<ul class="jmu-tab"></ul>',
             ul: '<% for(var i = 0, l = list.length; i < l; i++){ %>\
                     <li class="jmu-border-1px item"><%=list[i]%></li>\
@@ -35,20 +35,20 @@
              * 此时可以不传relateSelector
              * by gc
              */
-            if(this.options.relateSelector.length === 0){
-                var tabItems = this.$el.children();
-                $.each(tabItems, function(index, item){
-                    var relateItem = $($(item).data('target') || '');
-                    self.options.relateSelector[index] = relateItem;
-                });
+            // if(this.options.relateSelector.length === 0){
+            //     var tabItems = this.$el.children();
+            //     $.each(tabItems, function(index, item){
+            //         var relateItem = $($(item).data('target') || '');
+            //         self.options.relateSelector[index] = relateItem;
+            //     });
 
-            }else{
+            // }else{
                 $.each(this.options.relateSelector, function(index, item){
                     if(typeof item === 'string'){
                         self.options.relateSelector[index] = $(item);
                     }
                 });
-            }
+            // }
 
         }, 
         _render: function(){
@@ -56,7 +56,7 @@
 
             //兼容固定内容的tab，用于优先展示tab的情景，此时可不传content
             if(options.content.length > 0){
-                this.$el.html($.template(this.tpl.ul, { list : options.content }));
+                this.$el.html($.template(this.template.ul, { list : options.content }));
             }
 
             this.switchTab();

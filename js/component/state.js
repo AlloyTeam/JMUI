@@ -2,7 +2,7 @@
 	$.extend($.fn, {
 		// 有点击态的按钮
 		active: function(fn, className){
-			className = className || 'js-active';
+			className = className || 'jmu-active';
 			$.each( this, function( i, el ) {
 				var $el = $(el);
 

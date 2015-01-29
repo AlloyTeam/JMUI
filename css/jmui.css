@@ -25,7 +25,7 @@
 }
 .jmu-horizental-center,
 .jmu-vertical-center {
-  display: -webkix-box;
+  display: -webkit-box;
 }
 .jmu-horizental-center {
   -webkit-box-pack: center;
@@ -205,7 +205,7 @@ em {
   min-height: 100%;
   z-index: 1;
 }
-.js-bounce-fix .jmu-content-container {
+.jmu-bounce-fix .jmu-content-container {
   bottom: 0;
   overflow-x: hidden;
   overflow-y: auto;
@@ -220,11 +220,11 @@ em {
 .jmu-content {
   display: none;
 }
-.js-bounce-fix .jmu-content {
+.jmu-bounce-fix .jmu-content {
   position: relative;
   min-height: 100%;
 }
-.jmu-content.js-active {
+.jmu-content.jmu-active {
   display: block;
 }
 .poor-device .jmu-header {
@@ -917,7 +917,7 @@ em {
   background-image: url("./../img/dist/default-shop.png");
   background-size: 100% 100%;
 }
-.ui-bg-default.js-loaded {
+.ui-bg-default.jmu-loaded {
   background-color: transparent;
   background-image: none;
 }
@@ -929,7 +929,7 @@ em {
   width: 100%;
   height: 100%;
 }
-.ui-bg-default.js-loaded img {
+.ui-bg-default.jmu-loaded img {
   display: block;
 }
 .ui-icon-arrow {
@@ -1457,7 +1457,7 @@ li.jmu-list-item-link:after {
   opacity: 1;
   -webkit-transform: translate(-50%, -50%) scale(1);
 }
-.jmu-dialog .jmu-body {
+.jmu-dialog .body {
   padding: 18px;
 }
 .jmu-dialog .title {
@@ -1474,7 +1474,7 @@ li.jmu-list-item-link:after {
 .jmu-dialog .btns {
   display: -webkit-box;
 }
-.jmu-dialog .btnsafter {
+.jmu-dialog .btns:after {
   border-top: 1px solid #b2b2b2;
 }
 .jmu-dialog .btn {
@@ -1488,10 +1488,10 @@ li.jmu-list-item-link:after {
 .jmu-dialog .btn.jmu-active {
   background: rgba(0,0,0,0.1);
 }
-.jmu-dialog .btnnth-child(2) {
+.jmu-dialog .btn:nth-child(2) {
   font-weight: 600;
 }
-.jmu-dialog .btnnth-child(2)after {
+.jmu-dialog .btn:nth-child(2):after {
   border-left: 1px solid #b2b2b2;
 }
 .jmu-action-sheet {
@@ -1506,10 +1506,10 @@ li.jmu-list-item-link:after {
   -webkit-transition-timing-function: ease-out;
   z-index: 10000;
 }
-.jmu-action-sheet.js-effect {
+.jmu-action-sheet.jmu-effect {
   -webkit-transition-duration: 0.3s;
 }
-.jmu-action-sheet.js-show {
+.jmu-action-sheet.jmu-show {
   display: block;
   opacity: 1;
   -webkit-transform: translateY(0);
@@ -1536,7 +1536,7 @@ li.jmu-list-item-link:after {
   line-height: 1;
   text-align: center;
 }
-.jmu-action-sheet .btn.js-active {
+.jmu-action-sheet .btn.jmu-active {
   background: rgba(237,237,237,0.84);
 }
 .jmu-action-sheet .btn-cancel {
@@ -1770,16 +1770,16 @@ li.jmu-list-item-link:after {
   font-size: 14px;
   line-height: 48px;
 }
-.jmu-search-bar .btn-cancel.js-active {
+.jmu-search-bar .btn-cancel.jmu-active {
   background: rgba(0,0,0,0.1);
 }
-.jmu-search-bar.js-input .btn-clear {
+.jmu-search-bar.jmu-input .btn-clear {
   display: block;
 }
-.jmu-search-bar.js-focus {
+.jmu-search-bar.jmu-focus {
   padding-right: 0;
 }
-.jmu-search-bar.js-focus .btn-cancel {
+.jmu-search-bar.jmu-focus .btn-cancel {
   display: block;
 }
 .jmu-tab {
@@ -1799,7 +1799,7 @@ li.jmu-list-item-link:after {
 .jmu-tab .item span {
   padding-left: 5px;
 }
-.jmu-tab .item.js-active {
+.jmu-tab .item.jmu-active {
   border-color: #00a5e0;
   color: #00a5e0;
 }

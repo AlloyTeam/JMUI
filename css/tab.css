@@ -15,7 +15,7 @@
 .jmu-tab .item span {
   padding-left: 5px;
 }
-.jmu-tab .item.js-active {
+.jmu-tab .item.jmu-active {
   border-color: #00a5e0;
   color: #00a5e0;
 }

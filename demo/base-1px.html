@@ -9,24 +9,41 @@
 
 	<script src="../lib/zeptojs/zepto.min.js"></script>
 	<script src="../js/jmui.js"></script>
+
+	<style type="text/css">
+		.border-all:after {
+			border: 1px solid gray;
+		}
+		.border-top:after {
+			border-top: 1px solid gray;
+		}
+		.border-bottom:after {
+			border-bottom: 1px solid gray;
+		}
+		.border-left:after {
+			border-left: 1px solid gray;
+		}
+		.border-right:after {
+			border-right: 1px solid gray;
+		}
+	</style>
 </head>
 <body class="jmu-app">
 	<div class="jmu-header">
 		<a class="jmu-btn demo-return-btn" href="../index.html">返回</a><h2>模拟1px边框</h2>
 	</div>
 	<div class="jmu-content-container">
-		<div class="jmu-content js-active">
+		<div class="jmu-content jmu-active">
 			<section id="base-1px">
 				<div class="demo-item">
 					<p class="demo-desc">模拟 1px 边框</p>
 					<div class="demo-block">
 						<ul class="demo-borders">
-							<li class="jmu-border-1px">边框</li>
-							<li class="jmu-border-t">上边框</li>
-							<li class="jmu-border-b">下边框</li>
-							<li class="jmu-border-tb">上下边框</li>
-							<li class="jmu-border-l">左边框</li>
-							<li class="jmu-border-r">右边框</li>
+							<li class="jmu-border-1px border-all">边框</li>
+							<li class="jmu-border-1px border-top">上边框</li>
+							<li class="jmu-border-1px border-bottom">下边框</li>
+							<li class="jmu-border-1px border-left">左边框</li>
+							<li class="jmu-border-1px border-right">右边框</li>
 						</ul>
 					</div>
 				</div>

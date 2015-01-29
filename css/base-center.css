@@ -1,6 +1,6 @@
 .jmu-horizental-center,
 .jmu-vertical-center {
-  display: -webkix-box;
+  display: -webkit-box;
 }
 .jmu-horizental-center {
   -webkit-box-pack: center;

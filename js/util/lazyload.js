@@ -18,7 +18,7 @@
 
                     if(img){
                         img.onload = function(){
-                            $el.addClass('js-loaded');
+                            $el.addClass('jmu-loaded');
                         };
 
                         img.src = src;

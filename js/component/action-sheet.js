@@ -34,7 +34,7 @@
             content: '',
             btnHandle: []
         },
-        tpl: {
+        template: {
             main: '<div class="jmu-action-sheet">\
                     <ul class="content"></ul>\
                     <div class="jmu-color-blue btn btn-cancel" data-cmd="as-cancel" data-dismiss="true">取消</div>\
@@ -52,7 +52,7 @@
             var options = this.options;
 
             if($.isArray(options.content)){
-                this.$el.find('.content').html($.template(this.tpl.ul, { list : options.content }));
+                this.$el.find('.content').html($.template(this.template.ul, { list : options.content }));
             }else{
                 this.$el.find('.content').html(options.content);
             } 
@@ -86,5 +86,5 @@
                 });
             });
         }
-    }, true);
+    });
 })(Zepto, JMU);

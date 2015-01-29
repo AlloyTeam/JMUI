@@ -5,15 +5,15 @@
  * http://www.AlloyTeam.com/license.txt
  * 
  * @file JMUI核心js
- * @author  Yussicahe
+ * @author  Yussicahe yussicahe@gmail.com
  */
 
 ;(function ($) {
 	var DATA_PREFIX = 'jmu';		// data存储前缀
 
 	/**
-	 * @function attributeData 
-	 * @description 从DOM节点上获取所有"data-*"属性
+	 * @func attributeData 
+	 * @desc 从DOM节点上获取所有"data-*"属性
 	 * @param object DOM节点
 	 * @returns {object} "data-*"属性的键值对
 	 */
@@ -49,11 +49,12 @@
 	        var args,
 	            ret,
 	            component,
-	            dataName = DATA_PREFIX + '-' + name;
+	            dataName = DATA_PREFIX + '-' + key;
 
 	        if (typeof options === 'string') {
                 args = [].slice.call(arguments, 1);
 	        	func = options;
+                options = {};
 	        } else {
                 args = [].slice.call(arguments, 2);
             }
@@ -138,11 +139,8 @@
              * @param {object} 组件配置选项
              */
 	        function subClass(container, options) {
-                // 设置组件配置选项
-                this.setOptions(options);
-
                 // 初始化组件
-	            this._init(container);
+	            this._init(container, options);
 	        }
 
 	        subClass.superClass = superClass;
@@ -156,7 +154,7 @@
              */ 
 	        object.$super = function (name) {
 	            var func = superClass.prototype[name];
-	            return $.isFunction(func) && func.apply(this, arguments.slice(1));
+	            return $.isFunction(func) && func.apply(this, [].slice.call(arguments, 1));
 	        };
 
 	        $.extend(subClass.prototype, object);

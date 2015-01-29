@@ -15,12 +15,12 @@
 		<a class="jmu-btn demo-return-btn" href="../index.html">返回</a><h2>mult-selector</h2>
 	</div>
 	<div class="jmu-content-container">
-		<div class="jmu-content js-active">
+		<div class="jmu-content jmu-active">
 			<section id="mult-selector">
 				<div class="demo-item">
 					<p class="demo-desc">层级菜单</p>
 					<div class="demo-block">
-						<div class="js-navtree"></div>
+						<div class="jmu-navtree"></div>
 					</div>
 					<script class="demo-script">
 						;(function (){
@@ -60,7 +60,7 @@
 								}
 							];
 
-							$(".js-navtree").multSelector({
+							$(".jmu-navtree").multSelector({
 								selected : ["福田区", "全部分类", "默认排序"],
 								option : children,
 								onSelect : function (dat) {

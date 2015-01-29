@@ -34,7 +34,7 @@
             content: '',
             btnHandle: []
         },
-        tpl: {
+        template: {
             main: '<div class="jmu-action-sheet">\
                     <div class="sheet-title jmu-border-b">分享到:</div>\
                     <ul class="content"></ul>\
@@ -53,7 +53,7 @@
             var options = this.options;
 
             if($.isArray(options.content)){
-                this.$el.find('.content').html($.template(this.tpl.ul, { list : options.content }));
+                this.$el.find('.content').html($.template(this.template.ul, { list : options.content }));
             }else{
                 this.$el.find('.content').html(options.content);
             } 
@@ -87,5 +87,5 @@
                 });
             });
         }
-    }, true);
+    });
 })(Zepto, JMU);
