@@ -1,3 +1,8 @@
+.jmu-checkbox {
+  line-height: 26px;
+  display: inline-block;
+  margin: 5px 0;
+}
 .jmu-checkbox input {
   display: inline-block;
   width: 25px;
@@ -8,6 +13,7 @@
   background: none;
   -webkit-appearance: none;
   outline: none;
+  margin-right: 8px;
   vertical-align: middle;
 }
 .jmu-checkbox input:before {
@@ -23,15 +29,4 @@
 }
 .jmu-checkbox input:checked:before {
   background-position: -25px -25px;
-}
-.jmu-checkbox-s {
-  width: 19px;
-}
-.jmu-checkbox-s input:before {
-  width: 19px;
-  height: 19px;
-  background-position: -100px -25px;
-}
-.jmu-checkbox-s input:checked:before {
-  background-position: -75px -25px;
 }

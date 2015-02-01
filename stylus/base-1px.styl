@@ -1,3 +1,6 @@
+$border = 1px solid gray;
+
+
 .jmu-border-1px {
     position:relative;
 
@@ -21,4 +24,22 @@
             -webkit-transform: scale(0.5);
         }
     }
+
+    &.border-all:after {
+        border: $border;
+    }
+    &.border-top:after {
+        border-top: $border;
+    }
+    &.border-bottom:after {
+        border-bottom: $border;
+    }
+    &.border-left:after {
+        border-left: $border;
+    }
+    &.border-right:after {
+        border-right: $border;
+    }
 }
+
+

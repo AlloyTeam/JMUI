@@ -11,7 +11,7 @@
 </head>
 <body class="jmu-app">
 	<div class="jmu-header">
-		<a class="jmu-btn demo-return-btn" href="../index.html">返回</a><h2>progress</h2>
+		<a class="jmu-btn demo-return-btn" href="../index.html?tab=ui-js">返回</a><h2>progress</h2>
 	</div>
 	<div class="jmu-content-container">
 		<div class="jmu-content jmu-active">
@@ -29,13 +29,12 @@
 										<span class="progress-bar"></span>
 									</p>
 								</div>
-								<div class="progress-action jmu-center">
-									<button class="action-cancle jmu-btn jmu-btn-danger">取消</button>
+								<div class="progress-action jmu-horizental-center jmu-vertical-center">
+									<button class="action-cancle">取消</button>
 								</div>
 							</div>
 						</div>
 					</div>
-					<button id="progress-demo-1-test" class="jmu-btn jmu-btn-success">点我测试</button>
 					<script class="demo-script">
 						;(function (){
 							// 图片或壁纸上传进度条
@@ -45,13 +44,16 @@
 								total: 1.03    			  // 初始化文件大小
 							});
 							// 模拟收到后台新进度, 更新当前进度条的百分比
-							$('#progress-demo-1-test').on('tap', function (){
-								var newPercentage = progress1.options.percentage + 10;
-								if (newPercentage > 100) {
-									newPercentage = 10;
+							var timer = setInterval(function () {
+								var newPercentage1 = progress1.options.percentage + 1;
+								if (newPercentage1 > 100) {
+									newPercentage1 = 10;
 								}
-								progress1.changeProgress(newPercentage)
-							});
+								progress1.changeProgress(newPercentage1);
+							}, 300);
+							$('.action-cancle').on('tap', function () {
+								clearInterval(timer);
+							})
 						})();
 					</script>
 				</div>
@@ -66,7 +68,6 @@
 							</div>
 						</div>
 					</div>
-					<button id="progress-demo-2-test" class="jmu-btn jmu-btn-success">点我测试</button>
 					<script class="demo-script">
 						;(function (){
 							var progress2 = $('#progress-demo-2').progress({
@@ -74,13 +75,13 @@
 								percentage: 0,
 								total: 9.03
 							});
-							$('#progress-demo-2-test').on('tap', function (){
-								var newPercentage = progress2.options.percentage + 10;
-								if (newPercentage > 100) {
-									newPercentage = 10;
+							setInterval(function () {
+								var newPercentage2 = progress2.options.percentage + 1;
+								if (newPercentage2 > 100) {
+									newPercentage2 = 10;
 								}
-								progress2.changeProgress(newPercentage)
-							});
+								progress2.changeProgress(newPercentage2);
+							}, 600);
 						})();
 					</script>
 				</div>
@@ -104,7 +105,6 @@
 							</div>
 						</div>
 					</div>
-					<button id="progress-demo-3-test" class="jmu-btn jmu-btn-success">点我测试</button>
 					<script class="demo-script">
 						;(function (){
 							var progress3 = $('#progress-demo-3').progress({
@@ -113,13 +113,13 @@
 								total: 78
 							});
 							// 测试
-							$('#progress-demo-3-test').on('tap', function (){
-								var newPercentage = progress3.options.percentage + 10;
-								if (newPercentage > 100) {
-									newPercentage = 10;
+							setInterval(function () {
+								var newPercentage3 = progress3.options.percentage + 1;
+								if (newPercentage3 > 100) {
+									newPercentage3 = 10;
 								}
-								progress3.changeProgress(newPercentage)
-							});
+								progress3.changeProgress(newPercentage3);
+							}, 900);
 						})();
 					</script>
 				</div>

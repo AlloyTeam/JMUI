@@ -7,8 +7,7 @@
 .jmu-color-gray {
   color: #808080;
 }
-.jmu-color-blue,
-#nav li a {
+.jmu-color-blue {
   color: #0079ff;
 }
 .jmu-color-red {
@@ -54,6 +53,21 @@
     bottom: -100%;
     -webkit-transform: scale(0.5);
   }
+}
+.jmu-border-1px.border-all:after {
+  border: 1px solid #808080;
+}
+.jmu-border-1px.border-top:after {
+  border-top: 1px solid #808080;
+}
+.jmu-border-1px.border-bottom:after {
+  border-bottom: 1px solid #808080;
+}
+.jmu-border-1px.border-left:after {
+  border-left: 1px solid #808080;
+}
+.jmu-border-1px.border-right:after {
+  border-right: 1px solid #808080;
 }
 .jmu-no-wrap {
   overflow: hidden;
@@ -280,78 +294,6 @@ em {
 }
 .jmu-col-100 {
   width: 100%;
-}
-.jmu-avatar {
-  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
-}
-.jmu-avatar-lg {
-  width: 54px;
-  height: 54px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
-  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
-}
-.jmu-avatar-lg span {
-  width: 54px;
-  height: 54px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
-}
-.jmu-avatar-s {
-  width: 40px;
-  height: 40px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
-  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
-}
-.jmu-avatar-s span {
-  width: 40px;
-  height: 40px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
-}
-.jmu-avatar-one {
-  width: 64px;
-  height: 64px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
-  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
-}
-.jmu-avatar-one span {
-  width: 64px;
-  height: 64px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
-}
-.jmu-avatar-tiled {
-  width: 30px;
-  height: 30px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
-  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
-  display: inline-block;
-}
-.jmu-avatar-tiled span {
-  width: 30px;
-  height: 30px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
 }
 .jmu-btn,
 .jmu-btn-lg {
@@ -587,6 +529,11 @@ em {
   left: 6px;
   top: -8px;
 }
+.jmu-checkbox {
+  line-height: 26px;
+  display: inline-block;
+  margin: 5px 0;
+}
 .jmu-checkbox input {
   display: inline-block;
   width: 25px;
@@ -597,6 +544,7 @@ em {
   background: none;
   -webkit-appearance: none;
   outline: none;
+  margin-right: 8px;
   vertical-align: middle;
 }
 .jmu-checkbox input:before {
@@ -613,17 +561,6 @@ em {
 .jmu-checkbox input:checked:before {
   background-position: -25px -25px;
 }
-.jmu-checkbox-s {
-  width: 19px;
-}
-.jmu-checkbox-s input:before {
-  width: 19px;
-  height: 19px;
-  background-position: -100px -25px;
-}
-.jmu-checkbox-s input:checked:before {
-  background-position: -75px -25px;
-}
 .jmu-form {
   background-color: #fff;
 }
@@ -634,9 +571,6 @@ em {
   top: 7px;
   right: 7px;
 }
-.jmu-form-item-order:active {
-  background-color: #e5e6e7;
-}
 .jmu-form-item {
   height: 44px;
   font-size: 16px;
@@ -646,16 +580,9 @@ em {
   position: relative;
   padding-left: 15px;
 }
-.jmu-form-item label:not(.jmu-switch):not(.jmu-checkout):not(.jmu-radio):not(.jmu-range) {
-  width: 95px;
+.jmu-form-item label:not(.jmu-switch):not(.jmu-checkout):not(.textarea):not(.jmu-range) {
   position: absolute;
   text-align: left;
-  box-sizing: border-box;
-}
-.jmu-form-item input:not([type="checkbox"]),
-.jmu-form-item textarea {
-  width: 100%;
-  padding-left: 95px;
   box-sizing: border-box;
 }
 .jmu-form-item-textarea {
@@ -708,21 +635,6 @@ em {
 }
 .jmu-form .jmu-form-item-pure input {
   padding-left: 0;
-}
-.jmu-form .jmu-form-item-show label {
-  color: #808080;
-}
-.jmu-form-item-link:after {
-  background: url("../img/icon.png") no-repeat 0 -75px;
-  -webkit-background-size: 150px auto;
-  content: "";
-  display: block;
-  width: 9px;
-  height: 15px;
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  margin-top: -7px;
 }
 .jmu-form-item-switch {
   height: 44px;
@@ -794,9 +706,6 @@ em {
   -webkit-transition: left 0.2s;
   transition: left 0.2s;
 }
-.jmu-form-item-range {
-  width: 100%;
-}
 .jmu-range {
   position: relative;
   display: inline-block;
@@ -809,7 +718,6 @@ em {
   text-align: center;
 }
 .jmu-range input[type=range] {
-  width: 260px;
   padding: 0 40px;
   -webkit-appearance: none;
 }
@@ -823,13 +731,13 @@ em {
   border-radius: 3px;
 }
 .jmu-range input[type=range]::-webkit-slider-thumb {
-  height: 25px;
-  width: 25px;
-  border-radius: 12.5px;
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
   background: #fff;
   cursor: pointer;
   -webkit-appearance: none;
-  margin-top: -12.5px;
+  margin-top: -10px;
   border: 1px solid #eee;
 }
 .jmu-range input[type=range]:focus::-webkit-slider-runnable-track {
@@ -1024,78 +932,6 @@ em {
 .jmu-tag-green {
   background: #6ab147;
 }
-.jmu-avatar {
-  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
-}
-.jmu-avatar-lg {
-  width: 54px;
-  height: 54px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
-  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
-}
-.jmu-avatar-lg span {
-  width: 54px;
-  height: 54px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
-}
-.jmu-avatar-s {
-  width: 40px;
-  height: 40px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
-  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
-}
-.jmu-avatar-s span {
-  width: 40px;
-  height: 40px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
-}
-.jmu-avatar-one {
-  width: 64px;
-  height: 64px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
-  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
-}
-.jmu-avatar-one span {
-  width: 64px;
-  height: 64px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
-}
-.jmu-avatar-tiled {
-  width: 30px;
-  height: 30px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
-  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
-  display: inline-block;
-}
-.jmu-avatar-tiled span {
-  width: 30px;
-  height: 30px;
-  overflow: hidden;
-  -webkit-border-radius: 200px;
-  display: block;
-  -webkit-background-size: 100% 100%;
-}
 .jmu-list {
   background-color: #fff;
 }
@@ -1129,30 +965,6 @@ em {
   height: 50px;
   margin: 7px 15px 7px 0px;
   position: relative;
-}
-.jmu-list .jmu-avatar,
-.jmu-list .jmu-avatar-s,
-.jmu-list .jmu-avatar-lg {
-  margin: 7px 15px 7px 0px;
-}
-.jmu-list-thumb-s {
-  position: relative;
-  width: 28px;
-  height: 28px;
-  -webkit-background-size: 28px auto;
-  margin: 11px 15px 11px 0px;
-  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/default.png");
-}
-.jmu-list-thumb span,
-.jmu-list-thumb-s span {
-  width: 100%;
-  height: 100%;
-  -webkit-background-size: 100% auto;
-  display: block;
-  position: absolute;
-  left: 0px;
-  top: 0px;
-  z-index: 1;
 }
 .jmu-list-info {
   -webkit-box-flex: 1;
@@ -1248,13 +1060,6 @@ li.jmu-list-item-link:active + .jmu-border-t {
     background-image: none;
   }
 }
-.jmu-list-function .jmu-list-info {
-  padding-right: 70px;
-}
-.jmu-list-cover li {
-  padding-left: 15px;
-  margin-left: 0px;
-}
 .jmu-list-link li:after,
 li.jmu-list-item-link:after {
   background: url("../img/icon.png") no-repeat 0 -75px;
@@ -1345,72 +1150,6 @@ li.jmu-list-item-link:after {
 }
 .jmu-notice-btn button {
   margin: 10px 0px;
-}
-.jmu-tooltips {
-  width: 100%;
-  position: relative;
-  z-index: 10;
-}
-.jmu-tooltips-cnt {
-  margin: 0;
-  color: #00a5e0;
-  line-height: 45px;
-  height: 45px;
-  text-align: left;
-  padding-left: 10px;
-  font-size: 16px;
-  overflow: hidden;
-}
-.jmu-tooltips-warn .jmu-tooltips-cnt {
-  background-color: rgba(255,242,183,0.95);
-  color: #000;
-}
-.jmu-tooltips-guide .jmu-tooltips-cnt {
-  background-color: rgba(255,255,255,0.95);
-}
-.jmu-tooltips-state .jmu-tooltips-cnt {
-  background-color: rgba(205,242,255,0.95);
-}
-.jmu-tooltips-cnt-link:after {
-  background: url("../img/icon.png") no-repeat -75px 0;
-  -webkit-background-size: 150px auto;
-  content: "";
-  display: block;
-  width: 8px;
-  height: 14px;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  margin-top: -8px;
-}
-.jmu-tooltips-warn i {
-  display: inline-block;
-  width: 23px;
-  height: 1px;
-  position: relative;
-  overflow: visible;
-  margin-right: 8px;
-  vertical-align: middle;
-}
-.jmu-tooltips-warn i:before {
-  background: url("../img/icon.png") no-repeat -50px 0px;
-  -webkit-background-size: 150px auto;
-  content: "";
-  display: block;
-  width: 23px;
-  height: 23px;
-  position: absolute;
-  left: 0px;
-  top: -14px;
-}
-.jmu-tooltips .jmu-btn {
-  position: absolute;
-  top: 50%;
-  right: 15px;
-  margin-top: -15px;
-}
-.jmu-tooltips-state .jmu-tooltips-cnt-link:after {
-  background-position: -125px 0;
 }
 .jmu-mask {
   display: none;
@@ -1812,8 +1551,7 @@ li.jmu-list-item-link:after {
 .jmu-color-gray {
   color: #808080;
 }
-.jmu-color-blue,
-#nav li a {
+.jmu-color-blue {
   color: #0079ff;
 }
 .jmu-color-red {
@@ -1988,8 +1726,7 @@ li.jmu-list-item-link:after {
 .jmu-color-gray {
   color: #808080;
 }
-.jmu-color-blue,
-#nav li a {
+.jmu-color-blue {
   color: #0079ff;
 }
 .jmu-color-red {
@@ -1998,17 +1735,55 @@ li.jmu-list-item-link:after {
 .jmu-color-orange {
   color: #ff6d00;
 }
+.jmu-border-1px {
+  position: relative;
+}
+.jmu-border-1px:after {
+  display: block;
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  -webkit-transform-origin: 0 0;
+  -webkit-transform: scale(1);
+  pointer-events: none;
+}
+@media only screen and (-webkit-min-device-pixel-ratio: 2) {
+  .jmu-border-1px:after {
+    right: -100%;
+    bottom: -100%;
+    -webkit-transform: scale(0.5);
+  }
+}
+.jmu-border-1px.border-all:after {
+  border: 1px solid #808080;
+}
+.jmu-border-1px.border-top:after {
+  border-top: 1px solid #808080;
+}
+.jmu-border-1px.border-bottom:after {
+  border-bottom: 1px solid #808080;
+}
+.jmu-border-1px.border-left:after {
+  border-left: 1px solid #808080;
+}
+.jmu-border-1px.border-right:after {
+  border-right: 1px solid #808080;
+}
 ::-webkit-scrollbar {
   width: 0;
 }
 .demo-border-1px,
 .jmu-header,
-#nav li,
 #base-color .demo-block p,
-#base-clearfix .ui-clear-fix,
-#base-center .ui-center,
+#base-clearfix .jmu-clear-fix,
+#base-clearfix .jmu-clear-fix div,
+#base-center .jmu-horizental-center,
 #base-nowrap .demo-block p,
-#dot .demo-block > div {
+#dot .demo-block > div,
+#form .jmu-form {
   border: 1px solid #eee;
 }
 .jmu-header {
@@ -2022,14 +1797,16 @@ li.jmu-list-item-link:after {
   display: none;
 }
 .demo-padding,
-#base-nowrap .demo-block p,
-#dot .demo-block > div {
-  padding: 5px;
+#demo-page a,
+#dot .demo-block > div,
+#form .jmu-form {
+  padding: 10px;
 }
 .demo-margin,
 #base-nowrap .demo-block p,
-#dot .demo-block > div {
-  margin: 5px auto;
+#dot .demo-block > div,
+#form .jmu-form {
+  margin: 10px auto;
 }
 h2 {
   text-align: center;
@@ -2043,21 +1820,21 @@ h2 {
 .demo-desc + small {
   padding: 0 20px;
 }
-#nav li {
-  list-style: none;
-  margin-bottom: 10px;
-  height: 40px;
-  line-height: 40px;
-  text-indent: 2em;
-  font-size: 24px;
-}
-#nav li.divider {
-  border: none;
-}
-#nav li a {
+#demo-page a {
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  font-size: 24px;
+  line-height: 24px;
+  color: #00a5e0;
+}
+#demo-page .tab-content > li {
+  display: none;
+}
+#demo-page .jmu-tab .item {
+  border-top: 3px solid transparent;
+}
+#demo-page .jmu-tab .item.jmu-active {
+  border-color: #00a5e0;
 }
 #base-color .demo-block p {
   margin: 30px 0;
@@ -2076,26 +1853,26 @@ h2 {
   text-align: center;
   margin: 10px;
 }
-#base-clearfix .ui-clear-fix {
+#base-clearfix .jmu-clear-fix {
   height: 40px;
   line-height: 40px;
   padding: 10px 0;
 }
-#base-clearfix .ui-clear-fix div {
-  outline: 1px solid #ffa500;
+#base-center .jmu-horizental-center {
+  height: 100px;
 }
-#corner-tag .ui-corner-tag {
+#corner-tag .jmu-corner-tag {
   display: inline-block;
 }
 #tab .tab-content li {
   text-align: center;
   margin-top: 20px;
 }
-#table .ui-table {
+#table .jmu-table {
   text-align: center;
   line-height: 40px;
 }
-#notice .ui-notice {
+#notice .jmu-notice {
   position: relative;
 }
 #dot .demo-block > div {
@@ -2103,7 +1880,7 @@ h2 {
   height: 40px;
   line-height: 40px;
 }
-#grid .ui-col {
+#grid .jmu-col {
   outline: 1px solid #eee;
   height: 50px;
   line-height: 50px;

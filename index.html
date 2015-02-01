@@ -14,67 +14,97 @@
     <script src="js/jmui.js"></script>
 </head>
 
-<body class="jmu-app">
+<body id="demo-page" class="jmu-app">
     <div class="jmu-header">
         JMUI Demo
     </div>
     <div class="jmu-content-container">
-        <div class="jmu-content jmu-active">
-            <ul id="nav"></ul>
+        <div class="jmu-content demo-nav jmu-active">
+            <ul class="tab-content">
+                <li id="base-css" class="panel-base-css"></li>
+                <li id="ui-css" class="panel-ui-css"></li>
+                <li id="ui-js" class="panel-ui-js"></li>
+            </ul>
         </div>
     </div>
-    <script>
-    var exports = {
-        // page 设置不同页面需要输出的文档
-        page: {
-            // http://localhost/base-css 基础样式
-            "base-css": {
-                "files": [
-                    {"name": "base-color", "title": "基础颜色"},
-                    {"name": "base-clearfix", "title": "清除浮动"},
-                    {"name": "base-center", "title": "垂直居中"},
-                    {"name": "base-1px", "title": "1像素边框"},
-                    {"name": "base-nowrap", "title": "文字不换行"}
-                ]
-            },
-            // http://localhost/ui-css UI组件
-            "ui-css": {
-                "files": [
-                    {"name": "button", "title": "按钮"},
-                    {"name": "button-group", "title": "按钮组"},
-                    {"name": "dot", "title": "点"},
-                    {"name": "corner-tag", "title": "角标"},
-                    {"name": "tooltips", "title": "提示条"},
-                    {"name": "table", "title": "表格"},
-                    {"name": "form", "title": "表单"},
-                    {"name": "list", "title": "列表"}
-                ]
-            },
-            // http://localhost/ui-js JS 插件
-            "ui-js": {
-                "files": [
-                    {"name": "loading", "title": "加载中"},
-                    {"name": "tab", "title": "标签栏"},
-                    {"name": "toast", "title": "提示"},
-                    {"name": "progress", "title": "进度条"},
-                    {"name": "range", "title": "范围条"},
-                    {"name": "dialog", "title": "对话框"},
-                    {"name": "action-sheet", "title": "菜单"},
-                    {"name": "action-share", "title": "分享到"}
-                ]
+    <div class="jmu-footer">
+        <ul class="jmu-tab">
+            <li id="nav-base-css" class="item">基础样式</li>
+            <li id="nav-ui-css" class="item">UI组件</li>
+            <li id="nav-ui-js" class="item">JS插件</li>
+        </ul>
+    </div>
+    <script class="demo-script">
+    ;(function () {
+        var exports = {
+            // page 设置不同页面需要输出的文档
+            page: {
+                // http://localhost/base-css 基础样式
+                "base-css": {
+                    "files": [
+                        {"name": "base-color", "title": "基础颜色"},
+                        {"name": "base-clearfix", "title": "清除浮动"},
+                        {"name": "base-center", "title": "垂直居中"},
+                        {"name": "base-1px", "title": "1像素边框"},
+                        {"name": "base-nowrap", "title": "文字不换行"}
+                    ]
+                },
+                // http://localhost/ui-css UI组件
+                "ui-css": {
+                    "files": [
+                        {"name": "button", "title": "按钮"},
+                        {"name": "button-group", "title": "按钮组"},
+                        {"name": "dot", "title": "点"},
+                        {"name": "corner-tag", "title": "角标"},
+                        {"name": "table", "title": "表格"},
+                        {"name": "form", "title": "表单"},
+                        {"name": "list", "title": "列表"}
+                    ]
+                },
+                // http://localhost/ui-js JS 插件
+                "ui-js": {
+                    "files": [
+                        {"name": "loading", "title": "加载中"},
+                        {"name": "tab", "title": "标签栏"},
+                        {"name": "toast", "title": "提示"},
+                        {"name": "progress", "title": "进度条"},
+                        {"name": "range", "title": "范围条"},
+                        {"name": "dialog", "title": "对话框"},
+                        {"name": "action-sheet", "title": "菜单"},
+                        {"name": "action-share", "title": "分享到"}
+                    ]
+                }
             }
-        }
-    };
+        };
 
-    var lis = '';
-    for (var i in exports.page) {
-        var files = exports.page[i].files;
-        lis += '<li class="divider">'+ i +'</li>';
-        for (var j in files) {
-            lis += '<li><a href="./demo/'+ files[j].name +'.html" >' + files[j].title +'</a></li>';
+        for (var i in exports.page) {
+            var html = '<ul class="jmu-list">';
+            var id = '#' + i;
+            var files = exports.page[i].files;
+            for (var j in files) {
+                html += '<li class="jmu-list-item-link"><a href="./demo/'+ files[j].name +'.html"  class="demo-link">' + files[j].title +'</a></li>';
+            }
+            html += '</ul>';
+            $(id).append(html);
         }
-    }
-    $('#nav').append(lis);
+    })();
+
+    ;(function (){
+        var activeTab = window.location.search.slice(1).split('=')[1] || 'base-css';
+        var currentIndex = $('#'+activeTab).index() || 0;
+        var opts = {
+            $el: '.jmu-tab',
+            currentIndex: currentIndex,
+            relateSelector: ['.panel-base-css', '.panel-ui-css', '.panel-ui-js'],
+            onSwitchTab: function(index, item){
+                // 切换时的回调函数
+                console.log('已切换到第 %s 个 tab', index);
+            }
+        };
+        $('.jmu-footer').tab(opts).show();
+
+    })();
+
     </script>
 </body>
 </html>

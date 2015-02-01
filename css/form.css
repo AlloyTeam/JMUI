@@ -9,9 +9,6 @@
   top: 7px;
   right: 7px;
 }
-.jmu-form-item-order:active {
-  background-color: #e5e6e7;
-}
 /* 表单输入项 */
 .jmu-form-item {
   height: 44px;
@@ -22,16 +19,9 @@
   position: relative;
   padding-left: 15px;
 }
-.jmu-form-item label:not(.jmu-switch):not(.jmu-checkout):not(.jmu-radio):not(.jmu-range) {
-  width: 95px;
+.jmu-form-item label:not(.jmu-switch):not(.jmu-checkout):not(.textarea):not(.jmu-range) {
   position: absolute;
   text-align: left;
-  box-sizing: border-box;
-}
-.jmu-form-item input:not([type="checkbox"]),
-.jmu-form-item textarea {
-  width: 100%;
-  padding-left: 95px;
   box-sizing: border-box;
 }
 .jmu-form-item-textarea {
@@ -84,20 +74,4 @@
 }
 .jmu-form .jmu-form-item-pure input {
   padding-left: 0;
-}
-/* 表单展示项 */
-.jmu-form .jmu-form-item-show label {
-  color: #808080;
-}
-.jmu-form-item-link:after {
-  background: url("../img/icon.png") no-repeat 0 -75px;
-  -webkit-background-size: 150px auto;
-  content: "";
-  display: block;
-  width: 9px;
-  height: 15px;
-  position: absolute;
-  right: 15px;
-  top: 50%;
-  margin-top: -7px;
 }

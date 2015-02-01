@@ -36,9 +36,10 @@
         },
 
         _bindEvents: function(){
+            var self = this;
             this.$el.on('tap', '.action-cancle', function(e){
                 // TODO
-                console.log(1);
+                self.$el.find('.action-cancle').text('已取消');
             });
         },
 

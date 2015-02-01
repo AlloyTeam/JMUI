@@ -1,4 +1,5 @@
 @import './base-color';
+@import './base-1px';
 
 ::-webkit-scrollbar {
   width: 0;
@@ -24,11 +25,11 @@
 
 
 .demo-padding {
-  padding: 5px;
+  padding: 10px;
 }
 
 .demo-margin {
-  margin: 5px auto;
+  margin: 10px auto;
 }
 
 h2 {
@@ -46,28 +47,29 @@ h2 {
   padding: 0 20px;
 }
 
-#nav li {
-  list-style: none;
-
-  margin-bottom: 10px;
-
-  height: 40px;
-  line-height: 40px;
-  text-indent: 2em;
-  font-size: 24px;
-  @extend .demo-border-1px;
-
-  &.divider {
-    border: none;
-  }
+#demo-page {
   a {
     display: block;
-    width: 100%;
-    height: 100%;
+    width: 80%;
 
-    @extend .jmu-color-blue;
+    font-size: 24px;
+    line-height: 24px;
+
+    color: #00a5e0;
+
+    @extend .demo-padding;
   }
 
+    .tab-content > li {
+      display: none;
+    }
+
+  .jmu-tab .item {
+    border-top: 3px solid transparent;
+    &.jmu-active {
+      border-color: #00a5e0;
+    }
+  }
 }
 
 
@@ -100,32 +102,32 @@ h2 {
 }
 
 #base-clearfix {
-  .ui-clear-fix {
+  .jmu-clear-fix {
     @extend  .demo-border-1px;
     height: 40px;
     line-height: 40px;
     padding: 10px 0;
     div {
-      outline: 1px solid orange;
+      @extend  .demo-border-1px;
     }
   }
 }
 
 #base-center {
-  .ui-center {
+  .jmu-horizental-center {
     @extend  .demo-border-1px;
+    height: 100px;
   }
 }
 
 #base-nowrap {
   .demo-block p {
     @extend  .demo-border-1px;
-    @extend  .demo-padding;
     @extend  .demo-margin;
   }
 }
 
-#corner-tag .ui-corner-tag {
+#corner-tag .jmu-corner-tag {
   display: inline-block;
 }
 
@@ -134,12 +136,12 @@ h2 {
   margin-top: 20px;
 }
 
-#table .ui-table {
+#table .jmu-table {
   text-align: center;
   line-height: 40px;
 }
 
-#notice .ui-notice {
+#notice .jmu-notice {
   position: relative;
 }
 
@@ -152,13 +154,21 @@ h2 {
   line-height: 40px;
 }
 
-#grid .ui-col {
+#grid .jmu-col {
   outline: 1px solid #eee;
   height: 50px;
   line-height: 50px;
   text-align: center;
 }
 
+
+  #form {
+    .jmu-form {
+      @extend  .demo-border-1px;
+      @extend  .demo-padding;
+      @extend  .demo-margin;
+    }
+  }
 .demo-return-btn {
   position: absolute;
   top: 10px;

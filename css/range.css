@@ -1,6 +1,3 @@
-.jmu-form-item-range {
-  width: 100%;
-}
 .jmu-range {
   position: relative;
   display: inline-block;
@@ -13,7 +10,6 @@
   text-align: center;
 }
 .jmu-range input[type=range] {
-  width: 260px;
   padding: 0 40px;
   -webkit-appearance: none;
 }
@@ -27,13 +23,13 @@
   border-radius: 3px;
 }
 .jmu-range input[type=range]::-webkit-slider-thumb {
-  height: 25px;
-  width: 25px;
-  border-radius: 12.5px;
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
   background: #fff;
   cursor: pointer;
   -webkit-appearance: none;
-  margin-top: -12.5px;
+  margin-top: -10px;
   border: 1px solid #eee;
 }
 .jmu-range input[type=range]:focus::-webkit-slider-runnable-track {
