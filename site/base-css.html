@@ -1,0 +1,87 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>JMUI</title><meta name="author" content="Tencent.AlloyTeam"><meta name="copyright" content="Tencent.AlloyTeam"><meta name="keywords" content="腾讯 Alloy 团队, JMUI"><meta name="description" content="JMUI, 移动UI库"><script>if(document.documentElement.clientWidth < 640){
+            window.location.href ="JMUI/dist/index.html";
+        }</script><link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css"><link rel="stylesheet" href="libs/highlight/styles/github.css"><link rel="stylesheet" href="css/main.css"></head><body><nav class="navbar navbar-default" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">JMUI</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="home.html">JMUI<sup class="doc-beta">beta</sup></a></div><div class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href="quick-start.html">快速开始</a></li><li><a href="base-css.html">基础样式</a></li><li><a href="ui-css.html">UI 组件</a></li><li><a href="ui-js.html">JS 插件</a></li></ul><ul class="nav navbar-nav navbar-right"><li><a href="JMUI/dist/" class="doc-qrcode-btn"><span class="glyphicon glyphicon-qrcode"></span> 扫码体验</a></li></ul></div></div></nav><div id="page-base-css"><div class="doc-banner"><div class="container"><h1>基础CSS</h1><p>基础颜色、清除浮动、垂直居中、1px边框模拟、文字溢出省略</p></div></div><div class="doc-body container"><div class="row"><div class="col-lg-2 js-scroll-spy"><ul class="nav doc-nav list-group"><li class="list-group-item" data-hash="base-color"><a href="#base-color">基础颜色</a></li><li class="list-group-item" data-hash="base-clearfix"><a href="#base-clearfix">清除浮动</a></li><li class="list-group-item" data-hash="base-center"><a href="#base-center">垂直居中</a></li><li class="list-group-item" data-hash="base-1px"><a href="#base-1px">1px边框</a></li><li class="list-group-item" data-hash="base-nowrap"><a href="#base-nowrap">文字溢出省略</a></li></ul></div><div class="col-lg-10"><div id="base-color" class="doc-code-panel"><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">基础颜色</h3><a class="doc-demo-css-link" href="JMUI/dist/css/base-color.css" title="点击查看源码" target="_blank">base-color.css</a> <a class="doc-demo-link" href="JMUI/dist/demo/base-color.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a><div class="doc-qrcode"></div></div><div class="panel-body"><section id="demo-base-color"><div class="doc-demo"><p class="demo-desc">设置字体颜色，可为黑/白/灰/蓝/红/橙. 如需自定义，添加 .jmu-color-[value] 即可.</p><div class="demo-block"><pre><code class="html">
+&lt;p class=&quot;jmu-color-black&quot;&gt;&#x9ED1;&#x8272;&lt;/p&gt;
+&lt;p class=&quot;jmu-color-white&quot;&gt;&#x767D;&#x8272;&lt;/p&gt;
+&lt;p class=&quot;jmu-color-gray&quot;&gt;&#x7070;&#x8272;&lt;/p&gt;
+&lt;p class=&quot;jmu-color-blue&quot;&gt;&#x84DD;&#x8272;&lt;/p&gt;
+&lt;p class=&quot;jmu-color-red&quot;&gt;&#x7EA2;&#x8272;&lt;/p&gt;
+&lt;p class=&quot;jmu-color-orange&quot;&gt;&#x6A59;&#x8272;&lt;/p&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;p class=&quot;jmu-color-black&quot;&gt;&#x9ED1;&#x8272;&lt;/p&gt;
+&lt;p class=&quot;jmu-color-white&quot;&gt;&#x767D;&#x8272;&lt;/p&gt;
+&lt;p class=&quot;jmu-color-gray&quot;&gt;&#x7070;&#x8272;&lt;/p&gt;
+&lt;p class=&quot;jmu-color-blue&quot;&gt;&#x84DD;&#x8272;&lt;/p&gt;
+&lt;p class=&quot;jmu-color-red&quot;&gt;&#x7EA2;&#x8272;&lt;/p&gt;
+&lt;p class=&quot;jmu-color-orange&quot;&gt;&#x6A59;&#x8272;&lt;/p&gt;
+					">复制</a></div></div></section></div></div></div><div id="base-clearfix" class="doc-code-panel"><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">清除浮动</h3><a class="doc-demo-css-link" href="JMUI/dist/css/base-clearfix.css" title="点击查看源码" target="_blank">base-clearfix.css</a> <a class="doc-demo-link" href="JMUI/dist/demo/base-clearfix.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a><div class="doc-qrcode"></div></div><div class="panel-body"><section id="demo-base-clearfix"><div class="doc-demo"><p class="demo-desc">清除浮动, 添加到浮动元素的父元素中.</p><div class="demo-block"><pre><code class="html">
+&lt;div class=&quot;jmu-clear-fix&quot;&gt;
+	&lt;div style=&quot;float: left;&quot;&gt;&#x5DE6;&#x6D6E;&#x52A8;&#x5143;&#x7D20;&lt;/div&gt;
+	&lt;div style=&quot;float: right;&quot;&gt;&#x53F3;&#x6D6E;&#x52A8;&#x5143;&#x7D20;&lt;/div&gt;
+&lt;/div&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;div class=&quot;jmu-clear-fix&quot;&gt;
+	&lt;div style=&quot;float: left;&quot;&gt;&#x5DE6;&#x6D6E;&#x52A8;&#x5143;&#x7D20;&lt;/div&gt;
+	&lt;div style=&quot;float: right;&quot;&gt;&#x53F3;&#x6D6E;&#x52A8;&#x5143;&#x7D20;&lt;/div&gt;
+&lt;/div&gt;
+					">复制</a></div></div></section></div></div></div><div id="base-center" class="doc-code-panel"><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">垂直居中</h3><a class="doc-demo-css-link" href="JMUI/dist/css/base-center.css" title="点击查看源码" target="_blank">base-center.css</a> <a class="doc-demo-link" href="JMUI/dist/demo/base-center.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a><div class="doc-qrcode"></div></div><div class="panel-body"><section id="demo-base-center"><div class="doc-demo"><p class="demo-desc">设置元素垂直居中, 注意需要指定父元素的高度.</p><div class="demo-block"><pre><code class="html">
+&lt;div class=&quot;jmu-horizental-center jmu-vertical-center&quot;&gt;
+	&lt;p&gt;&#x6211;&#x4F1A;&#x88AB;&#x5782;&#x76F4;&#x5C45;&#x4E2D;&#x54E6;&lt;/p&gt;
+&lt;/div&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;div class=&quot;jmu-horizental-center jmu-vertical-center&quot;&gt;
+	&lt;p&gt;&#x6211;&#x4F1A;&#x88AB;&#x5782;&#x76F4;&#x5C45;&#x4E2D;&#x54E6;&lt;/p&gt;
+&lt;/div&gt;
+					">复制</a></div></div></section></div></div></div><div id="base-1px" class="doc-code-panel"><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">1px边框</h3><a class="doc-demo-css-link" href="JMUI/dist/css/base-1px.css" title="点击查看源码" target="_blank">base-1px.css</a> <a class="doc-demo-link" href="JMUI/dist/demo/base-1px.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a><div class="doc-qrcode"></div></div><div class="panel-body"><section id="demo-base-1px"><div class="doc-demo"><p class="demo-desc">模拟 1px 边框</p><div class="demo-block"><pre><code class="html">
+&lt;ul class=&quot;demo-borders&quot;&gt;
+	&lt;li&gt;
+		&lt;div class=&quot;jmu-border-1px border-all&quot;&gt;&#x5168;&#x8FB9;&#x6846;&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;div class=&quot;jmu-border-1px border-top&quot;&gt;&#x4E0A;&#x8FB9;&#x6846;&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;div class=&quot;jmu-border-1px border-bottom&quot;&gt;&#x4E0B;&#x8FB9;&#x6846;&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;div class=&quot;jmu-border-1px border-left&quot;&gt;&#x5DE6;&#x8FB9;&#x6846;&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;div class=&quot;jmu-border-1px border-right&quot;&gt;&#x53F3;&#x8FB9;&#x6846;&lt;/div&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;ul class=&quot;demo-borders&quot;&gt;
+	&lt;li&gt;
+		&lt;div class=&quot;jmu-border-1px border-all&quot;&gt;&#x5168;&#x8FB9;&#x6846;&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;div class=&quot;jmu-border-1px border-top&quot;&gt;&#x4E0A;&#x8FB9;&#x6846;&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;div class=&quot;jmu-border-1px border-bottom&quot;&gt;&#x4E0B;&#x8FB9;&#x6846;&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;div class=&quot;jmu-border-1px border-left&quot;&gt;&#x5DE6;&#x8FB9;&#x6846;&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;div class=&quot;jmu-border-1px border-right&quot;&gt;&#x53F3;&#x8FB9;&#x6846;&lt;/div&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+					">复制</a></div></div></section></div></div></div><div id="base-nowrap" class="doc-code-panel"><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">文字溢出省略</h3><a class="doc-demo-css-link" href="JMUI/dist/css/base-nowrap.css" title="点击查看源码" target="_blank">base-nowrap.css</a> <a class="doc-demo-link" href="JMUI/dist/demo/base-nowrap.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a><div class="doc-qrcode"></div></div><div class="panel-body"><section id="demo-base-nowrap"><div class="doc-demo"><p class="demo-desc">单行/多行文字超长显示省略号, 多行文字默认显示两行</p><div class="demo-block"><pre><code class="html">
+&lt;p class=&quot;jmu-no-wrap&quot;&gt;
+	&#x5355;&#x884C;&#x6587;&#x5B57;, &#x8D85;&#x957F;&#x6EA2;&#x51FA;&#x5C06;&#x4F1A;&#x663E;&#x793A;&#x7701;&#x7565;&#x53F7;, &#x5566;&#x5566;&#x5566;&#x5566;&#x5566;&#x6211;&#x662F;&#x4E3A;&#x4E86;&#x51D1;&#x6570;&#x5566;&#x5566;&#x5566;&#x5566;&#x5566;&#x6211;&#x662F;&#x4E3A;&#x4E86;&#x51D1;&#x6570;
+&lt;/p&gt;
+&lt;p class=&quot;jmu-multi-no-wrap&quot;&gt;
+	&#x591A;&#x884C;&#x6587;&#x5B57;, &#x8D85;&#x957F;&#x6EA2;&#x51FA;&#x5C06;&#x4F1A;&#x5728;&#x6700;&#x540E;&#x4E00;&#x884C;&#x663E;&#x793A;&#x7701;&#x7565;&#x53F7;, &#x5566;&#x5566;&#x5566;&#x5566;&#x5566;&#x6211;&#x662F;&#x4E3A;&#x4E86;&#x51D1;&#x6570;&#x5566;&#x5566;&#x5566;&#x5566;&#x5566;&#x6211;&#x662F;&#x4E3A;&#x4E86;&#x51D1;&#x6570;
+&lt;/p&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;p class=&quot;jmu-no-wrap&quot;&gt;
+	&#x5355;&#x884C;&#x6587;&#x5B57;, &#x8D85;&#x957F;&#x6EA2;&#x51FA;&#x5C06;&#x4F1A;&#x663E;&#x793A;&#x7701;&#x7565;&#x53F7;, &#x5566;&#x5566;&#x5566;&#x5566;&#x5566;&#x6211;&#x662F;&#x4E3A;&#x4E86;&#x51D1;&#x6570;&#x5566;&#x5566;&#x5566;&#x5566;&#x5566;&#x6211;&#x662F;&#x4E3A;&#x4E86;&#x51D1;&#x6570;
+&lt;/p&gt;
+&lt;p class=&quot;jmu-multi-no-wrap&quot;&gt;
+	&#x591A;&#x884C;&#x6587;&#x5B57;, &#x8D85;&#x957F;&#x6EA2;&#x51FA;&#x5C06;&#x4F1A;&#x5728;&#x6700;&#x540E;&#x4E00;&#x884C;&#x663E;&#x793A;&#x7701;&#x7565;&#x53F7;, &#x5566;&#x5566;&#x5566;&#x5566;&#x5566;&#x6211;&#x662F;&#x4E3A;&#x4E86;&#x51D1;&#x6570;&#x5566;&#x5566;&#x5566;&#x5566;&#x5566;&#x6211;&#x662F;&#x4E3A;&#x4E86;&#x51D1;&#x6570;
+&lt;/p&gt;
+					">复制</a></div></div></section></div></div></div></div></div><div class="demo-iframe-wrap" title="拖拽"><iframe class="demo-iframe" src="JMUI/dist/demo/base-css.html"></iframe></div><a href="#" class="hide-demo-btn">Demo</a></div></div><div class="modal fade" id="qrcode-modal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button><h4 class="modal-title">扫描二维码, 在手机端体验</h4></div><div class="modal-body"><div id="qrcode" class="doc-qrcode-img"></div><a id="qrcode-link" href="http://alloyteam.github.io/JMUI/">JMUI Demo</a></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">关闭</button></div></div></div></div><div class="modal fade" id="sourcecode-modal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button><h4 class="modal-title">xxx.css</h4></div><div class="modal-body"><pre><code>
+
+        </code></pre></div><div class="modal-footer"><a class="doc-demo-file-link" href="#" target="_blank">在新窗口打开</a> <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button></div></div></div></div><div class="modal fade" id="feedback-modal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button><h4 class="modal-title">吐槽 - 扔砖扔蛋随你任性随你喜欢</h4></div><div class="modal-body"><form id="feedback-form" action="feedback" method="POST"><div class="form-group"><textarea type="text" class="form-control" name="feedback" placeholder="我想说的是..."></textarea><input type="email" class="form-control" name="email" placeholder="我的邮箱地址"></div><button id="feedback-form-submit-btn" type="submit" class="btn btn-primary">提交</button></form></div><div class="modal-footer"><a href="mailto:jmui.alloyteam@qq.com?subject=吐槽JMUI">提交失败?发送邮件进行吐槽</a> <button type="button" class="btn btn-default" data-dismiss="modal">取消</button></div></div></div></div><a href="#" class="scroll-top-btn">回到顶部</a><div class="container"><div class="doc-copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script><a href="http://www.AlloyTeam.com/" target="_blank">Tencent AlloyTeam</a>. All Rights Reserved.</div></div><script src="libs/jquery/jquery.min.js"></script><script src="libs/bootstrap/js/bootstrap.js"></script><script src="libs/highlight/highlight.pack.js"></script><script src="libs/jquery-qrcode/jquery.qrcode.min.js"></script><script src="libs/zeroclipboard/dist/ZeroClipboard.min.js"></script><script src="js/main.js"></script></body></html>

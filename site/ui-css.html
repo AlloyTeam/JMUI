@@ -1,0 +1,371 @@
+<!DOCTYPE html><html><head><meta charset="UTF-8"><title>JMUI</title><meta name="author" content="Tencent.AlloyTeam"><meta name="copyright" content="Tencent.AlloyTeam"><meta name="keywords" content="腾讯 Alloy 团队, JMUI"><meta name="description" content="JMUI, 移动UI库"><script>if(document.documentElement.clientWidth < 640){
+            window.location.href ="JMUI/dist/index.html";
+        }</script><link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css"><link rel="stylesheet" href="libs/highlight/styles/github.css"><link rel="stylesheet" href="css/main.css"></head><body><nav class="navbar navbar-default" role="navigation"><div class="container"><div class="navbar-header"><button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"><span class="sr-only">JMUI</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span></button> <a class="navbar-brand" href="home.html">JMUI<sup class="doc-beta">beta</sup></a></div><div class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href="quick-start.html">快速开始</a></li><li><a href="base-css.html">基础样式</a></li><li><a href="ui-css.html">UI 组件</a></li><li><a href="ui-js.html">JS 插件</a></li></ul><ul class="nav navbar-nav navbar-right"><li><a href="JMUI/dist/" class="doc-qrcode-btn"><span class="glyphicon glyphicon-qrcode"></span> 扫码体验</a></li></ul></div></div></nav><div id="page-ui-css"><div class="doc-banner"><div class="container"><h1>UI 组件</h1><p>按钮、角标、提示条、表格、表单、列表</p></div></div><div class="doc-body container"><div class="row"><div class="col-lg-2 js-scroll-spy"><ul class="nav doc-nav list-group"><li class="list-group-item" data-hash="button"><a href="#button">按钮</a></li><li class="list-group-item" data-hash="dot"><a href="#dot">点</a></li><li class="list-group-item" data-hash="corner-tag"><a href="#corner-tag">角标</a></li><li class="list-group-item" data-hash="table"><a href="#table">表格</a></li><li class="list-group-item" data-hash="form"><a href="#form">表单</a></li><li class="list-group-item" data-hash="list"><a href="#list">列表</a></li></ul></div><div class="col-lg-10"><div id="button" class="doc-code-panel"><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">按钮</h3><a class="doc-demo-css-link" href="JMUI/dist/css/button.css" title="点击查看源码" target="_blank">button.css</a> <a class="doc-demo-link" href="JMUI/dist/demo/button.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a><div class="doc-qrcode"></div></div><div class="panel-body"><section id="demo-button"><div class="doc-demo"><p class="demo-desc">行内按钮</p><div class="demo-block"><pre><code class="html">
+&lt;button class=&quot;jmu-btn&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn active&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn disabled&quot;&gt;&#x53D6;&#x6D88;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn&quot; disabled&gt;&#x53D6;&#x6D88;&lt;/button&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;button class=&quot;jmu-btn&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn active&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn disabled&quot;&gt;&#x53D6;&#x6D88;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn&quot; disabled&gt;&#x53D6;&#x6D88;&lt;/button&gt;
+					">复制</a></div></div><div class="doc-demo"><p class="demo-desc">蓝色按钮</p><div class="demo-block"><pre><code class="html">
+&lt;button class=&quot;jmu-btn jmu-btn-blue&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn jmu-btn-blue active&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn disabled&quot;&gt;&#x53D6;&#x6D88;&lt;/button&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;button class=&quot;jmu-btn jmu-btn-blue&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn jmu-btn-blue active&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn disabled&quot;&gt;&#x53D6;&#x6D88;&lt;/button&gt;
+					">复制</a></div></div><div class="doc-demo"><p class="demo-desc">红色按钮</p><div class="demo-block"><pre><code class="html">
+&lt;button class=&quot;jmu-btn jmu-btn-red&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn jmu-btn-red active&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn disabled&quot;&gt;&#x53D6;&#x6D88;&lt;/button&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;button class=&quot;jmu-btn jmu-btn-red&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn jmu-btn-red active&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn disabled&quot;&gt;&#x53D6;&#x6D88;&lt;/button&gt;
+					">复制</a></div></div><div class="doc-demo"><p class="demo-desc">块级按钮</p><div class="demo-block"><pre><code class="html">
+&lt;button class=&quot;jmu-btn-lg&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn-lg disabled&quot;&gt;&#x53D6;&#x6D88;&lt;/button&gt;
+
+&lt;button class=&quot;jmu-btn-lg jmu-btn-blue&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn-lg jmu-btn-blue active&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+
+&lt;button class=&quot;jmu-btn-lg jmu-btn-red&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn-lg jmu-btn-red active&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;button class=&quot;jmu-btn-lg&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn-lg disabled&quot;&gt;&#x53D6;&#x6D88;&lt;/button&gt;
+
+&lt;button class=&quot;jmu-btn-lg jmu-btn-blue&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn-lg jmu-btn-blue active&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+
+&lt;button class=&quot;jmu-btn-lg jmu-btn-red&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+&lt;button class=&quot;jmu-btn-lg jmu-btn-red active&quot;&gt;&#x786E;&#x5B9A;&lt;/button&gt;
+					">复制</a></div></div></section></div></div></div><div id="dot" class="doc-code-panel"><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">点</h3><a class="doc-demo-css-link" href="JMUI/dist/css/dot.css" title="点击查看源码" target="_blank">dot.css</a> <a class="doc-demo-link" href="JMUI/dist/demo/dot.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a><div class="doc-qrcode"></div></div><div class="panel-body"><section id="demo-dot"><div class="doc-demo"><p class="demo-desc">显示提示点, 默认在右上角显示</p><div class="demo-block"><pre><code class="html">
+&lt;div&gt;
+	&#x7EA2;&#x8272;&#x6570;&#x5B57;&#x53F3;&#x4E0A;&#x89D2;
+	&lt;i class=&quot;jmu-dot-num jmu-dot-red jmu-dot-tr&quot;&gt;1&lt;/i&gt;
+&lt;/div&gt;
+&lt;div&gt;
+	&#x84DD;&#x8272;&#x6570;&#x5B57;&#x53F3;&#x4E0A;&#x89D2;
+	&lt;i class=&quot;jmu-dot-num jmu-dot-blue jmu-dot-tr&quot;&gt;2&lt;/i&gt;
+&lt;/div&gt;
+&lt;div&gt;
+	&#x7EA2;&#x8272;new&#x53F3;&#x4E0A;&#x89D2;
+	&lt;i class=&quot;jmu-dot-new jmu-dot-red jmu-dot-tr&quot;&gt;new&lt;/i&gt;
+&lt;/div&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;div&gt;
+	&#x7EA2;&#x8272;&#x6570;&#x5B57;&#x53F3;&#x4E0A;&#x89D2;
+	&lt;i class=&quot;jmu-dot-num jmu-dot-red jmu-dot-tr&quot;&gt;1&lt;/i&gt;
+&lt;/div&gt;
+&lt;div&gt;
+	&#x84DD;&#x8272;&#x6570;&#x5B57;&#x53F3;&#x4E0A;&#x89D2;
+	&lt;i class=&quot;jmu-dot-num jmu-dot-blue jmu-dot-tr&quot;&gt;2&lt;/i&gt;
+&lt;/div&gt;
+&lt;div&gt;
+	&#x7EA2;&#x8272;new&#x53F3;&#x4E0A;&#x89D2;
+	&lt;i class=&quot;jmu-dot-new jmu-dot-red jmu-dot-tr&quot;&gt;new&lt;/i&gt;
+&lt;/div&gt;
+					">复制</a></div></div></section></div></div></div><div id="corner-tag" class="doc-code-panel"><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">角标</h3><a class="doc-demo-css-link" href="JMUI/dist/css/corner-tag.css" title="点击查看源码" target="_blank">corner-tag.css</a> <a class="doc-demo-link" href="JMUI/dist/demo/corner-tag.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a><div class="doc-qrcode"></div></div><div class="panel-body"><section id="demo-corner-tag"><div class="doc-demo"><p class="demo-desc">在边角显示标记</p><div class="demo-block"><pre><code class="html">
+&lt;div class=&quot;jmu-corner-tag&quot;&gt;
+	&lt;img src=&quot;../img/qq.png&quot;&gt;
+	&lt;div class=&quot;jmu-tag-red&quot;&gt;&#x7EA2;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;jmu-corner-tag&quot;&gt;
+	&lt;img src=&quot;../img/qq.png&quot;&gt;
+	&lt;div class=&quot;jmu-tag-orange&quot;&gt;&#x6A59;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;jmu-corner-tag&quot;&gt;
+	&lt;img src=&quot;../img/qq.png&quot;&gt;
+	&lt;div class=&quot;jmu-tag-blue&quot;&gt;&#x84DD;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;jmu-corner-tag&quot;&gt;
+	&lt;img src=&quot;../img/qq.png&quot;&gt;
+	&lt;div class=&quot;jmu-tag-green&quot;&gt;&#x7EFF;&lt;/div&gt;
+&lt;/div&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;div class=&quot;jmu-corner-tag&quot;&gt;
+	&lt;img src=&quot;../img/qq.png&quot;&gt;
+	&lt;div class=&quot;jmu-tag-red&quot;&gt;&#x7EA2;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;jmu-corner-tag&quot;&gt;
+	&lt;img src=&quot;../img/qq.png&quot;&gt;
+	&lt;div class=&quot;jmu-tag-orange&quot;&gt;&#x6A59;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;jmu-corner-tag&quot;&gt;
+	&lt;img src=&quot;../img/qq.png&quot;&gt;
+	&lt;div class=&quot;jmu-tag-blue&quot;&gt;&#x84DD;&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;jmu-corner-tag&quot;&gt;
+	&lt;img src=&quot;../img/qq.png&quot;&gt;
+	&lt;div class=&quot;jmu-tag-green&quot;&gt;&#x7EFF;&lt;/div&gt;
+&lt;/div&gt;
+					">复制</a></div></div></section></div></div></div><div id="table" class="doc-code-panel"><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">表格</h3><a class="doc-demo-css-link" href="JMUI/dist/css/table.css" title="点击查看源码" target="_blank">table.css</a> <a class="doc-demo-link" href="JMUI/dist/demo/table.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a><div class="doc-qrcode"></div></div><div class="panel-body"><section id="demo-table"><div class="doc-demo"><p class="demo-desc">无边框的表格</p><div class="demo-block"><pre><code class="html">
+&lt;table class=&quot;jmu-table jmu-border-tb&quot;&gt;
+	&lt;thead&gt;
+	&lt;tr&gt;&lt;th&gt;&#x5DF2;&#x8D2D;&#x4E70;&lt;/th&gt;&lt;th&gt;&#x72B6;&#x6001;&lt;/th&gt;&lt;th&gt;&#x4F1A;&#x5458;&#x5230;&#x671F;&#x65F6;&#x95F4;&lt;/th&gt;&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+	&lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;&#x4F7F;&#x7528;&#x4E2D;&lt;/td&gt;&lt;td&gt;2016-02-06&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;&#x5F85;&#x4ED8;&#x6B3E;&lt;/td&gt;&lt;td&gt;&lt;a href=&quot;#&quot;&gt;&#x4ED8;&#x6B3E;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;&#x5F85;&#x4ED8;&#x6B3E;&lt;/td&gt;&lt;td&gt;&lt;a href=&quot;#&quot;&gt;&#x4ED8;&#x6B3E;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;table class=&quot;jmu-table jmu-border-tb&quot;&gt;
+	&lt;thead&gt;
+	&lt;tr&gt;&lt;th&gt;&#x5DF2;&#x8D2D;&#x4E70;&lt;/th&gt;&lt;th&gt;&#x72B6;&#x6001;&lt;/th&gt;&lt;th&gt;&#x4F1A;&#x5458;&#x5230;&#x671F;&#x65F6;&#x95F4;&lt;/th&gt;&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+	&lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;&#x4F7F;&#x7528;&#x4E2D;&lt;/td&gt;&lt;td&gt;2016-02-06&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;&#x5F85;&#x4ED8;&#x6B3E;&lt;/td&gt;&lt;td&gt;&lt;a href=&quot;#&quot;&gt;&#x4ED8;&#x6B3E;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;&#x5F85;&#x4ED8;&#x6B3E;&lt;/td&gt;&lt;td&gt;&lt;a href=&quot;#&quot;&gt;&#x4ED8;&#x6B3E;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+					">复制</a></div></div><div class="doc-demo"><p class="demo-desc">带边框的表格表格</p><div class="demo-block"><pre><code class="html">
+&lt;table class=&quot;jmu-table jmu-border-1px border-all&quot;&gt;
+	&lt;thead&gt;
+	&lt;tr&gt;&lt;th&gt;&#x5DF2;&#x8D2D;&#x4E70;&lt;/th&gt;&lt;th&gt;&#x72B6;&#x6001;&lt;/th&gt;&lt;th&gt;&#x4F1A;&#x5458;&#x5230;&#x671F;&#x65F6;&#x95F4;&lt;/th&gt;&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+	&lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;&#x4F7F;&#x7528;&#x4E2D;&lt;/td&gt;&lt;td&gt;2016-02-06&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;&#x5F85;&#x4ED8;&#x6B3E;&lt;/td&gt;&lt;td&gt;&lt;a href=&quot;#&quot;&gt;&#x4ED8;&#x6B3E;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;&#x5F85;&#x4ED8;&#x6B3E;&lt;/td&gt;&lt;td&gt;&lt;a href=&quot;#&quot;&gt;&#x4ED8;&#x6B3E;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;table class=&quot;jmu-table jmu-border-1px border-all&quot;&gt;
+	&lt;thead&gt;
+	&lt;tr&gt;&lt;th&gt;&#x5DF2;&#x8D2D;&#x4E70;&lt;/th&gt;&lt;th&gt;&#x72B6;&#x6001;&lt;/th&gt;&lt;th&gt;&#x4F1A;&#x5458;&#x5230;&#x671F;&#x65F6;&#x95F4;&lt;/th&gt;&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+	&lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;&#x4F7F;&#x7528;&#x4E2D;&lt;/td&gt;&lt;td&gt;2016-02-06&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;&#x5F85;&#x4ED8;&#x6B3E;&lt;/td&gt;&lt;td&gt;&lt;a href=&quot;#&quot;&gt;&#x4ED8;&#x6B3E;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;tr&gt;&lt;td&gt;2014257777&lt;/td&gt;&lt;td&gt;&#x5F85;&#x4ED8;&#x6B3E;&lt;/td&gt;&lt;td&gt;&lt;a href=&quot;#&quot;&gt;&#x4ED8;&#x6B3E;&lt;/a&gt;&lt;/td&gt;&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+					">复制</a></div></div></section></div></div></div><div id="form" class="doc-code-panel"><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">表单</h3><a class="doc-demo-css-link" href="JMUI/dist/css/form.css" title="点击查看源码" target="_blank">form.css</a> <a class="doc-demo-link" href="JMUI/dist/demo/form.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a><div class="doc-qrcode"></div></div><div class="panel-body"><section id="demo-form"><div class="doc-demo"><p class="demo-desc">表单输入项</p><div class="demo-block"><pre><code class="html">
+&lt;div class=&quot;jmu-form&quot;&gt;
+	&lt;form action=&quot;#&quot;&gt;
+		&lt;div class=&quot;jmu-form-item jmu-form-item-pure&quot;&gt;
+			&lt;input type=&quot;text&quot; placeholder=&quot;&#x5E10;&#x53F7;&quot;&gt;
+			&lt;a href=&quot;#&quot; class=&quot;jmu-icon-close&quot;&gt;&lt;/a&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;jmu-form-item jmu-form-item-pure&quot;&gt;
+			&lt;input type=&quot;password&quot; placeholder=&quot;&#x5BC6;&#x7801;&quot;&gt;
+			&lt;a href=&quot;#&quot; class=&quot;jmu-icon-close&quot;&gt;&lt;/a&gt;
+		&lt;/div&gt;
+	&lt;/form&gt;
+&lt;/div&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;div class=&quot;jmu-form&quot;&gt;
+	&lt;form action=&quot;#&quot;&gt;
+		&lt;div class=&quot;jmu-form-item jmu-form-item-pure&quot;&gt;
+			&lt;input type=&quot;text&quot; placeholder=&quot;&#x5E10;&#x53F7;&quot;&gt;
+			&lt;a href=&quot;#&quot; class=&quot;jmu-icon-close&quot;&gt;&lt;/a&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;jmu-form-item jmu-form-item-pure&quot;&gt;
+			&lt;input type=&quot;password&quot; placeholder=&quot;&#x5BC6;&#x7801;&quot;&gt;
+			&lt;a href=&quot;#&quot; class=&quot;jmu-icon-close&quot;&gt;&lt;/a&gt;
+		&lt;/div&gt;
+	&lt;/form&gt;
+&lt;/div&gt;
+					">复制</a></div></div><div class="doc-demo"><p class="demo-desc">输入框</p><div class="demo-block"><pre><code class="html">
+&lt;div class=&quot;jmu-form&quot;&gt;
+	&lt;form action=&quot;#&quot;&gt;
+		&lt;div class=&quot;jmu-form-item jmu-form-item-l&quot;&gt;
+			&lt;label class=&quot;jmu-border-1px border-right&quot;&gt;&#x4E2D;&#x56FD; +86&lt;/label&gt;
+			&lt;input type=&quot;text&quot; placeholder=&quot;&#x8BF7;&#x8F93;&#x5165;&#x624B;&#x673A;&#x53F7;&#x7801;&quot;&gt;
+			&lt;a href=&quot;#&quot; class=&quot;jmu-icon-close&quot;&gt;&lt;/a&gt;
+		&lt;/div&gt;
+	&lt;/form&gt;
+&lt;/div&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;div class=&quot;jmu-form&quot;&gt;
+	&lt;form action=&quot;#&quot;&gt;
+		&lt;div class=&quot;jmu-form-item jmu-form-item-l&quot;&gt;
+			&lt;label class=&quot;jmu-border-1px border-right&quot;&gt;&#x4E2D;&#x56FD; +86&lt;/label&gt;
+			&lt;input type=&quot;text&quot; placeholder=&quot;&#x8BF7;&#x8F93;&#x5165;&#x624B;&#x673A;&#x53F7;&#x7801;&quot;&gt;
+			&lt;a href=&quot;#&quot; class=&quot;jmu-icon-close&quot;&gt;&lt;/a&gt;
+		&lt;/div&gt;
+	&lt;/form&gt;
+&lt;/div&gt;
+					">复制</a></div></div><div class="doc-demo"><p class="demo-desc">输入框</p><div class="demo-block"><pre><code class="html">
+&lt;div class=&quot;jmu-form&quot;&gt;
+	&lt;form action=&quot;#&quot;&gt;
+		&lt;div class=&quot;jmu-form-item jmu-form-item-r&quot;&gt;
+			&lt;input type=&quot;text&quot; placeholder=&quot;&#x8BF7;&#x8F93;&#x5165;&#x9A8C;&#x8BC1;&#x7801;&quot;&gt;
+			&lt;button type=&quot;button&quot; class=&quot;jmu-border-1px border-left&quot;&gt;&#x91CD;&#x65B0;&#x53D1;&#x9001;&lt;/button&gt;
+			&lt;a href=&quot;#&quot; class=&quot;jmu-icon-close&quot;&gt;&lt;/a&gt;
+		&lt;/div&gt;
+	&lt;/form&gt;
+&lt;/div&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;div class=&quot;jmu-form&quot;&gt;
+	&lt;form action=&quot;#&quot;&gt;
+		&lt;div class=&quot;jmu-form-item jmu-form-item-r&quot;&gt;
+			&lt;input type=&quot;text&quot; placeholder=&quot;&#x8BF7;&#x8F93;&#x5165;&#x9A8C;&#x8BC1;&#x7801;&quot;&gt;
+			&lt;button type=&quot;button&quot; class=&quot;jmu-border-1px border-left&quot;&gt;&#x91CD;&#x65B0;&#x53D1;&#x9001;&lt;/button&gt;
+			&lt;a href=&quot;#&quot; class=&quot;jmu-icon-close&quot;&gt;&lt;/a&gt;
+		&lt;/div&gt;
+	&lt;/form&gt;
+&lt;/div&gt;
+					">复制</a></div></div><div class="doc-demo"><p class="demo-desc">单选框</p><div class="demo-block"><pre><code class="html">
+&lt;div class=&quot;jmu-form&quot;&gt;
+	&lt;div class=&quot;jmu-form-item&quot;&gt;
+		&lt;label class=&quot;jmu-radio&quot; name=&quot;radio&quot;&gt;
+			&lt;input type=&quot;radio&quot; name=&quot;radio&quot; checked&gt;&#x5355;&#x9009;&#x6846;-1
+		&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;jmu-form-item&quot;&gt;
+		&lt;label class=&quot;jmu-radio&quot;&gt;
+			&lt;input type=&quot;radio&quot; name=&quot;radio&quot;&gt;&#x5355;&#x9009;&#x6846;-2
+		&lt;/label&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;div class=&quot;jmu-form&quot;&gt;
+	&lt;div class=&quot;jmu-form-item&quot;&gt;
+		&lt;label class=&quot;jmu-radio&quot; name=&quot;radio&quot;&gt;
+			&lt;input type=&quot;radio&quot; name=&quot;radio&quot; checked&gt;&#x5355;&#x9009;&#x6846;-1
+		&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;jmu-form-item&quot;&gt;
+		&lt;label class=&quot;jmu-radio&quot;&gt;
+			&lt;input type=&quot;radio&quot; name=&quot;radio&quot;&gt;&#x5355;&#x9009;&#x6846;-2
+		&lt;/label&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					">复制</a></div></div><div class="doc-demo"><p class="demo-desc">多选框</p><div class="demo-block"><pre><code class="html">
+&lt;div class=&quot;jmu-form&quot;&gt;
+	&lt;div class=&quot;jmu-form-item&quot;&gt;
+		&lt;label class=&quot;jmu-checkbox&quot;&gt;
+			&lt;input type=&quot;checkbox&quot; checked&gt;&#x591A;&#x9009;&#x6846;-1
+		&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;jmu-form-item&quot;&gt;
+		&lt;label class=&quot;jmu-checkbox&quot;&gt;
+			&lt;input type=&quot;checkbox&quot;&gt;&#x591A;&#x9009;&#x6846;-2
+		&lt;/label&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;div class=&quot;jmu-form&quot;&gt;
+	&lt;div class=&quot;jmu-form-item&quot;&gt;
+		&lt;label class=&quot;jmu-checkbox&quot;&gt;
+			&lt;input type=&quot;checkbox&quot; checked&gt;&#x591A;&#x9009;&#x6846;-1
+		&lt;/label&gt;
+	&lt;/div&gt;
+	&lt;div class=&quot;jmu-form-item&quot;&gt;
+		&lt;label class=&quot;jmu-checkbox&quot;&gt;
+			&lt;input type=&quot;checkbox&quot;&gt;&#x591A;&#x9009;&#x6846;-2
+		&lt;/label&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					">复制</a></div></div><div class="doc-demo"><p class="demo-desc">切换开关</p><div class="demo-block"><pre><code class="html">
+&lt;div class=&quot;jmu-form&quot;&gt;
+	&lt;div class=&quot;jmu-form-item jmu-form-item-switch&quot;&gt;
+		&lt;span&gt;&#x5BF9;&#x9644;&#x8FD1;&#x7684;&#x4EBA;&#x53EF;&#x89C1;&lt;/span&gt;
+		&lt;label class=&quot;jmu-switch&quot;&gt;
+			&lt;input type=&quot;checkbox&quot;&gt;
+		&lt;/label&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;div class=&quot;jmu-form&quot;&gt;
+	&lt;div class=&quot;jmu-form-item jmu-form-item-switch&quot;&gt;
+		&lt;span&gt;&#x5BF9;&#x9644;&#x8FD1;&#x7684;&#x4EBA;&#x53EF;&#x89C1;&lt;/span&gt;
+		&lt;label class=&quot;jmu-switch&quot;&gt;
+			&lt;input type=&quot;checkbox&quot;&gt;
+		&lt;/label&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					">复制</a></div></div></section></div></div></div><div id="list" class="doc-code-panel"><div class="panel panel-default"><div class="panel-heading"><h3 class="panel-title">列表</h3><a class="doc-demo-css-link" href="JMUI/dist/css/list.css" title="点击查看源码" target="_blank">list.css</a> <a class="doc-demo-link" href="JMUI/dist/demo/list.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a><div class="doc-qrcode"></div></div><div class="panel-body"><section id="demo-list"><div class="doc-demo"><p class="demo-desc">普通列表</p><div class="demo-block"><pre><code class="html">
+&lt;ul class=&quot;jmu-list jmu-list-text&quot;&gt;
+	&lt;li class=&quot;jmu-list-item-link&quot;&gt;
+		&lt;p&gt;&#x5217;&#x8868;&#x9879;-1&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;p&gt;&#x5217;&#x8868;&#x9879;-2&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;ul class=&quot;jmu-list jmu-list-text&quot;&gt;
+	&lt;li class=&quot;jmu-list-item-link&quot;&gt;
+		&lt;p&gt;&#x5217;&#x8868;&#x9879;-1&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;p&gt;&#x5217;&#x8868;&#x9879;-2&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+					">复制</a></div></div><div class="doc-demo"><p class="demo-desc">带选中态</p><div class="demo-block"><pre><code class="html">
+&lt;ul class=&quot;jmu-list jmu-list-text jmu-list-active&quot;&gt;
+	&lt;li class=&quot;selected&quot;&gt;
+		&lt;p&gt;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;p&gt;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;ul class=&quot;jmu-list jmu-list-text jmu-list-active&quot;&gt;
+	&lt;li class=&quot;selected&quot;&gt;
+		&lt;p&gt;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;p&gt;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+					">复制</a></div></div><div class="doc-demo"><p class="demo-desc">文字链接</p><div class="demo-block"><pre><code class="html">
+&lt;ul class=&quot;jmu-list jmu-list-text&quot;&gt;
+	&lt;li class=&quot;jmu-border-t jmu-list-item-link&quot;&gt;
+		&lt;div class=&quot;jmu-list-info&quot;&gt;
+			&lt;h4&gt;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&lt;/h4&gt;
+			&lt;p&gt;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;jmu-badge&quot;&gt;123&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;div class=&quot;jmu-list-info&quot;&gt;
+			&lt;h4&gt;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&lt;/h4&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;jmu-badge-muted&quot;&gt;123&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;div class=&quot;jmu-list-info&quot;&gt;
+			&lt;h4&gt;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&lt;/h4&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;jmu-list-action&quot;&gt;&#x4F7F;&#x7528;&#x4E2D;&lt;/div&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+					</code></pre><a class="doc-copy-code-btn" data-clipboard-text="
+&lt;ul class=&quot;jmu-list jmu-list-text&quot;&gt;
+	&lt;li class=&quot;jmu-border-t jmu-list-item-link&quot;&gt;
+		&lt;div class=&quot;jmu-list-info&quot;&gt;
+			&lt;h4&gt;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&lt;/h4&gt;
+			&lt;p&gt;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;jmu-badge&quot;&gt;123&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;div class=&quot;jmu-list-info&quot;&gt;
+			&lt;h4&gt;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&#x52A0;h4&#x53EF;&#x4EE5;&#x8D85;&#x51FA;&#x957F;&#x5EA6;&#x622A;&#x65AD;&lt;/h4&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;jmu-badge-muted&quot;&gt;123&lt;/div&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+		&lt;div class=&quot;jmu-list-info&quot;&gt;
+			&lt;h4&gt;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&#x9898;&#x6807;&lt;/h4&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;jmu-list-action&quot;&gt;&#x4F7F;&#x7528;&#x4E2D;&lt;/div&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+					">复制</a></div></div></section></div></div></div></div></div></div><div class="demo-iframe-wrap" title="拖拽">><iframe class="demo-iframe" src="JMUI/dist/demo/ui-css.html"></iframe></div><a href="#" class="hide-demo-btn">Demo</a></div><div class="modal fade" id="qrcode-modal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button><h4 class="modal-title">扫描二维码, 在手机端体验</h4></div><div class="modal-body"><div id="qrcode" class="doc-qrcode-img"></div><a id="qrcode-link" href="http://alloyteam.github.io/JMUI/">JMUI Demo</a></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">关闭</button></div></div></div></div><div class="modal fade" id="sourcecode-modal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button><h4 class="modal-title">xxx.css</h4></div><div class="modal-body"><pre><code>
+
+        </code></pre></div><div class="modal-footer"><a class="doc-demo-file-link" href="#" target="_blank">在新窗口打开</a> <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button></div></div></div></div><div class="modal fade" id="feedback-modal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button><h4 class="modal-title">吐槽 - 扔砖扔蛋随你任性随你喜欢</h4></div><div class="modal-body"><form id="feedback-form" action="feedback" method="POST"><div class="form-group"><textarea type="text" class="form-control" name="feedback" placeholder="我想说的是..."></textarea><input type="email" class="form-control" name="email" placeholder="我的邮箱地址"></div><button id="feedback-form-submit-btn" type="submit" class="btn btn-primary">提交</button></form></div><div class="modal-footer"><a href="mailto:jmui.alloyteam@qq.com?subject=吐槽JMUI">提交失败?发送邮件进行吐槽</a> <button type="button" class="btn btn-default" data-dismiss="modal">取消</button></div></div></div></div><a href="#" class="scroll-top-btn">回到顶部</a><div class="container"><div class="doc-copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script><a href="http://www.AlloyTeam.com/" target="_blank">Tencent AlloyTeam</a>. All Rights Reserved.</div></div><script src="libs/jquery/jquery.min.js"></script><script src="libs/bootstrap/js/bootstrap.js"></script><script src="libs/highlight/highlight.pack.js"></script><script src="libs/jquery-qrcode/jquery.qrcode.min.js"></script><script src="libs/zeroclipboard/dist/ZeroClipboard.min.js"></script><script src="js/main.js"></script></body></html>
