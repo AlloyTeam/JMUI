@@ -1,6 +1,10 @@
+.jmu-form-item-range {
+  padding-right: 0;
+}
 .jmu-range {
   position: relative;
   display: inline-block;
+  width: 100%;
 }
 .jmu-range .jmu-range-val {
   position: absolute;
@@ -10,7 +14,8 @@
   text-align: center;
 }
 .jmu-range input[type=range] {
-  padding: 0 40px;
+  width: 80%;
+  verticle-align: center;
   -webkit-appearance: none;
 }
 .jmu-range input[type=range]:focus {

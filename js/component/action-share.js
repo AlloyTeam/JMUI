@@ -36,7 +36,7 @@
         },
         template: {
             main: '<div class="jmu-action-sheet">\
-                    <div class="sheet-title jmu-border-b">分享到:</div>\
+                    <div class="sheet-title jmu-border-1px border-bottom">分享到:</div>\
                     <ul class="content"></ul>\
                     <div class="jmu-color-blue btn btn-cancel" data-cmd="as-cancel" data-dismiss="true">取消</div>\
                 </div>',

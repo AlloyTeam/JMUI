@@ -12,41 +12,40 @@
 <body class="jmu-app">
 	<div class="jmu-header">
 		<a class="jmu-btn demo-return-btn" href="../index.html?tab=ui-js">返回</a>
-		<h2>action-share</h2>
+		<h2>分享菜单</h2>
 	</div>
 	<div class="jmu-content-container">
 		<div class="jmu-content jmu-active">
 			<section id="action-share">
 				<div class="demo-item">
-					<p class="demo-desc">弹出分享菜单</p>
+					<p class="demo-desc">显示分享菜单</p>
 					<div class="demo-block">
 						<!--无 html-->
 					</div>
-					<a class="demo-show jmu-btn">分享到</a>
-					<span class="test-output"></span>
+					<a class="demo-show jmu-btn-lg">显示分享到菜单</a>
 					<script class="demo-script">
 						$(function (){
 							var func1 = function(){
-								$('.test-output').text('你点了选项1');
+								console.log('你点了选项1');
 							};
 							var func2 = function(){
-								$('.test-output').text('你点了选项2');
+								console.log('你点了选项2');
 							};
 							var func3 = function(){
-								$('.test-output').text('你点了选项3');
+								console.log('你点了选项3');
 							};
 							var func4 = function(){
-								$('.test-output').text('你点了选项4');
+								console.log('你点了选项4');
 							};
 							var func5 = function(){
-								$('.test-output').text('你点了选项5');
+								console.log('你点了选项5');
 							};
 							var func6 = function(){
-								$('.test-output').text('你点了选项6');
+								console.log('你点了选项6');
 							};
 							var content = [
 								{
-									value: '<img src="../img/share-qq.png"><span>好友/群</span>', //展示的值
+									value: '<img src="../img/share-qq.png"><span>QQ好友</span>', //展示的值
 									id: 'testId1',//给节点添加自定义id
 									className: 'sheet-item',//添加自己的样式
 									cmd: 'func1' //自定义事件名
@@ -99,7 +98,7 @@
 							};
 							// 测试
 							var actionShare = new JMU.ActionShare();
-							$('#action-share').on('click', '.demo-show', function (){
+							$('#action-share').on('tap', '.demo-show', function (){
 								actionShare.show(optsShare);
 							});
 						})

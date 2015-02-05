@@ -166,8 +166,7 @@
 	    }
     };
 })(Zepto);
-
-/**
+;/**
  * Copyright (c) 2014 Tencent AlloyTeam, All rights reserved.
  * http://www.AlloyTeam.com/
  * Code licensed under the BSD License:
@@ -340,8 +339,7 @@
     };
 
     JMU.Component = Component;
-})(Zepto, JMU);
-;(function($){
+})(Zepto, JMU);;;(function($){
     function bounceFix() {
         $.isBounceFix = true;
 
@@ -381,8 +379,7 @@
         bounceFix();
     }
 })(Zepto);
-
-;(function($){
+;;(function($){
   var canvas = $('<canvas></canvas>')[0],
       context = canvas.getContext('2d'),
       imgs = $('img[data-holder]');
@@ -420,8 +417,7 @@
         color = 'rgba(' + r + ',' + g + ',' + b + ',' + a + ')';  
     return color;    
   }
-})(Zepto);
-(function( $, JMU ) {
+})(Zepto);;(function( $, JMU ) {
     JMU.Component( 'Lazyload', {
         options: {
             attribute: 'data-lazy',
@@ -490,8 +486,7 @@
         }
     });
 })(Zepto, JMU);
-
-(function($){
+;(function($){
     var domainPrefix = window.location.domain;
     $.extend($, {
         emptyFunction: function(){},
@@ -574,8 +569,7 @@
             }
         }
     });
-})(Zepto);
-;(function( $, JMU ) {
+})(Zepto);;;(function( $, JMU ) {
     /*底部浮层组件
     * 
     * 调用示例：by gctang
@@ -613,7 +607,7 @@
         },
         template: {
             main: '<div class="jmu-action-sheet">\
-                    <div class="sheet-title jmu-border-b">分享到:</div>\
+                    <div class="sheet-title jmu-border-1px border-bottom">分享到:</div>\
                     <ul class="content"></ul>\
                     <div class="jmu-color-blue btn btn-cancel" data-cmd="as-cancel" data-dismiss="true">取消</div>\
                 </div>',
@@ -666,8 +660,7 @@
         }
     });
 })(Zepto, JMU);
-
-(function( $, JMU ) {
+;(function( $, JMU ) {
     /*底部浮层组件
     * 
     * 调用示例：by gctang
@@ -757,8 +750,7 @@
         }
     });
 })(Zepto, JMU);
-
-/**
+;/**
  * Copyright (c) 2014 Tencent AlloyTeam, All rights reserved.
  * http://www.AlloyTeam.com/
  * Code licensed under the BSD License:
@@ -825,8 +817,7 @@
         }
     });
 })(Zepto, JMU);
-
-(function( $, JMU ) {
+;(function( $, JMU ) {
     JMU.defineComponent( 'Dot', {
         options: {
             type: 'normal',   // normal, new, num
@@ -848,8 +839,7 @@
         }
     });
 })(Zepto, JMU);
-
-;(function( $, JMU ) {
+;;(function( $, JMU ) {
     var cssPrefix = '-webkit-';
     var ratio = window.devicePixelRatio == 1? 1 : 2;
 
@@ -1014,8 +1004,7 @@
     });
 })(Zepto, JMU);
 
-
-/**
+;/**
  * Copyright (c) 2014 Tencent AlloyTeam, All rights reserved.
  * http://www.AlloyTeam.com/
  * Code licensed under the BSD License:
@@ -1055,8 +1044,7 @@
 			});
         }
 	});
-})(Zepto, JMU);
-(function($, JMU) {
+})(Zepto, JMU);;(function($, JMU) {
     JMU.defineComponent('Progress', {
         options: {
             type: 'normal',   
@@ -1109,8 +1097,7 @@
         }
     });
 })(Zepto, JMU);
-
-(function($, JMU) {
+;(function($, JMU) {
     JMU.defineComponent('Range', {
         options: {
             min: 1,      // 最小
@@ -1158,8 +1145,7 @@
         }
     });
 })(Zepto, JMU);
-
-;(function($){
+;;(function($){
   $.fn.scrollTo = function(position, animation){
       var $this = this;
       if(animation === false){
@@ -1238,8 +1224,7 @@
       return this;
     });
   };
-})(Zepto);
-;(function($){
+})(Zepto);;;(function($){
 	$.extend($.fn, {
 		// 有点击态的按钮
 		active: function(fn, className){
@@ -1267,8 +1252,7 @@
 			});
 		}
 	});
-})(Zepto);
-(function( $, JMU ) {
+})(Zepto);;(function( $, JMU ) {
     /*
     *   Tab 组件
     *
@@ -1366,8 +1350,7 @@
         }
     });
 })(Zepto, JMU);
-
-(function( $, JMU ) {
+;(function( $, JMU ) {
     JMU.defineComponent( 'TextLoading', {
         options: {
             preventScroll: true,
@@ -1386,8 +1369,7 @@
         }
     }, true);
 })(Zepto, JMU);
-
-/**
+;/**
  * Copyright (c) 2014 Tencent AlloyTeam, All rights reserved.
  * http://www.AlloyTeam.com/
  * Code licensed under the BSD License:

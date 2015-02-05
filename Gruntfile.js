@@ -1,13 +1,17 @@
 var path = require('path');
 
 module.exports = function (grunt) {
+
+    require('load-grunt-tasks')(grunt);
+    require('time-grunt')(grunt);
+
     grunt.initConfig({
         // pkg: grunt.file.readJSON('package.json'),
 
         clean: ['dist/**/*', 'js/jmui.js'],
 
         stylus: {
-            compile: {
+            all: {
                 options: {
                     compress: false
                 },
@@ -64,6 +68,9 @@ module.exports = function (grunt) {
         },
 
         concat: {
+            options: {
+                separator: ';'
+            },
             // TODO 这里的 zepto 来自 coupon/js/lib/zepto 含业务代码，应抽离
             zepto: {
                 src: ['lib/zeptojs/zepto.js',
@@ -73,7 +80,7 @@ module.exports = function (grunt) {
                     'lib/zeptojs/extend/util.js',
                     'lib/zeptojs/data.js'
                     //'lib/zeptojs/animate.js',
-                    //'lib/zeptojs/extend/ajax.js',      // modify fix 跨域ajax bort触发error
+                    //'lib/zeptojs/extend/ajax.js',    // modify fix 跨域ajax bort触发error
                 ],
                 dest: 'lib/zeptojs/zepto.min.js'
             },
@@ -83,8 +90,8 @@ module.exports = function (grunt) {
                     'js/core/component.js',
                     'js/util/*.js',
                     'js/component/*.js',
-                    '!js/component/carousel.js',
-                    '!js/component/mult-selector.js'
+                    // TODO 以下组件未整理好
+                    '!js/component/carousel.js'
                 ],
                 dest: 'js/jmui.js'
             }
@@ -94,11 +101,11 @@ module.exports = function (grunt) {
             dist: {
                 files: [
                     {src: 'index.html', dest: 'dist/'},
-                    {src: 'demo/**', dest: 'dist/'},
-                    {src: 'img/**', dest: 'dist/'},
-                    {src: 'css/**', dest: 'dist/'},
-                    {src: 'js/**', dest: 'dist/'},
-                    {src: 'lib/**', dest: 'dist/'}
+                    {src: 'demo/**/*', dest: 'dist/'},
+                    {src: 'img/**/*', dest: 'dist/'},
+                    {src: 'css/**/*', dest: 'dist/'},
+                    {src: 'js/**/*', dest: 'dist/'},
+                    {src: 'lib/**/*', dest: 'dist/'}
                 ]
             }
         },
@@ -134,18 +141,8 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
-    grunt.loadNpmTasks('grunt-contrib-stylus');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-jsdoc');
-    grunt.loadNpmTasks('grunt-newer');
 
-    grunt.registerTask('default', ['clean', 'stylus', 'concat:js', 'copy:dist', 'uglify', 'cssmin']);
-    grunt.registerTask('build', ['clean', 'stylus', 'concat:js', 'copy:dist', 'uglify', 'cssmin']);
-    grunt.registerTask('dev', ['build', 'watch']);
+    grunt.registerTask('default', ['dist']);
+    grunt.registerTask('dist', ['clean', 'stylus', 'concat', 'copy:dist', 'cssmin']);
+    grunt.registerTask('dev', ['dist', 'watch']);
 };

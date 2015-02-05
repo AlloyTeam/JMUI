@@ -18,6 +18,13 @@
     <div class="jmu-header">
         JMUI Demo
     </div>
+    <div class="jmu-footer">
+        <ul class="jmu-tab">
+            <li id="nav-base-css" class="item">基础样式</li>
+            <li id="nav-ui-css" class="item">UI组件</li>
+            <li id="nav-ui-js" class="item">JS插件</li>
+        </ul>
+    </div>
     <div class="jmu-content-container">
         <div class="jmu-content demo-nav jmu-active">
             <ul class="tab-content">
@@ -26,13 +33,6 @@
                 <li id="ui-js" class="panel-ui-js"></li>
             </ul>
         </div>
-    </div>
-    <div class="jmu-footer">
-        <ul class="jmu-tab">
-            <li id="nav-base-css" class="item">基础样式</li>
-            <li id="nav-ui-css" class="item">UI组件</li>
-            <li id="nav-ui-js" class="item">JS插件</li>
-        </ul>
     </div>
     <script class="demo-script">
     ;(function () {
@@ -53,7 +53,6 @@
                 "ui-css": {
                     "files": [
                         {"name": "button", "title": "按钮"},
-                        {"name": "button-group", "title": "按钮组"},
                         {"name": "dot", "title": "点"},
                         {"name": "corner-tag", "title": "角标"},
                         {"name": "table", "title": "表格"},
@@ -104,7 +103,6 @@
         $('.jmu-footer').tab(opts).show();
 
     })();
-
     </script>
 </body>
 </html>

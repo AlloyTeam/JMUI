@@ -21,17 +21,17 @@
   }
 }
 .jmu-border-1px.border-all:after {
-  border: 1px solid #808080;
+  border: 1px solid #dedfe0;
 }
 .jmu-border-1px.border-top:after {
-  border-top: 1px solid #808080;
+  border-top: 1px solid #dedfe0;
 }
 .jmu-border-1px.border-bottom:after {
-  border-bottom: 1px solid #808080;
+  border-bottom: 1px solid #dedfe0;
 }
 .jmu-border-1px.border-left:after {
-  border-left: 1px solid #808080;
+  border-left: 1px solid #dedfe0;
 }
 .jmu-border-1px.border-right:after {
-  border-right: 1px solid #808080;
+  border-right: 1px solid #dedfe0;
 }

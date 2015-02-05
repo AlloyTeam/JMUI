@@ -36,11 +36,11 @@
     $ npm install 
 
     // 生成 JMUI/dist/ 文件夹
-    $ grunt build
+    $ grunt dist
 
 ## 构建
 
-    $ grunt build
+    $ grunt dist
 
 `grunt build` 后将生成 JMUI/dist/ 目录.
 

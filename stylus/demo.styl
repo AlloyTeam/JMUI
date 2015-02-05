@@ -1,5 +1,6 @@
 @import './base-color';
 @import './base-1px';
+@import './base-center';
 
 ::-webkit-scrollbar {
   width: 0;
@@ -47,6 +48,10 @@ h2 {
   padding: 0 20px;
 }
 
+.demo-show {
+  @extend .demo-margin;
+}
+
 #demo-page {
   a {
     display: block;
@@ -69,6 +74,15 @@ h2 {
     &.jmu-active {
       border-color: #00a5e0;
     }
+  }
+
+    .jmu-list {
+      /*@extend .demo-border-1px;*/
+      /*@extend .demo-padding;*/
+    }
+  .jmu-list-item-link {
+    @extend .demo-border-1px;
+    @extend .demo-margin;
   }
 }
 
@@ -98,17 +112,18 @@ h2 {
     line-height: 50px;
     text-align: center;
     margin: 10px;
+    @extend .demo-padding;
   }
 }
 
 #base-clearfix {
   .jmu-clear-fix {
     @extend  .demo-border-1px;
-    height: 40px;
-    line-height: 40px;
-    padding: 10px 0;
+    /*height: 60px;*/
     div {
       @extend  .demo-border-1px;
+      @extend .demo-padding;
+      @extend .demo-margin;
     }
   }
 }
@@ -117,6 +132,10 @@ h2 {
   .jmu-horizental-center {
     @extend  .demo-border-1px;
     height: 100px;
+    p {
+      @extend  .demo-border-1px;
+      @extend  .demo-padding;
+    }
   }
 }
 
@@ -124,6 +143,17 @@ h2 {
   .demo-block p {
     @extend  .demo-border-1px;
     @extend  .demo-margin;
+    @extend .demo-padding;
+    line-height: 2;
+  }
+}
+
+#button {
+  .jmu-btn {
+    @extend .demo-margin;
+  }
+  .jmu-btn-lg {
+    @extend .demo-margin;
   }
 }
 
@@ -131,15 +161,26 @@ h2 {
   display: inline-block;
 }
 
-#tab .tab-content li {
-  text-align: center;
-  margin-top: 20px;
+#tab {
+  .demo-item {
+    @extend .demo-border-1px;
+    @extend .demo-padding;
+  }
+  .tab-content li {
+    text-align: center;
+    margin-top: 20px;
+  }
 }
 
-#table .jmu-table {
-  text-align: center;
-  line-height: 40px;
-}
+  #table {
+    .demo-item {
+      @extend .demo-margin;
+    }
+    .jmu-table {
+      text-align: center;
+      line-height: 40px;
+    }
+  }
 
 #notice .jmu-notice {
   position: relative;
@@ -149,9 +190,11 @@ h2 {
   position: relative;
   @extend  .demo-border-1px;
   @extend  .demo-padding;
-  @extend  .demo-margin;
+  margin: 30px auto;
+  text-align: center;
   height: 40px;
   line-height: 40px;
+  background: #eee;
 }
 
 #grid .jmu-col {
@@ -162,13 +205,43 @@ h2 {
 }
 
 
-  #form {
-    .jmu-form {
-      @extend  .demo-border-1px;
-      @extend  .demo-padding;
-      @extend  .demo-margin;
-    }
+#form {
+  .jmu-form {
+    @extend  .demo-border-1px;
+    @extend  .demo-padding;
+    @extend  .demo-margin;
   }
+}
+#list {
+  .demo-item {
+    @extend .demo-border-1px;
+    @extend .demo-margin;
+  }
+}
+
+#loading {
+  .demo-show {
+    @extend .demo-margin;
+  }
+}
+#progress {
+  .demo-item {
+    @extend .demo-margin;
+    @extend .demo-border-1px;
+  }
+  .jmu-progress-img,
+  .jmu-progress-circle {
+    @extend .demo-margin;
+  }
+}
+
+#range {
+  .demo-item {
+    @extend .demo-margin;
+    @extend .demo-border-1px;
+  }
+}
+
 .demo-return-btn {
   position: absolute;
   top: 10px;

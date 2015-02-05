@@ -39,32 +39,48 @@
   }
 }
 .jmu-border-1px.border-all:after {
-  border: 1px solid #808080;
+  border: 1px solid #dedfe0;
 }
 .jmu-border-1px.border-top:after {
-  border-top: 1px solid #808080;
+  border-top: 1px solid #dedfe0;
 }
 .jmu-border-1px.border-bottom:after {
-  border-bottom: 1px solid #808080;
+  border-bottom: 1px solid #dedfe0;
 }
 .jmu-border-1px.border-left:after {
-  border-left: 1px solid #808080;
+  border-left: 1px solid #dedfe0;
 }
 .jmu-border-1px.border-right:after {
-  border-right: 1px solid #808080;
+  border-right: 1px solid #dedfe0;
+}
+.jmu-horizental-center,
+.jmu-vertical-center {
+  display: -webkit-box;
+}
+.jmu-horizental-center {
+  -webkit-box-pack: center;
+}
+.jmu-vertical-center {
+  -webkit-box-align: center;
 }
 ::-webkit-scrollbar {
   width: 0;
 }
 .demo-border-1px,
 .jmu-header,
+#demo-page .jmu-list-item-link,
 #base-color .demo-block p,
 #base-clearfix .jmu-clear-fix,
 #base-clearfix .jmu-clear-fix div,
 #base-center .jmu-horizental-center,
+#base-center .jmu-horizental-center p,
 #base-nowrap .demo-block p,
+#tab .demo-item,
 #dot .demo-block > div,
-#form .jmu-form {
+#form .jmu-form,
+#list .demo-item,
+#progress .demo-item,
+#range .demo-item {
   border: 1px solid #eee;
 }
 .jmu-header {
@@ -79,14 +95,30 @@
 }
 .demo-padding,
 #demo-page a,
+#base-1px .demo-borders li,
+#base-clearfix .jmu-clear-fix div,
+#base-center .jmu-horizental-center p,
+#base-nowrap .demo-block p,
+#tab .demo-item,
 #dot .demo-block > div,
 #form .jmu-form {
   padding: 10px;
 }
 .demo-margin,
+.demo-show,
+#demo-page .jmu-list-item-link,
+#base-clearfix .jmu-clear-fix div,
 #base-nowrap .demo-block p,
-#dot .demo-block > div,
-#form .jmu-form {
+#button .jmu-btn,
+#button .jmu-btn-lg,
+#table .demo-item,
+#form .jmu-form,
+#list .demo-item,
+#loading .demo-show,
+#progress .demo-item,
+#progress .jmu-progress-img,
+#progress .jmu-progress-circle,
+#range .demo-item {
   margin: 10px auto;
 }
 h2 {
@@ -134,13 +166,11 @@ h2 {
   text-align: center;
   margin: 10px;
 }
-#base-clearfix .jmu-clear-fix {
-  height: 40px;
-  line-height: 40px;
-  padding: 10px 0;
-}
 #base-center .jmu-horizental-center {
   height: 100px;
+}
+#base-nowrap .demo-block p {
+  line-height: 2;
 }
 #corner-tag .jmu-corner-tag {
   display: inline-block;
@@ -158,8 +188,11 @@ h2 {
 }
 #dot .demo-block > div {
   position: relative;
+  margin: 30px auto;
+  text-align: center;
   height: 40px;
   line-height: 40px;
+  background: #eee;
 }
 #grid .jmu-col {
   outline: 1px solid #eee;

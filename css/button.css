@@ -37,29 +37,29 @@
   left: 0;
   right: 0;
 }
-.jmu-btn-primary {
+.jmu-btn-blue {
   background-color: #18b4ed;
   border-color: #0baae4;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, #1fbaf3), to(#18b4ed));
   color: #fff;
   background-clip: padding-box;
 }
-.jmu-btn-primary:not(.disabled):not(:disabled):active,
-.jmu-btn-primary.active {
+.jmu-btn-blue:not(.disabled):not(:disabled):active,
+.jmu-btn-blue.active {
   background: #1ca7da;
   border-color: #1ca7da;
   color: rgba(255,255,255,0.5);
   background-clip: padding-box;
 }
-.jmu-btn-danger {
+.jmu-btn-red {
   background-color: #f75549;
   background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0.5, #fc6156), to(#f75549));
   color: #fff;
   border-color: #f43d30;
   background-clip: padding-box;
 }
-.jmu-btn-danger:not(.disabled):active,
-.jmu-btn-danger.active {
+.jmu-btn-red:not(.disabled):active,
+.jmu-btn-red.active {
   background: #e2574d;
   border-color: #e2574d;
   color: rgba(255,255,255,0.5);
@@ -80,9 +80,6 @@
   display: block;
   width: 100%;
   border-radius: 5px;
-}
-.jmu-btn-wrap {
-  padding: 20px 15px;
 }
 @media screen and (-webkit-min-device-pixel-ratio: 2) {
   .jmu-btn,
@@ -107,10 +104,10 @@
   .jmu-btn-lg:before {
     border-radius: 12px;
   }
-  .jmu-btn-primary:before {
+  .jmu-btn-blue:before {
     border: 1px solid #0baae4;
   }
-  .jmu-btn-danger:before {
+  .jmu-btn-red:before {
     border: 1px solid #f43d30;
   }
   .jmu-btn.disabled:before,

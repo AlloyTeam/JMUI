@@ -11,7 +11,7 @@
 </head>
 <body class="jmu-app">
 	<div class="jmu-header">
-		<a class="jmu-btn demo-return-btn" href="../index.html?tab=ui-js">返回</a><h2>progress</h2>
+		<a class="jmu-btn demo-return-btn" href="../index.html?tab=ui-js">返回</a><h2>进度条</h2>
 	</div>
 	<div class="jmu-content-container">
 		<div class="jmu-content jmu-active">
@@ -47,10 +47,10 @@
 							var timer = setInterval(function () {
 								var newPercentage1 = progress1.options.percentage + 1;
 								if (newPercentage1 > 100) {
-									newPercentage1 = 10;
+									newPercentage1 = ~~Math.random() * 20;
 								}
 								progress1.changeProgress(newPercentage1);
-							}, 300);
+							}, 500);
 							$('.action-cancle').on('tap', function () {
 								clearInterval(timer);
 							})
@@ -62,7 +62,7 @@
 					<p class="demo-desc">水满型图片上传进度条</p>
 					<div class="demo-block">
 						<div id="progress-demo-2">
-							<div class="jmu-progress-img jmu-center">
+							<div class="jmu-progress-img jmu-horizental-center jmu-vertical-center">
 								<span class="progress-number">20</span>
 								<div class="progress-mask"></div>
 							</div>
@@ -78,10 +78,10 @@
 							setInterval(function () {
 								var newPercentage2 = progress2.options.percentage + 1;
 								if (newPercentage2 > 100) {
-									newPercentage2 = 10;
+									newPercentage1 = ~~Math.random() * 20;
 								}
 								progress2.changeProgress(newPercentage2);
-							}, 600);
+							}, 500);
 						})();
 					</script>
 				</div>
@@ -98,7 +98,7 @@
 									<div class="jmu-progress-pie-right">
 										<div class="jmu-progress-right"></div>
 									</div>
-									<div class="jmu-progress-mask jmu-center">
+									<div class="jmu-progress-mask jmu-horizental-center jmu-vertical-center">
 										<span class="progress-number">30</span>
 									</div>
 								</div>
@@ -116,10 +116,10 @@
 							setInterval(function () {
 								var newPercentage3 = progress3.options.percentage + 1;
 								if (newPercentage3 > 100) {
-									newPercentage3 = 10;
+									newPercentage1 = ~~Math.random() * 20;
 								}
 								progress3.changeProgress(newPercentage3);
-							}, 900);
+							}, 500);
 						})();
 					</script>
 				</div>
