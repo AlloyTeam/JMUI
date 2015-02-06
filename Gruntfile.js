@@ -141,7 +141,7 @@ module.exports = function (grunt) {
         }
     });
 
-    grunt.registerTask('generateDemoCodes','根据 consig.js 生成配置到 data/*.js 和示例到 demo/_*.html', function(){
+    grunt.registerTask('generateDemoCodes','根据 consig.js 生成配置到 data/*.js 和示例到 demo/demo-*.html', function(){
         var fs = require('fs');
         var pageConfig = require('./config').page;
         var utils = require('./utils');
@@ -149,8 +149,8 @@ module.exports = function (grunt) {
         var jmuiDataDir = path.resolve('./data/');
         var jmuiDemoDir = path.resolve('./demo/');
         // 将html 保存到文件中
-        var htmlHeader = fs.readFileSync(path.join(jmuiDemoDir, '_header.html'));
-        var htmlFooter = fs.readFileSync(path.join(jmuiDemoDir, '_footer.html'));
+        var htmlHeader = fs.readFileSync(path.join(jmuiDemoDir, 'demo-header.html'));
+        var htmlFooter = fs.readFileSync(path.join(jmuiDemoDir, 'demo-footer.html'));
 
         // 将生成的代码片段保存到文件中
         // 将多个 html 拼成一个文件
@@ -159,14 +159,14 @@ module.exports = function (grunt) {
             var files = pageConfig[category].files;
             var demos = utils.getDemos(jmuiDemoDir, files);
             var htmlContent = '';
-            fs.writeFileSync(path.join(jmuiDataDir, '_' + category + '.js'), JSON.stringify(demos));
+            fs.writeFileSync(path.join(jmuiDataDir, 'demo-' + category + '.js'), JSON.stringify(demos));
             for(var i = 0; i < files.length; i ++) {
                 htmlContent += demos[i].html;
             }
-            fs.writeFileSync(path.join(jmuiDemoDir, '_' + category + '.html'), htmlHeader + htmlContent + htmlFooter);
+            fs.writeFileSync(path.join(jmuiDemoDir, 'demo-' + category + '.html'), htmlHeader + htmlContent + htmlFooter);
             allHtml += htmlContent;
         }
-        fs.writeFileSync(path.join(jmuiDemoDir, '_all.html'), htmlHeader + allHtml + htmlFooter);
+        fs.writeFileSync(path.join(jmuiDemoDir, 'demo-all.html'), htmlHeader + allHtml + htmlFooter);
     });
     grunt.registerTask('generateStaticHtmls', '根据 site/views/*.ejs 生成静态页面 到 site/public/*.html', function () {
         var ejs = require('ejs');
@@ -188,7 +188,7 @@ module.exports = function (grunt) {
 
         pages.forEach(function (name) {
             var filePath = path.join(__dirname, './site/views/' + name + '.ejs');
-            var demoConfigPath = path.join(__dirname, './data/_' + name + '.js');
+            var demoConfigPath = path.join(__dirname, './data/demo-' + name + '.js');
 
             var data = {
                 title: name,

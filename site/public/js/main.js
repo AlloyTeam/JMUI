@@ -5,9 +5,9 @@ $(function () {
         var oldSrc = $('.demo-iframe').attr('src');
         var pathname = window.location.pathname.split('/').pop();
         if (pathname.indexOf('.html') === -1) {
-            var newSrc = 'http://alloyteam.github.io/JMUI//demo/_'+ pathname + '.html#' + id;
+            var newSrc = 'http://alloyteam.github.io/JMUI//demo/demo-'+ pathname + '.html#' + id;
         } else {
-            var newSrc = 'http://alloyteam.github.io/JMUI//demo/_'+ pathname + '#' + id;
+            var newSrc = 'http://alloyteam.github.io/JMUI//demo/demo-'+ pathname + '#' + id;
         }
 
         if (newSrc !== oldSrc) {
