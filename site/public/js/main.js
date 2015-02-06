@@ -5,9 +5,9 @@ $(function () {
         var oldSrc = $('.demo-iframe').attr('src');
         var pathname = window.location.pathname.split('/').pop();
         if (pathname.indexOf('.html') === -1) {
-            var newSrc = 'JMUI/dist/demo/'+ pathname + '.html#' + id;
+            var newSrc = 'jmui/dist/demo/'+ pathname + '.html#' + id;
         } else {
-            var newSrc = 'JMUI/dist/demo/'+ pathname + '#' + id;
+            var newSrc = 'jmui/dist/demo/'+ pathname + '#' + id;
         }
 
         if (newSrc !== oldSrc) {
