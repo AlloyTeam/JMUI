@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>JMUI</title>
+	<link rel="stylesheet" href="../css/jmui.css">
+	<script src="../lib/zeptojs/zepto.min.js"></script>
+	<script src="../js/jmui.js"></script>
+</head>
+<body class="jmu-app">
+	<div class="jmu-header">
+		<a class="jmu-btn demo-return-btn" href="../index.html?tab=ui-js">返回</a><h2>菊花</h2>
+	</div>
+	<div class="jmu-content-container">
+		<div class="jmu-content jmu-active">
+			<section id="loading">
+				<div class="demo-item">
+					<p class="demo-desc">显示加载中, 三种类型.</p>
+					<div class="demo-block">
+						<a id="loading-page" class="demo-show jmu-btn-lg">page</a>
+						<a id="loading-text" class="demo-show jmu-btn-lg">text</a>
+						<a id="loading-rich" class="demo-show jmu-btn-lg">rich</a>
+					</div>
+					<script class="demo-script">
+						;(function (){
+							// 第一种，页面中间出现菊花提示
+							// 测试
+							$('#loading').on('tap', '#loading-page', function (){
+								$('body').textLoading('hide');
+								$('body').richLoading('hide');
+								$('body').pageLoading('show');
+							});
+
+							// 第二种，页面中间出现文字提示
+							var opts1 = {
+								preventScroll: true, // 是否禁止滚动
+								content: '拼命加载中...'
+							};
+							// 测试
+							$('#loading').on('tap', '#loading-text', function (){
+								$('body').richLoading('hide');
+								$('body').pageLoading('hide');
+								$('body').textLoading('show', opts1);
+							});
+
+							// 第三种，页面中间出现文字提示，含关闭按钮
+							var opts2 = {
+								preventScroll: true,
+								content: '我也在拼命加载中...',
+								onClose: function (){console.log('哎呀, 我被关闭了,心好痛!')}
+							};
+							// 测试
+							$('#loading').on('tap', '#loading-rich', function (){
+								$('body').textLoading('hide');
+								$('body').pageLoading('hide');
+								$('body').richLoading('show', opts1);
+							});
+						})();
+					</script>
+				</div>
+			</section>
+		</div>
+	</div>
+
+</body>
+</html>

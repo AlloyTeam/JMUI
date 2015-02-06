@@ -1,0 +1,62 @@
+.jmu-dialog {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  border-radius: 5px;
+  width: 270px;
+  background: rgba(243,243,243,0.8);
+  opacity: 0;
+  -webkit-transform: translate(-50%, -50%) scale(0.8);
+  -webkit-transition-property: opacity -webkit-transform;
+  -webkit-transition-timing-function: ease-out;
+  z-index: 10000;
+}
+.jmu-dialog.jmu-before-show {
+  -webkit-transform: translate(-50%, -50%) scale(1.2);
+}
+.jmu-dialog.jmu-effect {
+  -webkit-transition-duration: 0.3s;
+}
+.jmu-dialog.jmu-show {
+  display: block;
+  opacity: 1;
+  -webkit-transform: translate(-50%, -50%) scale(1);
+}
+.jmu-dialog .body {
+  padding: 18px;
+}
+.jmu-dialog .title {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 600;
+  text-align: center;
+}
+.jmu-dialog .content {
+  font-size: 14px;
+  line-height: 1.5;
+}
+.jmu-dialog .btns {
+  display: -webkit-box;
+}
+.jmu-dialog .btns:after {
+  border-top: 1px solid #b2b2b2;
+}
+.jmu-dialog .btn {
+  width: 50%;
+  height: 44px;
+  font-size: 14px;
+  line-height: 44px;
+  text-align: center;
+  -webkit-box-flex: 1;
+}
+.jmu-dialog .btn.jmu-active {
+  background: rgba(0,0,0,0.1);
+}
+.jmu-dialog .btn:nth-child(2) {
+  font-weight: 600;
+}
+.jmu-dialog .btn:nth-child(2):after {
+  border-left: 1px solid #b2b2b2;
+}

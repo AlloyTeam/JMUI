@@ -1,0 +1,63 @@
+.jmu-color-black {
+  color: #000;
+}
+.jmu-color-white {
+  color: #fff;
+}
+.jmu-color-gray {
+  color: #808080;
+}
+.jmu-color-blue {
+  color: #0079ff;
+}
+.jmu-color-red {
+  color: #fd472b;
+}
+.jmu-color-orange {
+  color: #ff6d00;
+}
+.jmu-toast {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 10px;
+  left: 10px;
+  border-radius: 0 0 3px 3px;
+  padding: 0 10px;
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  font-size: 15px;
+  line-height: 40px;
+  text-align: center;
+  -webkit-transform: translateY(-100%);
+  -webkit-transition-property: -webkit-transform;
+  -webkit-transition-timing-function: ease-out;
+  z-index: 10000;
+}
+.jmu-toast.jmu-effect {
+  -webkit-transition-duration: 0.2s;
+}
+.jmu-toast.jmu-show {
+  display: block;
+  -webkit-transform: translateY(0);
+}
+.jmu-toast .jmu-content {
+  display: inline-block;
+}
+.jmu-toast [class^='jmu-icon-'] {
+  display: inline-block;
+  position: relative;
+  top: 3px;
+  width: 18px;
+  height: 18px;
+  background-size: 100% 100%;
+}
+.jmu-toast .jmu-icon-warning {
+  background-image: url("../img/inline/warning.png?embed");
+}
+.jmu-toast .jmu-icon-tips {
+  background-image: url("../img/inline/tips.png?embed");
+}
+.jmu-toast .jmu-icon-success {
+  background-image: url("../img/inline/success.png?embed");
+}

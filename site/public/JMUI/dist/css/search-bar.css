@@ -1,0 +1,93 @@
+.jmu-search-bar {
+  display: -webkit-box;
+  -webkit-box-sizing: border-box;
+  padding: 0 10px;
+  height: 48px;
+  -webkit-box-align: center;
+}
+.jmu-search-bar:after {
+  border-bottom: 1px solid #cacaca;
+}
+.jmu-search-form {
+  display: -webkit-box;
+  border-radius: 5px;
+  height: 30px;
+  background: #fff;
+  -webkit-box-flex: 1;
+  -webkit-box-align: center;
+}
+.jmu-search-form:after {
+  border: 1px solid #a6a6a6;
+  border-radius: 10px;
+}
+.jmu-search-form .jmu-icon-search {
+  margin: 0 6px 0 9px;
+}
+.jmu-icon-search {
+  display: block;
+  width: 13px;
+  height: 13px;
+  background-image: url("https://raw.githubusercontent.com/lawlietfans/JMUI/dev/img/inline/search.png");
+}
+.jmu-search-input {
+  display: block;
+  position: relative;
+  top: 500px;
+  border: 0;
+  border-radius: 5px;
+  height: 30px;
+  font-size: 14px;
+  -webkit-box-flex: 1;
+  -webkit-transform: translateY(-500px);
+}
+.jmu-search-input::-webkit-search-cancel-button {
+  display: none;
+}
+.jmu-search-form .btn-clear {
+  display: none;
+  padding: 7px 9px 7px 6px;
+}
+.jmu-icon-clear {
+  display: block;
+  position: relative;
+  border-radius: 8px;
+  width: 16px;
+  height: 16px;
+  background: #8e8e93;
+}
+.jmu-icon-clear:before,
+.jmu-icon-clear:after {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 66.7%;
+  height: 2px;
+  background: #fff;
+}
+.jmu-icon-clear:before {
+  -webkit-transform: translate(-50%, -50%) rotate(45deg);
+}
+.jmu-icon-clear:after {
+  -webkit-transform: translate(-50%, -50%) rotate(-45deg);
+}
+.jmu-search-bar .btn-cancel {
+  display: none;
+  padding: 0 10px;
+  font-size: 14px;
+  line-height: 48px;
+}
+.jmu-search-bar .btn-cancel.jmu-active {
+  background: rgba(0,0,0,0.1);
+}
+/* js style */
+.jmu-search-bar.jmu-input .btn-clear {
+  display: block;
+}
+.jmu-search-bar.jmu-focus {
+  padding-right: 0;
+}
+.jmu-search-bar.jmu-focus .btn-cancel {
+  display: block;
+}

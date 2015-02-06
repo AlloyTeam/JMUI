@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>JMUI</title>
+	<link rel="stylesheet" href="../css/jmui.css">
+	<script src="../lib/zeptojs/zepto.min.js"></script>
+	<script src="../js/jmui.js"></script>
+</head>
+<body class="jmu-app">
+	<div class="jmu-header">
+		<a class="jmu-btn demo-return-btn" href="../index.html?tab=ui-js">返回</a><h2>对话框</h2>
+	</div>
+	<div class="jmu-content-container">
+		<div class="jmu-content jmu-active">
+			<section id="dialog">
+				<div class="demo-item">
+					<p class="demo-desc">显示对话框</p>
+					<div class="demo-block">
+						<!--无 html-->
+					</div>
+					<a class="demo-show jmu-btn-lg">显示对话框</a>
+					<script class="demo-script">
+						;(function (){
+							// 取消按钮的回调函数
+							var func0 = function () {
+								console.log('你点了取消');
+							};
+							// 确定按钮的回调函数
+							var func1 = function () {
+								console.log('你点了确定');
+							};
+							var opts = {
+								// 必填项
+								title: '提示',		// 对话框标题
+								content: '你确定么？',// 对话框内容
+								btnText: ['取消', '确定'], // 按钮文字
+								btnHandle: [func0, func1], // 按钮点击后的回调函数
+
+								// 可选项, 以下为默认值
+								mask: true,     	// 是否显示遮罩
+								animation: true,	// 是否开启动画
+								tapHide: true,		// 打开对话框后，点击遮罩是否关闭对话框
+								preventScroll: true,// 是否禁止滚动
+							};
+							// 测试
+							var dialog = new JMU.Dialog();
+							$('#dialog').on('tap', '.demo-show',function (){
+								dialog.show(opts);
+							});
+						})();
+					</script>
+				</div>
+			</section>
+		</div>
+	</div>
+</body>
+</html>

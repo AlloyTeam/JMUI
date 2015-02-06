@@ -1,0 +1,20 @@
+.jmu-mask {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0,0,0,0.4);
+  opacity: 0;
+  -webkit-transition-property: opacity;
+  -webkit-transition-timing-function: ease-out;
+  z-index: 9000;
+}
+.jmu-mask.jmu-effect {
+  -webkit-transition-duration: 0.2s;
+}
+.jmu-mask.jmu-show {
+  display: block;
+  opacity: 1;
+}

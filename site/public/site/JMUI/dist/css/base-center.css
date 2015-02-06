@@ -1,0 +1,10 @@
+.jmu-horizental-center,
+.jmu-vertical-center {
+  display: -webkit-box;
+}
+.jmu-horizental-center {
+  -webkit-box-pack: center;
+}
+.jmu-vertical-center {
+  -webkit-box-align: center;
+}
