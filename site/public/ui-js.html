@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>JMUI</title>
+    <meta name="author" content="Tencent.AlloyTeam" />
+    <meta name="copyright" content="Tencent.AlloyTeam" />
+    <meta name="keywords" content="腾讯 Alloy 团队, JMUI" />
+    <meta name="description" content="JMUI, 移动UI库" />
+
+    <script>
+        if(document.documentElement.clientWidth < 640){
+            window.location.href ="JMUI/dist/index.html";
+        }
+    </script>
+    <link rel="stylesheet" href="libs/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="libs/highlight/styles/github.css">
+    <link rel="stylesheet" href="css/main.css"/>
+</head>
+<body>
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">JMUI</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="home.html">JMUI<sup class="doc-beta">beta</sup></a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li><a href="quick-start.html">快速开始</a></li>
+                <li><a href="base-css.html">基础样式</a></li>
+                <li><a href="ui-css.html">UI 组件</a></li>
+                <li><a href="ui-js.html">JS 插件</a></li>
+                
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="JMUI/dist/" class="doc-qrcode-btn" ><span class="glyphicon glyphicon-qrcode"></span> 扫码体验</a></li>
+                <!--<li><a href="#" data-toggle="modal" data-target="#feedback-modal">吐槽</a></li>-->
+                <!--<li><a href="mailto:jmui.alloyteam@gmail.com?subject=吐槽JMUI">吐槽</a></li>-->
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+
+
+
+<div id="page-ui-js">
+    <div class="doc-banner">
+        <div class="container">
+            <h1>JS 插件</h1>
+
+            <p>提供基础的 JS 插件（JS 插件体验请用移动端扫描二维码体验）</p>
+        </div>
+    </div>
+
+    <div class="doc-body container">
+        <div class="row">
+            <div class="col-lg-2 js-scroll-spy">
+                <ul class="nav doc-nav list-group">
+                    
+                    <li class="list-group-item" data-hash="loading"><a href="#loading">加载中</a></li>
+                    
+                    <li class="list-group-item" data-hash="tab"><a href="#tab">标签栏</a></li>
+                    
+                    <li class="list-group-item" data-hash="toast"><a href="#toast">提示</a></li>
+                    
+                    <li class="list-group-item" data-hash="progress"><a href="#progress">进度条</a></li>
+                    
+                    <li class="list-group-item" data-hash="range"><a href="#range">范围条</a></li>
+                    
+                    <li class="list-group-item" data-hash="dialog"><a href="#dialog">对话框</a></li>
+                    
+                    <li class="list-group-item" data-hash="action-sheet"><a href="#action-sheet">菜单</a></li>
+                    
+                    <li class="list-group-item" data-hash="action-share"><a href="#action-share">分享到</a></li>
+                    
+                </ul>
+            </div>
+
+            <div class="col-lg-10">
+                
+                <div id="loading" class="doc-code-panel">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">加载中</h3>
+                            <a class="doc-demo-css-link" href="JMUI/dist/css/loading.css" title="点击查看源码" target="_blank">loading.css</a>
+                            <a class="doc-demo-js-link" href="JMUI/dist/js/loading.js" title="点击查看源码" target="_blank">loading.js</a>
+                            <a class="doc-demo-link" href="JMUI/dist/demo/loading.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a>
+                            <div class="doc-qrcode"></div>
+                        </div>
+                        <div class="panel-body">
+                            <section id="demo-loading">
+                                
+                                <div class="doc-demo">
+                                    <p class="demo-desc">显示加载中, 三种类型.</p>
+                                    <div class="demo-block">
+                                        <pre><code class="html">
+&lt;a id=&quot;loading-page&quot; class=&quot;demo-show jmu-btn-lg&quot;&gt;page&lt;/a&gt;
+&lt;a id=&quot;loading-text&quot; class=&quot;demo-show jmu-btn-lg&quot;&gt;text&lt;/a&gt;
+&lt;a id=&quot;loading-rich&quot; class=&quot;demo-show jmu-btn-lg&quot;&gt;rich&lt;/a&gt;
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+&lt;a id=&quot;loading-page&quot; class=&quot;demo-show jmu-btn-lg&quot;&gt;page&lt;/a&gt;
+&lt;a id=&quot;loading-text&quot; class=&quot;demo-show jmu-btn-lg&quot;&gt;text&lt;/a&gt;
+&lt;a id=&quot;loading-rich&quot; class=&quot;demo-show jmu-btn-lg&quot;&gt;rich&lt;/a&gt;
+					">复制</a>
+                                    </div>
+                                    <div class="demo-script">
+                                        <pre><code class="javascript">
+;(function (){
+	// 第一种，页面中间出现菊花提示
+	// 测试
+	$(&#39;#loading&#39;).on(&#39;tap&#39;, &#39;#loading-page&#39;, function (){
+		$(&#39;body&#39;).textLoading(&#39;hide&#39;);
+		$(&#39;body&#39;).richLoading(&#39;hide&#39;);
+		$(&#39;body&#39;).pageLoading(&#39;show&#39;);
+	});
+
+	// 第二种，页面中间出现文字提示
+	var opts1 = {
+		preventScroll: true, // 是否禁止滚动
+		content: &#39;拼命加载中...&#39;
+	};
+	// 测试
+	$(&#39;#loading&#39;).on(&#39;tap&#39;, &#39;#loading-text&#39;, function (){
+		$(&#39;body&#39;).richLoading(&#39;hide&#39;);
+		$(&#39;body&#39;).pageLoading(&#39;hide&#39;);
+		$(&#39;body&#39;).textLoading(&#39;show&#39;, opts1);
+	});
+
+	// 第三种，页面中间出现文字提示，含关闭按钮
+	var opts2 = {
+		preventScroll: true,
+		content: &#39;我也在拼命加载中...&#39;,
+		onClose: function (){console.log(&#39;哎呀, 我被关闭了,心好痛!&#39;)}
+	};
+	// 测试
+	$(&#39;#loading&#39;).on(&#39;tap&#39;, &#39;#loading-rich&#39;, function (){
+		$(&#39;body&#39;).textLoading(&#39;hide&#39;);
+		$(&#39;body&#39;).pageLoading(&#39;hide&#39;);
+		$(&#39;body&#39;).richLoading(&#39;show&#39;, opts1);
+	});
+})();
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+;(function (){
+	// 第一种，页面中间出现菊花提示
+	// 测试
+	$(&#39;#loading&#39;).on(&#39;tap&#39;, &#39;#loading-page&#39;, function (){
+		$(&#39;body&#39;).textLoading(&#39;hide&#39;);
+		$(&#39;body&#39;).richLoading(&#39;hide&#39;);
+		$(&#39;body&#39;).pageLoading(&#39;show&#39;);
+	});
+
+	// 第二种，页面中间出现文字提示
+	var opts1 = {
+		preventScroll: true, // 是否禁止滚动
+		content: &#39;拼命加载中...&#39;
+	};
+	// 测试
+	$(&#39;#loading&#39;).on(&#39;tap&#39;, &#39;#loading-text&#39;, function (){
+		$(&#39;body&#39;).richLoading(&#39;hide&#39;);
+		$(&#39;body&#39;).pageLoading(&#39;hide&#39;);
+		$(&#39;body&#39;).textLoading(&#39;show&#39;, opts1);
+	});
+
+	// 第三种，页面中间出现文字提示，含关闭按钮
+	var opts2 = {
+		preventScroll: true,
+		content: &#39;我也在拼命加载中...&#39;,
+		onClose: function (){console.log(&#39;哎呀, 我被关闭了,心好痛!&#39;)}
+	};
+	// 测试
+	$(&#39;#loading&#39;).on(&#39;tap&#39;, &#39;#loading-rich&#39;, function (){
+		$(&#39;body&#39;).textLoading(&#39;hide&#39;);
+		$(&#39;body&#39;).pageLoading(&#39;hide&#39;);
+		$(&#39;body&#39;).richLoading(&#39;show&#39;, opts1);
+	});
+})();
+					">复制</a>
+                                    </div>
+                                </div>
+                                
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="tab" class="doc-code-panel">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">标签栏</h3>
+                            <a class="doc-demo-css-link" href="JMUI/dist/css/tab.css" title="点击查看源码" target="_blank">tab.css</a>
+                            <a class="doc-demo-js-link" href="JMUI/dist/js/tab.js" title="点击查看源码" target="_blank">tab.js</a>
+                            <a class="doc-demo-link" href="JMUI/dist/demo/tab.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a>
+                            <div class="doc-qrcode"></div>
+                        </div>
+                        <div class="panel-body">
+                            <section id="demo-tab">
+                                
+                                <div class="doc-demo">
+                                    <p class="demo-desc">tab 切换</p>
+                                    <div class="demo-block">
+                                        <pre><code class="html">
+&lt;div id=&quot;tab-demo&quot;&gt;
+	&lt;ul class=&quot;jmu-tab&quot;&gt;
+		&lt;li class=&quot;item jmu-active&quot;&gt;tab1&lt;/li&gt;
+		&lt;li class=&quot;item&quot;&gt;tab2&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;ul class=&quot;tab-content&quot;&gt;
+		&lt;li class=&quot;panel-1&quot;&gt;
+			&#x6211;&#x662F; tab1 &#x4E2D;&#x7684;&#x5185;&#x5BB9;
+		&lt;/li&gt;
+		&lt;li class=&quot;panel-2&quot; style=&quot;display: none;&quot;&gt;
+			&#x6211;&#x662F; tab2 &#x4E2D;&#x7684;&#x5185;&#x5BB9;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+&lt;div id=&quot;tab-demo&quot;&gt;
+	&lt;ul class=&quot;jmu-tab&quot;&gt;
+		&lt;li class=&quot;item jmu-active&quot;&gt;tab1&lt;/li&gt;
+		&lt;li class=&quot;item&quot;&gt;tab2&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;ul class=&quot;tab-content&quot;&gt;
+		&lt;li class=&quot;panel-1&quot;&gt;
+			&#x6211;&#x662F; tab1 &#x4E2D;&#x7684;&#x5185;&#x5BB9;
+		&lt;/li&gt;
+		&lt;li class=&quot;panel-2&quot; style=&quot;display: none;&quot;&gt;
+			&#x6211;&#x662F; tab2 &#x4E2D;&#x7684;&#x5185;&#x5BB9;
+		&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+					">复制</a>
+                                    </div>
+                                    <div class="demo-script">
+                                        <pre><code class="javascript">
+;(function (){
+	var opts = {
+		$el: &#39;.jmu-tab&#39;, 						  // 指定 tab 栏标题容器
+		relateSelector: [&#39;.panel-1&#39;, &#39;.panel-2&#39;], // 指定关联内容
+		onSwitchTab: function(index, item){
+			// 切换时的回调函数
+			console.log(&#39;已切换到第 %s 个 tab&#39;, index);
+		}
+	};
+	$(&#39;#tab-demo&#39;).tab(opts).show();
+})();
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+;(function (){
+	var opts = {
+		$el: &#39;.jmu-tab&#39;, 						  // 指定 tab 栏标题容器
+		relateSelector: [&#39;.panel-1&#39;, &#39;.panel-2&#39;], // 指定关联内容
+		onSwitchTab: function(index, item){
+			// 切换时的回调函数
+			console.log(&#39;已切换到第 %s 个 tab&#39;, index);
+		}
+	};
+	$(&#39;#tab-demo&#39;).tab(opts).show();
+})();
+					">复制</a>
+                                    </div>
+                                </div>
+                                
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="toast" class="doc-code-panel">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">提示</h3>
+                            <a class="doc-demo-css-link" href="JMUI/dist/css/toast.css" title="点击查看源码" target="_blank">toast.css</a>
+                            <a class="doc-demo-js-link" href="JMUI/dist/js/toast.js" title="点击查看源码" target="_blank">toast.js</a>
+                            <a class="doc-demo-link" href="JMUI/dist/demo/toast.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a>
+                            <div class="doc-qrcode"></div>
+                        </div>
+                        <div class="panel-body">
+                            <section id="demo-toast">
+                                
+                                <div class="doc-demo">
+                                    <p class="demo-desc">提醒/成功/警告提示条</p>
+                                    <div class="demo-block">
+                                        <pre><code class="html">
+&lt;a class=&quot;demo-show jmu-btn-lg&quot;&gt;tips&lt;/a&gt;
+&lt;a class=&quot;demo-show jmu-btn-lg&quot;&gt;success&lt;/a&gt;
+&lt;a class=&quot;demo-show jmu-btn-lg&quot;&gt;warning&lt;/a&gt;
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+&lt;a class=&quot;demo-show jmu-btn-lg&quot;&gt;tips&lt;/a&gt;
+&lt;a class=&quot;demo-show jmu-btn-lg&quot;&gt;success&lt;/a&gt;
+&lt;a class=&quot;demo-show jmu-btn-lg&quot;&gt;warning&lt;/a&gt;
+					">复制</a>
+                                    </div>
+                                    <div class="demo-script">
+                                        <pre><code class="javascript">
+;(function (){
+	var opts = {
+		// 必填项
+		state: &#39;warning&#39;,   // 三种状态 warning, tips, success
+		content: &#39;我是提示内容&#39;,
+
+		// 可选项, 以下为默认值
+		animation: true, 	// 是否开启动画, 默认为 true
+		preventScroll: true,// 是否禁止滚动, 默认为 true
+		duration: 2000		// 指定自动关闭的时间, 单位为 ms, 默认未 2000ms
+	};
+	// 测试
+	var toast = new JMU.Toast();
+	$(&#39;#toast&#39;).on(&#39;tap&#39;, &#39;.demo-show&#39;, function (){
+		opts.state = $(this).text();
+		toast.show(opts);
+	});
+})();
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+;(function (){
+	var opts = {
+		// 必填项
+		state: &#39;warning&#39;,   // 三种状态 warning, tips, success
+		content: &#39;我是提示内容&#39;,
+
+		// 可选项, 以下为默认值
+		animation: true, 	// 是否开启动画, 默认为 true
+		preventScroll: true,// 是否禁止滚动, 默认为 true
+		duration: 2000		// 指定自动关闭的时间, 单位为 ms, 默认未 2000ms
+	};
+	// 测试
+	var toast = new JMU.Toast();
+	$(&#39;#toast&#39;).on(&#39;tap&#39;, &#39;.demo-show&#39;, function (){
+		opts.state = $(this).text();
+		toast.show(opts);
+	});
+})();
+					">复制</a>
+                                    </div>
+                                </div>
+                                
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="progress" class="doc-code-panel">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">进度条</h3>
+                            <a class="doc-demo-css-link" href="JMUI/dist/css/progress.css" title="点击查看源码" target="_blank">progress.css</a>
+                            <a class="doc-demo-js-link" href="JMUI/dist/js/progress.js" title="点击查看源码" target="_blank">progress.js</a>
+                            <a class="doc-demo-link" href="JMUI/dist/demo/progress.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a>
+                            <div class="doc-qrcode"></div>
+                        </div>
+                        <div class="panel-body">
+                            <section id="demo-progress">
+                                
+                                <div class="doc-demo">
+                                    <p class="demo-desc">传输文件或下载壁纸的进度条</p>
+                                    <div class="demo-block">
+                                        <pre><code class="html">
+&lt;div id=&quot;progress-demo-1&quot;&gt;
+	&lt;div class=&quot;jmu-progress-file jmu-clearfix&quot;&gt;
+		&lt;div class=&quot;progress-info&quot;&gt;
+			&lt;span class=&quot;progress-text&quot;&gt;&#x4E0B;&#x8F7D;&#x4E2D;...&lt;/span&gt;
+			(&lt;span class=&quot;progress-size-curr&quot;&gt;0&lt;/span&gt;M/&lt;span class=&quot;progress-size-total&quot;&gt;0&lt;/span&gt;M)
+
+			&lt;p class=&quot;progress-bar-wrap&quot;&gt;
+				&lt;span class=&quot;progress-bar&quot;&gt;&lt;/span&gt;
+			&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;progress-action jmu-horizental-center jmu-vertical-center&quot;&gt;
+			&lt;button class=&quot;action-cancle&quot;&gt;&#x53D6;&#x6D88;&lt;/button&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+&lt;div id=&quot;progress-demo-1&quot;&gt;
+	&lt;div class=&quot;jmu-progress-file jmu-clearfix&quot;&gt;
+		&lt;div class=&quot;progress-info&quot;&gt;
+			&lt;span class=&quot;progress-text&quot;&gt;&#x4E0B;&#x8F7D;&#x4E2D;...&lt;/span&gt;
+			(&lt;span class=&quot;progress-size-curr&quot;&gt;0&lt;/span&gt;M/&lt;span class=&quot;progress-size-total&quot;&gt;0&lt;/span&gt;M)
+
+			&lt;p class=&quot;progress-bar-wrap&quot;&gt;
+				&lt;span class=&quot;progress-bar&quot;&gt;&lt;/span&gt;
+			&lt;/p&gt;
+		&lt;/div&gt;
+		&lt;div class=&quot;progress-action jmu-horizental-center jmu-vertical-center&quot;&gt;
+			&lt;button class=&quot;action-cancle&quot;&gt;&#x53D6;&#x6D88;&lt;/button&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					">复制</a>
+                                    </div>
+                                    <div class="demo-script">
+                                        <pre><code class="javascript">
+;(function (){
+	// 图片或壁纸上传进度条
+	var progress1 = $(&#39;#progress-demo-1&#39;).progress({
+		$el: &#39;.jmu-progress-file&#39;, // 指定条容器
+		percentage: 20, 		  // 初始化当前进度
+		total: 1.03    			  // 初始化文件大小
+	});
+	// 模拟收到后台新进度, 更新当前进度条的百分比
+	var timer = setInterval(function () {
+		var newPercentage1 = progress1.options.percentage + 1;
+		if (newPercentage1 &gt; 100) {
+			newPercentage1 = ~~Math.random() * 20;
+		}
+		progress1.changeProgress(newPercentage1);
+	}, 500);
+	$(&#39;.action-cancle&#39;).on(&#39;tap&#39;, function () {
+		clearInterval(timer);
+	})
+})();
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+;(function (){
+	// 图片或壁纸上传进度条
+	var progress1 = $(&#39;#progress-demo-1&#39;).progress({
+		$el: &#39;.jmu-progress-file&#39;, // 指定条容器
+		percentage: 20, 		  // 初始化当前进度
+		total: 1.03    			  // 初始化文件大小
+	});
+	// 模拟收到后台新进度, 更新当前进度条的百分比
+	var timer = setInterval(function () {
+		var newPercentage1 = progress1.options.percentage + 1;
+		if (newPercentage1 &gt; 100) {
+			newPercentage1 = ~~Math.random() * 20;
+		}
+		progress1.changeProgress(newPercentage1);
+	}, 500);
+	$(&#39;.action-cancle&#39;).on(&#39;tap&#39;, function () {
+		clearInterval(timer);
+	})
+})();
+					">复制</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="doc-demo">
+                                    <p class="demo-desc">水满型图片上传进度条</p>
+                                    <div class="demo-block">
+                                        <pre><code class="html">
+&lt;div id=&quot;progress-demo-2&quot;&gt;
+	&lt;div class=&quot;jmu-progress-img jmu-horizental-center jmu-vertical-center&quot;&gt;
+		&lt;span class=&quot;progress-number&quot;&gt;20&lt;/span&gt;
+		&lt;div class=&quot;progress-mask&quot;&gt;&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+&lt;div id=&quot;progress-demo-2&quot;&gt;
+	&lt;div class=&quot;jmu-progress-img jmu-horizental-center jmu-vertical-center&quot;&gt;
+		&lt;span class=&quot;progress-number&quot;&gt;20&lt;/span&gt;
+		&lt;div class=&quot;progress-mask&quot;&gt;&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					">复制</a>
+                                    </div>
+                                    <div class="demo-script">
+                                        <pre><code class="javascript">
+;(function (){
+	var progress2 = $(&#39;#progress-demo-2&#39;).progress({
+		$el: &#39;.jmu-progress-img&#39;,
+		percentage: 0,
+		total: 9.03
+	});
+	setInterval(function () {
+		var newPercentage2 = progress2.options.percentage + 1;
+		if (newPercentage2 &gt; 100) {
+			newPercentage1 = ~~Math.random() * 20;
+		}
+		progress2.changeProgress(newPercentage2);
+	}, 500);
+})();
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+;(function (){
+	var progress2 = $(&#39;#progress-demo-2&#39;).progress({
+		$el: &#39;.jmu-progress-img&#39;,
+		percentage: 0,
+		total: 9.03
+	});
+	setInterval(function () {
+		var newPercentage2 = progress2.options.percentage + 1;
+		if (newPercentage2 &gt; 100) {
+			newPercentage1 = ~~Math.random() * 20;
+		}
+		progress2.changeProgress(newPercentage2);
+	}, 500);
+})();
+					">复制</a>
+                                    </div>
+                                </div>
+                                
+                                <div class="doc-demo">
+                                    <p class="demo-desc">圆环形进度条</p>
+                                    <div class="demo-block">
+                                        <pre><code class="html">
+&lt;div id=&quot;progress-demo-3&quot;&gt;
+	&lt;div class=&quot;jmu-progress-circle jmu-center&quot;&gt;
+		&lt;div class=&quot;jmu-progress-pie&quot;&gt;
+			&lt;div class=&quot;jmu-progress-pie-left&quot;&gt;
+				&lt;div class=&quot;jmu-progress-left&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;jmu-progress-pie-right&quot;&gt;
+				&lt;div class=&quot;jmu-progress-right&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;jmu-progress-mask jmu-horizental-center jmu-vertical-center&quot;&gt;
+				&lt;span class=&quot;progress-number&quot;&gt;30&lt;/span&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+&lt;div id=&quot;progress-demo-3&quot;&gt;
+	&lt;div class=&quot;jmu-progress-circle jmu-center&quot;&gt;
+		&lt;div class=&quot;jmu-progress-pie&quot;&gt;
+			&lt;div class=&quot;jmu-progress-pie-left&quot;&gt;
+				&lt;div class=&quot;jmu-progress-left&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;jmu-progress-pie-right&quot;&gt;
+				&lt;div class=&quot;jmu-progress-right&quot;&gt;&lt;/div&gt;
+			&lt;/div&gt;
+			&lt;div class=&quot;jmu-progress-mask jmu-horizental-center jmu-vertical-center&quot;&gt;
+				&lt;span class=&quot;progress-number&quot;&gt;30&lt;/span&gt;
+			&lt;/div&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					">复制</a>
+                                    </div>
+                                    <div class="demo-script">
+                                        <pre><code class="javascript">
+;(function (){
+	var progress3 = $(&#39;#progress-demo-3&#39;).progress({
+		$el: &#39;.jmu-progress-circle&#39;,
+		percentage: 30,
+		total: 78
+	});
+	// 测试
+	setInterval(function () {
+		var newPercentage3 = progress3.options.percentage + 1;
+		if (newPercentage3 &gt; 100) {
+			newPercentage1 = ~~Math.random() * 20;
+		}
+		progress3.changeProgress(newPercentage3);
+	}, 500);
+})();
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+;(function (){
+	var progress3 = $(&#39;#progress-demo-3&#39;).progress({
+		$el: &#39;.jmu-progress-circle&#39;,
+		percentage: 30,
+		total: 78
+	});
+	// 测试
+	setInterval(function () {
+		var newPercentage3 = progress3.options.percentage + 1;
+		if (newPercentage3 &gt; 100) {
+			newPercentage1 = ~~Math.random() * 20;
+		}
+		progress3.changeProgress(newPercentage3);
+	}, 500);
+})();
+					">复制</a>
+                                    </div>
+                                </div>
+                                
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="range" class="doc-code-panel">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">范围条</h3>
+                            <a class="doc-demo-css-link" href="JMUI/dist/css/range.css" title="点击查看源码" target="_blank">range.css</a>
+                            <a class="doc-demo-js-link" href="JMUI/dist/js/range.js" title="点击查看源码" target="_blank">range.js</a>
+                            <a class="doc-demo-link" href="JMUI/dist/demo/range.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a>
+                            <div class="doc-qrcode"></div>
+                        </div>
+                        <div class="panel-body">
+                            <section id="demo-range">
+                                
+                                <div class="doc-demo">
+                                    <p class="demo-desc">范围控制条</p>
+                                    <div class="demo-block">
+                                        <pre><code class="html">
+&lt;div id=&quot;range-demo&quot;&gt;
+	&lt;div class=&quot;jmu-form-item jmu-form-item-range jmu-border&quot;&gt;
+		&lt;label class=&quot;jmu-range&quot;&gt;
+			&lt;input type=&quot;range&quot; min=&quot;1&quot; max=&quot;100&quot; step=&quot;1&quot; value=&quot;50&quot;&gt;
+			&lt;span class=&quot;jmu-range-val&quot;&gt;50&lt;/span&gt;
+		&lt;/label&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+&lt;div id=&quot;range-demo&quot;&gt;
+	&lt;div class=&quot;jmu-form-item jmu-form-item-range jmu-border&quot;&gt;
+		&lt;label class=&quot;jmu-range&quot;&gt;
+			&lt;input type=&quot;range&quot; min=&quot;1&quot; max=&quot;100&quot; step=&quot;1&quot; value=&quot;50&quot;&gt;
+			&lt;span class=&quot;jmu-range-val&quot;&gt;50&lt;/span&gt;
+		&lt;/label&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+					">复制</a>
+                                    </div>
+                                    <div class="demo-script">
+                                        <pre><code class="javascript">
+;(function (){
+	// 图片或壁纸上传进度条
+	var range = $(&#39;#range-demo&#39;).range({
+		$el: &#39;.jmu-range&#39;,
+		min: 0, 	 // 最小
+		max: 100,    // 最大
+		step: 1, 	 // 步长
+		value: 50,   // 默认值
+		onInput: function (){
+			console.log(&#39;range value is changing.&#39;);
+		},
+		onChange: function () {
+			var self = this;
+			console.log(&#39;range value is changing to: &#39; + self.value);
+		}
+	});
+})();
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+;(function (){
+	// 图片或壁纸上传进度条
+	var range = $(&#39;#range-demo&#39;).range({
+		$el: &#39;.jmu-range&#39;,
+		min: 0, 	 // 最小
+		max: 100,    // 最大
+		step: 1, 	 // 步长
+		value: 50,   // 默认值
+		onInput: function (){
+			console.log(&#39;range value is changing.&#39;);
+		},
+		onChange: function () {
+			var self = this;
+			console.log(&#39;range value is changing to: &#39; + self.value);
+		}
+	});
+})();
+					">复制</a>
+                                    </div>
+                                </div>
+                                
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="dialog" class="doc-code-panel">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">对话框</h3>
+                            <a class="doc-demo-css-link" href="JMUI/dist/css/dialog.css" title="点击查看源码" target="_blank">dialog.css</a>
+                            <a class="doc-demo-js-link" href="JMUI/dist/js/dialog.js" title="点击查看源码" target="_blank">dialog.js</a>
+                            <a class="doc-demo-link" href="JMUI/dist/demo/dialog.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a>
+                            <div class="doc-qrcode"></div>
+                        </div>
+                        <div class="panel-body">
+                            <section id="demo-dialog">
+                                
+                                <div class="doc-demo">
+                                    <p class="demo-desc">显示对话框</p>
+                                    <div class="demo-block">
+                                        <pre><code class="html">
+&lt;!--无 html--&gt;
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+&lt;!--无 html--&gt;
+					">复制</a>
+                                    </div>
+                                    <div class="demo-script">
+                                        <pre><code class="javascript">
+;(function (){
+	// 取消按钮的回调函数
+	var func0 = function () {
+		console.log(&#39;你点了取消&#39;);
+	};
+	// 确定按钮的回调函数
+	var func1 = function () {
+		console.log(&#39;你点了确定&#39;);
+	};
+	var opts = {
+		// 必填项
+		title: &#39;提示&#39;,		// 对话框标题
+		content: &#39;你确定么？&#39;,// 对话框内容
+		btnText: [&#39;取消&#39;, &#39;确定&#39;], // 按钮文字
+		btnHandle: [func0, func1], // 按钮点击后的回调函数
+
+		// 可选项, 以下为默认值
+		mask: true,     	// 是否显示遮罩
+		animation: true,	// 是否开启动画
+		tapHide: true,		// 打开对话框后，点击遮罩是否关闭对话框
+		preventScroll: true,// 是否禁止滚动
+	};
+	// 测试
+	var dialog = new JMU.Dialog();
+	$(&#39;#dialog&#39;).on(&#39;tap&#39;, &#39;.demo-show&#39;,function (){
+		dialog.show(opts);
+	});
+})();
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+;(function (){
+	// 取消按钮的回调函数
+	var func0 = function () {
+		console.log(&#39;你点了取消&#39;);
+	};
+	// 确定按钮的回调函数
+	var func1 = function () {
+		console.log(&#39;你点了确定&#39;);
+	};
+	var opts = {
+		// 必填项
+		title: &#39;提示&#39;,		// 对话框标题
+		content: &#39;你确定么？&#39;,// 对话框内容
+		btnText: [&#39;取消&#39;, &#39;确定&#39;], // 按钮文字
+		btnHandle: [func0, func1], // 按钮点击后的回调函数
+
+		// 可选项, 以下为默认值
+		mask: true,     	// 是否显示遮罩
+		animation: true,	// 是否开启动画
+		tapHide: true,		// 打开对话框后，点击遮罩是否关闭对话框
+		preventScroll: true,// 是否禁止滚动
+	};
+	// 测试
+	var dialog = new JMU.Dialog();
+	$(&#39;#dialog&#39;).on(&#39;tap&#39;, &#39;.demo-show&#39;,function (){
+		dialog.show(opts);
+	});
+})();
+					">复制</a>
+                                    </div>
+                                </div>
+                                
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="action-sheet" class="doc-code-panel">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">菜单</h3>
+                            <a class="doc-demo-css-link" href="JMUI/dist/css/action-sheet.css" title="点击查看源码" target="_blank">action-sheet.css</a>
+                            <a class="doc-demo-js-link" href="JMUI/dist/js/action-sheet.js" title="点击查看源码" target="_blank">action-sheet.js</a>
+                            <a class="doc-demo-link" href="JMUI/dist/demo/action-sheet.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a>
+                            <div class="doc-qrcode"></div>
+                        </div>
+                        <div class="panel-body">
+                            <section id="demo-action-sheet">
+                                
+                                <div class="doc-demo">
+                                    <p class="demo-desc">显示菜单</p>
+                                    <div class="demo-block">
+                                        <pre><code class="html">
+&lt;!--无 html--&gt;
+				</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+&lt;!--无 html--&gt;
+				">复制</a>
+                                    </div>
+                                    <div class="demo-script">
+                                        <pre><code class="javascript">
+$(function (){
+	var func0 = function () {
+		console.log(&#39;你点了选项1!&#39;);
+	};
+	var func1 = function () {
+		console.log(&#39;你点了选项2!&#39;);
+	};
+	var opts = {
+		mask: true,
+		animation: true,
+		tapHide: true,
+		preventScroll: true,
+		content: [&#39;分享给QQ好友&#39;, &#39;分享到QQ空间&#39;],
+		btnHandle: [func0, func1]
+	};
+	// 测试
+	var actionSheet = new JMU.ActionSheet();
+	$(&#39;#action-sheet&#39;).on(&#39;tap&#39;, &#39;.demo-show&#39;, function (){
+		actionSheet.show(opts);
+	});
+})
+				</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+$(function (){
+	var func0 = function () {
+		console.log(&#39;你点了选项1!&#39;);
+	};
+	var func1 = function () {
+		console.log(&#39;你点了选项2!&#39;);
+	};
+	var opts = {
+		mask: true,
+		animation: true,
+		tapHide: true,
+		preventScroll: true,
+		content: [&#39;分享给QQ好友&#39;, &#39;分享到QQ空间&#39;],
+		btnHandle: [func0, func1]
+	};
+	// 测试
+	var actionSheet = new JMU.ActionSheet();
+	$(&#39;#action-sheet&#39;).on(&#39;tap&#39;, &#39;.demo-show&#39;, function (){
+		actionSheet.show(opts);
+	});
+})
+				">复制</a>
+                                    </div>
+                                </div>
+                                
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="action-share" class="doc-code-panel">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">分享到</h3>
+                            <a class="doc-demo-css-link" href="JMUI/dist/css/action-share.css" title="点击查看源码" target="_blank">action-share.css</a>
+                            <a class="doc-demo-js-link" href="JMUI/dist/js/action-share.js" title="点击查看源码" target="_blank">action-share.js</a>
+                            <a class="doc-demo-link" href="JMUI/dist/demo/action-share.html" title="点击查看demo" target="_blank"><span class="glyphicon glyphicon-qrcode"></span></a>
+                            <div class="doc-qrcode"></div>
+                        </div>
+                        <div class="panel-body">
+                            <section id="demo-action-share">
+                                
+                                <div class="doc-demo">
+                                    <p class="demo-desc">显示分享菜单</p>
+                                    <div class="demo-block">
+                                        <pre><code class="html">
+&lt;!--无 html--&gt;
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+&lt;!--无 html--&gt;
+					">复制</a>
+                                    </div>
+                                    <div class="demo-script">
+                                        <pre><code class="javascript">
+$(function (){
+	var func1 = function(){
+		console.log(&#39;你点了选项1&#39;);
+	};
+	var func2 = function(){
+		console.log(&#39;你点了选项2&#39;);
+	};
+	var func3 = function(){
+		console.log(&#39;你点了选项3&#39;);
+	};
+	var func4 = function(){
+		console.log(&#39;你点了选项4&#39;);
+	};
+	var func5 = function(){
+		console.log(&#39;你点了选项5&#39;);
+	};
+	var func6 = function(){
+		console.log(&#39;你点了选项6&#39;);
+	};
+	var content = [
+		{
+			value: &#39;&lt;img src=&quot;../img/share-qq.png&quot;&gt;&lt;span&gt;QQ好友&lt;/span&gt;&#39;, //展示的值
+			id: &#39;testId1&#39;,//给节点添加自定义id
+			className: &#39;sheet-item&#39;,//添加自己的样式
+			cmd: &#39;func1&#39; //自定义事件名
+		},
+		{
+			value: &#39;&lt;img src=&quot;../img/share-qz.png&quot;&gt;&lt;span&gt;QQ空间&lt;/span&gt;&#39;,
+			id: &#39;testId2&#39;,
+			className: &#39;sheet-item&#39;,
+			cmd: &#39;func2&#39;
+		},
+		{
+			value: &#39;&lt;img src=&quot;../img/share-wx.png&quot;&gt;&lt;span&gt;微信&lt;/span&gt;&#39;,
+			id: &#39;testId3&#39;,
+			className: &#39;sheet-item&#39;,
+			cmd: &#39;func3&#39;
+		},
+
+		{
+			value: &#39;&lt;img src=&quot;../img/share-qq.png&quot;&gt;&lt;span&gt;好友/群&lt;/span&gt;&#39;,
+			id: &#39;testId4&#39;,
+			className: &#39;sheet-item&#39;,
+			cmd: &#39;func4&#39;
+		},
+		{
+			value: &#39;&lt;img src=&quot;../img/share-qz.png&quot;&gt;&lt;span&gt;QQ空间&lt;/span&gt;&#39;,
+			id: &#39;testId5&#39;,
+			className: &#39;sheet-item&#39;,
+			cmd: &#39;func5&#39;
+		},
+		{
+			value: &#39;&lt;img src=&quot;../img/share-wx.png&quot;&gt;&lt;span&gt;微信&lt;/span&gt;&#39;,
+			id: &#39;testId6&#39;,
+			className: &#39;sheet-item&#39;,
+			cmd: &#39;func6&#39;
+		}
+	];
+
+	var optsShare = {
+		mask: true,
+		animation: true,
+		tapHide: true,
+		preventScroll: true,
+		content: content,
+		func1: func1,
+		func2: func2,
+		func3: func3,
+		func4: func4,
+		func5: func5,
+		func6: func6
+	};
+	// 测试
+	var actionShare = new JMU.ActionShare();
+	$(&#39;#action-share&#39;).on(&#39;tap&#39;, &#39;.demo-show&#39;, function (){
+		actionShare.show(optsShare);
+	});
+})
+					</code></pre>
+                                        <a class="doc-copy-code-btn" data-clipboard-text="
+$(function (){
+	var func1 = function(){
+		console.log(&#39;你点了选项1&#39;);
+	};
+	var func2 = function(){
+		console.log(&#39;你点了选项2&#39;);
+	};
+	var func3 = function(){
+		console.log(&#39;你点了选项3&#39;);
+	};
+	var func4 = function(){
+		console.log(&#39;你点了选项4&#39;);
+	};
+	var func5 = function(){
+		console.log(&#39;你点了选项5&#39;);
+	};
+	var func6 = function(){
+		console.log(&#39;你点了选项6&#39;);
+	};
+	var content = [
+		{
+			value: &#39;&lt;img src=&quot;../img/share-qq.png&quot;&gt;&lt;span&gt;QQ好友&lt;/span&gt;&#39;, //展示的值
+			id: &#39;testId1&#39;,//给节点添加自定义id
+			className: &#39;sheet-item&#39;,//添加自己的样式
+			cmd: &#39;func1&#39; //自定义事件名
+		},
+		{
+			value: &#39;&lt;img src=&quot;../img/share-qz.png&quot;&gt;&lt;span&gt;QQ空间&lt;/span&gt;&#39;,
+			id: &#39;testId2&#39;,
+			className: &#39;sheet-item&#39;,
+			cmd: &#39;func2&#39;
+		},
+		{
+			value: &#39;&lt;img src=&quot;../img/share-wx.png&quot;&gt;&lt;span&gt;微信&lt;/span&gt;&#39;,
+			id: &#39;testId3&#39;,
+			className: &#39;sheet-item&#39;,
+			cmd: &#39;func3&#39;
+		},
+
+		{
+			value: &#39;&lt;img src=&quot;../img/share-qq.png&quot;&gt;&lt;span&gt;好友/群&lt;/span&gt;&#39;,
+			id: &#39;testId4&#39;,
+			className: &#39;sheet-item&#39;,
+			cmd: &#39;func4&#39;
+		},
+		{
+			value: &#39;&lt;img src=&quot;../img/share-qz.png&quot;&gt;&lt;span&gt;QQ空间&lt;/span&gt;&#39;,
+			id: &#39;testId5&#39;,
+			className: &#39;sheet-item&#39;,
+			cmd: &#39;func5&#39;
+		},
+		{
+			value: &#39;&lt;img src=&quot;../img/share-wx.png&quot;&gt;&lt;span&gt;微信&lt;/span&gt;&#39;,
+			id: &#39;testId6&#39;,
+			className: &#39;sheet-item&#39;,
+			cmd: &#39;func6&#39;
+		}
+	];
+
+	var optsShare = {
+		mask: true,
+		animation: true,
+		tapHide: true,
+		preventScroll: true,
+		content: content,
+		func1: func1,
+		func2: func2,
+		func3: func3,
+		func4: func4,
+		func5: func5,
+		func6: func6
+	};
+	// 测试
+	var actionShare = new JMU.ActionShare();
+	$(&#39;#action-share&#39;).on(&#39;tap&#39;, &#39;.demo-show&#39;, function (){
+		actionShare.show(optsShare);
+	});
+})
+					">复制</a>
+                                    </div>
+                                </div>
+                                
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="demo-iframe-wrap" title="拖拽">>-->
+        <!--<iframe class="demo-iframe" src="JMUI/dist/demo/ui-js.html"></iframe>-->
+    <!--</div>-->
+    <!--<a href="#" class="hide-demo-btn">Demo</a>-->
+</div>
+
+<!-- qrcode-modal -->
+<div class="modal fade" id="qrcode-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+        <h4 class="modal-title">扫描二维码, 在手机端体验</h4>
+      </div>
+      <div class="modal-body">
+        <div id="qrcode" class="doc-qrcode-img"></div>
+        <!--<img class="doc-qrcode-img" src="img/qrcode.png" alt="qrcode">-->
+        <a id="qrcode-link" href="http://alloyteam.github.io/JMUI/">JMUI Demo</a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- code-modal -->
+<div class="modal fade" id="sourcecode-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+        <h4 class="modal-title">xxx.css</h4>
+      </div>
+      <div class="modal-body">
+        <pre><code>
+
+        </code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="doc-demo-file-link" href="#" target="_blank">在新窗口打开</a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- feedback-modal -->
+<div class="modal fade" id="feedback-modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></button>
+        <h4 class="modal-title">吐槽 - 扔砖扔蛋随你任性随你喜欢</h4>
+      </div>
+      <div class="modal-body">
+        <form id="feedback-form" action="feedback" method="POST">
+          <div class="form-group">
+            <textarea type="text" class="form-control" name="feedback" placeholder="我想说的是..."></textarea>
+            <input type="email" class="form-control" name="email" placeholder="我的邮箱地址">
+          </div>
+          <button id="feedback-form-submit-btn" type="submit" class="btn btn-primary">提交</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="mailto:jmui.alloyteam@qq.com?subject=吐槽JMUI">提交失败?发送邮件进行吐槽</a>
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<a href="#" class="scroll-top-btn">回到顶部</a>
+<div class="container">
+  <div class="doc-copyright">Copyright &copy; <script>document.write(new Date().getFullYear());</script><a href="http://www.AlloyTeam.com/" target="_blank">Tencent AlloyTeam</a>. All Rights Reserved.</div>
+</div>
+
+<script src="libs/jquery/jquery.min.js"></script>
+<script src="libs/bootstrap/js/bootstrap.js"></script>
+<script src="libs/highlight/highlight.pack.js"></script>
+<script src="libs/jquery-qrcode/jquery.qrcode.min.js"></script>
+<!--<script src="libs/zeroclipboard/dist/zeroclipboard.min.js"></script>-->
+<script src="js/main.js"></script>
+</body>
+</html>
+

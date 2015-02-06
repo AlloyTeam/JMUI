@@ -1,0 +1,106 @@
+<!DOCTYPE html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta charset="utf-8"><meta name="renderer" content="webkit"><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><meta name="copyright" content="Tencent.AlloyTeam"><meta name="keywords" content="AC2015, Alloyteam Conference, AC 2015, AC大会, 腾讯AC大会"><meta name="description" content="AC 2015 大会即将举行"><title>AC 2015</title><link rel="stylesheet" type="text/css" href="./css/lib.min.css"><link rel="stylesheet" type="text/css" href="./css/main.css"></head><body><div><section id="banner" class="section"><div class="container banner-title"><h1>AC 2015 - 成为业界卓越的 Web 团队</h1><small>时间：2015年8月88日</small> <small>地点：腾讯大厦29楼808大讲堂</small></div><div class="container"><h2>大会介绍</h2><p>俗话说，世上没有完美的个体，只有完美的团队。惟有一个建立健全的团队，才能带给个体最大的发展机会，使个体始终立于不败之地。我们的精神就是为了团队的利益和目标相互协作、尽心尽力的意愿和作风。</p></div><buttun id="apply-btn" class="btn btn-lg btn-success" data-toggle="modal" data-target="#apply-modal">报名</buttun></section><section id="schedule" class="section"><div class="container"><h2>会议流程</h2><ul></ul></div></section><section id="lecturers" class="section"><div class="container"><h2>讲师介绍</h2><ul class="row"></ul></div></section><section id="girls" class="section"><div class="container"><h2>Show Girls</h2><div class="row"><div class="col-md-4"><img class="girl-img" src="img/default.jpg" alt="girl"> <img class="girl-img" src="img/default.jpg" alt="girl"></div><div class="col-md-4"><img class="girl-img" src="img/default.jpg" alt="girl"> <img class="girl-img" src="img/default.jpg" alt="girl"></div><div class="col-md-4"><img class="girl-img" src="img/default.jpg" alt="girl"> <img class="girl-img" src="img/default.jpg" alt="girl"></div></div></div></section><section id="guide" class="section"><div class="container"><h2>交通指南</h2><img id="map" src="http://st.map.qq.com/api?size=800*400&center=113.934453,22.540536&markers=113.934453,22.540536&zoom=15&paths=weight:5,113.944259,22.538839,113.934453,22.540536" alt="maps"><ul class="guide-traffic"><li class="traffic-bus">公交: 到深大北门站(1路/2路/3路/4路), 走路三分钟</li><li class="traffic-taxi">打的: 到腾讯大厦</li><li class="traffic-subway">地铁: 深大站A3出口</li></ul></div></section><section id="about" class="section"><div class="container"><h2>主办方信息</h2></div><div class="about-info-wrap"><div class="container row about-info"><div class="col-md-6"><span class="about-desc">Alloy Team 来自于腾讯SNG(社交网络事业群)，我们致力于Web前端技术的研究，热衷HTML5、移动Web技术，用最酷的新技术开发各种有趣的开源项目. Alloy Team 来自于腾讯SNG(社交网络事业群)，我们致力于Web前端技术的研究，热衷HTML5、移动Web技术，用最酷的新技术开发各种有趣的开源项目.</span></div><div class="col-md-6"><div class="about-info-sns weibo"><span>微博账号: <a href="http://weibo.com/alloyteam">@AlloyTeam</a></span></div><div class="about-info-sns wechat"><span>微信账号: AlloyTeam</span></div><div class="about-info-sns qrcode"><span>微信账号二维码</span></div></div></div></div></section><section id="footer" class="section"><div class="container copyright">Copyright &copy;<script>document.write(new Date().getFullYear());</script><a href="http://www.AlloyTeam.com/" target="_blank">Tencent AlloyTeam</a>. All Rights Reserved.</div></section></div><div class="modal fade" id="apply-modal" tabindex="-1" role="dialog" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><form id="apply-form" action="/apply" method="POST"><div class="modal-header"><a type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">关闭</span></a><h4 class="modal-title">报名 - 参加 AC 大会</h4></div><div class="modal-body"><div class="form-group"><input type="text" class="form-control" name="name" placeholder="姓名" required></div><div class="form-group"><input type="email" class="form-control" name="email" placeholder="邮箱" required></div><div class="form-group"><input type="text" class="form-control" name="company" placeholder="公司/学校" required></div><div class="form-group"><input type="text" class="form-control" name="job" placeholder="职位/专业" required></div><div class="form-group"><input type="url" class="form-control" name="blog" placeholder="博客/微博" required></div><div class="form-group"><input type="text" class="form-control" name="code" placeholder="邀请码，有邀请码无需审核即报名成功"></div><button type="submit" class="btn btn-success">提交</button> <button type="button" class="btn btn-default" data-dismiss="modal">取消</button></div><div class="modal-footer"><p>没有邀请码？只要参与 <a href="#">xxxyyy</a> 就能获取！</p></div></form></div></div></div><script id="tpl-schedule" type="text/tpl"><li class="row schedule-item">
+		<div class="item-type">
+			<span><%= time %></span>
+			<span><%= type %></span>
+		</div>
+		<div class="col-md-6 left">
+			<div class="row topic-card-wrap">
+				<div class="col-md-10 topic-card">
+					<h3><%= topic %></h3>
+					<img src="img/default.jpg" alt="<%= topic %>">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 right">
+			<div class="row lecturer-card-wrap">
+				<div class="col-md-10 col-md-offset-2 lecturer-card">
+					<h3><img class="lecturer-avatar-small" src="img/lecturers/<%= lecturerNameEn %>.jpg" alt="<%= lecturerName %>"><%= lecturerName %></h3>
+					<div class="lecturer-intro">
+						<p>
+							<%= introduction %>
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</li></script><script id="tpl-lecturer" type="text/tpl"><li class="col-md-3 lecturer-info">
+		<img class="lecturer-avatar" src="img/lecturers/<%= lecturerNameEn %>.jpg" alt="<%= lecturerName %>">
+		<p class="lecturer-name-zh"><%= lecturerName %></p>
+		<p class="lecturer-name-en"><%= lecturerNameEn %></p>
+	</li></script><script src="./js/lib.min.js"></script><script src="./js/main.js"></script><script>var data = [
+        {
+            time: '09:00',
+            type: '嘉宾分享',
+            topic: '三秒钟使用Model快速搭建建移动页面',
+            lecturerName: '王斌',
+            lecturerNameEn: 'dorsywang',
+            introduction: '如何在移动大浪潮下快速适应需求的变更？如何用简单的代码快速搭建一个复杂移动页面？移动框架Model即是顺应时代潮流而生。Model框架是对Web页面进行抽象模型提取后，依赖模型间的关系快速搭建页面的框架。使用Model后页面将会变得清晰简洁，具有统一的代码规范。它就像是一个乐团的指挥棒，指挥着乐团中每个人怎样在舞台上rock...'
+        },{
+            time: '10:00',
+            type: '嘉宾分享',
+            topic: ' 我有我特色——开发眼中的移动交互',
+            lecturerName: '潘佳韩',
+            lecturerNameEn: 'weberpan',
+            introduction: '怎样才算一个好用的移动端web页面或webApp？是不是把PC端的页面拖过来，再适应移动端的小屏幕就可以了？当然不是，我们经常还要考虑移动端网络羸弱和触控交互的特点，借鉴原生APP的交互。本次分享将和大家一起探索移动web常用交互的优缺点和具体实现。'
+        },{
+            time: '11:00',
+            type: '嘉宾分享',
+            topic: '移动Web开发之终端适配',
+            lecturerName: '赖晓思',
+            lecturerNameEn: 'csonlai',
+            introduction: ''
+        },{
+            time: '12:00',
+            type: '嘉宾分享',
+            topic: '移动web性能优化的“极致”理念',
+            lecturerName: '谭伟林',
+            lecturerNameEn: 'bizaitan',
+            introduction: ''
+        },{
+            time: '13:00',
+            type: '嘉宾分享',
+            topic: '动态与富态',
+            lecturerName: '李小兰',
+            lecturerNameEn: 'sheranli',
+            introduction: ''
+        },{
+            time: '14:00',
+            type: '嘉宾分享',
+            topic: '移动Web开发之首屏优化实践',
+            lecturerName: '郭碧青',
+            lecturerNameEn: 'johnnyguo',
+            introduction: ''
+        }
+    ];
+    var tplSchedule = $('#tpl-schedule').text();
+    var htmlSchedule = '';
+    for (var i = 0; i < data.length; i++) {
+        htmlSchedule += _.template(tplSchedule)(data[i]);
+    }
+    $('#schedule ul').append(htmlSchedule);
+
+    var tplLecturer = $('#tpl-lecturer').text();
+    var htmlLecturer = '';
+    for (var i = 0; i < data.length; i++) {
+        htmlLecturer += _.template(tplLecturer)(data[i]);
+    }
+    $('#lecturers ul').append(htmlLecturer);</script><script type="text/javascript">// TODO 上线前做好配置
+    var jiathis_config={
+        siteNum:5,
+        sm:"weixin,tsina,tqq,cqq,qzone",
+        url:"http://localhost:63342/ac/www/index.html",
+        summary:"哇塞，又一个前端技术盛宴bala",
+        title:"#AC2015#",
+        pic:"http://localhost:63342/ac/www/img/banner.png",
+        ralateuid:{
+            "tsina":"2833062160"
+        },
+        showClose:false,
+        shortUrl:false,
+        hideMore:true,
+        evt:{
+            "share": function (e) {
+                // console.log(e)
+            }
+        }
+    }</script><script type="text/javascript" src="http://v3.jiathis.com/code_mini/jiathis_r.js?btn=r5.gif&move=0" charset="utf-8"></script></body>

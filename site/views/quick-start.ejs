@@ -1,0 +1,159 @@
+<% include include/header.ejs%>
+
+<div id="page-quick-start">
+    <div class="doc-banner">
+        <div class="container">
+            <h1>快速开始</h1>
+
+            <p>快速下载、使用 JMUI；提供基础模板</p>
+        </div>
+    </div>
+    <div class="doc-body container">
+        <div class="row">
+            <div class="col-lg-2 js-scroll-spy">
+                <ul class="nav doc-nav list-group">
+                    <li class="list-group-item"><a href="#install">下载安装</a></li>
+                    <li class="list-group-item"><a href="#tree">目录结构</a></li>
+                    <li class="list-group-item"><a href="#template">基础模板</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-9">
+                <div id="install" class="doc-code-panel">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">下载安装</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-4 doc-download-option">
+                                    <h4>压缩版</h4>
+                                    <p>可直接用于生产环境。</p>
+                                    <a href="https://github.com/AlloyTeam/JMUI/releases/download/JMUIv0.0.4/JMUIv0.0.4.zip" class="btn btn-success">下载压缩版</a>
+                                </div>
+                                <div class="col-lg-4 doc-download-option">
+                                    <h4>开发版</h4>
+                                    <p>可二次开发, 自己构建。</p>
+                                    <a href="https://github.com/AlloyTeam/JMUI/releases/tag/JMUIv0.0.4" class="btn btn-default">下载开发版</a>
+                                </div>
+                                <div class="col-lg-4 doc-download-option">
+                                    <h4>定制版</h4>
+                                    <p>勾选你想要的组件, 一键打包。</p>
+                                    <a href="customize" class="btn btn-default" disabled>功能开发中</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="tree" class="doc-code-panel">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">目录结构</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4>压缩版</h4>
+                                    <p>压缩后的 JMUI 分三个文件夹, 可直接使用.</p>
+                                <pre>
+jmui/
+├── css/
+│   ├── jmui.css
+│   └── jmui.min.css
+│
+├── js/
+    ├── jmui.js
+    └── jmui.min.js
+
+                                </pre>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4>开发版</h4>
+                                    <p>开发版的 JMUI 可用于手动构建.</p>
+                                <pre>
+jmui/
+├── stylus/
+├── js/
+├── libs/
+├── dist/
+│   ├── css/
+│   └── js/
+├── demo/
+└── index.html
+                                </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="template" class="doc-code-panel">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">基础模板</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4>使用以下模板, 快速搭建一个移动 Web 页面</h4>
+                                <pre>
+                                    <code class="html">
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+    &lt;head&gt;
+        &lt;meta charset="UTF-8"&gt;
+        &lt;meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"&gt;
+        &lt;meta name="format-detection" content="telephone=no"&gt;
+        &lt;title&gt;JMUI&lt;/title&gt;
+        &lt;link rel="stylesheet" href="jmui/css/jmui.min.css"&gt;
+        &lt;script src="jmui/lib/zeptojs/zepto.min.js"&gt;&lt;/script&gt;
+        &lt;script src="jmui/js/jmui.min.js"&gt;&lt;/script&gt;
+    &lt;/head&gt;
+    &lt;body class="jmu-app"&gt;
+        &lt;div class="jmu-header"&gt;固定头部&lt;/div&gt;
+        &lt;div class="jmu-footer"&gt;固定底部&lt;/div&gt;
+        &lt;div class="jmu-content-container"&gt;
+            &lt;div class="jmu-content js-active"&gt;
+            内容区域
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+                                    </code>
+                                </pre>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h4>添加基础样式</h4>
+                                <pre>
+                                    <code class="html">
+&lt;div class="jmu-header"&gt;固定头部&lt;/div&gt;
+    &lt;div class="jmu-content-container"&gt;
+        &lt;div class="jmu-content js-active"&gt;
+            设置字体颜色
+            &lt;p class=&quot;jmu-color-black&quot;&gt;&#x9ED1;&#x8272;&lt;/p&gt;
+            &lt;p class=&quot;jmu-color-white&quot;&gt;&#x767D;&#x8272;&lt;/p&gt;
+            &lt;p class=&quot;jmu-color-gray&quot;&gt;&#x7070;&#x8272;&lt;/p&gt;
+            &lt;p class=&quot;jmu-color-blue&quot;&gt;&#x84DD;&#x8272;&lt;/p&gt;
+            &lt;p class=&quot;jmu-color-red&quot;&gt;&#x7EA2;&#x8272;&lt;/p&gt;
+            &lt;p class=&quot;jmu-color-orange&quot;&gt;&#x6A59;&#x8272;&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;div class="jmu-footer"&gt;固定底部&lt;/div&gt;
+                                    </code>
+                                </pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+<% include include/footer.ejs%>

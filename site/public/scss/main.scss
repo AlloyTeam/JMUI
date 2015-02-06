@@ -1,0 +1,358 @@
+$banner-bgcolor: rgba(33, 150, 243, 0.49);
+$link-color: #2196f3;
+$font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+$link-hover-color: #2196f3;
+
+.doc-beta {
+    font-size: 12px;
+    top: -28px;
+}
+body {
+    min-width: 480px;
+
+    font-family: $font-family;
+    font-size: 12px;
+}
+
+.navbar {
+    font-family: $font-family;
+}
+.navbar-default .navbar-nav>li>a {
+    color: #666;
+}
+.nav>li>a {
+    color: $link-color;
+    font-size: 16px;
+}
+.navbar-nav>.active>a, .navbar-nav>.active>a:hover {
+    border: none;
+}
+.panel-default>.panel-heading {
+    background-color: rgba(245, 245, 245, 0.2);
+}
+pre {
+//    background: inherit;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+.hljs {
+    background: inherit;
+}
+.hljs-comment, .diff .hljs-header, .hljs-javadoc {
+    font-style: normal;
+}
+
+ul,
+ol,
+li {
+    padding: 0;
+    margin: 0;
+}
+
+.list-group-item {
+    padding: 0;
+}
+
+.list-group-item.active a {
+    color: #fff;
+
+    &:hover {
+        color: #fff;
+        background: inherit;
+    }
+}
+
+.navbar {
+    margin-bottom: 0;
+}
+
+.navbar-brand {
+    font-size: 48px;
+    color: #2196f3!important;
+}
+.navbar-default .navbar-nav>li>a {
+    font-size: 20px;
+
+    &:focus {
+        outline: none;
+    }
+}
+.affix {
+    position: fixed;
+    top: 10px;
+}
+
+.doc-demo-file-link {
+    text-decoration: none;
+    color: #aaa;
+
+    &:hover {
+        color: $link-hover-color;
+    }
+}
+.panel-heading {
+    position: relative;
+
+    .doc-demo-css-link,
+    .doc-demo-js-link {
+        @extend .doc-demo-file-link;
+    }
+    .doc-demo-link {
+        color: inherit;
+        &:hover {
+            text-decoration: none;
+            color: $link-hover-color;
+        }
+    }
+    .doc-qrcode {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: none;
+        z-index: 1;
+    }
+}
+
+
+.panel-title {
+    display: inline-block;
+
+    font-weight: bold;
+    color: #2196f3;
+}
+
+.scroll-top-btn,
+.hide-demo-btn {
+    position: fixed;
+
+    display: none;
+    width: 80px;
+    height: 40px;
+
+    line-height: 40px;
+
+    text-align: center;
+
+    color: #2196f3;
+    border: 1px solid #2196f3;
+
+    &:hover {
+        color: #fff;
+        background-color: #2196f3;
+        text-decoration: none;
+    }
+    &:focus {
+        text-decoration: none;
+    }
+}
+.scroll-top-btn {
+    bottom: 20px;
+    right: 20px;
+}
+.hide-demo-btn {
+    bottom: 59px;
+    right: 20px;
+}
+
+.doc-copyright {
+    height: 50px;
+    margin: 50px 0 0 0;
+
+    font-family: Tahoma;
+    font-size: 12px;
+
+    text-align: center;
+
+    color: #999;
+
+    a {
+        text-decoration: none;
+
+        color: #999;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+
+            outline: none;
+        }
+    }
+}
+
+
+.doc-banner {
+    padding: 80px 0;
+    margin-bottom: 20px;
+
+    color: #fff;
+    background: $banner-bgcolor;
+
+    h1 {
+        color: #fff;
+    }
+
+    h2 {
+        color: #eee;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}
+
+.doc-body {
+    position: relative;
+}
+
+.doc-nav {
+    width: 165px;
+    li {
+        cursor: pointer;
+    }
+}
+
+.doc-qrcode-btn {
+    font-size: 20px;
+
+    color: #2196f3!important;
+
+    .glyphicon-qrcode {
+        top: 3px;
+    }
+}
+
+.doc-demo {
+    margin-bottom: 30px;
+
+    &:last-child {
+        margin-bottom: 0;
+    }
+    .demo-block,
+    .demo-script {
+        position: relative;
+
+    }
+}
+
+.doc-copy-code-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    cursor: pointer;
+
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
+}
+#qrcode-modal {
+    .modal-body {
+        text-align: center;
+    }
+}
+#sourcecode-modal {
+    .modal-dialog {
+        min-width: 1000px;
+    }
+    .modal-body {
+        max-height: 760px;
+        overflow-y: auto;
+    }
+}
+.doc-qrcode-img {
+    display: block;
+    width:300px;
+    margin: 0 auto;
+}
+
+.demo-iframe-wrap {
+    right: 0;
+
+    width: 365px;
+    padding: 100px 20px;
+    margin: 0;
+
+    background: transparent url("../img/iPhone.png")  no-repeat  center center ;
+    background-size: 100% auto;
+
+    cursor: pointer;
+    -webkit-user-select: none;
+}
+.demo-iframe {
+    display: block;
+    width: 320px;
+    height: 568px;
+    margin: 0 auto;
+
+    border: none;
+}
+
+
+#page-index {
+    .doc-banner {
+        padding: 0 auto;
+        text-align: center;
+
+
+        h1 {
+            margin-top: 140px;
+
+            font-size: 42px;
+        }
+
+        .doc-downloadn-btn {
+            padding: 24px 120px;
+            margin: 20px 0;
+
+            font-size: 38px;
+        }
+    }
+}
+
+
+#page-quick-start {
+    .doc-download-option {
+        p {
+            height: 30px;
+        }
+    }
+}
+
+#page-customize {
+    .doc-customize-btn {
+        padding: 10px 20px;
+        margin: 20px 0;
+
+        font-size: 24px;
+    }
+
+    .checkbox label {
+        font-size: 16px;
+        line-height: 16px;
+    }
+}
+
+
+@media (max-width: 1560px){
+    .demo-iframe-wrap {
+//        display: none;
+        left: -9999px;
+
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

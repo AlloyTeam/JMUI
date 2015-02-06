@@ -1,0 +1,154 @@
+body {
+  min-width: 480px;
+  font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, STHeiTi, sans-serif;
+  font-size: 12px; }
+
+ul,
+ol,
+li {
+  padding: 0;
+  margin: 0; }
+
+.list-group-item {
+  padding: 0; }
+
+.list-group-item.active a {
+  color: #fff; }
+  .list-group-item.active a:hover {
+    color: #fff;
+    background: inherit; }
+
+.navbar {
+  margin-bottom: 0; }
+
+.navbar-brand {
+  font-size: 24px; }
+
+.navbar-default .navbar-nav > li > a {
+  font-size: 20px; }
+
+.affix {
+  position: fixed;
+  top: 10px; }
+
+.panel-heading {
+  position: relative; }
+  .panel-heading .doc-demo-link {
+    position: absolute;
+    top: 0px;
+    right: 15px;
+    height: 36px;
+    line-height: 36px;
+    font-size: 15px; }
+
+.panel-title {
+  font-weight: bold;
+  color: #2196f3; }
+
+.scroll-top-btn,
+.hide-demo-btn {
+  position: fixed;
+  display: none;
+  width: 80px;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  color: #2196f3;
+  border: 1px solid #2196f3; }
+  .scroll-top-btn:hover,
+  .hide-demo-btn:hover {
+    text-decoration: none; }
+
+.scroll-top-btn {
+  bottom: 20px;
+  right: 20px; }
+
+.hide-demo-btn {
+  top: 20px;
+  left: 22px; }
+
+.doc-copyright {
+  height: 50px;
+  margin: 50px 0 0 0;
+  font-family: Tahoma;
+  font-size: 12px;
+  text-align: center;
+  color: #999; }
+  .doc-copyright a {
+    text-decoration: none;
+    color: #999; }
+    .doc-copyright a:hover, .doc-copyright a:focus {
+      text-decoration: underline;
+      outline: none; }
+
+.doc-banner {
+  padding: 80px 0;
+  margin-bottom: 20px;
+  color: #fff;
+  background: rgba(0, 121, 255, 0.3); }
+  .doc-banner h1 {
+    color: #fff; }
+  .doc-banner h2 {
+    color: #eee; }
+  .doc-banner p {
+    font-size: 16px; }
+
+.doc-nav {
+  width: 165px; }
+  .doc-nav li {
+    cursor: pointer; }
+
+.doc-qrcode-btn {
+  font-size: 20px;
+  font-weight: bold;
+  color: #2196f3 !important;
+  border: 1px solid rgba(33, 150, 243, 0.5); }
+
+#qrcode-modal .modal-body {
+  text-align: center; }
+
+.doc-qrcode-img {
+  display: block;
+  width: 300px;
+  margin: 0 auto; }
+
+.demo-iframe-wrap {
+  position: fixed;
+  left: 0;
+  width: 365px;
+  padding: 100px 20px;
+  margin: 0 auto;
+  background: transparent url("/img/iPhone.png") no-repeat center center;
+  background-size: 100% auto; }
+
+.demo-iframe {
+  display: block;
+  width: 320px;
+  height: 568px;
+  margin: 0 auto;
+  border: none; }
+
+#page-index .doc-banner {
+  text-align: center; }
+  #page-index .doc-banner h1 {
+    margin-top: 140px;
+    font-size: 42px; }
+  #page-index .doc-banner .doc-downloadn-btn {
+    padding: 24px 120px;
+    margin: 20px 0;
+    font-size: 38px; }
+    #page-index .doc-banner .doc-downloadn-btn:hover {
+      -webkit-background-size: none;
+      background-size: none; }
+
+#page-quick-start .doc-download-option p {
+  height: 30px; }
+
+#page-customize .doc-customize-btn {
+  padding: 10px 20px;
+  margin: 20px 0;
+  font-size: 24px; }
+
+@media (max-width: 1560px) {
+  .demo-iframe-wrap {
+    display: none; } }

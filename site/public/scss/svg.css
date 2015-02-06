@@ -1,0 +1,42 @@
+svg {
+  pointer-events: none; }
+
+.drawings {
+  position: relative;
+  max-height: 600px;
+  height: 600px; }
+
+.illustration {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  max-height: 100%;
+  max-width: 100%;
+  opacity: 0;
+  transform: translateX(-50%) translateY(-50%); }
+
+.illustration.show {
+  opacity: 1; }
+
+.line-drawing.hide {
+  opacity: 0; }
+
+.line-drawing {
+  transition: opacity .5s; }
+
+.illustration {
+  transition: opacity 1s; }
+
+.line-drawing path {
+  fill: none;
+  stroke: white;
+  stroke-width: 3; }
+
+path.line-round {
+  stroke-linecap: round; }
+
+path.stroke-medium {
+  stroke-width: 2; }
+
+path.stroke-thin {
+  stroke-width: 1; }

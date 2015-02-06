@@ -1,0 +1,65 @@
+<% include include/header.ejs %>
+
+
+<div id="page-customize">
+    <div class="doc-banner">
+        <div class="container">
+            <h1>定制化下载</h1>
+
+            <p>勾选你想要的组件, 一键打包...</p>
+        </div>
+    </div>
+
+    <div class="doc-body container">
+        <form id="custom-form" class="form-horizontal" role="form" method="POST" action="customize">
+            <div class="row">
+                <fieldset class="col-lg-4">
+                    <legend>基础样式</legend>
+                    <% for(var i = 0; i < baseCss.length; i++ ) { %>
+                    <div class="checkbox">
+                        <label>
+                            <% if (baseCss[i].required) { %>
+                            <input type="checkbox" name="css" value="<%= baseCss[i].name %>" onclick="return false" class="disabled" checked><%= baseCss[i].title %>
+                            <% } else { %>
+                            <input type="checkbox" name="css" value="<%= baseCss[i].name %>" checked><%= baseCss[i].title %>
+                            <% } %>
+                        </label>
+                    </div>
+                    <% } %>
+                </fieldset>
+
+                <fieldset class="col-lg-4">
+                    <legend>UI 组件</legend>
+                    <% for(var i = 0; i < uiCss.length; i++ ) { %>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="css" value="<%= uiCss[i].name %>" checked><%= uiCss[i].title %>
+                        </label>
+                    </div>
+                    <% } %>
+                </fieldset>
+
+                <fieldset class="col-lg-4">
+                    <legend>JS 插件</legend>
+                    <% for(var i = 0; i < uiJs.length; i++ ) { %>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" name="js" value="<%= uiJs[i].name %>" checked>
+                            <%= uiJs[i].title %>
+                        </label>
+                    </div>
+                    <% } %>
+                </fieldset>
+            </div>
+            <div class="row">
+                <fieldset class="col-lg-offset-4 col-lg-8">
+                    <button type="submit" class="btn btn-success doc-customize-btn" disabled>功能开发中</button>
+                </fieldset>
+            </div>
+
+
+        </form>
+    </div>
+</div>
+
+<% include include/footer.ejs %>
