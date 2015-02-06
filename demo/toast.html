@@ -17,11 +17,11 @@
 		<div class="jmu-content jmu-active">
 			<section id="toast">
 				<div class="demo-item">
-					<p class="demo-desc">提醒/成功/警告提示条</p>
+					<p class="demo-desc">提示条</p>
 					<div class="demo-block">
-						<a class="demo-show jmu-btn-lg">tips</a>
-						<a class="demo-show jmu-btn-lg">success</a>
-						<a class="demo-show jmu-btn-lg">warning</a>
+						<a class="demo-show jmu-btn-lg" data-type="tips">普信息</a>
+						<a class="demo-show jmu-btn-lg" data-type="success">成功信息</a>
+						<a class="demo-show jmu-btn-lg" data-type="warning">警告信息</a>
 					</div>
 					<script class="demo-script">
 						;(function (){
@@ -38,7 +38,7 @@
 							// 测试
 							var toast = new JMU.Toast();
 							$('#toast').on('tap', '.demo-show', function (){
-								opts.state = $(this).text();
+								opts.state = $(this).data('type');
 								toast.show(opts);
 							});
 						})();

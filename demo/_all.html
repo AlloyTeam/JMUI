@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>JMUI Demo</title>
+    <link rel="stylesheet" href="../css/jmui.css">
+
+    <script src="../lib/zeptojs/zepto.min.js"></script>
+    <script src="../js/jmui.js"></script>
+</head>
+<body class="jmu-app">
+<div class="jmu-header">
+    JMUI-DEMO
+</div>
+<div class="jmu-footer">
+</div>
+<div class="jmu-content-container">
+
+		<div class="jmu-content jmu-active">
+			<section id="base-color">
+				<div class="demo-item">
+					<p class="demo-desc">&#x5B57;&#x4F53;&#x989C;&#x8272;</p>
+					<div class="demo-block">
+						<p class="jmu-color-black">&#x9ED1;&#x8272;</p>
+						<p class="jmu-color-white">&#x767D;&#x8272;</p>
+						<p class="jmu-color-gray">&#x7070;&#x8272;</p>
+						<p class="jmu-color-blue">&#x84DD;&#x8272;</p>
+						<p class="jmu-color-red">&#x7EA2;&#x8272;</p>
+						<p class="jmu-color-orange">&#x6A59;&#x8272;</p>
+					</div>
+				</div>
+			</section>
+		</div>
+	
+		<div class="jmu-content jmu-active">
+			<section id="base-clearfix">
+				<div class="demo-item">
+					<p class="demo-desc">&#x6E05;&#x9664;&#x6D6E;&#x52A8;</p>
+					<div class="demo-block">
+						<div class="jmu-clear-fix">
+							<div style="float: left;">&#x5DE6;&#x6D6E;&#x52A8;&#x5143;&#x7D20;</div>
+							<div style="float: right;">&#x53F3;&#x6D6E;&#x52A8;&#x5143;&#x7D20;</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	
+		<div class="jmu-content jmu-active">
+			<section id="base-center">
+				<div class="demo-item">
+					<p class="demo-desc">&#x5C45;&#x4E2D;</p>
+					<div class="demo-block">
+						<div class="jmu-horizental-center jmu-vertical-center">
+							<p>&#x6211;&#x4F1A;&#x88AB;&#x5782;&#x76F4;&#x5C45;&#x4E2D;&#x54E6;</p>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	
+		<div class="jmu-content jmu-active">
+			<section id="base-1px">
+				<div class="demo-item">
+					<p class="demo-desc">1px&#x8FB9;&#x6846;</p>
+					<div class="demo-block">
+						<ul class="demo-borders">
+							<li>
+								<div class="jmu-border-1px border-all">&#x5168;&#x8FB9;&#x6846;</div>
+							</li>
+							<li>
+								<div class="jmu-border-1px border-top">&#x4E0A;&#x8FB9;&#x6846;</div>
+							</li>
+							<li>
+								<div class="jmu-border-1px border-bottom">&#x4E0B;&#x8FB9;&#x6846;</div>
+							</li>
+							<li>
+								<div class="jmu-border-1px border-left">&#x5DE6;&#x8FB9;&#x6846;</div>
+							</li>
+							<li>
+								<div class="jmu-border-1px border-right">&#x53F3;&#x8FB9;&#x6846;</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</section>
+		</div>
+	
+		<div class="jmu-content jmu-active">
+			<section id="base-nowrap">
+				<div class="demo-item">
+					<p class="demo-desc">&#x6587;&#x5B57;&#x6EA2;&#x51FA;&#x7701;&#x7565;</p>
+					<div class="demo-block">
+						<p class="jmu-no-wrap">
+							&#x5355;&#x884C;&#x6587;&#x5B57;, &#x8D85;&#x957F;&#x6EA2;&#x51FA;&#x5C06;&#x4F1A;&#x663E;&#x793A;&#x7701;&#x7565;&#x53F7;, &#x5566;&#x5566;&#x5566;&#x5566;&#x5566;&#x6211;&#x662F;&#x4E3A;&#x4E86;&#x51D1;&#x6570;&#x5566;&#x5566;&#x5566;&#x5566;&#x5566;&#x6211;&#x662F;&#x4E3A;&#x4E86;&#x51D1;&#x6570;
+						</p>
+						<p class="jmu-multi-no-wrap">
+							&#x591A;&#x884C;&#x6587;&#x5B57;, &#x8D85;&#x957F;&#x6EA2;&#x51FA;&#x5C06;&#x4F1A;&#x5728;&#x6700;&#x540E;&#x4E00;&#x884C;&#x663E;&#x793A;&#x7701;&#x7565;&#x53F7;, &#x5566;&#x5566;&#x5566;&#x5566;&#x5566;&#x6211;&#x662F;&#x4E3A;&#x4E86;&#x51D1;&#x6570;&#x5566;&#x5566;&#x5566;&#x5566;&#x5566;&#x6211;&#x662F;&#x4E3A;&#x4E86;&#x51D1;&#x6570;
+						</p>
+					</div>
+				</div>
+			</section>
+		</div>
+	
+		<div class="jmu-content jmu-active">
+			<section id="button">
+				<div class="demo-item">
+					<p class="demo-desc">&#x6309;&#x94AE; - &#x5C0F;&#x53F7;</p>
+					<div class="demo-block">
+						<button class="jmu-btn">&#x786E;&#x5B9A;</button>
+						<button class="jmu-btn active">&#x786E;&#x5B9A;</button>
+						<button class="jmu-btn disabled">&#x53D6;&#x6D88;</button>
+						<button class="jmu-btn" disabled>&#x53D6;&#x6D88;</button>
+					</div>
+				</div>
+
+				<div class="demo-item">
+					<p class="demo-desc">&#x6309;&#x94AE; - &#x84DD;&#x8272;</p>
+					<div class="demo-block">
+						<button class="jmu-btn jmu-btn-blue">&#x786E;&#x5B9A;</button>
+						<button class="jmu-btn jmu-btn-blue active">&#x786E;&#x5B9A;</button>
+						<button class="jmu-btn disabled">&#x53D6;&#x6D88;</button>
+					</div>
+				</div>
+
+				<div class="demo-item">
+					<p class="demo-desc">&#x6309;&#x94AE; - &#x7EA2;&#x8272;</p>
+					<div class="demo-block">
+						<button class="jmu-btn jmu-btn-red">&#x786E;&#x5B9A;</button>
+						<button class="jmu-btn jmu-btn-red active">&#x786E;&#x5B9A;</button>
+						<button class="jmu-btn disabled">&#x53D6;&#x6D88;</button>
+					</div>
+				</div>
+
+				<div class="demo-item">
+					<p class="demo-desc">&#x6309;&#x94AE; - &#x5927;&#x53F7;</p>
+					<div class="demo-block">
+						<button class="jmu-btn-lg">&#x786E;&#x5B9A;</button>
+						<button class="jmu-btn-lg disabled">&#x53D6;&#x6D88;</button>
+
+						<button class="jmu-btn-lg jmu-btn-blue">&#x786E;&#x5B9A;</button>
+						<button class="jmu-btn-lg jmu-btn-blue active">&#x786E;&#x5B9A;</button>
+
+						<button class="jmu-btn-lg jmu-btn-red">&#x786E;&#x5B9A;</button>
+						<button class="jmu-btn-lg jmu-btn-red active">&#x786E;&#x5B9A;</button>
+					</div>
+				</div>
+
+			</section>
+		</div>
+	
+		<div class="jmu-content jmu-active">
+			<section id="dot">
+				<div class="demo-item">
+					<p class="demo-desc">&#x63D0;&#x793A;&#x70B9;</p>
+					<div class="demo-block">
+						<div>
+							&#x7EA2;&#x8272;&#x6570;&#x5B57;&#x53F3;&#x4E0A;&#x89D2;
+							<i class="jmu-dot-num jmu-dot-red jmu-dot-tr">1</i>
+						</div>
+						<div>
+							&#x84DD;&#x8272;&#x6570;&#x5B57;&#x53F3;&#x4E0A;&#x89D2;
+							<i class="jmu-dot-num jmu-dot-blue jmu-dot-tr">2</i>
+						</div>
+						<div>
+							&#x7EA2;&#x8272;new&#x53F3;&#x4E0A;&#x89D2;
+							<i class="jmu-dot-new jmu-dot-red jmu-dot-tr">new</i>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	
+		<div class="jmu-content jmu-active">
+			<section id="corner-tag">
+				<div class="demo-item">
+					<p class="demo-desc">&#x8FB9;&#x89D2;&#x6807;&#x8BB0;</p>
+					<div class="demo-block">
+						<div class="jmu-corner-tag">
+							<img src="../img/qq.png">
+							<div class="jmu-tag-red">&#x7EA2;</div>
+						</div>
+						<div class="jmu-corner-tag">
+							<img src="../img/qq.png">
+							<div class="jmu-tag-orange">&#x6A59;</div>
+						</div>
+
+						<div class="jmu-corner-tag">
+							<img src="../img/qq.png">
+							<div class="jmu-tag-blue">&#x84DD;</div>
+						</div>
+						<div class="jmu-corner-tag">
+							<img src="../img/qq.png">
+							<div class="jmu-tag-green">&#x7EFF;</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	
+		<div class="jmu-content jmu-active">
+			<section id="table">
+				<div class="demo-item">
+					<p class="demo-desc">&#x8868;&#x683C; - &#x65E0;&#x6846;</p>
+					<div class="demo-block">
+						<table class="jmu-table jmu-border-tb">
+							<thead>
+							<tr><th>&#x5DF2;&#x8D2D;&#x4E70;</th><th>&#x72B6;&#x6001;</th><th>&#x4F1A;&#x5458;&#x5230;&#x671F;&#x65F6;&#x95F4;</th></tr>
+							</thead>
+							<tbody>
+							<tr><td>2014257777</td><td>&#x4F7F;&#x7528;&#x4E2D;</td><td>2016-02-06</td></tr>
+							<tr><td>2014257777</td><td>&#x5F85;&#x4ED8;&#x6B3E;</td><td><a href="#">&#x4ED8;&#x6B3E;</a></td></tr>
+							<tr><td>2014257777</td><td>&#x5F85;&#x4ED8;&#x6B3E;</td><td><a href="#">&#x4ED8;&#x6B3E;</a></td></tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+
+				<div class="demo-item">
+					<p class="demo-desc">&#x8868;&#x683C; - &#x6709;&#x6846;</p>
+					<div class="demo-block">
+						<table class="jmu-table jmu-border-1px border-all">
+							<thead>
+							<tr><th>&#x5DF2;&#x8D2D;&#x4E70;</th><th>&#x72B6;&#x6001;</th><th>&#x4F1A;&#x5458;&#x5230;&#x671F;&#x65F6;&#x95F4;</th></tr>
+							</thead>
+							<tbody>
+							<tr><td>2014257777</td><td>&#x4F7F;&#x7528;&#x4E2D;</td><td>2016-02-06</td></tr>
+							<tr><td>2014257777</td><td>&#x5F85;&#x4ED8;&#x6B3E;</td><td><a href="#">&#x4ED8;&#x6B3E;</a></td></tr>
+							<tr><td>2014257777</td><td>&#x5F85;&#x4ED8;&#x6B3E;</td><td><a href="#">&#x4ED8;&#x6B3E;</a></td></tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</section>
+		</div>
+	
+		<div class="jmu-content jmu-active">
+			<section id="form">
+				<div class="demo-item">
+					<p class="demo-desc">&#x8868;&#x5355; - &#x8F93;&#x5165;&#x6846;</p>
+					<div class="demo-block">
+						<div class="jmu-form">
+							<form action="#">
+								<div class="jmu-form-item jmu-form-item-pure">
+									<input type="text" placeholder="&#x5E10;&#x53F7;">
+									<a href="#" class="jmu-icon-close"></a>
+								</div>
+								<div class="jmu-form-item jmu-form-item-pure">
+									<input type="password" placeholder="&#x5BC6;&#x7801;">
+									<a href="#" class="jmu-icon-close"></a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="demo-item">
+					<p class="demo-desc">&#x8868;&#x5355; - &#x8F93;&#x5165;&#x6846;</p>
+					<div class="demo-block">
+						<div class="jmu-form">
+							<form action="#">
+								<div class="jmu-form-item jmu-form-item-l">
+									<label class="jmu-border-1px border-right">&#x4E2D;&#x56FD; +86</label>
+									<input type="text" placeholder="&#x8BF7;&#x8F93;&#x5165;&#x624B;&#x673A;&#x53F7;&#x7801;">
+									<a href="#" class="jmu-icon-close"></a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="demo-item">
+					<p class="demo-desc">&#x8868;&#x5355; - &#x8F93;&#x5165;&#x6846;</p>
+					<div class="demo-block">
+						<div class="jmu-form">
+							<form action="#">
+								<div class="jmu-form-item jmu-form-item-r">
+									<input type="text" placeholder="&#x8BF7;&#x8F93;&#x5165;&#x9A8C;&#x8BC1;&#x7801;">
+									<button type="button" class="jmu-border-1px border-left">&#x91CD;&#x65B0;&#x53D1;&#x9001;</button>
+									<a href="#" class="jmu-icon-close"></a>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<div class="demo-item">
+					<p class="demo-desc">&#x8868;&#x5355; - &#x5355;&#x9009;&#x6846;</p>
+					<div class="demo-block">
+						<div class="jmu-form">
+							<div class="jmu-form-item">
+								<label class="jmu-radio" name="radio">
+									<input type="radio" name="radio" checked>&#x5355;&#x9009;&#x6846;-1
+								</label>
+							</div>
+							<div class="jmu-form-item">
+								<label class="jmu-radio">
+									<input type="radio" name="radio">&#x5355;&#x9009;&#x6846;-2
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="demo-item">
+					<p class="demo-desc">&#x8868;&#x5355; - &#x591A;&#x9009;&#x6846;</p>
+					<div class="demo-block">
+						<div class="jmu-form">
+							<div class="jmu-form-item">
+								<label class="jmu-checkbox">
+									<input type="checkbox" checked>&#x591A;&#x9009;&#x6846;-1
+								</label>
+							</div>
+							<div class="jmu-form-item">
+								<label class="jmu-checkbox">
+									<input type="checkbox">&#x591A;&#x9009;&#x6846;-2
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="demo-item">
+					<p class="demo-desc">&#x8868;&#x5355; - &#x5207;&#x6362;&#x5F00;&#x5173;</p>
+					<div class="demo-block">
+						<div class="jmu-form">
+							<div class="jmu-form-item jmu-form-item-switch">
+								<span>&#x5BF9;&#x9644;&#x8FD1;&#x7684;&#x4EBA;&#x53EF;&#x89C1;</span>
+								<label class="jmu-switch">
+									<input type="checkbox">
+								</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	
+		<div class="jmu-content jmu-active">
+		<section id="list">
+				<div class="demo-item">
+					<p class="demo-desc">&#x5217;&#x8868; - &#x666E;&#x901A;</p>
+					<div class="demo-block">
+						<ul class="jmu-list jmu-list-text">
+							<li class="jmu-list-item-link">
+								<p>&#x5217;&#x8868;&#x9879;-1</p>
+							</li>
+							<li>
+								<p>&#x5217;&#x8868;&#x9879;-2</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="demo-item">
+					<p class="demo-desc">&#x5217;&#x8868; - &#x5E26;&#x9009;&#x4E2D;&#x6001;</p>
+					<div class="demo-block">
+						<ul class="jmu-list jmu-list-text jmu-list-active">
+							<li class="selected">
+								<p>&#x5217;&#x8868;&#x9879;-3</p>
+							</li>
+							<li>
+								<p>&#x5217;&#x8868;&#x9879;-4</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="demo-item">
+					<p class="demo-desc">&#x5217;&#x8868; - &#x6587;&#x5B57;&#x94FE;&#x63A5;</p>
+					<div class="demo-block">
+						<ul class="jmu-list jmu-list-text">
+							<li class="jmu-border-t jmu-list-item-link">
+								<div class="jmu-list-info">
+									<h4>&#x5217;&#x8868;&#x9879;-5</h4>
+								</div>
+								<div class="jmu-badge">123</div>
+							</li>
+							<li>
+								<div class="jmu-list-info">
+									<h4>&#x5217;&#x8868;&#x9879;-6</h4>
+									<p>&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;&#x5185;&#x5BB9;</p>
+								</div>
+								<div class="jmu-badge-muted">123</div>
+							</li>
+							<li>
+								<div class="jmu-list-info">
+									<h4>&#x5217;&#x8868;&#x9879;-7</h4>
+								</div>
+								<div class="jmu-list-action">&#x64CD;&#x4F5C;</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+		</section>
+		</div>
+	
+		<div class="jmu-content jmu-active">
+			<section id="loading">
+				<div class="demo-item">
+					<p class="demo-desc">&#x52A0;&#x8F7D;&#x4E2D;</p>
+					<div class="demo-block">
+						<a id="loading-page" class="demo-show jmu-btn-lg">page</a>
+						<a id="loading-text" class="demo-show jmu-btn-lg">text</a>
+						<a id="loading-rich" class="demo-show jmu-btn-lg">rich</a>
+					</div>
+					<script class="demo-script">
+						;(function (){
+							// 第一种，页面中间出现菊花提示
+							// 测试
+							$('#loading').on('tap', '#loading-page', function (){
+								$('body').textLoading('hide');
+								$('body').richLoading('hide');
+								$('body').pageLoading('show');
+							});
+
+							// 第二种，页面中间出现文字提示
+							var opts1 = {
+								preventScroll: true, // 是否禁止滚动
+								content: '拼命加载中...'
+							};
+							// 测试
+							$('#loading').on('tap', '#loading-text', function (){
+								$('body').richLoading('hide');
+								$('body').pageLoading('hide');
+								$('body').textLoading('show', opts1);
+							});
+
+							// 第三种，页面中间出现文字提示，含关闭按钮
+							var opts2 = {
+								preventScroll: true,
+								content: '我也在拼命加载中...',
+								onClose: function (){console.log('哎呀, 我被关闭了,心好痛!')}
+							};
+							// 测试
+							$('#loading').on('tap', '#loading-rich', function (){
+								$('body').textLoading('hide');
+								$('body').pageLoading('hide');
+								$('body').richLoading('show', opts1);
+							});
+						})();
+					</script>
+				</div>
+			</section>
+		</div>
+	
+		<div class="jmu-content jmu-active">
+			<section id="tab">
+				<div class="demo-item">
+					<p class="demo-desc">&#x6807;&#x7B7E;&#x680F;</p>
+					<div class="demo-block">
+						<div id="tab-demo">
+							<ul class="jmu-tab">
+								<li class="item jmu-active">tab1</li>
+								<li class="item">tab2</li>
+							</ul>
+							<ul class="tab-content">
+								<li class="panel-1">
+									<p>&#x6211;&#x662F; tab1 &#x4E2D;&#x7684;&#x5185;&#x5BB9;</p>
+									<p>&#x6211;&#x662F; tab1 &#x4E2D;&#x7684;&#x5185;&#x5BB9;</p>
+									<p>&#x6211;&#x662F; tab1 &#x4E2D;&#x7684;&#x5185;&#x5BB9;</p>
+								</li>
+								<li class="panel-2" style="display: none;">
+									<p>&#x6211;&#x662F; tab2 &#x4E2D;&#x7684;&#x5185;&#x5BB9;</p>
+									<p>&#x6211;&#x662F; tab2 &#x4E2D;&#x7684;&#x5185;&#x5BB9;</p>
+									<p>&#x6211;&#x662F; tab2 &#x4E2D;&#x7684;&#x5185;&#x5BB9;</p>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<script class="demo-script">
+						;(function (){
+							var opts = {
+								$el: '.jmu-tab', 						  // 指定 tab 栏标题容器
+								relateSelector: ['.panel-1', '.panel-2'], // 指定关联内容
+								onSwitchTab: function(index, item){
+									// 切换时的回调函数
+									console.log('已切换到第 %s 个 tab', index);
+								}
+							};
+							$('#tab-demo').tab(opts).show();
+						})();
+					</script>
+				</div>
+			</section>	
+		</div>
+	
+		<div class="jmu-content jmu-active">
+			<section id="toast">
+				<div class="demo-item">
+					<p class="demo-desc">&#x63D0;&#x793A;&#x6761;</p>
+					<div class="demo-block">
+						<a class="demo-show jmu-btn-lg" data-type="tips">&#x666E;&#x4FE1;&#x606F;</a>
+						<a class="demo-show jmu-btn-lg" data-type="success">&#x6210;&#x529F;&#x4FE1;&#x606F;</a>
+						<a class="demo-show jmu-btn-lg" data-type="warning">&#x8B66;&#x544A;&#x4FE1;&#x606F;</a>
+					</div>
+					<script class="demo-script">
+						;(function (){
+							var opts = {
+								// 必填项
+								state: 'warning',   // 三种状态 warning, tips, success
+								content: '我是提示内容',
+
+								// 可选项, 以下为默认值
+								animation: true, 	// 是否开启动画, 默认为 true
+								preventScroll: true,// 是否禁止滚动, 默认为 true
+								duration: 2000		// 指定自动关闭的时间, 单位为 ms, 默认未 2000ms
+							};
+							// 测试
+							var toast = new JMU.Toast();
+							$('#toast').on('tap', '.demo-show', function (){
+								opts.state = $(this).data('type');
+								toast.show(opts);
+							});
+						})();
+					</script>
+				</div>
+			</section>
+		</div>
+	
+		<div class="jmu-content jmu-active">
+			<section id="progress">
+				<div class="demo-item">
+					<p class="demo-desc">&#x8FDB;&#x5EA6;&#x6761; - &#x4F20;&#x8F93;&#x6587;&#x4EF6;</p>
+					<div class="demo-block">
+						<div id="progress-demo-1">
+							<div class="jmu-progress-file jmu-clearfix">
+								<div class="progress-info">
+									<span class="progress-text">&#x4E0B;&#x8F7D;&#x4E2D;...</span>
+									(<span class="progress-size-curr">0</span>M/<span class="progress-size-total">0</span>M)
+
+									<p class="progress-bar-wrap">
+										<span class="progress-bar"></span>
+									</p>
+								</div>
+								<div class="progress-action jmu-horizental-center jmu-vertical-center">
+									<button class="action-cancle">&#x53D6;&#x6D88;</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<script class="demo-script">
+						;(function (){
+							// 图片或壁纸上传进度条
+							var progress1 = $('#progress-demo-1').progress({
+								$el: '.jmu-progress-file', // 指定条容器
+								percentage: 20, 		  // 初始化当前进度
+								total: 1.03    			  // 初始化文件大小
+							});
+							// 模拟收到后台新进度, 更新当前进度条的百分比
+							var timer = setInterval(function () {
+								var newPercentage1 = progress1.options.percentage + 1;
+								if (newPercentage1 > 100) {
+									newPercentage1 = ~~Math.random() * 20;
+								}
+								progress1.changeProgress(newPercentage1);
+							}, 500);
+							$('.action-cancle').on('tap', function () {
+								clearInterval(timer);
+							})
+						})();
+					</script>
+				</div>
+
+				<div class="demo-item">
+					<p class="demo-desc">&#x8FDB;&#x5EA6;&#x6761; - &#x56FE;&#x7247;&#x4E0A;&#x4F20;</p>
+					<div class="demo-block">
+						<div id="progress-demo-2">
+							<div class="jmu-progress-img jmu-horizental-center jmu-vertical-center">
+								<span class="progress-number">20</span>
+								<div class="progress-mask"></div>
+							</div>
+						</div>
+					</div>
+					<script class="demo-script">
+						;(function (){
+							var progress2 = $('#progress-demo-2').progress({
+								$el: '.jmu-progress-img',
+								percentage: 0,
+								total: 9.03
+							});
+							setInterval(function () {
+								var newPercentage2 = progress2.options.percentage + 1;
+								if (newPercentage2 > 100) {
+									newPercentage1 = ~~Math.random() * 20;
+								}
+								progress2.changeProgress(newPercentage2);
+							}, 500);
+						})();
+					</script>
+				</div>
+
+				<div class="demo-item">
+					<p class="demo-desc">&#x8FDB;&#x5EA6;&#x6761; - &#x5706;&#x73AF;&#x52A0;&#x8F7D;</p>
+					<div class="demo-block">
+						<div id="progress-demo-3">
+							<div class="jmu-progress-circle jmu-center">
+								<div class="jmu-progress-pie">
+									<div class="jmu-progress-pie-left">
+										<div class="jmu-progress-left"></div>
+									</div>
+									<div class="jmu-progress-pie-right">
+										<div class="jmu-progress-right"></div>
+									</div>
+									<div class="jmu-progress-mask jmu-horizental-center jmu-vertical-center">
+										<span class="progress-number">30</span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<script class="demo-script">
+						;(function (){
+							var progress3 = $('#progress-demo-3').progress({
+								$el: '.jmu-progress-circle',
+								percentage: 30,
+								total: 78
+							});
+							// 测试
+							setInterval(function () {
+								var newPercentage3 = progress3.options.percentage + 1;
+								if (newPercentage3 > 100) {
+									newPercentage1 = ~~Math.random() * 20;
+								}
+								progress3.changeProgress(newPercentage3);
+							}, 500);
+						})();
+					</script>
+				</div>
+			</section>
+		</div>
+	
+		<div class="jmu-content jmu-active">
+			<section id="range">
+				<div class="demo-item">
+					<p class="demo-desc">&#x8303;&#x56F4;&#x6761;</p>
+					<div class="demo-block">
+						<div id="range-demo">
+							<div class="jmu-form-item jmu-form-item-range jmu-border">
+								<label class="jmu-range">
+									<input type="range" min="1" max="100" step="1" value="50">
+									<span class="jmu-range-val">50</span>
+								</label>
+							</div>
+						</div>
+					</div>
+					<script src="../lib/zeptojs/zepto.min.js"></script>
+					<script src="../js/jmui.js"></script>
+					<script class="demo-script">
+						;(function (){
+							// 图片或壁纸上传进度条
+							var range = $('#range-demo').range({
+								$el: '.jmu-range',
+								min: 0, 	 // 最小
+								max: 100,    // 最大
+								step: 1, 	 // 步长
+								value: 50,   // 默认值
+								onInput: function (){
+									console.log('range value is changing.');
+								},
+								onChange: function () {
+									var self = this;
+									console.log('range value is changing to: ' + self.value);
+								}
+							});
+						})();
+					</script>
+				</div>
+			</section>
+		</div>
+	
+		<div class="jmu-content jmu-active">
+			<section id="dialog">
+				<div class="demo-item">
+					<p class="demo-desc">&#x5BF9;&#x8BDD;&#x6846;</p>
+					<div class="demo-block">
+						<!--无 html-->
+					</div>
+					<a class="demo-show jmu-btn-lg">&#x663E;&#x793A;&#x5BF9;&#x8BDD;&#x6846;</a>
+					<script class="demo-script">
+						;(function (){
+							// 取消按钮的回调函数
+							var func0 = function () {
+								console.log('你点了取消');
+							};
+							// 确定按钮的回调函数
+							var func1 = function () {
+								console.log('你点了确定');
+							};
+							var opts = {
+								// 必填项
+								title: '提示',		// 对话框标题
+								content: '你确定么？',// 对话框内容
+								btnText: ['取消', '确定'], // 按钮文字
+								btnHandle: [func0, func1], // 按钮点击后的回调函数
+
+								// 可选项, 以下为默认值
+								mask: true,     	// 是否显示遮罩
+								animation: true,	// 是否开启动画
+								tapHide: true,		// 打开对话框后，点击遮罩是否关闭对话框
+								preventScroll: true,// 是否禁止滚动
+							};
+							// 测试
+							var dialog = new JMU.Dialog();
+							$('#dialog').on('tap', '.demo-show',function (){
+								dialog.show(opts);
+							});
+						})();
+					</script>
+				</div>
+			</section>
+		</div>
+	
+	<div class="jmu-content jmu-active">
+		<section id="action-sheet">
+			<div class="demo-item">
+				<p class="demo-desc">&#x83DC;&#x5355;</p>
+				<div class="demo-block">
+					<!--无 html-->
+				</div>
+				<a class="demo-show jmu-btn-lg">&#x663E;&#x793A;&#x83DC;&#x5355;</a>
+				<script class="demo-script">
+					$(function (){
+						var func0 = function () {
+							console.log('你点了选项1!');
+						};
+						var func1 = function () {
+							console.log('你点了选项2!');
+						};
+						var opts = {
+							mask: true,
+							animation: true,
+							tapHide: true,
+							preventScroll: true,
+							content: ['分享给QQ好友', '分享到QQ空间'],
+							btnHandle: [func0, func1]
+						};
+						// 测试
+						var actionSheet = new JMU.ActionSheet();
+						$('#action-sheet').on('tap', '.demo-show', function (){
+							actionSheet.show(opts);
+						});
+					})
+				</script>
+			</div>
+		</section>
+	</div>
+
+		<div class="jmu-content jmu-active">
+			<section id="action-share">
+				<div class="demo-item">
+					<p class="demo-desc">&#x5206;&#x4EAB;&#x83DC;&#x5355;</p>
+					<div class="demo-block">
+						<!--无 html-->
+					</div>
+					<a class="demo-show jmu-btn-lg">&#x663E;&#x793A;&#x5206;&#x4EAB;&#x5230;&#x83DC;&#x5355;</a>
+					<script class="demo-script">
+						$(function (){
+							var func1 = function(){
+								console.log('你点了选项1');
+							};
+							var func2 = function(){
+								console.log('你点了选项2');
+							};
+							var func3 = function(){
+								console.log('你点了选项3');
+							};
+							var func4 = function(){
+								console.log('你点了选项4');
+							};
+							var func5 = function(){
+								console.log('你点了选项5');
+							};
+							var func6 = function(){
+								console.log('你点了选项6');
+							};
+							var content = [
+								{
+									value: '<img src="../img/share-qq.png"><span>QQ好友</span>', //展示的值
+									id: 'testId1',//给节点添加自定义id
+									className: 'sheet-item',//添加自己的样式
+									cmd: 'func1' //自定义事件名
+								},
+								{
+									value: '<img src="../img/share-qz.png"><span>QQ空间</span>',
+									id: 'testId2',
+									className: 'sheet-item',
+									cmd: 'func2'
+								},
+								{
+									value: '<img src="../img/share-wx.png"><span>微信</span>',
+									id: 'testId3',
+									className: 'sheet-item',
+									cmd: 'func3'
+								},
+
+								{
+									value: '<img src="../img/share-qq.png"><span>好友/群</span>',
+									id: 'testId4',
+									className: 'sheet-item',
+									cmd: 'func4'
+								},
+								{
+									value: '<img src="../img/share-qz.png"><span>QQ空间</span>',
+									id: 'testId5',
+									className: 'sheet-item',
+									cmd: 'func5'
+								},
+								{
+									value: '<img src="../img/share-wx.png"><span>微信</span>',
+									id: 'testId6',
+									className: 'sheet-item',
+									cmd: 'func6'
+								}
+							];
+
+							var optsShare = {
+								mask: true,
+								animation: true,
+								tapHide: true,
+								preventScroll: true,
+								content: content,
+								func1: func1,
+								func2: func2,
+								func3: func3,
+								func4: func4,
+								func5: func5,
+								func6: func6
+							};
+							// 测试
+							var actionShare = new JMU.ActionShare();
+							$('#action-share').on('tap', '.demo-show', function (){
+								actionShare.show(optsShare);
+							});
+						})
+					</script>
+				</div>
+
+			</section>
+		</div>
+	</div>
+<script>
+$(function () {
+    var blankList = ['_all.html', '_base-css.html', '_ui-css.html', '_ui-js.html'];
+    var page = window.location.pathname.split('/').pop();
+    if (blankList.indexOf(page) > -1) {
+        $('.demo-desc').css({
+            'text-align': 'center',
+            'display': 'block',
+            'color': '#ff6d00'
+        });
+        $('.demo-item').css({
+            'margin': '30px auto'
+        });
+        $('.jmu-content.js-active').css({
+            'margin-bottom': 50,
+            'padding':10,
+            'box-shadow': '0 0 4px #aaa'
+        });
+    } else {
+        $('.jmu-content').removeClass('jmu-active');
+        $('.jmu-content').eq(1).addClass('jmu-active');
+        // $(window).on('hashchange, fn) 有问题
+        window.onhashchange = function () {
+            $('.jmu-content').removeClass('jmu-active');
+            var id= window.location.hash;
+            $(id).parent('.jmu-content').addClass('jmu-active');
+        }
+    }
+});
+</script>
+</body>
+</html>

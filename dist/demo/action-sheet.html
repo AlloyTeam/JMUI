@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>JMUI</title>
+	<link rel="stylesheet" href="../css/jmui.css">
+	<script src="../lib/zeptojs/zepto.min.js"></script>
+	<script src="../js/jmui.js"></script>
+</head>
+<body class="jmu-app">
+<div class="jmu-header">
+	<a class="jmu-btn demo-return-btn" href="../index.html?tab=ui-js">返回</a><h2>菜单</h2>
+</div>
+<div class="jmu-content-container">
+	<div class="jmu-content jmu-active">
+		<section id="action-sheet">
+			<div class="demo-item">
+				<p class="demo-desc">菜单</p>
+				<div class="demo-block">
+					<!--无 html-->
+				</div>
+				<a class="demo-show jmu-btn-lg">显示菜单</a>
+				<script class="demo-script">
+					$(function (){
+						var func0 = function () {
+							console.log('你点了选项1!');
+						};
+						var func1 = function () {
+							console.log('你点了选项2!');
+						};
+						var opts = {
+							mask: true,
+							animation: true,
+							tapHide: true,
+							preventScroll: true,
+							content: ['分享给QQ好友', '分享到QQ空间'],
+							btnHandle: [func0, func1]
+						};
+						// 测试
+						var actionSheet = new JMU.ActionSheet();
+						$('#action-sheet').on('tap', '.demo-show', function (){
+							actionSheet.show(opts);
+						});
+					})
+				</script>
+			</div>
+		</section>
+	</div>
+</div>
+</body>
+</html>

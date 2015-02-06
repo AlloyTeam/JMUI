@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>JMUI</title>
+	<link rel="stylesheet" href="../css/jmui.css">
+	<script src="../lib/zeptojs/zepto.min.js"></script>
+	<script src="../js/jmui.js"></script>
+</head>
+<body class="jmu-app">
+	<div class="jmu-header">
+		<a class="jmu-btn demo-return-btn" href="../index.html">返回</a><h2>轮播图</h2>
+	</div>
+	<div class="jmu-content-container">
+		<div class="jmu-content jmu-active">
+			<section id="carousel">
+				<div class="demo-item">
+					<p class="demo-desc">轮播图</p>
+					<div class="demo-block">
+						<div id="carousel-demo">
+							<div class="jmu-carousel" style="width: 375px; height: 200px;">
+								<ul class="jmu-carousel-inner">
+									<li class="jmu-carousel-item"><img data-holder="375x200" data-holder-text="第0张"></li>
+									<li class="jmu-carousel-item"><img data-holder="375x200" data-holder-text="第1张"></li>
+									<li class="jmu-carousel-item"><img data-holder="375x200" data-holder-text="第2张"></li>
+									<li class="jmu-carousel-item"><img data-holder="375x200" data-holder-text="第3张"></li>
+									<li class="jmu-carousel-item"><img data-holder="375x200" data-holder-text="第4张"></li>
+									<li class="jmu-carousel-item"><img data-holder="375x200" data-holder-text="第5张"></li>
+									<li class="jmu-carousel-item"><img data-holder="375x200" data-holder-text="第6张"></li>
+									<li class="jmu-carousel-item"><img data-holder="375x200" data-holder-text="第7张"></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<script class="demo-script">
+						;(function (){
+							var el = '#carousel-demo .jmu-carousel';
+							var opts = {
+								// webkitTransitionDuration
+								webkitTransitionDuration : 300,
+								// 当前帧数
+								current : 0,
+								// 当前距离
+								currentpos : 0,
+								// 激活circle轮播方式，默认激活
+								enableCircleLoop : true,
+								// 激活自动轮, 默认激活, 自动轮播激活前提是激活了circle轮播方式
+								enableAutoLoop : true,
+								// 激活触点导航控件
+								enableDots : true,
+								// 自动轮换时长, 单位为 ms
+								autoLoopDuration : 5000
+							}
+							var carousel = new $.Carousel(el, opts);
+							$('#carousel-demo-to-6').on('tap', function (){
+								carousel.to(6, false);// 滚动到第6张, 使用动画
+							});
+							$('#carousel-demo-to-1').on('tap', function (){
+								carousel.to(1, true);// 滚动到第1张, 不使用动画
+							});
+						})();
+					</script>
+				</div>
+				<button id="carousel-demo-to-6" class="jmu-btn-lg">滚动到第6张, 使用动画</button>
+				<button id="carousel-demo-to-1" class="jmu-btn-lg">滚动到第1张, 不使用动画</button>
+			</section>
+		</div>
+	</div>
+
+
+</body>
+</html>

@@ -6,24 +6,28 @@ var mkdirp = require('mkdirp');
 var uuid = require('node-uuid');
 var Q = require('q');
 var _ = require('underscore.string');
-var pageConfig = require('../config').page;
+var pageConfig = require('../../config').page;
 var mail = require('../utils/mail');
 var util = require('../utils');
 var zip = require('zipfolder');
 
+
+// JMUI 源码路径
+var jmuiPath = '../../';
+
 // 主页
 router.get('/', function (req, res) {
-    var data = {title: 'JMUI'};
+    var data = {title: 'JMUI - 为移动而生'};
     res.render('home', data);
 });
-router.get('/home', function (req, res) {
-    var data = {title: 'JMUI'};
-    res.render('home', data);
+router.get('/index', function (req, res) {
+    var data = {title: 'JMUI - 为移动而生'};
+    res.render('index', data);
 });
 
 // 开速开始
 router.get('/quick-start', function (req, res) {
-    var data = {title: 'JMUI'};
+    var data = {title: 'JMUI - 快速开始'};
     res.render('quick-start', data);
 });
 
@@ -31,9 +35,9 @@ router.get('/quick-start', function (req, res) {
 router.get('/base-css', function (req, res) {
     var files = pageConfig['base-css'].files;
     // get demo codes from public/code/ to render
-    var demos = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/JMUI/dist/base-css.js')));
+    var demos = JSON.parse(fs.readFileSync(path.join(__dirname, jmuiPath, 'data/', '_base-css.js')));
     var data = {
-        title: '基础样式',
+        title: 'JMUI - 基础样式',
         demos: demos
     };
 
@@ -44,9 +48,9 @@ router.get('/base-css', function (req, res) {
 router.get('/ui-css', function (req, res) {
     var files = pageConfig['ui-css'].files;
     // get demo codes from public/code/ to render
-    var demos = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/JMUI/dist/ui-css.js')));
+    var demos = JSON.parse(fs.readFileSync(path.join(__dirname, jmuiPath, 'data/', '_ui-css.js')));
     var data = {
-        title: 'UI 组件',
+        title: 'JMUI - UI 组件',
         demos: demos
     };
     res.render('ui-css', data);
@@ -56,9 +60,9 @@ router.get('/ui-css', function (req, res) {
 router.get('/ui-js', function (req, res) {
     var files = pageConfig['ui-js'].files;
     // get demo codes from public/code/ to render
-    var demos = JSON.parse(fs.readFileSync(path.join(__dirname, '../public/JMUI/dist/ui-js.js')));
+    var demos = JSON.parse(fs.readFileSync(path.join(__dirname, jmuiPath, 'data/', '_ui-js.js')));
     var data = {
-        title: 'JS 插件',
+        title: 'JMUI - JS 插件',
         demos: demos
     };
     res.render('ui-js', data);
@@ -70,7 +74,7 @@ router.get('/customize', function (req, res) {
     var uiCss = pageConfig['ui-css'].files;
     var uiJs = pageConfig['ui-js'].files;
     var data = {
-        title: '定制化',
+        title: 'JMUI - 定制化',
         baseCss: baseCss,
         uiCss: uiCss,
         uiJs: uiJs
@@ -114,16 +118,17 @@ router.post('/customize', function (req, res) {
     cssFiles = cssFiles.concat(jsFiles);
 
     // 添加必选文件必选文件
-    var requiredFiles = require('../config.js').requiredFiles;
+    var requiredFiles = require('../../config.js').requiredFiles;
     cssFiles = requiredFiles.css.concat(cssFiles);
     jsFiles = requiredFiles.js.concat(jsFiles);
 
     cssFileInPath = cssFiles.map(function (cssName) {
-        return path.join(__dirname, '../public/JMUI/dist/css', cssName + '.css');
+
+        return path.join(__dirname, jmuiPath, 'css', cssName + '.css');
     });
 
     jsFileInPath = jsFiles.map(function (jsName) {
-        return path.join(__dirname, '../public/JMUI/dist/js', jsName + '.js');
+        return path.join(__dirname, jmuiPath, 'js', jsName + '.js');
     });
 
     util.concatFiles(cssFileInPath, unCompressedCssFileOutPath)

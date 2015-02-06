@@ -12,24 +12,24 @@ module.exports = function(grunt){
 
         clean: {
             download: ['public/download'],
-            jmui: ['public/JMUI'],
-            site: ['public/site']
+            //jmui: ['public/JMUI'],
+            //site: ['public/site']
         },
 
         copy: {
             // 复制 JMUI grunt build 后的 dist 文件夹
-            jmui: {
-                files: [
-                    {src: '../JMUI/dist/**/*', dest: 'public/JMUI/'}
-                ]
-            },
-            site: {
-                files: [
-                    {expand: true, cwd:'public/libs', src: '**/*', dest: './public/site/libs/'},
-                    {expand: true, cwd:'public/JMUI', src: '**/*', dest: './public/site/JMUI/'},
-                    {expand: true, cwd:'public/img', src: '**/*', dest: './public/site/img/'}
-                ]
-            }
+            //jmui: {
+            //    files: [
+            //        {src: '../JMUI/dist/**/*', dest: 'public/JMUI/'}
+            //    ]
+            //},
+            //site: {
+            //    files: [
+            //        {expand: true, cwd:'public/libs', src: '**/*', dest: './public/site/libs/'},
+            //        {expand: true, cwd:'public/JMUI', src: '**/*', dest: './public/site/JMUI/'},
+            //        {expand: true, cwd:'public/img', src: '**/*', dest: './public/site/img/'}
+            //    ]
+            //}
         },
 
         sass: {
@@ -71,41 +71,41 @@ module.exports = function(grunt){
         },
 
         htmlmin: {
-            site: {
-                options: {
-                    removeComments: true,
-                    collapseWhitespace: true
-                },
-                files: [{
-                    expand: true,
-                    cwd: 'public/',
-                    src: '*.html',
-                    dest: 'public/site/'
-                }]
-            }
+            //site: {
+            //    options: {
+            //        removeComments: true,
+            //        collapseWhitespace: true
+            //    },
+            //    files: [{
+            //        expand: true,
+            //        cwd: 'public/',
+            //        src: '*.html',
+            //        dest: 'public/site/'
+            //    }]
+            //}
         },
 
         cssmin: {
-            site: {
-                files: [{
-                    expand: true,
-                    cwd: 'public/css/',
-                    src: ['*.css'],
-                    dest: 'public/site/css',
-                    ext: '.css'
-                }]
-            }
+            //site: {
+            //    files: [{
+            //        expand: true,
+            //        cwd: 'public/css/',
+            //        src: ['*.css'],
+            //        dest: 'public/site/css',
+            //        ext: '.css'
+            //    }]
+            //}
         },
 
         uglify: {
-            site: {
-                files: [{
-                    expand: true,
-                    cwd: 'public/js',
-                    src: '**/*.js',
-                    dest: 'public/site/js'
-                }]
-            }
+            //site: {
+            //    files: [{
+            //        expand: true,
+            //        cwd: 'public/js',
+            //        src: '**/*.js',
+            //        dest: 'public/site/js'
+            //    }]
+            //}
         },
 
         watch: {
@@ -144,15 +144,6 @@ module.exports = function(grunt){
             }
         },
 
-        concurrent: {
-            dev: {
-                tasks: ['watch', 'nodemon'],
-                options: {
-                    logConcurrentOutput: true
-                }
-            }
-        },
-
         open : {
             dev : {
                 path: 'http://127.0.0.1:3000/',
@@ -162,88 +153,8 @@ module.exports = function(grunt){
     });
 
 
-    grunt.registerTask('generateDemoCodes','生成demo代码片段', function(){
-        var fs = require('fs');
-        var pageConfig = require('./config').page;
-        var utils = require('./utils');
-
-        var jmuiDir = path.resolve('./public/JMUI/');
-        var jmuiDistDir = path.resolve('./public/JMUI/dist');
-        var jmuiDemoDir = path.resolve('./public/JMUI/dist/demo/');
-        // 将html 保存到文件中
-        var htmlHeader = fs.readFileSync(path.join(jmuiDemoDir, '_header.html'));
-        var htmlFooter = fs.readFileSync(path.join(jmuiDemoDir, '_footer.html'));
-
-        // 将生成的代码片段保存到文件中
-        // 将多个 html 拼成一个文件
-        for (var category in pageConfig) {
-            var files = pageConfig[category].files;
-            var demos = utils.getDemos(jmuiDemoDir, files);
-            var htmlContent = '';
-            fs.writeFileSync(path.join(jmuiDistDir, category + '.js'), JSON.stringify(demos));
-            for(var i = 0; i < files.length; i ++) {
-                htmlContent += demos[i].html;
-            }
-                fs.writeFileSync(path.join(jmuiDemoDir, category + '.html'), htmlHeader + htmlContent + htmlFooter);
-        }
-    });
-
-    grunt.registerTask('generateStaticHtmls', '生成静态页面', function () {
-        var ejs = require('ejs');
-        var fs = require('fs');
-        var path = require('path');
-
-        function replaceHref(str, pages) {
-            pages.forEach(function (name) {
-                str = str.replace('href="' + name + '"', 'href="' + name + '.html"');
-            });
-
-            str = str.replace('<li><a href="customize">定制化</a></li>', '');
-            return str;
-        }
-        // name = 'base-css'/'ui-css'/'ui-js'/'home'/'customize';
-        var pages = ['base-css', 'ui-css', 'ui-js', 'home', 'quick-start'];
-
-        pages.forEach(function (name) {
-            var filePath = path.join(__dirname, './views/' + name + '.ejs');
-            var demoConfigPath = path.join(__dirname, './public/JMUI/dist/' + name + '.js');
-
-            var data = {
-                title: name,
-                filename: filePath // 指定 include 时的文件
-            };
-
-            if (fs.existsSync(demoConfigPath)) {
-                data.demos = JSON.parse(fs.readFileSync(demoConfigPath));
-            }
-
-            var str = fs.readFileSync(filePath).toString();
-
-
-            var html = ejs.render(str, data);
-            html = replaceHref(html, pages);
-
-            var destPath = path.join(__dirname, './public', name + '.html');
-            fs.writeFileSync(destPath, html);
-        });
-    });
-
     // 生产环境下执行 grunt
     grunt.registerTask('default', ['clean:download', 'nodemon']);
 
-    // 部署到生产环境下前执行 先把 JMUI/dist 复制到 public/JMUI/dist 然后执行grunt build
-    // 如果 JMUI 与 JMUI-site 在同级目录, 则执行 $ grunt copy:jmui 即可
-    grunt.registerTask('build', ['clean:download', 'generateDemoCodes', 'sass', 'postcss']);
-
-
-    // 生成静态代码
-    grunt.registerTask('site', [
-        'clean:site',
-        'generateStaticHtmls',
-        'htmlmin:site',
-        'cssmin:site',
-        'uglify:site',
-        'copy:site'
-    ]);
-
+    grunt.registerTask('build', ['clean:download', 'sass', 'postcss']);
 };

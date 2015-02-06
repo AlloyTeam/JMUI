@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>JMUI</title>
+	<link rel="stylesheet" href="../css/jmui.css">
+	<script src="../lib/zeptojs/zepto.min.js"></script>
+	<script src="../js/jmui.js"></script>
+</head>
+<body class="jmu-app">
+	<div class="jmu-header">
+		<a class="jmu-btn demo-return-btn" href="../index.html?tab=ui-js">返回</a>
+		<h2>分享菜单</h2>
+	</div>
+	<div class="jmu-content-container">
+		<div class="jmu-content jmu-active">
+			<section id="action-share">
+				<div class="demo-item">
+					<p class="demo-desc">分享菜单</p>
+					<div class="demo-block">
+						<!--无 html-->
+					</div>
+					<a class="demo-show jmu-btn-lg">显示分享到菜单</a>
+					<script class="demo-script">
+						$(function (){
+							var func1 = function(){
+								console.log('你点了选项1');
+							};
+							var func2 = function(){
+								console.log('你点了选项2');
+							};
+							var func3 = function(){
+								console.log('你点了选项3');
+							};
+							var func4 = function(){
+								console.log('你点了选项4');
+							};
+							var func5 = function(){
+								console.log('你点了选项5');
+							};
+							var func6 = function(){
+								console.log('你点了选项6');
+							};
+							var content = [
+								{
+									value: '<img src="../img/share-qq.png"><span>QQ好友</span>', //展示的值
+									id: 'testId1',//给节点添加自定义id
+									className: 'sheet-item',//添加自己的样式
+									cmd: 'func1' //自定义事件名
+								},
+								{
+									value: '<img src="../img/share-qz.png"><span>QQ空间</span>',
+									id: 'testId2',
+									className: 'sheet-item',
+									cmd: 'func2'
+								},
+								{
+									value: '<img src="../img/share-wx.png"><span>微信</span>',
+									id: 'testId3',
+									className: 'sheet-item',
+									cmd: 'func3'
+								},
+
+								{
+									value: '<img src="../img/share-qq.png"><span>好友/群</span>',
+									id: 'testId4',
+									className: 'sheet-item',
+									cmd: 'func4'
+								},
+								{
+									value: '<img src="../img/share-qz.png"><span>QQ空间</span>',
+									id: 'testId5',
+									className: 'sheet-item',
+									cmd: 'func5'
+								},
+								{
+									value: '<img src="../img/share-wx.png"><span>微信</span>',
+									id: 'testId6',
+									className: 'sheet-item',
+									cmd: 'func6'
+								}
+							];
+
+							var optsShare = {
+								mask: true,
+								animation: true,
+								tapHide: true,
+								preventScroll: true,
+								content: content,
+								func1: func1,
+								func2: func2,
+								func3: func3,
+								func4: func4,
+								func5: func5,
+								func6: func6
+							};
+							// 测试
+							var actionShare = new JMU.ActionShare();
+							$('#action-share').on('tap', '.demo-show', function (){
+								actionShare.show(optsShare);
+							});
+						})
+					</script>
+				</div>
+
+			</section>
+		</div>
+	</div>
+</body>
+</html>
