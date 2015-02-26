@@ -14,8 +14,8 @@ function getDemos (jmuiDemoDir, files) {
     for(var i=0;i<len;i++) {
         var name = files[i].name, title = files[i].title;
         var demoHtmlFilePath = path.join(jmuiDemoDir, name + '.html');
-        var demoHtmlFileContent = fs.readFileSync(demoHtmlFilePath);
-        var $ = cheerio.load(demoHtmlFileContent);
+        var demoHtmlFileContent = fs.readFileSync(demoHtmlFilePath).toString();
+        var $ = cheerio.load(demoHtmlFileContent, {decodeEntities: false});
         var html = $('.jmu-content-container').html();
         var items = [];
         var itemsLen = $('.demo-item').length;
@@ -38,7 +38,6 @@ function getDemos (jmuiDemoDir, files) {
             items: items,
             html: html
         };
-
         demos.push(demo);
     }
     return demos;
