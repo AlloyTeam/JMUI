@@ -37,14 +37,13 @@ module.exports = {
         }
     },
 
-    // 定制化打包时需要的文件
-    // 指定必须包含的基础文件
+    // 定制化打包时指定必须包含的基础文件
     requiredFiles: {
         // jmui.css 依赖 reset.css
         css: ['reset'],
 
-        // jmui.js 依赖 zepto.min.js 以及 core.js
-        js: ['../lib/zeptojs/zepto.min','core']
+        // jmui.js 依赖 zepto.min.js 以及 core/core.js 和 core/component.js
+        js: ['../lib/zeptojs/zepto.min','core/core', 'core/component']
     }
 };
 

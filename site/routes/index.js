@@ -35,7 +35,7 @@ router.get('/quick-start', function (req, res) {
 router.get('/base-css', function (req, res) {
     var files = pageConfig['base-css'].files;
     // get demo codes from public/code/ to render
-    var demos = JSON.parse(fs.readFileSync(path.join(__dirname, jmuiPath, 'data/', '_base-css.js')));
+    var demos = JSON.parse(fs.readFileSync(path.join(__dirname, jmuiPath, 'data/', 'demo-base-css.js')));
     var data = {
         title: 'JMUI - 基础样式',
         demos: demos
@@ -48,7 +48,7 @@ router.get('/base-css', function (req, res) {
 router.get('/ui-css', function (req, res) {
     var files = pageConfig['ui-css'].files;
     // get demo codes from public/code/ to render
-    var demos = JSON.parse(fs.readFileSync(path.join(__dirname, jmuiPath, 'data/', '_ui-css.js')));
+    var demos = JSON.parse(fs.readFileSync(path.join(__dirname, jmuiPath, 'data/', 'demo-ui-css.js')));
     var data = {
         title: 'JMUI - UI 组件',
         demos: demos
@@ -60,7 +60,7 @@ router.get('/ui-css', function (req, res) {
 router.get('/ui-js', function (req, res) {
     var files = pageConfig['ui-js'].files;
     // get demo codes from public/code/ to render
-    var demos = JSON.parse(fs.readFileSync(path.join(__dirname, jmuiPath, 'data/', '_ui-js.js')));
+    var demos = JSON.parse(fs.readFileSync(path.join(__dirname, jmuiPath, 'data/', 'demo-ui-js.js')));
     var data = {
         title: 'JMUI - JS 插件',
         demos: demos
