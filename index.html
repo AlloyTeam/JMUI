@@ -34,7 +34,7 @@
             </ul>
         </div>
     </div>
-    <script class="demo-script">
+    <script>
     ;(function () {
         var exports = {
             // page 设置不同页面需要输出的文档
@@ -42,11 +42,11 @@
                 // http://localhost/base-css 基础样式
                 "base-css": {
                     "files": [
-                        {"name": "base-color", "title": "基础颜色"},
-                        {"name": "base-clearfix", "title": "清除浮动"},
-                        {"name": "base-center", "title": "垂直居中"},
-                        {"name": "base-1px", "title": "1像素边框"},
-                        {"name": "base-nowrap", "title": "文字不换行"}
+                        {"name": "base-color", "title": "基础颜色", "required": false},
+                        {"name": "base-clearfix", "title": "清除浮动", "required": false},
+                        {"name": "base-center", "title": "垂直居中", "required": false},
+                        {"name": "base-1px", "title": "1px边框", "required": false},
+                        {"name": "base-nowrap", "title": "文字溢出省略", "required": false}
                     ]
                 },
                 // http://localhost/ui-css UI组件
@@ -70,9 +70,20 @@
                         {"name": "range", "title": "范围条"},
                         {"name": "dialog", "title": "对话框"},
                         {"name": "action-sheet", "title": "菜单"},
-                        {"name": "action-share", "title": "分享到"}
+                        {"name": "action-share", "title": "分享到"},
+                        {"name": "swipe-down-refresh", "title": "下拉刷新"},
+                        {"name": "carousel", "title": "轮播图"}
                     ]
                 }
+            },
+
+            // 定制化打包时指定必须包含的基础文件
+            requiredFiles: {
+                // jmui.css 依赖 reset.css
+                css: ['reset'],
+
+                // jmui.js 依赖 zepto.min.js 以及 core/core.js 和 core/component.js
+                js: ['../lib/zeptojs/zepto.min','core/core', 'core/component']
             }
         };
 
@@ -101,7 +112,6 @@
             }
         };
         $('.jmu-footer').tab(opts).show();
-
     })();
     </script>
 </body>

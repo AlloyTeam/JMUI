@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="format-detection" content="telephone=no">
+	<title>JMUI</title>
+	<link rel="stylesheet" href="../css/jmui.css">
+	<script src="../lib/zeptojs/zepto.min.js"></script>
+	<script src="../js/jmui.js"></script>
+</head>
+<body class="jmu-app">
+	<div class="jmu-header">
+		<a class="jmu-btn demo-return-btn" href="../index.html?tab=ui-js">返回</a><h2>下拉刷新</h2>
+	</div>
+	<div class="jmu-content-container">
+		<div class="jmu-content jmu-active">
+			<section id="swipe-down-refresh">
+				<div class="demo-item">
+					<p class="demo-desc">下拉刷新</p>
+					<div class="demo-block">
+						<div class="demo-swipe-el">
+							<div>请下拉</div>
+						</div>
+					</div>
+					<style>
+						.test-div {
+							width: 100%;
+							height: 0;
+							opacity: 0;
+							color: #fff;
+							text-align: center;
+						}
+					</style>
+					<script>
+						var laiUtil = {};
+
+						laiUtil.setRandomBgColor = function (selector) {
+							$(selector).each(function () {
+								var rgba = laiUtil.getRandomBgColor();
+								$(this).css('background-color', rgba);
+							})
+						};
+						laiUtil.getRandomBgColor = function () {
+							var r = laiUtil.getRandomNumber(0,255);
+							var g = laiUtil.getRandomNumber(0,255);
+							var b = laiUtil.getRandomNumber(0,255);
+							var a = laiUtil.getRandomNumber(50,100) / 100;
+							return 'rgba(' + r + ',' + g + ',' + b + ',' + a +')';
+						};
+						laiUtil.getRandomNumber = function (min, max) {
+							var range = max - min;
+							var result = Math.floor(Math.random() * range) + min;
+							return result;
+						};
+						laiUtil.appendTestDiv = function (num) {
+							for (var i = 0; i < num; i++) {
+								setTimeout(function () {
+									var color = laiUtil.getRandomBgColor();
+									var $div = $('<div>').css({'background-color': color, 'opacity': 0});
+									$('.demo-swipe-el').prepend($div);
+									$div.animate({
+										opacity: 1,
+										height: 100
+									}, 500, 'ease-in-out');
+								}, i * 100);
+							}
+						};
+						laiUtil.appendTestDiv(2);
+					</script>
+					<script class="demo-script">
+						;(function (){
+							function refreshFunc (callback) {
+								// 模拟异步拉取数据
+								console.log('正在拉取数据');
+								setTimeout(function () {
+									console.log('完成拉取数据');
+									// laiUtil.appendTestDiv 用于 demo: 插入两段 div
+									laiUtil.appendTestDiv(2);
+									// 执行更新操作
+									callback();
+								}, 3000);
+							}
+
+							// swipe down options
+							var options = {
+								el: '.demo-swipe-el', // 下拉元素， 若无指定则默认为 'body'
+//								swipeDownDistance: 60, // 下拉激活刷新的距离
+//								swipeDownTips: ['再用点力', '释放刷新', '正在刷新', '刷新成功'], // 下拉提示文案
+								refreshFunc: refreshFunc
+							};
+							new JMU.SwipeDownRefresh(options);
+						})();
+					</script>
+				</div>
+			</section>
+		</div>
+	</div>
+</body>
+</html>

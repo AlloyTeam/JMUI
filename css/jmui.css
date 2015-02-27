@@ -586,7 +586,6 @@ em {
 }
 .demo-border-1px,
 .jmu-header,
-#demo-page .jmu-list-item-link,
 #base-color .demo-block p,
 #base-clearfix .jmu-clear-fix,
 #base-clearfix .jmu-clear-fix div,
@@ -598,8 +597,13 @@ em {
 #form .jmu-form,
 #list .demo-item,
 #progress .demo-item,
-#range .demo-item {
+#range .demo-item,
+#swipe-down-refresh .demo-swipe-el {
   border: 1px solid #eee;
+}
+.demo-border-1px-bottom,
+#demo-page .jmu-list-item-link {
+  border-bottom: 1px solid #eee;
 }
 .jmu-header {
   text-align: center;
@@ -709,7 +713,6 @@ h2 {
   text-align: center;
   height: 40px;
   line-height: 40px;
-  background: #eee;
 }
 #grid .jmu-col {
   outline: 1px solid #eee;
@@ -730,6 +733,12 @@ h2 {
 }
 #corner-tag .jmu-corner-tag {
   display: inline-block;
+}
+#swipe-down-refresh .demo-swipe-el > div {
+  height: 50px;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
 }
 .jmu-dialog {
   display: none;
@@ -1548,7 +1557,6 @@ em {
 }
 .demo-border-1px,
 .jmu-header,
-#demo-page .jmu-list-item-link,
 #base-color .demo-block p,
 #base-clearfix .jmu-clear-fix,
 #base-clearfix .jmu-clear-fix div,
@@ -1560,8 +1568,13 @@ em {
 #form .jmu-form,
 #list .demo-item,
 #progress .demo-item,
-#range .demo-item {
+#range .demo-item,
+#swipe-down-refresh .demo-swipe-el {
   border: 1px solid #eee;
+}
+.demo-border-1px-bottom,
+#demo-page .jmu-list-item-link {
+  border-bottom: 1px solid #eee;
 }
 .jmu-header {
   text-align: center;
@@ -1671,7 +1684,6 @@ h2 {
   text-align: center;
   height: 40px;
   line-height: 40px;
-  background: #eee;
 }
 #grid .jmu-col {
   outline: 1px solid #eee;
@@ -1692,6 +1704,12 @@ h2 {
 }
 #corner-tag .jmu-corner-tag {
   display: inline-block;
+}
+#swipe-down-refresh .demo-swipe-el > div {
+  height: 50px;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
 }
 .jmu-dialog {
   display: none;
@@ -2295,7 +2313,6 @@ li.jmu-list-item-link:after {
 }
 .jmu-progress-file {
   padding: 20px 30px;
-  border: 1px solid #eee;
   background: rgba(255,255,255,0.8);
 }
 .jmu-progress-file .progress-info {
@@ -2685,6 +2702,38 @@ em {
 .jmu-search-bar.jmu-focus .btn-cancel {
   display: block;
 }
+.jmu-swipe-tips {
+  position: absolute;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  width: 100%;
+  font-size: 14px;
+  height: 50px;
+}
+.jmu-swipe-tips[data-state]:before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+.jmu-swipe-tips[data-state="-1"]:before {
+  background: none;
+}
+.jmu-swipe-tips[data-state="0"]:before {
+  background: url("../img/arrow-down.png") center center/contain no-repeat;
+}
+.jmu-swipe-tips[data-state="1"]:before {
+  background: url("../img/arrow-up.png") center center/contain no-repeat;
+}
+.jmu-swipe-tips[data-state="2"]:before {
+  background: url("../img/spinner.png") center center/contain no-repeat;
+}
+.jmu-swipe-tips[data-state="3"]:before {
+  background: url("../img/checkmark.png") center center/contain no-repeat;
+}
 .jmu-form-item-switch {
   height: 44px;
   line-height: 44px;
@@ -2975,7 +3024,6 @@ em {
 }
 .demo-border-1px,
 .jmu-header,
-#demo-page .jmu-list-item-link,
 #base-color .demo-block p,
 #base-clearfix .jmu-clear-fix,
 #base-clearfix .jmu-clear-fix div,
@@ -2987,8 +3035,13 @@ em {
 #form .jmu-form,
 #list .demo-item,
 #progress .demo-item,
-#range .demo-item {
+#range .demo-item,
+#swipe-down-refresh .demo-swipe-el {
   border: 1px solid #eee;
+}
+.demo-border-1px-bottom,
+#demo-page .jmu-list-item-link {
+  border-bottom: 1px solid #eee;
 }
 .jmu-header {
   text-align: center;
@@ -3098,7 +3151,6 @@ h2 {
   text-align: center;
   height: 40px;
   line-height: 40px;
-  background: #eee;
 }
 #grid .jmu-col {
   outline: 1px solid #eee;
@@ -3119,6 +3171,12 @@ h2 {
 }
 #corner-tag .jmu-corner-tag {
   display: inline-block;
+}
+#swipe-down-refresh .demo-swipe-el > div {
+  height: 50px;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
 }
 .jmu-app {
   background: #fff;
@@ -3492,7 +3550,6 @@ li.jmu-list-item-link:after {
 }
 .jmu-progress-file {
   padding: 20px 30px;
-  border: 1px solid #eee;
   background: rgba(255,255,255,0.8);
 }
 .jmu-progress-file .progress-info {
@@ -3882,6 +3939,38 @@ em {
 .jmu-search-bar.jmu-focus .btn-cancel {
   display: block;
 }
+.jmu-swipe-tips {
+  position: absolute;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
+  width: 100%;
+  font-size: 14px;
+  height: 50px;
+}
+.jmu-swipe-tips[data-state]:before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+.jmu-swipe-tips[data-state="-1"]:before {
+  background: none;
+}
+.jmu-swipe-tips[data-state="0"]:before {
+  background: url("../img/arrow-down.png") center center/contain no-repeat;
+}
+.jmu-swipe-tips[data-state="1"]:before {
+  background: url("../img/arrow-up.png") center center/contain no-repeat;
+}
+.jmu-swipe-tips[data-state="2"]:before {
+  background: url("../img/spinner.png") center center/contain no-repeat;
+}
+.jmu-swipe-tips[data-state="3"]:before {
+  background: url("../img/checkmark.png") center center/contain no-repeat;
+}
 .jmu-form-item-switch {
   height: 44px;
   line-height: 44px;
@@ -4199,7 +4288,6 @@ em {
 }
 .demo-border-1px,
 .jmu-header,
-#demo-page .jmu-list-item-link,
 #base-color .demo-block p,
 #base-clearfix .jmu-clear-fix,
 #base-clearfix .jmu-clear-fix div,
@@ -4211,8 +4299,13 @@ em {
 #form .jmu-form,
 #list .demo-item,
 #progress .demo-item,
-#range .demo-item {
+#range .demo-item,
+#swipe-down-refresh .demo-swipe-el {
   border: 1px solid #eee;
+}
+.demo-border-1px-bottom,
+#demo-page .jmu-list-item-link {
+  border-bottom: 1px solid #eee;
 }
 .jmu-header {
   text-align: center;
@@ -4322,7 +4415,6 @@ h2 {
   text-align: center;
   height: 40px;
   line-height: 40px;
-  background: #eee;
 }
 #grid .jmu-col {
   outline: 1px solid #eee;
@@ -4343,4 +4435,10 @@ h2 {
 }
 #corner-tag .jmu-corner-tag {
   display: inline-block;
+}
+#swipe-down-refresh .demo-swipe-el > div {
+  height: 50px;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
 }

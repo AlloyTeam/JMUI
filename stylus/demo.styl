@@ -9,6 +9,9 @@
 .demo-border-1px {
   border: 1px solid #eee;
 }
+.demo-border-1px-bottom {
+  border-bottom: 1px solid #eee;
+}
 
 .jmu-header {
   text-align: center;
@@ -80,7 +83,7 @@ h2 {
       /*@extend .demo-padding;*/
     }
   .jmu-list-item-link {
-    @extend .demo-border-1px;
+    @extend .demo-border-1px-bottom;
     @extend .demo-margin;
   }
 }
@@ -193,7 +196,6 @@ h2 {
   text-align: center;
   height: 40px;
   line-height: 40px;
-  background: #eee;
 }
 
 #grid .jmu-col {
@@ -258,3 +260,15 @@ h2 {
 #corner-tag .jmu-corner-tag {
   display: inline-block;
 }
+
+  #swipe-down-refresh {
+    .demo-swipe-el {
+      @extend .demo-border-1px;
+    }
+    .demo-swipe-el > div {
+      height: 50px;
+      display: -webkit-box;
+      -webkit-box-pack: center;
+      -webkit-box-align: center;
+    }
+  }

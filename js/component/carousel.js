@@ -3,7 +3,7 @@
  * 20140625
  * summary : a slider depend on zetpo, which work for mobile
  */
-define(function() { 
+;(function ($, JMU) {
     // 'use strict';
 
     // if exist
@@ -46,7 +46,7 @@ define(function() {
         _prepareForUI(this);
         // initialize event
         _prepareForEvt(this);
-        // 
+        //
         _autoLoop.start.call(this);
     }
 
@@ -182,12 +182,12 @@ define(function() {
                 // 表示不受范围控制
                 var isInRange = that.enableCircleLoop ? !!1 : diration > 0 ? that.current > 0 : that.current < framesLen-1;
                 // 是否滚动过半
-                 var isHalf = absdistance >= Math.floor(that.width/2);
+                var isHalf = absdistance >= Math.floor(that.width/2);
                 // 手指滑动速度
                 var ss = absdistance / (+new Date()-starttime);
 
-               // log(that.width)
-               // log(ss)
+                // log(that.width)
+                // log(ss)
                 that.to(function(){
                     var index = that.current - ((speed < ss || isHalf) && isInRange ? diration : 0);
                     // console.log(index)
@@ -303,5 +303,4 @@ define(function() {
             }
         });
     };
-
-});
+})(Zepto, JMU);

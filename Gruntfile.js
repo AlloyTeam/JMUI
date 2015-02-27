@@ -73,13 +73,15 @@ module.exports = function (grunt) {
             },
             // TODO 这里的 zepto 来自 coupon/js/lib/zepto 含业务代码，应抽离
             zepto: {
-                src: ['lib/zeptojs/zepto.js',
+                src: [
+                    'lib/zeptojs/zepto.js',
                     'lib/zeptojs/event.js',
                     'lib/zeptojs/extend/touch.js',     // modify fix ios 误点击
                     'lib/zeptojs/detect.js',
                     'lib/zeptojs/extend/util.js',
-                    'lib/zeptojs/data.js'
-                    //'lib/zeptojs/animate.js',
+                    'lib/zeptojs/animate.js'
+                    //'lib/zeptojs/fx.js',
+                    //'lib/zeptojs/fx_methods.js',
                     //'lib/zeptojs/extend/ajax.js',    // modify fix 跨域ajax bort触发error
                 ],
                 dest: 'lib/zeptojs/zepto.min.js'
@@ -91,7 +93,7 @@ module.exports = function (grunt) {
                     'js/util/*.js',
                     'js/component/*.js',
                     // TODO 以下组件未整理好
-                    '!js/component/carousel.js'
+                    'js/component/carousel.js'
                 ],
                 dest: 'js/jmui.js'
             }
@@ -211,7 +213,7 @@ module.exports = function (grunt) {
     });
 
 
-    grunt.registerTask('default', ['watch']);
+    grunt.registerTask('default', ['concat', 'watch']);
 
     // 生成 Demo 和配置自动生成文档网站
     grunt.registerTask('site', ['generateDemoCodes', 'generateStaticHtmls']);

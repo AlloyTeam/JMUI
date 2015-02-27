@@ -32,7 +32,9 @@ module.exports = {
                 {"name": "range", "title": "范围条"},
                 {"name": "dialog", "title": "对话框"},
                 {"name": "action-sheet", "title": "菜单"},
-                {"name": "action-share", "title": "分享到"}
+                {"name": "action-share", "title": "分享到"},
+                {"name": "swipe-down-refresh", "title": "下拉刷新"},
+                {"name": "carousel", "title": "轮播图"}
             ]
         }
     },
