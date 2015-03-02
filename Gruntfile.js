@@ -79,9 +79,8 @@ module.exports = function (grunt) {
                     'lib/zeptojs/extend/touch.js',     // modify fix ios 误点击
                     'lib/zeptojs/detect.js',
                     'lib/zeptojs/extend/util.js',
-                    'lib/zeptojs/animate.js'
-                    //'lib/zeptojs/fx.js',
-                    //'lib/zeptojs/fx_methods.js',
+                    'lib/zeptojs/fx.js'
+                    //'lib/zeptojs/fx_methods.js'
                     //'lib/zeptojs/extend/ajax.js',    // modify fix 跨域ajax bort触发error
                 ],
                 dest: 'lib/zeptojs/zepto.min.js'
@@ -91,9 +90,7 @@ module.exports = function (grunt) {
                     'js/core/core.js',
                     'js/core/component.js',
                     'js/util/*.js',
-                    'js/component/*.js',
-                    // TODO 以下组件未整理好
-                    'js/component/carousel.js'
+                    'js/component/*.js'
                 ],
                 dest: 'js/jmui.js'
             }

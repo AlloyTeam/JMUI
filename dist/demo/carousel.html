@@ -34,8 +34,14 @@
 							</div>
 						</div>
 					</div>
+					<br/>
+					<button id="carousel-demo-to-1" class="jmu-btn">不使用动画到第1张</button>
+					<button id="carousel-demo-to-6" class="jmu-btn">使用动画到第6张</button>
 					<script class="demo-script">
 						;(function (){
+							// 占位图;
+							$.holder();
+
 							var el = '#carousel-demo .jmu-carousel';
 							var opts = {
 								// webkitTransitionDuration
@@ -52,7 +58,7 @@
 								enableDots : true,
 								// 自动轮换时长, 单位为 ms
 								autoLoopDuration : 5000
-							}
+							};
 							var carousel = new $.Carousel(el, opts);
 							$('#carousel-demo-to-6').on('tap', function (){
 								carousel.to(6, false);// 滚动到第6张, 使用动画
@@ -63,8 +69,7 @@
 						})();
 					</script>
 				</div>
-				<button id="carousel-demo-to-6" class="jmu-btn-lg">滚动到第6张, 使用动画</button>
-				<button id="carousel-demo-to-1" class="jmu-btn-lg">滚动到第1张, 不使用动画</button>
+
 			</section>
 		</div>
 	</div>

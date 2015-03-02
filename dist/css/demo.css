@@ -68,7 +68,6 @@
 }
 .demo-border-1px,
 .jmu-header,
-#demo-page .jmu-list-item-link,
 #base-color .demo-block p,
 #base-clearfix .jmu-clear-fix,
 #base-clearfix .jmu-clear-fix div,
@@ -80,8 +79,13 @@
 #form .jmu-form,
 #list .demo-item,
 #progress .demo-item,
-#range .demo-item {
+#range .demo-item,
+#swipe-down-refresh .demo-swipe-el {
   border: 1px solid #eee;
+}
+.demo-border-1px-bottom,
+#demo-page .jmu-list-item-link {
+  border-bottom: 1px solid #eee;
 }
 .jmu-header {
   text-align: center;
@@ -191,7 +195,6 @@ h2 {
   text-align: center;
   height: 40px;
   line-height: 40px;
-  background: #eee;
 }
 #grid .jmu-col {
   outline: 1px solid #eee;
@@ -212,4 +215,10 @@ h2 {
 }
 #corner-tag .jmu-corner-tag {
   display: inline-block;
+}
+#swipe-down-refresh .demo-swipe-el > div {
+  height: 50px;
+  display: -webkit-box;
+  -webkit-box-pack: center;
+  -webkit-box-align: center;
 }

@@ -574,32 +574,6 @@
         }
     });
 })(Zepto);;;(function( $, JMU ) {
-    /*底部浮层组件
-    * 
-    * 调用示例：by gctang
-    * pro.actionSheet.show({
-    *   content: ['value1','value2'], // 或以'<li>value1</li><li>value2</li>>'的字符串形式传入
-    *   binHandle: [function(){}, function(){}]//需与content一一对应
-    *})
-    * or 高级配置用法：
-    * pro.actionSheet.show({
-    *   content: [
-    *       {
-    *           id: 'testId',//给节点添加自定义id
-    *           className: 'jmu-clor-red',//添加自己的样式
-    *           value: 'value1' //展示的值
-    *           cmd: 'customEvent1' //自定义事件名
-    *       },
-    *       {
-    *           value: 'value2',
-    *           cmd: 'customEvent2' //自定义事件名
-    *       }
-    *    ],
-    *    customEvent1: function(){
-    *        //自定义事件 do something
-    *    }
-    * })
-    */
     JMU.defineComponent( 'ActionShare', {
         options: {
             mask: true,
@@ -1129,10 +1103,10 @@
 ;(function( $, JMU ) {
     JMU.defineComponent( 'Dot', {
         options: {
-            type: 'normal',   // normal, new, num
+            type: 'normal', // normal, new, num
             color: 'red',   // red 或 blue
-            content: '',    // New红点和数字红点需要指定content
-            css: null   // 样式，可以自由控制红点的位置和大小，默认红点在容器的右上角
+            content: '',    // New 红点和数字红点需要指定 content
+            css: null       // 样式，可以自由控制红点的位置和大小，默认红点在容器的右上角
         },
         template: '<div></div>',
         _render: function(){
@@ -1328,7 +1302,7 @@
 		options: {
 			animation: true,
             tapHide: true,
-			preventScroll: true,
+			preventScroll: true
 		},
 		template: '<div class="jmu-mask"></div>',
 		_bindEvents: function(){
@@ -1439,11 +1413,11 @@
             var self = this;
             var $range = this.$el.find('input[type="range"]');
             var $val =  this.$el.find('.jmu-range-val');
-            $range.on('input', function(e){
+            $range.on('input', function(){
                 $val.text($range.val());
                 self.options.onInput();
             });
-             $range.on('change', function(e){
+             $range.on('change', function(){
                 self.options.value = $(this).val();
                 self.options.onChange();
             });
@@ -1567,6 +1541,7 @@
 
         this.bindEvents();
     }
+
     Swipe.prototype = {
         swipeTipsEl: '<div class="jmu-swipe-tips"></div>',
         _init: function (options) {
@@ -1810,25 +1785,6 @@
             }   
         }
     });
-})(Zepto, JMU);
-;(function( $, JMU ) {
-    JMU.defineComponent( 'TextLoading', {
-        options: {
-            preventScroll: true,
-            content: ''
-        },
-        template: '<div class="jmu-text-loading">\
-                <div class="loading" data-color="255,255,255" data-size="36"></div>\
-                <div class="content jmu-color-white"></div>\
-            </div>',
-        _render: function(){
-            var options = this.options;
-            
-            this.$el.find('.loading').loading('show');
-
-            this.$el.find('.content').html(options.content);
-        }
-    }, true);
 })(Zepto, JMU);
 ;/**
  * Copyright (c) 2014 Tencent AlloyTeam, All rights reserved.

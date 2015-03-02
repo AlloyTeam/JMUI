@@ -1,10 +1,10 @@
 (function( $, JMU ) {
     JMU.defineComponent( 'Dot', {
         options: {
-            type: 'normal',   // normal, new, num
+            type: 'normal', // normal, new, num
             color: 'red',   // red 或 blue
-            content: '',    // New红点和数字红点需要指定content
-            css: null   // 样式，可以自由控制红点的位置和大小，默认红点在容器的右上角
+            content: '',    // New 红点和数字红点需要指定 content
+            css: null       // 样式，可以自由控制红点的位置和大小，默认红点在容器的右上角
         },
         template: '<div></div>',
         _render: function(){

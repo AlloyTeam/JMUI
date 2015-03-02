@@ -13,7 +13,7 @@
 		options: {
 			animation: true,
             tapHide: true,
-			preventScroll: true,
+			preventScroll: true
 		},
 		template: '<div class="jmu-mask"></div>',
 		_bindEvents: function(){

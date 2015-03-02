@@ -31,11 +31,11 @@
             var self = this;
             var $range = this.$el.find('input[type="range"]');
             var $val =  this.$el.find('.jmu-range-val');
-            $range.on('input', function(e){
+            $range.on('input', function(){
                 $val.text($range.val());
                 self.options.onInput();
             });
-             $range.on('change', function(e){
+             $range.on('change', function(){
                 self.options.value = $(this).val();
                 self.options.onChange();
             });

@@ -1,30 +1,4 @@
 ;(function( $, JMU ) {
-    /*底部浮层组件
-    * 
-    * 调用示例：by gctang
-    * pro.actionSheet.show({
-    *   content: ['value1','value2'], // 或以'<li>value1</li><li>value2</li>>'的字符串形式传入
-    *   binHandle: [function(){}, function(){}]//需与content一一对应
-    *})
-    * or 高级配置用法：
-    * pro.actionSheet.show({
-    *   content: [
-    *       {
-    *           id: 'testId',//给节点添加自定义id
-    *           className: 'jmu-clor-red',//添加自己的样式
-    *           value: 'value1' //展示的值
-    *           cmd: 'customEvent1' //自定义事件名
-    *       },
-    *       {
-    *           value: 'value2',
-    *           cmd: 'customEvent2' //自定义事件名
-    *       }
-    *    ],
-    *    customEvent1: function(){
-    *        //自定义事件 do something
-    *    }
-    * })
-    */
     JMU.defineComponent( 'ActionShare', {
         options: {
             mask: true,

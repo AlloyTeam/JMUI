@@ -4,6 +4,7 @@
 
         this.bindEvents();
     }
+
     Swipe.prototype = {
         swipeTipsEl: '<div class="jmu-swipe-tips"></div>',
         _init: function (options) {
