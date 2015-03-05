@@ -1,7 +1,9 @@
-# JMUI
+# JMUI - 为移动而生
     
-    JMUI - 为移动而生
 
+[Demo](http://alloyteam.github.io/JMUI/index.html)
+
+[文档](http://alloyteam.github.io/JMUI/site/public/)
 
 ## 目录结构
 
@@ -67,7 +69,7 @@
     $ npm install 
 
     // 1. 生成 JMUI/dist/ 文件夹
-    // 2. 生成 JMUI/site 所需要的网站数据
+    // 2. 生成 JMUI/site/ 所需要的网站数据
     $ grunt dist
 
 
@@ -75,9 +77,13 @@
 ## 网站文档
 
 先生成 site/ 即文档网站所需的数据执行：
+
     // 1. 根据 config.js 中的配置生成数据到 data/demo-*.js  以及示例到 demo/demo-*.html
+
     // 2. 根据 site/views/*.ejs 生成静态页面到 site/public/*.html 方便脱离服务器环境访问
+
     $ grunt install
+
     $ grunt site
 
 接着便可访问静态文档和动态网站：
@@ -100,20 +106,22 @@
 
 1. demo/*.html 包含以下 html 结构即可自动生成文档:
 
-    <section id="组件ID">
-        <div class="demo-item">
-            <p class="demo-desc">组件描述</p>
-            <div class="demo-block">
-                组件 html 代码
+```
+        <section id="组件ID">
+            <div class="demo-item">
+                <p class="demo-desc">组件描述</p>
+                <div class="demo-block">
+                    组件 html 代码
+                </div>
             </div>
-        </div>
-        <div class="demo-item">
-             <p class="demo-desc">组件描述</p>
-            <div class="demo-block">
-                组件代码
+            <div class="demo-item">
+                 <p class="demo-desc">组件描述</p>
+                <div class="demo-block">
+                    组件代码
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+```
 
 其中, #组件ID 唯一, .demo-item 可多个
 
