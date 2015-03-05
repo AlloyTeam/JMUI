@@ -79,7 +79,8 @@ module.exports = function (grunt) {
                     'lib/zeptojs/extend/touch.js',     // modify fix ios 误点击
                     'lib/zeptojs/detect.js',
                     'lib/zeptojs/extend/util.js',
-                    'lib/zeptojs/fx.js'
+                    'lib/zeptojs/fx.js',
+                    'lib/zeptojs/data.js'
                     //'lib/zeptojs/fx_methods.js'
                     //'lib/zeptojs/extend/ajax.js',    // modify fix 跨域ajax bort触发error
                 ],
